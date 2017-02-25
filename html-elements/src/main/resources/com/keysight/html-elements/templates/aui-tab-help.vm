@@ -1,0 +1,14 @@
+<h3>Introduction</h3>
+
+<p>Note, the Local Tab macro is an alias to the AUI Tab macro provided
+for backwards compatibility.</p>
+
+<p>The AUI Tab macro defines a single tab with an AUI Tab Group.  One or more
+may be placed in an AUI Tab Group, but the AUI Tab should always be placed
+in an AUI Tab Group</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Title</strong>: The text to put in the tab</p>
+<p><strong>Active</strong>: Only one tab in the tab group should be active. This sets which tab will be displayed when the page loads.</p>
+<p><strong>ID</strong>: Helper so that links can be made to this tab.  For example, if the ID = ExampleTab, then &lt;a href=&quot;#ExampleTab&quot"&gt;&lt;/a&gt;</p>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Test Ecosystem Space Blueprint i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-space-blueprint"/>
+    
+   <web-item key='test-ecosystem-basic-space-web-item' 
+             i18n-name-key='test-ecosystem.basic-space.web-item.title'
+             section='system.create.space.dialog/content'>
+      <resource name='icon' type='download' location='images/test-ecosystem-space-blueprint-48x48.png'/>
+      <description key='test-ecosystem.basic-space.web-item.description'/>
+      <param name='blueprintKey' value='test-ecosystem-basic-space-blueprint'/>
+   </web-item>
+   
+   <space-blueprint key="test-ecosystem-basic-space-blueprint"
+                    i18n-name-key="test-ecosystem.basic-space.blueprint.title"
+                    category="test-ecosystem">
+      <content-template ref="test-ecosystem-basic-space-homepage"/>
+      <promoted-blueprints>
+         <blueprint ref="com.keysight.test-ecosystem:test-ecosystem-basic-page-blueprint"/>
+      </promoted-blueprints>
+      <dialog-wizard key="test-ecosystem-basic-space-blueprint-wizard">
+         <dialog-page key="test-ecosystem-basic-space-create-dialog-page-1"
+                      id="test-ecosystem-basic-space-create-dialog-page-1"
+                      template-key="Test.Ecosystem.Basic.Space.dialogForm"
+                      title-key="test-ecosystem.basic-space.create-dialog.title"
+                      description-header-key="test-ecosystem.basic-space.create-dialog.heading"
+                      description-content-key="test-ecosystem.basic-space.create-dialog.description"
+                      last="true"/>
+      </dialog-wizard>
+   </space-blueprint>
+
+   <content-template key="test-ecosystem-basic-space-homepage" 
+                     i18n-name-key="test-ecosystem.basic-space.homepage.title">
+      <description key="test-ecosystem.space-blueprint.homepage.description"/>
+      <resource name="template" type="download" location="/com/keysight/test-ecosystem/xml/basic-space-homepage.xml"/>
+   </content-template>
+
+   <!--
+   <component key="test-ecosystem-basic-space-event-listener" class="com.keysight.test.ecosystem.events.BasicSpaceEventListener"/>
+   -->
+</module-container>

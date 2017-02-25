@@ -1,0 +1,22 @@
+## Developed by: Scott Selberg
+## Leveraging code from : David Simpson
+## Date created: 02/02/2015
+ 
+#if( $url )
+<audio
+    #if ($addControls) controls="controls" #end
+    #if ($autoplay)    autoplay="autoplay" #end
+    #if ($loop)        loop="loop"         #end
+>
+    <source type="audio/$fileextension" src="$url" />
+</audio>
+#if( $filename && $addDownloadLink ) <p class="html5-multimedia html5-audio"><a href="$url">Download $filename</a></p> #end
+#else
+
+#if( $includeMedia )
+<p>No url specified</p>
+#else
+<p>No attachment specified</p>
+#end
+
+#end

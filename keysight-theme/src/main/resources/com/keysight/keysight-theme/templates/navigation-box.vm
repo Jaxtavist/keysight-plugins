@@ -1,0 +1,19 @@
+<div class="panel navigation-box-container">
+   #if( $title )
+      <div class="$headerstyle">
+      #if( $url )
+         <a href="$url">
+      #end
+      $title
+      #if( $url )
+         </a>
+      #end
+      </div>
+      <div class="$bodystyle">
+   #else
+      <div class="navigation-box-top $bodystyle">
+   #end
+
+   $!body
+   </div>
+</div>

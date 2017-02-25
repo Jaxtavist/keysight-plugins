@@ -1,0 +1,12 @@
+<table class="keysight-lp-block-quote">
+<tr>
+    <td class="keysight-lp-block-quote" width="10px">
+        <span class ="keysight-lp-block-quote">&ldquo;</span>
+    </td>
+    <td class="keysight-lp-block-quote">
+#if( $enableLpTag )@LP_BLOCKQUOTE_START@#end
+$body
+#if( $enableLpTag )@LP_BLOCKQUOTE_END@#end
+    </td>
+</tr>
+</table>

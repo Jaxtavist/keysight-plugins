@@ -1,0 +1,15 @@
+<h3>Introduction</h3>
+<p>The Include Children macro serializes and inserts the content 
+from all decendant pages of a page (the children, grandchildren, 
+etc...).  This is useful for providing users a quick way to see
+or print all the content below some node in the Confluence page tree.</p>
+<h3>Usage</h3>
+<p>By default, the macro will try and serialize the content below the
+current page.  Alternatively, a target page may be supplied in the macro
+parameteters.  There are also parameters to exclude the page titles and limit
+the levels of grandchildren to be included.</p>
+<h3>Warning to the User</h3>
+<p>If pointed at a space's home page, this macro will try to serialize
+the entire space.  For large spaces, this could lead to performance
+issues or overwhelm the browser.  Therefore, the user is urged to exercise
+caution with this macro.</p>

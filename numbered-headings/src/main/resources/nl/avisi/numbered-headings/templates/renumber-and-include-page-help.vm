@@ -1,0 +1,73 @@
+<h2>Introduction</h2>
+
+<p><strong>Renumber and Include Page</strong> macros is 
+designed to insert the content of the identified page onto 
+the current page and simultaneously renumber the headings
+per the parameters in the macr.</p>
+
+<h2>Parameters</h2>
+
+<p><strong>Number format</strong>: The numbring format to use</p>
+<p>
+   <ul>
+      <li>decimal (default) - 1, 2, 3, 4, etc.</li>
+      <li>iso-2145 - 1, 2, 3, 4, etc.</li>
+      <li>full-decimal - one, two, three, four, etc.</li>
+      <li>lower-latin - a, b, c, d, etc.</li>
+      <li>lower-roman - i, ii, iii, iv, etc.</li>
+      <li>lower-greek - α, β, γ, δ, etc.</li>
+      <li>upper-latin - A, B, C, D, etc.</li>
+      <li>upper-roman - I, II, III, IV, etc.</li>
+      <li>upper-greek - Α, Β, Γ, Δ, etc.</li>
+      <li>custom - Customize the formatting any way you like.</li>
+   </ul>
+</p>
+<p><strong>Start numbering With</strong> (optional): The numerical value to start the numbering at.  This is 
+useful when you want to resume numbering on a sibling or child page.  When clicking
+on the macro but before opening the Macro Browser, you can press one of the numbers as a shortcut for setting this
+value.  If you select <strong>Start numbering at</strong>, then the value for this field will be blanked out.</p>
+
+<p><strong>Start numbering At</strong> (optional): This is which heading to start numbering at. It is strongly
+recommended to numbering at h1 which is the default.  Use this only where you have large number of pages with
+existing content that start with a heading other then h1.</p>
+
+<p><strong>Skip Headings</strong> (optional): This is a comma seperated list of headings which should not be
+numbered. An example might be <em>h5</em>, or <em>h6</em></p>
+
+<h3>Custom Format Parameters</h3>
+
+<p>Note, these are only visible if <strong>custom</strong> is selected as the <strong>Number format</strong>.</p>
+
+<p>The value for the custom parameters is some arbitray text with some rule elements for how to number that item.  The 
+rule elements take the format of [<heading number>.<number format>] such as [h1.decimal].  For example, the following
+
+<ul>
+   <li>h1 format = &quot;Chapter [h1.upper-roman]:&quot;</li>
+   <li>h2 format = &quot;Paragraph [h1.upper-roman].[h2.upper-latin]:&quot;</li>
+   <li>h3 format = &quot;Sub [h3.lower-roman]:&quot;</li>
+</ul>
+
+<p>will produce output like</p>
+
+<div class="numbered-heading-example-box">
+<h1>Chapter I: The good old days</h1>
+
+<h2>Paragraph I.A: How it all began</h2>
+
+</h3>Sub i: My father met my mother...</h3>
+</div>
+
+<p><strong>h1 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h2 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h3 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h4 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h5 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h6 format</strong> (optional): Text plus rule elements.</p>
+
+<h2>Custom Renderer</h2>
+
+<p>It is possible to write a totally custom number format.  For details
+visit <a href="https://addons.avisi.com/numbered-headings/documentation">
+https://addons.avisi.com/numbered-headings/documentation<a></p>
+
+

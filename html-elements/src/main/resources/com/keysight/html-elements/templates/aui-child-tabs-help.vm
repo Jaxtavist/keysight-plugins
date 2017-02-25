@@ -1,0 +1,17 @@
+<h3>Introduction</h3>
+
+<p>Note, the Child Tabs macro is an alias to the AUI Child Tabs macro provided
+for backwards compatibility.</p>
+
+<p>The AUI Child Tabs macro constructs a tab graphical element where each one
+of the tabs is labeled by the title of the child page and the tab itself
+contains the contents of the child page.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Root Page</strong>: Specifies the parent page from which to get the child pages.  Defaults to the current page.</p>
+<p><strong>Vertical Orientation</strong>: If checked, the tabs will be listed vertically rather than horizontally.</p>
+<p><strong>Reverse</strong>: If checked, the tabs will be listed in reverse order from the listing in the sidebar.</p>
+<p><strong>Left Truncation</strong>: As the page title is inserted into a tab label, this is the number of characters to truncate from the left.</p>
+<p><strong>Right Truncation</strong>: As the page title is inserted into a tab label, this is the number of characters to truncate from the right.</p>
+

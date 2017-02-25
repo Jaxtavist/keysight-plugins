@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Glossary Blueprint i18n" location="/com/keysight/glossary/i18n/glossary-space"/>
+
+   <!-- Glossary Space Blueprint -->
+   <web-item key='glossary-space-web-item' 
+             i18n-name-key='glossary-space.web-item.title'
+             section='system.create.space.dialog/content'>
+      <resource name='icon' type='download' location='images/glossary-space-48x48.png'/>
+      <description key='glossary-space.web-item.description'/>
+      <param name='blueprintKey' value='glossary-space-blueprint'/>
+   </web-item>
+   
+   <space-blueprint key="glossary-space-blueprint"
+                    i18n-name-key="glossary-space.blueprint.title"
+                    category="glossary">
+      <content-template ref="glossary-space-homepage"/>
+      <promoted-blueprints>
+         <blueprint ref="com.keysight.glossary:glossary-term-blueprint"/>
+      </promoted-blueprints>
+      <dialog-wizard key="glossary-space-blueprint-wizard">
+         <dialog-page key="glossary-space-create-dialog-page-1"
+                      id="glossary-space-create-dialog-page-1"
+                      template-key="Glossary.Space.dialogForm"
+                      title-key="glossary-space.create-dialog.title"
+                      description-header-key="glossary-space.create-dialog.heading"
+                      description-content-key="glossary-space.create-dialog.description"
+                      last="true"/>
+      </dialog-wizard>
+   </space-blueprint>
+
+   <content-template key="glossary-space-homepage" 
+                     i18n-name-key="glossary-space.homepage.title">
+      <description key="glossary-space.homepage.description"/>
+      <resource name="template" type="download" location="/com/keysight/glossary/xml/glossary-space-homepage.xml"/>
+   </content-template>
+
+   <!--
+   <component key="glossary-space-event-listener" class="com.keysight.events.GlossarySpaceEventListener"/>
+   -->
+   
+</module-container>

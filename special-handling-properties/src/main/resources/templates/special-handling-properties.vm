@@ -1,0 +1,12 @@
+<div class="special-handling-properties" >
+
+<h2>Special Properties</h2>
+
+<table border = "1" >
+   <tr><th align=\"left\">PL</th>          <td>$pl</td>         <th align=\"left\">Status</th>       <td>$status</td></tr>
+   <tr><th align=\"left\">Type</th>        <td>$type</td>       <th align=\"left\">Availability</th> <td>$availability</td></tr>
+   <tr><th align=\"left\">Price (USD)</th> <td>$price</td>      <th align=\"left\">TA</th>           <td>$ta</td></tr>
+   <tr><th align=\"left\">DNQA</th>        <td>$myHelper.convertStorageToView($dnqa)</td>       <th align=\"left\"></th>             <td></td></tr>
+   <tr><th align=\"left\">Originator</th>  <td>$myHelper.convertStorageToView($originator)</td> <th align=\"left\"></th>             <td></td></tr>
+</table>
+</div>

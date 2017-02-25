@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="Keysight Theme Rest Interface" key="keysight-theme-rest-resource" path="/keysight-theme" version="1.0">
+       <description>This is a rest resource to provide macro documentation.</description>
+    </rest>
+
+</module-container>
+

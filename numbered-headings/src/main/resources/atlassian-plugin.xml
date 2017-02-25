@@ -1,0 +1,46 @@
+<atlassian-plugin key="${groupId}.${artifactId}" name="${project.name}" pluginsVersion="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="atlassian-data-center-compatible">true</param>
+        <param name="plugin-icon">images/NH_16.png</param>
+        <param name="plugin-logo">images/NH_72.png</param>
+        <param name="plugin-banner">images/NH_banner.png</param>
+        <param name="vendor-icon">images/NH_16.png</param>
+        <param name="vendor-logo">images/NH_72.png</param>
+        <scan-modules>
+            <folder>META-INF/macros</folder>
+            <folder>META-INF/rest</folder>
+        </scan-modules>
+    </plugin-info>
+
+    <resource type="i18n" name="numbered-headings" location="nl/avisi/numbered-headings/i18n/numbered-headings"/>
+
+    <web-resource key="numbered-headings-resources" name="Numbered Headings Web Resources">
+        <resource type="download" name="images/"       location="/images"/>
+        <resource type="download" name="macro-help.js" location="js/macro-help.js"/>
+        <resource type="download" name="nh-help.js" location="js/nh-help.js"/>
+
+	    <context>atl.general</context>
+	    <context>main</context>
+        <context>macro-browser</context>
+        <context>preview</context>
+    </web-resource>
+
+    <rest name="Numbered Headings Rest Interface For Help" key="numbered-headings-rest-resource-for-help" path="/numbered-elements" version="1.0">
+       <description>This is a rest resource to provide macro documentation.</description>
+    </rest>
+
+    <number-formatter key="decimal-number-formatter" name="decimal" class="nl.avisi.numbered.headings.format.DecimalNumberingFormat"/>
+    <number-formatter key="iso-2145-number-formatter" name="iso-2145" class="nl.avisi.numbered.headings.format.ISO2145NumberingFormat"/>
+    <number-formatter key="full-decimal-number-formatter" name="full-decimal" class="nl.avisi.numbered.headings.format.FullDecimalNumberingFormat"/>
+    <number-formatter key="lower-greek-number-formatter" name="lower-greek" class="nl.avisi.numbered.headings.format.LowerGreekNumberingFormat"/>
+    <number-formatter key="upper-greek-number-formatter" name="upper-greek" class="nl.avisi.numbered.headings.format.UpperGreekNumberingFormat"/>
+    <number-formatter key="lower-roman-number-formatter" name="lower-roman" class="nl.avisi.numbered.headings.format.LowerRomanNumberingFormat"/>
+    <number-formatter key="upper-roman-number-formatter" name="upper-roman" class="nl.avisi.numbered.headings.format.UpperRomanNumberingFormat"/>
+    <number-formatter key="lower-latin-number-formatter" name="lower-latin" class="nl.avisi.numbered.headings.format.LowerLatinNumberingFormat"/>
+    <number-formatter key="upper-latin-number-formatter" name="upper-latin" class="nl.avisi.numbered.headings.format.UpperLatinNumberingFormat"/>
+    <number-formatter key="custom-number-formatter" name="custom" class="nl.avisi.numbered.headings.format.CustomNumberingFormat"/>
+
+</atlassian-plugin>

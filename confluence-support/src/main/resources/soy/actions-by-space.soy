@@ -1,0 +1,14 @@
+{namespace Keysight.Confluence.Support.Actions.By.Space}
+
+/**
+ * Progress Container
+ * @param index the number of spaces which have been listed.
+ * @param count the number of spaces to be listed.
+ */
+{template .progressContainer2}
+<div class="keysight-progress-container-inner">
+   <div class="button-spinner" id="keysight-progress-spinner"></div>
+   <div class="keysight-progress-container-text">{$index} of {$count} Spaces.</div>
+   <div style="clear:both"></div>
+</div>
+{/template}

@@ -1,0 +1,38 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images" )
+#set( $igeLogo = "$images/ige-48x20.png" )
+#set( $tceLogo = "$images/tce-48x20.png" )
+#set( $mmaLogo = "$images/mma-48x20.png" )
+#set( $fseLogo = "$images/fse-48x20.png" )
+
+
+<h3>Introduction</h3>
+
+<p>The ETMS, FSE, IGE, MMA and TCE Note macros are modeled after
+the native Confluence <strong>Note</strong> macro.  They differ
+in that they use a different color scheme and each of the variants
+has a distinct icont.  The purpose is to highlight some text that
+is only applicable to some of the ETMS variations.</p>
+
+<p>The EMTS Note macro allows the user so select one or more of the
+systems.  The sub-macros such as FSE, IGE, MMA or TCE Note select
+the one appropriate image.</p>
+
+<h3>Examples:</h3>
+
+<h4>ETMS Note</h4>
+<div class="etms-block-super-container">
+<div class="etms-block-container">
+   <div class="etms-block-icons">
+      <img src="$fseLogo"/>
+      <img src="$igeLogo"/>
+      <img src="$mmaLogo"/>
+      <img src="$tceLogo"/>
+   </div>
+   <div class="etms-block-content-container">
+      <div class="etms-block-content">
+         <p class="etms-block-content-title">A note for etms variants.</p>
+         This is the text of the message
+      </div>
+   </div>
+</div>
+</div>

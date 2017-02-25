@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="entity-authorship" location="/com/keysight/confluence-support/i18n/entity-authorship"/>
+ 
+   <xhtml-macro name="entity-authorship" key="entity-authorship" 
+	        class="com.keysight.confluence.support.macros.EntityAuthorship"
+	        state="disabled"
+		icon="/download/resources/com.keysight.confluence-support:confluence-support-resources/images/keysight-logo-80x80.png">
+		<category name="admin"/>
+                <parameters>
+                   <parameter name="page" type="confluence-content"/>
+                   <parameter name="username" type="username"/>
+                   <parameter name="creation-date" type="string"/>
+                   <parameter name="autoclean" type="boolean"/>
+                </parameters>
+    </xhtml-macro>
+
+</module-container>

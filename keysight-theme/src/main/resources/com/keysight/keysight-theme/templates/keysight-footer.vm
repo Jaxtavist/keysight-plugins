@@ -1,0 +1,47 @@
+#* @vtlvariable name="licenseService" type="com.atlassian.confluence.LicenseService" *#
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images" )
+
+<div id="footer" role="contentinfo">
+   <section class="footer-body">
+
+   #if ($generalUtil.isSetupComplete())
+      #if($showHSQLWarning && $action.usingHSQL)
+         <div id="footer-warning">
+            $action.getText('hsql.footerWarning')
+         </div>
+      #end
+      #set ($license = $licenseServer.retrieve() )
+      
+      $!sitemeshPage.getProperty("page.login-language")
+
+   <div id="keysight-footer">
+      <div id="keysight-footmenu-interior">
+         
+   <div id="keysight-footer-navbar-container">
+   <div id="keysight-footer-navbar">
+      <ul>
+
+         <li><a href="mailto://pdl-confluence-admin@keysight.com">Feedback</a></li>
+         <li><a href="http://inside.keysight.com">Inside Keysight</a></li>
+         <li><a href="http://www.keysight.com" style="color:#e90029;">keysight.com</a></li>
+      </ul>
+   </div>
+   </div>
+         
+   <div id="keysight-copyright-int">INTRANET - Keysight Restricted<br/>
+   Powered by Atlassian Confluence $generalUtil.versionNumber
+   </div>
+   
+      </div>
+   </div>
+   
+   #end
+      
+   $!sitemeshPage.getProperty("page.coherence-copyright")
+   #if ($!decorator.name != "admin")
+      $!settingsManager.globalSettings.customHtmlSettings.beforeBodyEnd
+   #end
+
+   </section>
+</div>
+

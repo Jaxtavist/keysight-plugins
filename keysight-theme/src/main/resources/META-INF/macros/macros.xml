@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="macros" location="/com/keysight/keysight-theme/i18n/macros"/>
+
+    <xhtml-macro name="navigation-box" key="navigation-box" 
+                 class="com.keysight.keysight.theme.macros.NavigationBox"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <category name="formatting"/>
+                 <parameters>
+                    <parameter name="name" type="enum" required="true">
+                       <option key="showNameInPlaceholder" value="true"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                       <value name="Keysight Dark Red"/>
+                       <value name="Keysight Gray"/>
+                       <value name="Keysight Dark Gray"/>
+                    </parameter>
+                    <parameter name="title"  type="string">
+                       <option key="showNameInPlaceholder" value="true"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                    </parameter>
+                    <parameter name="page" type="confluence-content" />
+                 </parameters>
+    </xhtml-macro>
+   
+    <xhtml-macro name="panelbox" key="panelbox" 
+                 class="com.keysight.keysight.theme.macros.NavigationBox"
+                 state="disabled"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <category name="formatting"/>
+                 <parameters>
+                    <parameter name="name" type="enum" required="true">
+                       <option key="showNameInPlaceholder" value="true"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                       <value name="Keysight Dark Red"/>
+                       <value name="Keysight Gray"/>
+                       <value name="Keysight Dark Gray"/>
+                    </parameter>
+                    <parameter name="title"  type="string">
+                       <option key="showNameInPlaceholder" value="true"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                    </parameter>
+                    <parameter name="page" type="confluence-content" />
+                 </parameters>
+    </xhtml-macro>
+
+    <xhtml-macro name="api-documentation" key="api-documentation" 
+                 class="com.keysight.keysight.theme.macros.ApiDocumentation"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <parameters>
+                    <parameter name="application" type="string" required="true">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                    </parameter>
+                    <parameter name="show-collapsed"  type="boolean">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                    </parameter>
+                    <parameter name="hide-application-name"  type="boolean">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                    </parameter>
+                 </parameters>
+    </xhtml-macro>
+
+    <web-resource key="api-documentation-macro-browser-resources" name="Resources for the api-documentation macro in the editor.">
+        <resource type="download" name="api-documentation-macro-browser.js" location="js/api-documentation-macro-browser.js" />
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+        <context>macro-browser</context>
+    </web-resource>
+
+    <xhtml-macro name="contact-form" key="contact-form" 
+                 class="com.keysight.keysight.theme.macros.ContactForm"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <category name="confluence-content"/>
+                 <parameters>
+                     <parameter name="identifier" type="string" required="true">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="contact" type="username" required="true">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                     </parameter>
+                     <parameter name="ccToEmail" type="boolean">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="template" type="enum" default="Keysight Ask">
+                        <value name="Keysight Ask"/>
+                        <value name="Link"/>
+                        <value name="Link - ID Required"/>
+                        <option key="showNameInPlaceholder" value="false"/>
+                        <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="text" type="string">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="dialog-title" type="string">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="dialog-help-text" type="string">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                 </parameters>
+    </xhtml-macro>
+
+    <!-- Deployed as a legacy macro so it can be inserted into the sidebar -->
+    <macro name="contact-form" key="contact-form-legacy" 
+                 class="com.keysight.keysight.theme.macros.ContactForm"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <description>Wiki-syntax Contact Form Macro</description>
+                 <category name="confluence-content"/>
+                 <parameters>
+                     <parameter name="identifier" type="string" required="true">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="contact" type="username">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                     </parameter>
+                     <parameter name="ccToEmail" type="boolean">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="template" type="enum" default="Keysight Ask">
+                        <value name="Keysight Ask"/>
+                        <value name="Link"/>
+                        <value name="Link - ID Required"/>
+                        <option key="showNameInPlaceholder" value="false"/>
+                        <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="text" type="string">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="dialog-title" type="string">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                     <parameter name="dialog-help-text" type="string">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                     </parameter>
+                 </parameters>
+    </macro>
+
+    <xhtml-macro name="status-flag" key="status-flag" 
+                 class="com.keysight.keysight.theme.macros.StatusFlag"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <parameters>
+                    <parameter name="color" type="enum" default="Grey">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                       <value name="Grey"/>
+                       <value name="Green"/>
+                       <value name="Yellow"/>
+                       <value name="Red"/>
+                       <value name="Blue"/>
+                    </parameter>
+                    <parameter name="style" type="enum" default="Rounded Rectangle">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                       <value name="Large Flag"/>
+                       <value name="Medium Flag"/>
+                       <value name="Small Flag"/>
+                       <value name="Rounded Rectangle"/>
+                       <value name="On-Track"/>
+                    </parameter>
+                 </parameters>
+                 <property-panel>
+                    <spacer />
+                    <button id="StatusFlagGrey"   label="" />
+                    <button id="StatusFlagGreen"  label="" />
+                    <button id="StatusFlagYellow" label="" />
+                    <button id="StatusFlagRed"    label="" />
+                    <button id="StatusFlagBlue"   label="" />
+                    <spacer />
+                  </property-panel>
+    </xhtml-macro>
+
+    <web-resource name="Status Flag Resources" key="status-flag-editor-resources">
+        <context>editor</context>
+        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+        <resource type="download" name="status-flag.js" location="js/status-flag.js"/>
+        <resource type="download" name="status-flag.css" location="css/status-flag.css"/>
+    </web-resource>
+
+    <xhtml-macro name="keysight-plc-checkpoint" key="keysight-plc-checkpoint" 
+                 class="com.keysight.keysight.theme.macros.KeysightPlcCheckpoint"
+                 icon="/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-logo-80x80.png">
+                 <parameters>
+                    <parameter name="checkpoint" type="enum" required="true">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="true"/>
+                       <value name="PRECON"/>
+                       <value name="CON"/>
+                       <value name="INV"/>
+                       <value name="DEF"/>
+                       <value name="DEV"/>
+                       <value name="HQ"/>
+                       <value name="SQ"/>
+                       <value name="FPR"/>
+                       <value name="MS"/>
+                       <value name="SHP"/>
+                       <value name="DIS"/>
+                       <value name="SUP"/>
+                       <value name="CLO"/>
+                       <value name="PRC"/>
+                       <value name="PC"/>
+                       <value name="LSR"/>
+                       <value name="RTR"/>
+                       <value name="DD"/>
+                    </parameter>
+                    <parameter name="size" type="enum" default="Large">
+                       <option key="showNameInPlaceholder" value="false"/>
+                       <option key="showValueInPlaceholder" value="false"/>
+                       <value name="Large"/>
+                       <value name="Small"/>
+                    </parameter>
+                 </parameters>
+                 <property-panel>
+                    <spacer />
+                    <button id="PRECON" label="PRECON" />
+                    <button id="CON" label="CON" />
+                    <button id="INV" label="INV" />
+                    <button id="DEF" label="DEF" />
+                    <button id="DEV" label="DEV" />
+                    <button id="HQ"  label="HQ" />
+                    <button id="SQ"  label="SQ" />
+                    <button id="FPR" label="FPR" />
+                    <button id="MS"  label="MS" />
+                    <button id="SHP" label="SHP" />
+                    <button id="DIS" label="DIS" />
+                    <button id="SUP" label="SUP" />
+                    <button id="CLO" label="CLO" />
+                    <button id="PRC" label="PRC" />
+                    <button id="PC"  label="PC" />
+                    <button id="LSR" label="LSR" />
+                    <button id="RTR" label="RTR" />
+                    <button id="DD"  label="DD" />
+                    <spacer />
+                  </property-panel>
+    </xhtml-macro>
+
+    <web-resource name="Keysight PLC Checkpoint Resources" key="keysight-plc-checkpoint-editory--resources">
+        <context>editor</context>
+        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+        <resource type="download" name="keysight-plc-checkpoint.js" location="js/keysight-plc-checkpoint.js"/>
+        <resource type="download" name="keysight-plc-checkpoint.css" location="css/keysight-plc-checkpoint.css"/>
+    </web-resource>
+   
+</module-container>

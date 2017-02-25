@@ -1,0 +1,13 @@
+ul.share-doc-linkbank {
+   padding: 0px;
+   margin: 0px;
+   list-style-type: none;
+}
+
+.broken-link {
+   text-decoration: line-through;
+}
+
+.help-dialog {
+   z-index: 3500 !important;
+}

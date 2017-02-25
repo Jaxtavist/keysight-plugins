@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Test Ecosystem Meeting Notes i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-meeting-notes"/>
+
+   <!-- Test Ecosystem Meeting Notes Blueprint -->
+   <web-item key="test-ecosystem-meeting-notes-web-item" 
+             i18n-name-key="test-ecosystem.meeting-notes.web-item.title"
+             section="system.create.dialog/content">
+      <description key="test-ecosystem.meeting-notes.web-item.description" />
+      <resource name="icon" type="download" location="/images/meeting-notes-48x48.png" />
+      <param name="blueprintKey" value="test-ecosystem-meeting-notes-blueprint" />
+   </web-item>
+   
+   <blueprint key="test-ecosystem-meeting-notes-blueprint" 
+              i18n-name-key="test-ecosystem.meeting-notes.blueprint.title"
+              index-key="test-ecosystem-meeting-note"
+              content-template-key="test-ecosystem-meeting-notes-page"
+              index-template-key="test-ecosystem-meeting-notes-index" />
+   
+   <content-template key="test-ecosystem-meeting-notes-index" 
+                     i18n-name-key="test-ecosystem.meeting-notes.index.title">
+      <resource name="template" type="download" location="/com/keysight/test-ecosystem/xml/meeting-notes-index.xml" />
+      <context-provider class="com.keysight.test.ecosystem.helpers.MeetingNotesIndexContextProvider"/>
+   </content-template>
+   
+   <content-template key="test-ecosystem-meeting-notes-page" 
+                     i18n-name-key="test-ecosystem.meeting-notes.page.title">
+      <resource name="template" type="download" location="/com/keysight/test-ecosystem/xml/meeting-notes-page.xml" />
+      <context-provider class="com.keysight.test.ecosystem.helpers.MeetingNotesPageContextProvider"/>
+   </content-template>
+
+   <!--
+   <component key="test-ecosystem-meeting-notes-event-listener" class="com.keysight.test.ecosystem.events.MeetingNotesEventListener"/>
+   -->
+</module-container>

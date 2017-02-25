@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="special-handling-properties" location="/com/keysight/test-ecosystem/i18n/special-handling-properties"/>
+   
+   <xhtml-macro name="special-handling-properties" key="special-handling-properties" 
+                class="com.keysight.test.ecosystem.macros.SpecialHandlingProperties"
+	        state="disabled"
+                icon="/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images/keysight-logo-80x80.png">
+      <category name="development" />
+      <parameters>
+         <parameter name="pl" type="enum" required="true">
+            <value name="PL12" />
+            <value name="PL15" />
+         </parameter>
+         <parameter name="status" type="enum" required="true">
+            <value name="A - Active" />
+            <value name="C - Check Oracle" />
+            <value name="O - Obsolete" />
+            <value name="S - Devel-Quote OK" />
+            <value name="X - Devel-No Quote" />
+         </parameter>
+         <parameter name="type" type="enum" default="SSH">
+            <value name="E" />
+            <value name="M" />
+            <value name="SSE" />
+            <value name="SSH" />
+            <value name="SSP" />
+         </parameter>
+         <parameter name="availability" type="string" />
+         <parameter name="price"        type="int" required="true" />
+         <parameter name="dnqa"         type="date" required="true" />
+         <parameter name="originator"   type="username" />
+         <parameter name="ta"           type="enum" default="Add">
+            <value name="Add" />
+            <value name="Total" />
+         </parameter>
+      </parameters>
+   </xhtml-macro>
+
+
+   <xhtml-macro name="special-handling-docs" key="special-handling-docs" 
+	        class="com.keysight.test.ecosystem.macros.SpecialHandlingDocuments"
+	        state="disabled"
+                icon="/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images/keysight-logo-80x80.png">
+      <category name="development" />
+      <parameters>
+	 <parameter name="model" type="string" />
+	 <parameter name="option" type="string" />
+      </parameters>
+   </xhtml-macro>
+</module-container>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Glossary Term i18n" location="/com/keysight/glossary/i18n/glossary-term"/>
+	
+   <!-- Glossary Term Blueprint -->
+   <web-item key="glossary-term-page-web-item" 
+             i18n-name-key="glossary-space.glossary-term-page.web-item.title" 
+             section="system.create.dialog/content">
+      <description key="glossary-space.glossary-term-page.web-item.description" />
+      <resource name="icon" type="download" location="/images/glossary-term-page-48x48.png" />
+      <param name="blueprintKey" value="glossary-term-blueprint" />
+   </web-item>
+   
+   <blueprint key="glossary-term-blueprint" 
+              index-key="glossary-term"
+              i18n-name-key="glossary-space.glossary-term-page.title"
+              content-template-key="glossary-term-blueprint-template"
+              disable-index-page="true" />
+   
+   <content-template key="glossary-term-blueprint-template" 
+                     i18n-name-key="glossary-space.glossary-term-page.page.title">
+      <resource name="template" type="download" location="/com/keysight/glossary/xml/glossary-term.xml" />
+      <context-provider class="com.keysight.glossary.helpers.GlossaryTermContextProvider"/>
+   </content-template>
+   
+   <!--
+   <component key="glossary-term-event-listener" class="com.keysight.plugins.confluence.glossary.blueprints.page.GlossaryTermEventListener"/>
+   -->
+   
+</module-container>

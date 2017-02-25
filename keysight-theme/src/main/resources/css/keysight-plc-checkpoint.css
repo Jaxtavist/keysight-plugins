@@ -1,0 +1,31 @@
+#property-panel a.macro-property-panel-PRECON-disabled span.icon {
+    display: block;
+    margin: 2px 0 0 0;
+    height:24px;
+    width:24px;
+    background-image: url("../../download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/checkpoint-precon-24x24.png");
+}
+
+#property-panel a.macro-property-panel-CON-disabled span.icon {
+    display: block;
+    margin: 2px 0 0 0;
+    height:24px;
+    width:24px;
+    background-image: url("../../download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/checkpoint-con-24x24.png");
+}
+
+#property-panel a.macro-property-panel-INV-disabled span.icon {
+    display: block;
+    margin: 2px 0 0 0;
+    height:24px;
+    width:24px;
+    background-image: url("../../download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/checkpoint-inv-24x24.png");
+}
+
+#property-panel a.macro-property-panel-DEF-disabled span.icon {
+    display: block;
+    margin: 2px 0 0 0;
+    height:24px;
+    width:24px;
+    background-image: url("../../download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/checkpoint-def-24x24.png");
+}

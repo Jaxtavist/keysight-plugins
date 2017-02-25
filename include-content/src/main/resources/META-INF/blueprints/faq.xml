@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="FAQ i18n" location="/com/keysight/include-content/i18n/faq-blueprint"/>
+   
+   <web-item key="faq-web-item" 
+             i18n-name-key="faq.web-item.title"
+             section="system.create.dialog/content">
+      <description key="faq.web-item.description" />
+      <resource name="icon" type="download" location="/images/faq-48x48.png" />
+      <param name="blueprintKey" value="faq-blueprint" />
+   </web-item>
+   
+   <blueprint key="faq-blueprint" 
+              i18n-name-key="faq.blueprint.title"
+              index-key="faq-page"
+              content-template-key="faq-page"
+              index-template-key="faq-index">
+      <dialog-wizard key="faq-dialog-wizard">
+         <dialog-page key="faq-create-dialog-page-1"
+                      id="faq-create-dialog-page-1"
+                      template-key="com.keysight.include.content.faq.dialogForm"
+                      title-key="faq.create-dialog.title"
+                      description-header-key="faq.create-dialog.heading"
+                      description-content-key="faq.create-dialog.description"
+                      last="true"/>
+      </dialog-wizard>
+   </blueprint>
+   
+   <content-template key="faq-index" 
+                     i18n-name-key="faq.index.title">
+      <resource name="template" type="download" location="/com/keysight/include-content/xml/faq-index.xml" />
+      <context-provider class="com.keysight.include.content.helpers.FaqIndexContextProvider"/>
+   </content-template>
+   
+   <content-template key="faq-page" 
+                     i18n-name-key="faq.page.title">
+                     <resource name="template" type="download" location="/com/keysight/include-content/xml/faq-page.xml" />
+      <context-provider class="com.keysight.include.content.helpers.FaqPageContextProvider"/>
+   </content-template>
+
+   <!--
+   <component key="faq-event-listener" class="com.keysight.include.content.events.FaqEventListener"/>
+   -->
+
+</module-container>

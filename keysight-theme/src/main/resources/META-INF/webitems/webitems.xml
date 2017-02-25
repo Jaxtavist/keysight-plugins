@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <web-resource key="update-descendant-labels-resources" name="Update Descendant Labels Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+       	<dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+          
+        <transformation extension="js">
+           <transformer key="jsI18n" />
+        </transformation> 
+
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+
+        <resource type="download" name="update-descendant-labels.css" location="/css/update-descendant-labels.css"/>
+        <resource type="download" name="update-descendant-labels.js" location="/js/update-descendant-labels.js"/>
+        <resource type="download" name="update-descendant-labels-templates.js" location="/soy/update-descendant-labels-templates.soy"/>
+
+        <context>keysight-theme</context>
+        <context>atl.general</context>
+        <context>atl.admin</context>
+        <context>preview</context>
+    </web-resource>
+
+
+   <web-item name="Contact Space Admins" key="contact-space-admins" section="system.content.action/primary">
+      <icon width="16" height="16">
+         <link>/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-icon-16x16.png</link>
+      </icon>
+      <label key="keysight-theme.contact-space-admins"/>
+      <link></link>
+      <styleClass>keysight-contact-space-admins</styleClass>
+   </web-item>
+
+   <web-item name="Update Decendant Labels" key="update-decendant-labels" section="system.content.action/primary">
+      <icon width="16" height="16">
+         <link>/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-icon-16x16.png</link>
+      </icon>
+      <label key="keysight-theme.update-decendant-labels"/>
+      <link></link>
+      <styleClass>keysight-update-descendant-labels</styleClass>
+      <conditions type="AND">
+         <condition class="com.keysight.keysight.theme.helpers.CanEditLabelsCondition" />
+         <condition class="com.keysight.keysight.theme.helpers.HasChildrenCondition" />
+      </conditions>
+   </web-item>
+
+   <!-- Menu items to activate/deactivate the page state widget -->
+   <web-item name="Activate Page State Web Item" key="activate-page-state-web-item" section="system.content.action/primary">
+      <icon width="16" height="16">
+         <link>/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-icon-16x16.png</link>
+      </icon>
+      <label key="keysight-theme.activate-page-state"/>
+      <link>/plugins/activate-page-state/activate.action?pageId=$page.id</link>
+      <conditions type="AND">
+         <condition class="com.keysight.keysight.theme.helpers.CanActivatePageStateCondition"/>
+         <condition class="com.keysight.keysight.theme.helpers.CanEditLabelsCondition" />
+      </conditions>
+   </web-item>
+
+   <xwork name="Activate Page State XWork Action" key="activate-page-state-xwork-action">
+      <package name="Activate Page State" extends="default" namespace="/plugins/activate-page-state">
+         <default-interceptor-ref name="defaultStack"/>
+         <action name="activate" class="com.keysight.keysight.theme.helpers.ActivatePageStateAction">
+            <result name="success" type="redirect">${page.urlPath}</result>
+         </action>
+      </package>
+   </xwork>
+   
+   <web-item name="Deactivate Page State Web Item" key="deactivate-page-state-web-item" section="system.content.action/primary">
+      <icon width="16" height="16">
+         <link>/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/keysight-icon-16x16.png</link>
+      </icon>
+      <label key="keysight-theme.deactivate-page-state"/>
+      <link>/plugins/deactivate-page-state/deactivate.action?pageId=$page.id</link>
+      <conditions type="AND">
+         <condition class="com.keysight.keysight.theme.helpers.CanDeactivatePageStateCondition"/>
+         <condition class="com.keysight.keysight.theme.helpers.CanEditLabelsCondition" />
+      </conditions>
+   </web-item>
+
+   <xwork name="Deactivate Page State XWork Action" key="deactivate-page-state-xwork-action">
+      <package name="Deactivate Page State" extends="default" namespace="/plugins/deactivate-page-state">
+         <default-interceptor-ref name="defaultStack"/>
+         <action name="deactivate" class="com.keysight.keysight.theme.helpers.DeactivatePageStateAction">
+            <result name="success" type="redirect">${page.urlPath}</result>
+         </action>
+      </package>
+   </xwork>
+   
+</module-container>

@@ -1,0 +1,108 @@
+<h3>Introduction</h3>
+
+<p>The convention of using <b>DO</b>, <b>CONSIDER</b>, <b>AVOID</b>, and <b>DO
+NOT</b> was introduced in <i>Framework Design Guidelines: Conventions, Idioms,
+and Patterns for Reusable .NET Libraries</i> by Krzysztof Cwalina and Brad
+Abrams.  This convention has been quite useful beyond the design of .Net
+libraries and therefore this set of macros - <b>do</b>, <b>consider</b>,
+<b>avoid</b>, <b>do-not</b> and <b>lp-guideline</b> were created to provide
+users an easy and consistent way for creating guidelines consistent with the
+convention.</p>
+
+<h3>Glyphs - not images!</h3> 
+
+<p>The &quot;&#10004;&quot; and &quot;&#10008;&quot; are glyphs included with
+the standard font set.  They can be accessed in html using <b>&amp;#10004;
+(&#10004;)</b> and <b>&amp;#10008; (&#10008;)</b>.  As a side note, there are
+lighter versions of the glyphs at <b>&amp;#10003; (&#10003;)</b> and
+<b>&amp;#10007; (&#10007;)</b>.  The nice thing about using the font glyphs
+rather images is that they can be easily stylized with css and export nicely to
+word documents. (The glyphs do not seem to carry into the pdf created by Conflunece.)</p>  
+
+<h3>How to use the guidelines</h3>
+
+<p>The following is excerpted from <i>Framework Design Guidelines: Conventions,
+Idioms and Patterns for Reusable .NET Libraries</i>.</p>
+
+<p>The guidelines are organized as simple recommendations using <b>Do</b>,
+<b>Consider</b>, <b>Avoid</b>, and <b>Do not</b>.  Each guideline describes
+either a good or bad practice, and all have a consistent presentation.  Good
+practices have a &#10004; in front of them, and bad practices have an &#10008;
+in front of them.  The wording of each guideline also indicates how strong the
+recommendation is.  For example, a <b>Do</b> guideline is one that should
+always be followed.  On the other hand, <b>Consider</b> guidelines should
+generally be followed, but if you fully understand the reasoning behind a
+guideline and have a good reason to not follow it anyway, you should not feel
+bad about breaking the rules. Similarly, <b>Do not</b> guidelines indicate
+somethign you should almost never do.  Less strong, <b>Avoid</b> guidelines
+indicate that something is generally not a good idea, but there are known cases
+where breaking the rule makes sense.</p>
+
+<p>In short...</p>
+<table class="confluenceTable">
+   <tr><th class="highlight-grey confluenceTh" data-highlight-colour="grey" style="width:100px;">&#10004 <b>DO</b></th><td class="confluenceTd">Emphasizes that this action <b>must always be followed</b> (exceptions are rare).</td></tr>
+   <tr><th class="highlight-grey confluenceTh" data-highlight-colour="grey" style="width:100px;">&#10004 <b>CONSIDER</b></th><td class="confluenceTd">Emphasizes that this action <b>should be attempted</b> wherever possible and appropriate (exceptions may occur).</td></tr>
+   <tr><th class="highlight-grey confluenceTh" data-highlight-colour="grey" style="width:100px;">&#10008 <b>AVOID</b></th><td class="confluenceTd">Emphasizes that this action <b>should be prevented</b> wherever possible and appropriate (exceptions may occur).</td></tr>
+   <tr><th class="highlight-grey confluenceTh" data-highlight-colour="grey" style="width:100px;">&#10008 <b>DO NOT</b></th><td class="confluenceTd">Emphasizes that this action <b>must never happen</b> (exceptions are rare).</td></tr>
+</table>
+
+<h3>Macro Variations</h3>
+
+<p>There are six guideline macros. The first, <strong>Guideline (Inline)</strong> is the only inline 
+macro of the group.  It simply inserts the graphic and text where the macro was placed.  The others
+are block macros and will place the graphic the the left of the text much like an indented list.
+If there are multiple paragraphs, the left edge of the text for each paragraph will be aligned and
+the graphic will be yet further left.  This is to help make it clear that all of text is describing
+a single guildline.</p>
+
+<h4>Guideline (Inline)</h4>
+
+<p>The <strong>Guideline (Inline)</strong> inserts the proper graphic and text for one of the four guidelines.</p>
+
+<h4>LP Guideline</h4>
+
+<p>The <strong>LP Guideline</strong> macro is intended to be used by the learning products community. As with the
+<strong>Guideline (Inline)</strong> macro, it can represent any of the guidelines via a macro parameter.</p>
+
+<h4>Do, Consider, Avoid and Do Not</h4>
+
+<p>The four macros, <strong>Do</strong>, <strong>Consider</strong>, <strong>Avoid</strong> and <strong>Do Not</strong>,
+are all block macros and represent one type of guideline each.</p>
+<strong>Guideline (Inline)</strong> macro, it can represent any of the guidelines via a macro parameter.</p>
+
+
+<h3>Using the macros</h3>
+
+<p>For general usage, the recommendation is to either use the <strong>Guideline (Inline)</strong>
+or the block macro that fits your guideline: <b>do</b>, <b>consider</b>, <b>avoid</b> and <b>do-not</b>.
+For the block macros, place all of the guideline text (including any images) inside of the macro body.</p>
+
+<p>For LP usage, the recommendation is to use the <b>lp-guideline</b> macro.
+This is a single macro that has a parameter to select the appropriate guidance.
+Under the hood, <b>{do}</b> and <b>{lp-guildline}</b> with "Do" as the selected
+guidance will call on the same code and produce the exact same output.  The
+reason for the <b>lp-guideline</b> macro is inform technical writers that the
+macro is compatible with the Confluence->Flare->PDF process and therefore may
+be used for generating product documentation destined for external customer
+use. Note, the LP variant of the macro was done as a single macro with a parameter
+to keep the list of LP-* macros short.</p> 
+
+<p>With the block macros, if the guidance term starts the body text, it will be 
+automatially removed and the formatted version put in it's place.  For example, if the 
+end result is &quot;Do call your mother&quot;, the author should insert the <b>Do</b> macro
+and can either put &quot;call your mother&quot; into the body of the macro or
+&quot;Do call your mother&quot;.  Both will generate the same output.  The author
+of the macro suggests inserting the guidance term as it makes it easier to read
+in the editor.</p>
+
+<h3><strong>Auto</strong> Guidance</h3>
+
+<p>In the <strong>Guideline (Inline)</strong>, and <strong>LP Guideline</strong> macros,
+there is an option to set the guidance to <strong>Auto</strong>. If set, the macro will 
+use the first word(s) in the body of the macro to make this determination.  For example,
+if the body of the macro starts with &quot;Do pay your bills.&quot; the macro will automatically
+set the rendering mode to <strong>Do</strong>.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Guidance</strong>: This value determines what guidance icon and term to insert.</p>

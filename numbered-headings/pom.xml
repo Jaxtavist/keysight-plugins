@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>nl.avisi</groupId>
+    <artifactId>numbered-headings</artifactId>
+    <version>4.0.0</version>
+    <packaging>atlassian-plugin</packaging>
+
+    <name>Numbered Headings</name>
+    <description>This is the Keysight fork of the Avisi numbered headings plugin for Atlassian Confluence.</description>
+
+    <parent>
+        <groupId>com.keysight</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <axis.version>1.2.1</axis.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jwebunit</groupId>
+            <artifactId>jwebunit-core</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jwebunit</groupId>
+            <artifactId>jwebunit-htmlunit-plugin</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>dom4j</groupId>
+                    <artifactId>dom4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>jdom</groupId>
+                    <artifactId>jdom</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xalan</groupId>
+                    <artifactId>xalan</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-lang</groupId>
+                    <artifactId>commons-lang</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-httpclient</groupId>
+                    <artifactId>commons-httpclient</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xercesImpl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>nekohtml</groupId>
+                    <artifactId>nekohtml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.atlassian.confluence.plugin</groupId>
+            <artifactId>func-test</artifactId>
+            <version>2.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- START For the func test library -->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>${axis.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>activation</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.mail</groupId>
+                    <artifactId>mail</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>${axis.version}-noqname</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-saaj</artifactId>
+            <version>${axis.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- END For the func test library -->
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-confluence-plugin</artifactId>
+                <version>${amps.version}</version>
+                <extensions>true</extensions>
+                 <configuration>
+                    <productVersion>${confluence.version}</productVersion>
+                    <productDataVersion>${confluence.data.version}</productDataVersion>
+                    <enableQuickReload>true</enableQuickReload>
+                    <enableFastdev>false</enableFastdev>
+                    <encoding>${encoding}</encoding>
+                    <instructions>
+                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+  
+                        <!-- Add package to export here -->
+                        <Export-Package>
+			            </Export-Package>
+
+                        <!-- Add package import here -->
+                        <Import-Package>
+                            org.springframework.osgi.*;resolution:="optional",
+                            org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            com.atlassian.confluence.content.render.xhtml,
+                            com.atlassian.confluence.pages,
+                            com.atlassian.confluence.plugin.services,
+                            com.atlassian.confluence.security,
+                            com.atlassian.confluence.setup.settings,
+                            com.atlassian.confluence.xhtml.api,
+                            com.atlassian.plugin.module,
+                            com.atlassian.plugin.osgi.bridge.external,
+                            com.atlassian.plugin,
+                            com.atlassian.sal.api.message,
+                            *
+                        </Import-Package>
+
+                        <Atlassian-Scan-Folders>
+                            META-INF/macros,
+                            META-INF/rest,
+                        </Atlassian-Scan-Folders>
+  
+                        <!-- Ensure plugin is spring powered - see https://extranet.atlassian.com/x/xBS9hQ  -->
+                        <Spring-Context>*</Spring-Context>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>atlassian</id>
+            <name>Atlassian Repository</name>
+            <url>https://maven.atlassian.com/content/repositories/atlassian-public/</url>
+        </repository>
+        <repository>
+            <id>atlassian public</id>
+            <name>Atlassian public repository</name>
+            <url>https://maven.atlassian.com/content/repositories/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>atlassian</id>
+            <name>Atlassian Repository</name>
+            <url>https://maven.atlassian.com/content/repositories/atlassian-public/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>atlassian public</id>
+            <name>Atlassian public repository</name>
+            <url>https://m2proxy.atlassian.com/repository/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="Numbered Headings Rest Interface" key="numbered-headings-rest-resource" path="/numbered-headings" version="1.0">
+       <description>This is a rest resource to provide services and macro documentation.</description>
+    </rest>
+
+</module-container>

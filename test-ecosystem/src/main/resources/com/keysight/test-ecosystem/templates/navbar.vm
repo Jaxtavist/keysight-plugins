@@ -1,0 +1,51 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images" )
+<div style="text-align:center">
+
+<div class="aui-buttons">
+   <button class="aui-button test-ecosystem-button" id="test-ecosystem-home-button" href="$baseurl/display/TestEcosystem">Test Ecosystem</button>
+</div>
+
+<div class="aui-buttons">
+   <button class="aui-button test-ecosystem-button" id="presidio-home-button" href="$baseurl/display/presidio">Presidio</button>
+</div>
+
+<div class="aui-buttons">
+   <button class="aui-button aui-button-split-main test-ecosystem-button" id="gondor-home-button" href="$baseurl/display/gondor">Gondor</button>
+   <button class="aui-button aui-dropdown2-trigger aui-button-split-more"
+           area-haspopup="true" aria-controls="gondor-dropdown"
+           aria-expand="false" href="#" resolved=""
+           role="menu" aria-hidden="true"
+           aria-owns="gondor-dropdown" >Gondor Split More</button>
+</div>
+
+<div class="aui-buttons">
+   <button class="aui-button test-ecosystem-button" id="zeno-home-button" href="$baseurl/display/zeno">Zeno</button>
+</div>
+
+<div class="aui-buttons">
+   <button class="aui-button aui-button-split-main test-ecosystem-button" id="ofapps-home-button" href="$baseurl/display/ofapps">of_apps</button>
+   <button class="aui-button aui-dropdown2-trigger aui-button-split-more"
+           area-haspopup="true" aria-controls="ofapps-dropdown"
+           aria-expand="false" href="#" resolved=""
+           role="menu" aria-hidden="true"
+           aria-owns="ofapps-dropdown" >ofapps Split More</button>
+</div>
+
+</div>
+
+<div id="gondor-dropdown" class="aui-style-default aui-dropdown2">
+<ul class="aui-list-truncate">
+   <li><a href="$baseurl/display/gondorLatest">Gondor Latest</a></li>
+   <li><a href="$baseurl/display/gondor1">Gondor Classic</a></li>
+   <li><a href="$baseurl/display/gondorTce">Gondor TCE</a></li>
+   <li><a href="$baseurl/display/gondorDevelopment">Gondor Development</a></li>
+</ul>
+</div>
+
+<div id="ofapps-dropdown" class="aui-style-default aui-dropdown2">
+<ul class="aui-list-truncate">
+   <li><a href="$baseurl/display/imaging">Imaging</a></li>
+   <li><a href="$baseurl/display/OFWEB">ofweb</a></li>
+   <li><a href="$baseurl/display/ofTools">ofTools</a></li>
+</ul>
+</div>

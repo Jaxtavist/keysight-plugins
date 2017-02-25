@@ -1,0 +1,22 @@
+<h3>Introduction</h3>
+
+<p>The AUI Pages Tabs macro constructs a tabbed graphical display of a number
+of Confluence pages.  The pages need to be provided in the body of the macro as
+a bulleted list of links to Confluence pages.  Each page in the list will be converted
+to a new tab.
+</p>
+
+<p>The primary purpose of this macro is to create a dashboard of project status pages.
+The abiltiy to lock the date makes it easy to keep track of the view that was used
+during a management overview meeting.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Vertical</strong>: If checked, the tabs will be shown vertically rather than horizontally.</p>
+<p><strong>Hide Not Permitted Tabs</strong>: Normally, if a page is requested by the viewer does not have permissions to see the 
+content, an error message to that effect is shown in the tab. If this option is checked, any tabs for which the user does not 
+have permissions to view the content will not be shown.</p>
+<p><strong>On Creation Date</strong>: If set, the version of the included pages that existed when the containing page was created will be shown.</p>
+<p><strong>On Date</strong>: If checked, the tabs will be listed vertically rather than horizontally.</p>
+
+<p>Note, if no version of the page existed prior to the bounding date, the first version of the page will be shown.</p>

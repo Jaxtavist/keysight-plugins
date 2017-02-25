@@ -1,0 +1,22 @@
+#if( $autoGuidanceDetectionFailed )
+<div class="auto-guidance-detection-failed">The instance of the guidance
+macro below is set to automatically determine the guidance term from the 
+first word(s) in the body; however, the body did not start with Do,
+Consider, Avoid or Do Not.  The automatic detection failed and has been 
+defaulted to <strong>DO</strong></div>
+#end
+
+<table class="lp-guidance-table">
+   <tr>
+      <td class="lp-guidance-icon-column" valign="top"><span class="lp-guidance-icon $guidanceClass">$guidanceGlyphAsHtml</span></td>
+      <td class="lp-guidance-text-column">
+#if( $lpExport )
+$lpStartTag
+$!leadingTagAsHtml<span class="guidance-term"><b>$!guidance</b></span>&nbsp;$!body
+$lpEndTag
+#else
+$!leadingTagAsHtml<span class="guidance-term">$!guidance</span>&nbsp;$!body
+#end
+      </td>
+   </tr>
+</table>

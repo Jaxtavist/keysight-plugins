@@ -1,0 +1,10 @@
+<h3>Introduction</h3>
+
+<p>This is a prototype macro used to facilite the migration 
+of the Special Handling Request for Quote database into
+Confluence.</p>
+
+<p>At present, there is a complex process for mining a directory
+and making documents that should be readable accessible via the 
+web.  This macro is designed to work with a webservice to pull
+the document and avoid some of the nightly overhead.</p>

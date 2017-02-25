@@ -1,0 +1,41 @@
+<h3>Introduction</h3>
+<p>The ShareDoc Linkbank macro is a helper for creating 
+a lists of links to documents in ShareDoc. The urls or
+filenames to the documents are defined in the body of 
+the macro - one per line.  If the url does not start with
+http, the &quot;Base URL&quot; will be prepended. To specify
+the link text, use the format [url|filename].</p>
+
+<h4>Example:</h4>
+<p><strong>Base URL:</strong>sites/MCD_SA_SWFW_EXP/SD/XA14.5/XA14.5%20Overall<br ></p>
+<p><strong>Macro Body</strong></p>
+<pre>
+[My-File-A.pptx|My File A]
+[My-File-B.pptx|My File B]
+My-File-C.pptx
+http://sharedoc.collaboration.is.keysight.com/.../My-File-D.pptx
+</pre>
+
+<p>Note, if the url does not appear to be valid, for example
+after prepending the &quot;Base URL&quot; the url does not
+start with http, the link will be shown in strike-thru
+text.</p>
+<h4>PDF Link</h4>
+<p>If "Include PDF Link" is checked, the suffix for the
+file in the url will be changed to &quot;.pdf&quot; and an
+acrobat icon will be appended after the direct document link
+pointed to the pdf version.  This feature is only useful if 
+the document within Sharedoc is configured to have a pdf
+version automatically generated.</p>
+<h4>Base URL</h4>
+<p>This feature was built with the ShareDoc Link Bank in
+mind, but was included in the ShareDoc Link as under some
+circumstances it could be useful.  If the field &quot;URL
+or Filename&quot; starts with http, this field is ignored.
+If it does not start with http and the field is blank, the
+string &quot;http://sharedoc.collaboration.is.keysight.com/&quot;
+is appended to the URL or filename.  If the field &quot;Base URL&quot;
+is provided, then the provided string is used.  If the value
+for the &quot;Base URL&quot; does not start with http, then
+the default &quot;http://sharedoc.collaboration.is.keysight.com&quot;
+is prepended.<p>

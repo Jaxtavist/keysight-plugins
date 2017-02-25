@@ -1,0 +1,89 @@
+#set( $imagesDir = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/StatusIcons/" )
+#set( $greyFlagLarge    = "$imagesDir/flag-Grey-72x72.png" )
+#set( $greenFlagLarge   = "$imagesDir/flag-Green-72x72.png" )
+#set( $yellowFlagLarge  = "$imagesDir/flag-Yellow-72x72.png" )
+#set( $redFlagLarge     = "$imagesDir/flag-Red-72x72.png" )
+#set( $blueFlagLarge    = "$imagesDir/flag-Blue-72x72.png" )
+#set( $greyFlagMedium   = "$imagesDir/flag-Grey-48x48.png" )
+#set( $greenFlagMedium  = "$imagesDir/flag-Green-48x48.png" )
+#set( $yellowFlagMedium = "$imagesDir/flag-Yellow-48x48.png" )
+#set( $redFlagMedium    = "$imagesDir/flag-Red-48x48.png" )
+#set( $blueFlagMedium   = "$imagesDir/flag-Blue-48x48.png" )
+#set( $greyFlagSmall    = "$imagesDir/flag-Grey-24x24.png" )
+#set( $greenFlagSmall   = "$imagesDir/flag-Green-24x24.png" )
+#set( $yellowFlagSmall  = "$imagesDir/flag-Yellow-24x24.png" )
+#set( $redFlagSmall     = "$imagesDir/flag-Red-24x24.png" )
+#set( $blueFlagSmall    = "$imagesDir/flag-Blue-24x24.png" )
+#set( $greyBar          = "$imagesDir/bar-Grey-88x18.png" )
+#set( $greenBar         = "$imagesDir/bar-Green-88x18.png" )
+#set( $yellowBar        = "$imagesDir/bar-Yellow-88x18.png" )
+#set( $redBar           = "$imagesDir/bar-Red-88x18.png" )
+#set( $blueBar          = "$imagesDir/bar-Blue-88x18.png" )
+#set( $greyTrack        = "$imagesDir/track-Grey-88x18.png" )
+#set( $greenTrack       = "$imagesDir/track-Green-88x18.png" )
+#set( $yellowTrack      = "$imagesDir/track-Yellow-88x18.png" )
+#set( $redTrack         = "$imagesDir/track-Red-88x18.png" )
+#set( $blueTrack        = "$imagesDir/track-Blue-88x18.png" )
+
+<h3>Introduction</h3>
+
+<p>The purpose of the Status Flag macro is to give a 
+constrained quick glance status icon.</p>
+
+<h3>Flag Colors and Styles</h3>
+
+<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+   <th>Style</th>
+   <th>Grey</th>
+   <th>Green</th>
+   <th>Yellow</th>
+   <th>Red</th>
+   <th>Blue</th>
+</tr>
+<tr>
+   <th>Large Flag</th>
+   <th><img src="$imagesDir/$greyFlagLarge" alt="Grey" height="72" width="72" /></th>
+   <th><img src="$imagesDir/$greenFlagLarge" alt="Green" height="72" width="72" /></th>
+   <th><img src="$imagesDir/$yellowFlagLarge" alt="Yellow" height="72" width="72" /></th>
+   <th><img src="$imagesDir/$redFlagLarge" alt="Red" height="72" width="72" /></th>
+   <th><img src="$imagesDir/$blueFlagLarge" alt="Blue" height="72" width="72" /></th>
+</tr>
+<tr>
+   <th>Medium Flag</th>
+   <th><img src="$imagesDir/$greyFlagMedium" alt="Grey" height="48" width="48" /></th>
+   <th><img src="$imagesDir/$greenFlagMedium" alt="Green" height="48" width="48" /></th>
+   <th><img src="$imagesDir/$yellowFlagMedium" alt="Yellow" height="48" width="48" /></th>
+   <th><img src="$imagesDir/$redFlagMedium" alt="Red" height="48" width="48" /></th>
+   <th><img src="$imagesDir/$blueFlagMedium" alt="Blue" height="48" width="48" /></th>
+</tr>
+<tr>
+   <th>Small Flag</th>
+   <th><img src="$imagesDir/$greyFlagSmall" alt="Grey" height="24" width="24" /></th>
+   <th><img src="$imagesDir/$greenFlagSmall" alt="Green" height="24" width="24" /></th>
+   <th><img src="$imagesDir/$yellowFlagSmall" alt="Yellow" height="24" width="24" /></th>
+   <th><img src="$imagesDir/$redFlagSmall" alt="Red" height="24" width="24" /></th>
+   <th><img src="$imagesDir/$blueFlagSmall" alt="Blue" height="24" width="24" /></th>
+</tr>
+<tr>
+   <th>Rounded Rectangle</th>
+   <th><img src="$imagesDir/$greyBar" alt="Grey" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$greenBar" alt="Green" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$yellowBar" alt="Yellow" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$redBar" alt="Red" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$blueBar" alt="Blue" height="18" width="88" /></th>
+</tr>
+<tr>
+   <th>On Track Indicators</th>
+   <th><img src="$imagesDir/$greyTrack" alt="Pre-CON" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$greenTrack" alt="On Track" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$yellowTrack" alt="On Track" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$redTrack" alt="Off Track" height="18" width="88" /></th>
+   <th><img src="$imagesDir/$blueTrack" alt="On Hold" height="18" width="88" /></th>
+</tr>
+</table>
+
+<h3>Parameters</h3>
+
+<p><strong>Color</strong>:The color of the flag.</p>
+<p><strong>Style</strong>:The style of the flag.</p>

@@ -1,0 +1,37 @@
+.etms-block-super-container {
+   position: relative;
+   display: block;
+   margin: 0px;
+   padding: 10px;
+   border: 1px solid #891518;
+   background: #e8e8e8;
+   box-shadow: none;
+   border-radius: 5px;
+   color: #000000;
+}
+
+.etms-block-container {
+   display: inline-block;
+   width:100%;
+   zoom:1;
+}
+.etms-block-icons {
+   float: left;
+   width: 50px;
+}
+
+.etms-block-content-container {
+   margin-left: 60px;
+}
+
+
+.etms-block-content, 
+.etms-block-content p {
+   margin: 0px
+}
+
+.etms-block-content-title {
+   font-weight: bold;
+   margin: 0;
+   padding: 0;
+}

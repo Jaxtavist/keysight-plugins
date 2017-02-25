@@ -1,0 +1,29 @@
+{namespace Keysight.Include.Content.Soy.Templates}
+
+/**
+ * Credentials Container
+ */
+{template .credentials}
+   <div class="credentials-container">
+      <div class="credentials-column">
+         <div class="field-group">
+            <label for="name">{getText('include-content.admin.url')}</label>
+            <input type="text" class="text code-include-url">
+         </div>
+      </div>
+      <div class="credentials-column">
+         <div class="field-group">
+           <label for="name">{getText('include-content.admin.user')}</label>
+           <input type="text" class="text code-include-user">
+         </div>
+         <div class="field-group">
+           <label for="time">{getText('include-content.admin.password')}</label>
+           <input type="text" class="text code-include-password">
+         </div>
+      </div>
+      <div class="credentials-column">
+         <input class="button code-include-remove" id="code-include-remove-button" type="button" value="{getText('include-content.admin.remove')}">
+      </div>
+      <div style="clear:both"></div>
+   </div>
+{/template}

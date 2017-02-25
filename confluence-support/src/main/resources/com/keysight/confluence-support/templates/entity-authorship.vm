@@ -1,0 +1,8 @@
+<div>
+<h2>This is the page info</h2>
+<ul>
+<li><b>Page Title:</b>$page.getTitle()</li>
+<li><b>Page Creator:</b>$page.getCreatorName()</li>
+<li><b>Creation Date:</b>$page.getCreationDate().toString()</li>
+</ul>
+</div>

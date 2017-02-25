@@ -1,0 +1,11 @@
+<h3>Introduction</h3>
+
+<p>The Authors Only Block will show the body of the macro only if the
+current user has permissions to edit the page.  This is intended to be
+used as a way for authors to leave themselves notes on the page without
+making those notes public to general readers</p>
+
+<h3>Parameters</h3>
+<p><strong>No Border</strong>: By default, the block with have a border
+identifying it as only visible to authors.  If selected, this border will
+not be shown.</p>

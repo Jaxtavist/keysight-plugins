@@ -1,0 +1,28 @@
+.keysight-container-block{
+   display: block;
+}
+
+.keysight-container-block-left-justify{
+}
+.keysight-container-block-center-justify{
+}
+.keysight-container-block-right-justify{
+}
+
+.keysight-inner-block{
+   display: block;
+}
+
+.keysight-inner-block-right-aligned{
+   float:right;
+   margin-right: 0;
+}
+
+.keysight-inner-block-left-aligned{
+   margin-left: 0;
+}
+
+.keysight-inner-block-center-aligned{
+   margin-left: auto;
+   margin-right: auto;
+}

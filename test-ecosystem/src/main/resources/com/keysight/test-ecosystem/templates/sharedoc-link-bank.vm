@@ -1,0 +1,15 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images" )
+
+#if( $linkBank )<ul class="share-doc-linkbank">#end
+
+#foreach($link in $shareDocLinks)
+#if( $linkBank )<li class="share-doc-linkbank-item">#end
+#if( $pdf )
+<a href="$link.getInfoUrl()"><img src="$images/sharedoc-logo-16x16.png"/></a>&nbsp<a class="$link.cssClass()" href="$link.getUrl()">$link.link</a>&nbsp<a href="$link.pdfUrl()"><img src="$images/pdf-logo-16x16.png"/></a>
+#else
+<a href="$link.getInfoUrl()"><img src="$images/sharedoc-logo-16x16.png"/></a>&nbsp<a class="$link.cssClass()" href="$link.getUrl()">$link.link</a>
+#end
+#if( $linkBank )</li>#end
+#end
+
+#if( $linkBank )</ul>#end

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="Confluence Support Rest Interface" key="confluence-support-rest-resource" path="/confluence-support" version="1.0">
+        <description>This is a rest resource to provide macro documentation.</description>
+    </rest>
+
+    <rest name="Entity Authorship Rest Interface" key="entity-authorship-rest-resource" path="/entity-authorship" version="1.0">
+        <description>This is a rest resource to set an entity's (page or attachment) creator and creation date.</description>
+    </rest>
+
+</module-container>
+

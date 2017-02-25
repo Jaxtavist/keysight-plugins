@@ -1,0 +1,12 @@
+#if( $lpExport )
+<div class="lp-internal">
+<p>@LP_INTERNAL_START@</p>
+$!{leadingTagAsHtml}INTERNAL COMMENT: $body
+<p>@LP_INTERNAL_END@</p>
+</div>
+#else
+<div class="panel lp-internal-content-container">
+   <div class="lp-internal-content lp-internal-content-top lp-internal-content-header">INTERNAL COMMENT</div>
+   <div class="lp-internal-content lp-internal-content-body">$body</div>
+</div> 
+#end

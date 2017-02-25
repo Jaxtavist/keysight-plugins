@@ -1,0 +1,100 @@
+{namespace Keysight.Space}
+/**
+ * Dialog form template
+ *
+ * @param atlToken the XSRF token to send with the form
+ * @param? fieldErrors the map of errors to display keyed by field name
+ * @param? name initial value for the name field
+ * @param? key initial value for the key field
+ */
+{template .dialogForm}
+<form action="#" method="post" id="keysight-space-form" class="common-space-form aui">
+
+    {call Confluence.Templates.Blueprints.CreateSpace.createSpaceFormFields}
+        {param showSpacePermission: false /}
+        {param fieldErrors: $fieldErrors /}
+        {param name: $name /}
+        {param key: $key /}
+    {/call}
+
+    <fieldset>
+        <div class="field-group">
+            <label for="keysight-theme-space-catetories">Space Labels</label>
+            <input class="text long-field" name="keysight-theme-space-categories" id="keysight-theme-space-categories"
+                   placeholder="Add Space Labels"/>
+             <span class="aui-icon aui-icon-small aui-iconfont-help keysight-theme-label-select2" data-unicode="UTF+E003" 
+                    data-tooltip="Space Labels, or categories, are labels that have been attached to the space rather than a page.  Space categories are used as a filter in the space directory." original-title=""/>
+             {if $fieldErrors and $fieldErrors['keysight-theme-space-categories']}
+                 {foreach $error in $fieldErrors['keysight-theme-space-categories']}
+                     <div class="error">{$error}</div>
+                 {/foreach}
+             {else}
+                 <div class="error hidden"></div>
+             {/if}
+        </div>
+        <div class="field-group">
+             <label for="admin-group-unique-key">Group Key</label>
+             <input class="text long-field" name="admin-group-unique-key"
+                    placeholder="[XXX] part of TEAM-CONFL-2-[XXX]-ADMIN"/>
+             <span class="aui-icon aui-icon-small aui-iconfont-help" data-unicode="UTF+E003" 
+                    data-tooltip="Groups will be granted permissions if the [xxx] part is provided." original-title=""/>
+             {if $fieldErrors and $fieldErrors['admin-group-unique-key']}
+                 {foreach $error in $fieldErrors['admin-group-unique-key']}
+                     <div class="error">{$error}</div>
+                 {/foreach}
+             {else}
+                 <div class="error hidden"></div>
+             {/if}
+        </div>
+
+
+        <div class="field-group">
+             <label for="administrators">Administrators</label>
+             <input class="text long-field autocomplete-multiuser" name="administrators"
+                    placeholder="Optional list of Administrators"
+                    data-autofill-user="true"/>
+             <span class="aui-icon aui-icon-small aui-iconfont-help keysight-theme-label-select2" data-unicode="UTF+E003" 
+                   data-tooltip="Listed users will be granted admin permissions." original-title=""/>
+             {if $fieldErrors and $fieldErrors['administrators']}
+                 {foreach $error in $fieldErrors['administrators']}
+                     <div class="error">{$error}</div>
+                 {/foreach}
+             {else}
+                 <div class="error hidden"></div>
+             {/if}
+        </div>
+/*
+Input without autocomplete field as it's awkward since only people who can use confluence can be entered.
+This is not needed since we now have an unlimited user license.
+        <div class="field-group">
+             <label for="administrators">Administrators</label>
+             <input class="text long-field" name="administrators"
+                    placeholder="Optional list of Administrators"/>
+             <span class="aui-icon aui-icon-small aui-iconfont-help" data-unicode="UTF+E003" 
+                   data-tooltip="Space separated list of usernames who will be granted admin permissions." original-title=""/>
+             {if $fieldErrors and $fieldErrors['administrators']}
+                 {foreach $error in $fieldErrors['administrators']}
+                     <div class="error">{$error}</div>
+                 {/foreach}
+             {else}
+                 <div class="error hidden"></div>
+             {/if}
+        </div>
+*/
+
+        <div class="field-group">
+            <label for="anonymous-allowed">Anonymous Access</label>
+            <input class="checkbox" type="checkbox" name="anonymous-allowed"/>
+        </div>
+
+        <div class="field-group">
+             <label for="space-description">Space Description</label>
+             <textarea class="textarea long-field" rows="3" name="space-description"
+                       placeholder="Description or Purpose of the space."></textarea>
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="atl_token" value="{$atlToken}" />
+
+</form>
+{/template}

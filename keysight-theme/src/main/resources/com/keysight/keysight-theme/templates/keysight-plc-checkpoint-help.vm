@@ -1,0 +1,158 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images/CheckpointIcons" )
+#set( $precon = "$images/checkpoint-precon-48x48.png" )
+#set( $con    = "$images/checkpoint-con-48x48.png" )
+#set( $inv    = "$images/checkpoint-inv-48x48.png" )
+#set( $def    = "$images/checkpoint-def-48x48.png" )
+#set( $dev    = "$images/checkpoint-dev-48x48.png" )
+#set( $hq     = "$images/checkpoint-hq-48x48.png" )
+#set( $sq     = "$images/checkpoint-sq-48x48.png" )
+#set( $fpr    = "$images/checkpoint-fpr-48x48.png" )
+#set( $ms     = "$images/checkpoint-ms-48x48.png" )
+#set( $shp    = "$images/checkpoint-shp-48x48.png" )
+#set( $dis    = "$images/checkpoint-dis-48x48.png" )
+#set( $sup    = "$images/checkpoint-sup-48x48.png" )
+#set( $clo    = "$images/checkpoint-clo-48x48.png" )
+#set( $prc    = "$images/checkpoint-prc-48x48.png" )
+#set( $pc     = "$images/checkpoint-pc-48x48.png" )
+#set( $lsr    = "$images/checkpoint-lsr-48x48.png" )
+#set( $rtr    = "$images/checkpoint-rtr-48x48.png" )
+#set( $dd     = "$images/checkpoint-dd-48x48.png" )
+
+<h3>Introduction</h3>
+
+<p>The purpose of the Keysight Checkpoint macro is to
+provide the standard graphical elements used to mark the
+Product Life Cycle (PLC) checkpoints and meetings.</p>
+
+<h3>Checkpoints</h3>
+
+<h4>Pre-Concept</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$precon" alt="Pre-Concept" /></div>
+   <div style="float:left">The time prior to the first checkpoint.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Concept</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$con" alt="Concept" /></div>
+   <div style="float:left">Purpose: To determine there is appropriate staffing.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Investigation</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$inv" alt="Investigation" /></div>
+   <div style="float:left">Purpose: To proceed with investigation.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Definition</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$def" alt="Definition" /></div>
+   <div style="float:left">Purpose: To assure that the product is worth continued investment.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Development</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$dev" alt="Development" /></div>
+   <div style="float:left">Purpose: To commit staff and funding through to <strong>&lt;SHP&gt;</strong>.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Hardware Qualification</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$hq" alt="Hardware Qualification" /></div>
+   <div style="float:left">Purpose: To declare hardware is complete and ready for qualification.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Software Qualification</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$sq" alt="Software Qualification" /></div>
+   <div style="float:left">Purpose: To declare software is complete and ready for qualification.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>First Production Run</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$fpr" alt="First Production Run" /></div>
+   <div style="float:left">Purpose: To declare manufacturing process is ready to be tested at volume.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Shipment</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$shp" alt="Shipment" /></div>
+   <div style="float:left">Purpose: To declare that the whole product has been validated and ready to ship to customers.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Mature Sales Volume</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$ms" alt="Mature Sales Volumne" /></div>
+   <div style="float:left">Purpose: To declare that mature sales volume has been achieved.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Discontinuance</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$dis" alt="Discontinuance" /></div>
+   <div style="float:left">Purpose: To publicly announce the discontinuance of the product.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Support Life</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$sup" alt="Support Life" /></div>
+   <div style="float:left">Purpose: To decide all customer commitments are resolved and product can be supported for the length of the support life.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Closure</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$clo" alt="Closure" /></div>
+   <div style="float:left">Purpose: A meeting to declare the product and all related activies are over.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Pricing</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$prc" alt="Pricing" /></div>
+   <div style="float:left">Purpose: To agree on list prices and availability of all products and options.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Public Commitment</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$pc" alt="Public Commitment" /></div>
+   <div style="float:left">Purpose: To agree to release info on the product to the public and reivew risks to ship date.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Limited Ship Release</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$lsr" alt="Limited Ship Release" /></div>
+   <div style="float:left">Purpose: To agree to early units for revenue to customers.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Retrospective Meeting</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$rtr" alt="Retrospective Meeting" /></div>
+   <div style="float:left">Purpose: A meeting to gain constructive learnings from the product developemnt process.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h4>Delta Dollars Meeting</h4>
+<div>
+   <div style="float:left:margin-right:10px"><img src="$dd" alt="Delta Dollars Meeting" /></div>
+   <div style="float:left">Purpose: To review actual results with predicted results from <strong>&lt;DEV&gt;</strong> and <strong>&lt;PRC&gt;</strong>.</div>
+   <div style="clear:both"></div>
+</div>
+
+<h3>Parameters</h3>
+
+<p><strong>Checkpoint</strong>:The checkpoint icon that should be shown.</p>
+<p><strong>Icon Size</strong>:Large (default) or Small. The large icon is 48x48 pixels, the small is 24x24.</p>

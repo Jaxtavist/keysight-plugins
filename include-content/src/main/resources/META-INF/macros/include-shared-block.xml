@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="include-shared-block" location="/com/keysight/include-content/i18n/include-shared-block"/>
+ 
+   <xhtml-macro name="include-shared-block" key="include-shared-block" 
+                class="com.keysight.include.content.macros.IncludeSharedBlock"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="page" type="confluence-content" required="true">
+            <option key="includeDatePath" value="true" />
+         </parameter>
+         <parameter name="shared-block-key" type="string"/>
+      </parameters>
+      <property-panel>
+         <button id="goto-target-page" label="Go to Included Page"/>
+      </property-panel>
+   </xhtml-macro>
+
+</module-container>
+

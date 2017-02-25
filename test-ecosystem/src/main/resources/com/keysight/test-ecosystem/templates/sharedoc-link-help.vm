@@ -1,0 +1,45 @@
+<h3>Introduction</h3>
+<p>The ShareDoc Link macro will create two or three
+links to a document in sharedoc.  The first is a ShareDoc
+logo that links to the containing sharedoc page.  This
+allows the user easy access to check out the document.
+Secondly, a link directly to the document to download it.
+Lastly an optional pdf logo that links to the pdf version
+of the document.</p>
+<p>Note, if the url does not appear to be valid, for example
+after prepending the &quot;Base URL&quot; the url does not
+start with http, the link will be shown in strike-thru
+text.</p>
+<h3>Usage</h3>
+<p>The minimal usage of the macro is to insert the full
+url into the "URL or Filename" field.  The displayed text
+for the link can be modified by filling in the "Link"
+text.  If the full url is not provided, the &quot;Base URL&quot;
+must be accurate.</p>
+<h4>PDF Link</h4>
+<p>If &quot;Include PDF Link&quot; is checked, the suffix for the
+file in the url will be changed to &quot;.pdf&quot; and an
+acrobat icon will be appended after the direct document link
+pointed to the pdf version.  This feature is only useful if 
+the document within Sharedoc is configured to have a pdf
+version automatically generated.</p>
+<h4>Info URL</h4>
+<p>The macro assumes that the containing folder page in 
+Sharedoc is the full url minus the last part.  If that is not
+true and there is another place to find the containing page,
+it may be provided in the &quot;Info URL&quot; field.
+<h4>Base URL</h4>
+<p>If the field &quot;URL or Filename&quot; starts with http,
+this field is ignored. If it does not start with http and the
+&quot;Base URL&quot; field is blank, the string 
+&quot;http://sharedoc.collaboration.is.keysight.com/&quot;
+is prepended to the URL or filename.  If the field &quot;Base URL&quot;
+is provided, then the provided string is prepended.<p>
+<p>Setting the &quot;Base URL&quot; is useful when links to
+several documents contained in the same ShareDoc folder are 
+desired.  The folder url can be provided as the Base URL, and
+just the filename is provided in the &quot;URL or Filename&quot;
+field.  This makes it easier to see the filename being linked to.
+Also, if the macro is copied, the file name can be changed to
+another file in the same folder without needing to cut and 
+paste the full url.</p>

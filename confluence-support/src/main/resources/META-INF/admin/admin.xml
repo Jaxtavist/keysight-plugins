@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="adminI18n" location="/com/keysight/confluence-support/i18n/confluence-support-admin"/>
+
+    <web-resource key="confluence-support-admin-resources" name="Confluence Support Admin Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+        <!-- transform calls to AJS.getText() inside JS files -->
+        <transformation extension="js">
+            <transformer key="jsI18n"/>
+        </transformation>
+
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+
+        <resource type="download" name="confluence-support.css"       location="/css/confluence-support.css"/>
+        <resource type="download" name="confluence-support-admin.css" location="/css/confluence-support-admin.css"/>
+        <resource type="download" name="confluence-support-admin.js"  location="/js/confluence-support-admin.js"/>
+        <resource type="download" name="admin-ui-templates.js"        location="/soy/admin-ui-templates.soy"/>
+        <resource type="download" name="actions-by-space.js"          location="/soy/actions-by-space.soy"/>
+        <resource type="download" name="images/" location="/images"/>
+    </web-resource>
+
+    <web-resource key="confluence-support-space-inventory-resources" name="Confluence Support Space Inventory Web Resources">
+        <resource type="download" name="confluence-support-space-inventory.js" location="/js/confluence-support-space-inventory.js"/>
+    </web-resource>
+
+    <web-resource key="confluence-support-user-list-resources" name="Confluence Support User List Web Resources">
+        <resource type="download" name="confluence-support-user-list.js" location="/js/confluence-support-user-list.js"/>
+    </web-resource>
+
+    <web-resource key="confluence-support-actions-by-space-resources" name="Confluence Support Actions By Space Web Resources">
+        <resource type="download" name="confluence-support-actions-by-space.js" location="/js/confluence-support-actions-by-space.js"/>
+    </web-resource>
+
+    <web-section key="confluence-support-admin-functions" name="Keysight Admin Support" location="system.admin" weight="250">
+            <label key="com.keysight.confluence-support.admin.section" />
+    </web-section>
+
+    <web-item key="active-users-list-ajax-menu-item" name="Active Users List" section="system.admin/confluence-support-admin-functions" weight="10">
+        <label key="com.keysight.confluence-support.active-users-list-ajax" />
+        <link>/plugins/servlet/confluence-support/admin/active-users-list-ajax</link>
+    </web-item>
+
+    <web-item key="space-inventory-ajax-menu-item" name="Space Inventory" section="system.admin/confluence-support-admin-functions" weight="10">
+        <label key="com.keysight.confluence-support.space-inventory-ajax" />
+        <link>/plugins/servlet/confluence-support/admin/space-inventory-ajax</link>
+    </web-item>
+
+    <web-item key="actions-by-space-menu-item" name="Actions By Space" section="system.admin/confluence-support-admin-functions" weight="10">
+        <label key="com.keysight.confluence-support.actions-by-space" />
+        <link>/plugins/servlet/confluence-support/admin/actions-by-space</link>
+    </web-item>
+
+    <servlet key="active-users-list-ajax-action" name="Active Users List Action" class="com.keysight.confluence.support.helpers.ActiveUsersListingAjax">
+            <url-pattern>/confluence-support/admin/active-users-list-ajax</url-pattern>
+    </servlet>
+
+    <servlet key="space-inventory-ajax-action" name="Space Inventory Ajax Action" class="com.keysight.confluence.support.helpers.SpaceInventoryAjax">
+            <url-pattern>/confluence-support/admin/space-inventory-ajax</url-pattern>
+    </servlet>
+
+    <servlet key="actions-by-space-action" name="Actions By Space Action" class="com.keysight.confluence.support.helpers.ActionsBySpace">
+            <url-pattern>/confluence-support/admin/actions-by-space</url-pattern>
+    </servlet>
+
+    <web-resource key="confluence-support-admin-config-resources" name="Confluence Support Admin Config Web Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+      <!-- transform calls to AJS.getText() inside JS files -->
+      <transformation extension="js">
+         <transformer key="jsI18n"/>
+      </transformation>
+
+      <!-- transform Soy templates into JS -->
+      <transformation extension="soy">
+         <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+         </transformer>
+      </transformation>
+
+      <resource type="download" name="confluence-support-admin-config.css" location="/css/confluence-support-admin-config.css"/>
+      <resource type="download" name="confluence-support-admin-config.js" location="/js/confluence-support-admin-config.js"/>
+      <resource type="download" name="admin-ui-config-templates.js" location="/soy/admin-ui-config-templates.soy"/>
+      <resource type="download" name="images/" location="/images"/>
+   </web-resource>
+
+   <servlet key="admin-servlet" class="com.keysight.confluence.support.helpers.AdminUI">
+           <url-pattern>/confluence-support/admin/configuration</url-pattern>
+   </servlet>
+ 
+</module-container>
+

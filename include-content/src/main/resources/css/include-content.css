@@ -1,0 +1,29 @@
+.credentials-container{
+   margin-bottom: 20px;
+}
+
+.credentials-column{
+   float: left;
+}
+
+div.credentials-column .code-include-remove{
+   margin-top: 5px;
+   margin-left: 20px;
+}
+
+.help-dialog {
+   z-index: 3500 !important;
+}
+
+.keysight-faq-link-table {
+    padding: 5px;
+    width: 100%
+}
+
+.confluenceTable ul.keysight-faq-link-table-label-list {
+    padding-left: 0px;
+}
+
+.keysight-page-info-label {
+    padding: 1px 5px !important;
+}

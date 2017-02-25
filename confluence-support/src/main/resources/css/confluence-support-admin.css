@@ -1,0 +1,80 @@
+
+.actions-by-space-intro-text-container {
+   padding: 25px 25px 25px 25px;
+}
+
+.actions-by-space-intro-text {
+   padding: 0px;
+   margin: 0px 0px 0px 0px;
+}
+
+.actions-by-space-container {
+}
+
+.actions-by-space-space-list {
+   width:100%;
+}
+
+.actions-by-space-results-container {
+   margin: 5px 0px 0px 25px;
+}
+
+.actions-by-space-progress-container {
+}
+
+.actions-by-space-results-list-container {
+}
+
+.actions-by-space-results-list {
+   margin:5px 0px 0px 0px;
+   list-style-type:none;
+}
+
+.actions-by-space-space-list-container {
+}
+
+.actions-by-space-space-list {
+   padding:0px;
+}
+
+.actions-by-space-space-entry {
+   border:1px solid #343434;
+   background-color:#343434;
+   color:#e8e8e8;
+   padding:5px;
+   margin:10px 0px 10px 5px;
+   list-style-type:none;
+}
+
+.actions-by-space-active {
+   background-color:#891518;
+   color:#e8e8e8;
+}
+
+.actions-by-space-visited {
+   background-color:#e8e8e8;
+   color:#343434;
+}
+
+.actions-by-space-table{
+   display:table;
+}
+
+.actions-by-space-space-list-table-cell{
+}
+
+.actions-by-space-table-row{
+   display:table-row;
+}
+
+.actions-by-space-table-cell{
+   display:table-cell;
+}
+
+.actions-by-space-warning{
+   border: 1px solid #e90029;
+   color: #e8e8e8;
+   background-color: #891518;
+   padding: 15px;
+   margin: 15px;
+}

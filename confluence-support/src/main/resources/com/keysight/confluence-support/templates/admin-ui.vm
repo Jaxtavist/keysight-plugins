@@ -1,0 +1,23 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.plugins.confluence.confluence-support:confluence-support-resources/images" )
+#set( $igeLogo = "$images/ige-48x20.png" )
+
+<html>
+  <head>
+    <title>$i18n.getText("confluence-support.admin.title")</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("com.keysight.confluence-support:confluence-support-admin-config-resources")
+  </head>
+  <body>
+    <h2>Confluence Support Settings</h2>
+    <p>The web accessible code may require a user and password to view.  These fields provide the ability
+    to set credentials by the base url.  If the url specified here matches the start of the url in the code
+    include macro, then the credentials set here will be passed along with the request.</p>
+    <form id="confluence-support-admin-config" class="aui">
+       <div id="config-body"></div>
+       <div class="field-group">
+         <input id="confluence-support-add-all-users-group" type="submit" value="$i18n.getText('confluence-support.admin.add')" class="button">
+         <input type="submit" value="$i18n.getText('confluence-support.admin.save')" class="button">
+       </div>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{namespace com.keysight.include.content.faq}
+/**
+* Need to have a comment here
+*/
+{template .dialogForm}
+<form action="#" method="post" id="faq-dialog-wizard-page-form" class="aui">
+   <fieldset>
+      <div class="field-group">
+         <label for="faq-create-page-dialog-title">Name<span class="aui-icon icon-required">icon</span></label>
+         <input id="faq-create-page-dialog-title" 
+                class="text long-field" 
+                name="title" 
+                type="text" 
+                title="title" 
+                placeholder="Write your question here."/>
+         <div class="error"></div>
+      </div>
+      <div class="field-group">
+         <label for="faq-blueprint-labels">Labels</label>
+         <input id="faq-blueprint-labels" 
+                class="text select2-input long-field" 
+                name="labelsString" 
+                type="text" 
+                title="labelsString" 
+                placeholder="Add any appropriate labels here."/>
+         <div class="error"></div>
+      </div>
+   </fieldset>
+</form>
+{/template}

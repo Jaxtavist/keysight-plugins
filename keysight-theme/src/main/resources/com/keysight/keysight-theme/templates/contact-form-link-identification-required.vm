@@ -1,0 +1,2 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images" )
+<a href="#" onclick="contactFormLinkIdentificationRequired( event, '$identifier', '$contact', '$ccToEmail', '$defaultName', '$defaultEmail', '$dialogTitle', '$!dialogHelpText'  )" >$textWithHtml</a>

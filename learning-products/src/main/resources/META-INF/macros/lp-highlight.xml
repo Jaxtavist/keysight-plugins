@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <xhtml-macro name="lp-note" key="lp-note" 
+                class="com.keysight.learning.products.macros.LpNoteBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp-tip" key="lp-tip" 
+                class="com.keysight.learning.products.macros.LpTipBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp-important" key="lp-important" 
+                class="com.keysight.learning.products.macros.LpImportantBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp-caution" key="lp-caution" 
+                class="com.keysight.learning.products.macros.LpCautionBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp-warning" key="lp-warning" 
+                class="com.keysight.learning.products.macros.LpWarningBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_note" key="lp_note" 
+                state="disabled"
+                class="com.keysight.learning.products.macros.LpNoteBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_tip" key="lp_tip" 
+                state="disabled"
+                class="com.keysight.learning.products.macros.LpTipBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_important" key="lp_important" 
+                state="disabled"
+                class="com.keysight.learning.products.macros.LpImportantBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_caution" key="lp_caution" 
+                state="disabled"
+                class="com.keysight.learning.products.macros.LpCautionBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_warning" key="lp_warning" 
+                state="disabled"
+                class="com.keysight.learning.products.macros.LpWarningBlock"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="renderWith" type="enum" default="CSS">
+              <option key="showNameInPlaceholder" value="false" />
+              <option key="showValueInPlaceholder" value="false" />
+              <value name="CSS" />
+              <value name="Tables" />
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+</module-container>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+            
+   <velocity-context-item key="lpHelper" 
+                          name="LP Velocity Helper" 
+                          class="com.keysight.learning.products.helpers.LpVelocityHelper" 
+                          context-key="lpHelper" />;
+
+   <xhtml-macro name="lp_code_cplus" key="lp_code_cplus" 
+	        state="disabled"
+	        class="com.keysight.learning.products.macros.LpCodeCplus"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_code_csharp" key="lp_code_csharp" 
+	        state="disabled"
+                class="com.keysight.learning.products.macros.LpCodeCsharp"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_code_html" key="lp_code_html" 
+	        state="disabled"
+                class="com.keysight.learning.products.macros.LpCodeHtml"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_code_xml" key="lp_code_xml" 
+	        state="disabled"
+                class="com.keysight.learning.products.macros.LpCodeXml"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp-code" key="lp-code" 
+                class="com.keysight.learning.products.macros.LpCode"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="language" type="enum" required="true">
+              <value name="C++"/>
+              <value name="C#"/>
+              <value name="XML"/>
+              <value name="HTML"/>
+              <value name="Plain Text"/>
+          </parameter>
+      </parameters>
+   </xhtml-macro>
+
+</module-container>

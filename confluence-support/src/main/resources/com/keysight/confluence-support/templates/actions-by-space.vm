@@ -1,0 +1,238 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.confluence-support:confluence-support-resources/images" )
+#set( $igeLogo = "$images/ige-48x20.png" )
+<html>
+  <head>
+    $webResourceManager.requireResource("com.keysight.confluence-support:confluence-support-admin-resources")
+    $webResourceManager.requireResource("com.keysight.confluence-support:confluence-support-actions-by-space-resources")
+    <title>$i18n.getText("com.keysight.confluence-support.actions-by-space.title")</title>
+    <meta name="decorator" content="atl.admin">
+  </head>
+  <body>
+
+<div class="aui-tabs horizontal-tabs">
+    <ul class="tabs-menu">
+        <li class="menu-item active-tab">
+            <a href="#tab1">Replace Text</a>
+        </li>
+        <li class="menu-item">
+            <a href="#tab2">Empty Trash</a>
+        </li>
+        <li class="menu-item">
+            <a href="#tab3">Fix Titleless Pages</a>
+        </li>
+        <li class="menu-item">
+            <a href="#tab4">Fix Anonymous Access</a>
+        </li>
+    </ul>
+    <div class="tabs-pane active-pane" id="tab1">
+
+<div class="actions-by-space-intro-text-container">
+
+<p class="actions-by-space-intro-text">This is a utility to find and replace
+strings in pages and blogs by space or multiple spaces identified by space category.
+</p>
+
+<div class="actions-by-space-warning">
+<p>Please be careful with this utility.  It operates on the page and blog storage format
+and a poor substitution can make content un-renderable.</p>
+</div>
+
+<p>The recommended way to use this tool is to first put some sample text in the 
+<strong>Sample Text box</strong> and run a <strong>test substitution</strong>.  Then create a test 
+space with multiple pages some of which have the content you are looking to
+replace.  Then run the tool on that space.  When you are confident of your recipe, then
+perform a more global text replace.  Note, it is strongly advised to avoid
+the &lt; and &gt; symbols.  Also be very careful of wild cards in the <strong>
+Original Text</strong> pattern such as &quot;.&quot; and &quot;?&quot; that can match
+those characters.</p>
+
+</div>
+
+<div class="actions-by-space-table">
+   <div class="actions-by-space-table-row">
+      <div class="actions-by-space-table-cell">
+
+<form class="aui">
+    <div class="field-group">
+        <label for="find-and-replace-space-key">Space Key</label>
+        <input class="text long-field" type="text"
+               id="find-and-replace-space-key" name="find-and-replace-space-key" placeholder="A Space Key">
+    </div>
+    <div class="field-group">
+        <label for="find-and-replace-space-categories">Space Categories</label>
+        <input class="text long-field" type="text"
+               id="find-and-replace-space-categories" name="find-and-replace-space-categories" placeholder="Comma seperated list of Space Categories.  Defaults to all.">
+    </div>
+    <div class="field-group">
+        <label for="find-and-replace-original-text">Original Text<span class="aui-icon icon-required">required</span></label>
+        <input class="text long-field" type="text"
+               id="find-and-replace-original-text" name="find-and-replace-original-text" placeholder="This is a Java regular expression.">
+        <div class="description" >This is a java regular expression. i.e. &quot;.&quot; means any character while &quot;\.&quot; means a period.</div>
+        <div id="error-for-find-and-replace-original-text" class="error" ></div>
+    </div>
+    <div class="field-group">
+        <label for="find-and-replace-replacement-text">Replacement Text</label>
+        <input class="text long-field" type="text"
+               id="find-and-replace-replacement-text" name="find-and-replace-replacement-text" placeholder="Replacement Text">
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button style="float:left;" class="aui-button" id="dry-run-replace-button">List Pages</button>
+            <button style="float:left;" class="aui-button aui-button-primary" id="replace-text-button">Replace Text</button>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</form>
+
+      </div>
+      <div class="actions-by-space-table-cell">
+<form class="aui">
+    <div class="field-group">
+        <label for="find-and-replace-space-key">Sample Text</label>
+        <textarea class="textarea" rows="7" cols="50"
+               id="find-and-replace-sample-text" name="find-and-replace-sample-text" placeholder="Sample text to apply substitution to for testing."></textarea>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button style="float:left;" class="aui-button aui-button-primary" id="test-replace-text-button">Test Substitution</button>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</form>
+
+      </div>
+   </div>
+</div>
+    </div>
+    <div class="tabs-pane" id="tab2">
+
+<div class="actions-by-space-intro-text-container">
+<p class="actions-by-space-intro-text">This is a utility to empty the trash of multiple 
+space as it can be time consuming to do manually when there are a lot of them.
+</p>
+</div>
+
+<form class="aui">
+    <div class="field-group">
+        <label for="empty-trash-space-categories">Space Categories</label>
+        <input class="text medium-field" type="text"
+               id="empty-trash-space-categories" name="empty-trash-space-categories" placeholder="Comma seperated list of Space Categories.  Defaults to all.">
+        <div class="description">A comma seperated list of space categories.</div>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button style="float:left;" class="aui-button" id="list-space-trash-button">List trash in spaces</button>
+            <button style="float:left;" class="aui-button aui-button-primary" id="empty-space-trash-button">Empty trash in spaces</button>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</form>
+
+   </div>
+   <div class="tabs-pane" id="tab3">
+
+<div class="actions-by-space-intro-text-container">
+<p class="actions-by-space-intro-text">There have been a couple of occasions that a space blueprint has created a home page
+and not given it a title.  This creates a bit of a mess as the tools for creating the 
+page tree to move content around fail and the unnamed page can not be found or renamed 
+because it doesn't have a title.  This utility can be used to search spaces to find and
+fix the issue.</p>
+</div>
+
+<form class="aui">
+    <div class="field-group">
+        <label for="fix-title-space-categories">Space Categories</label>
+        <input class="text medium-field" type="text"
+               id="fix-title-space-categories" name="fix-title-space-categories" placeholder="Comma seperated list of Space Categories.  Defaults to all.">
+        <div class="description">A comma seperated list of space categories.</div>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button style="float:left;" class="aui-button" id="fix-title-list-pages-button">List pages that do not have a title.</button>
+            <button style="float:left;" class="aui-button aui-button-primary" id="fix-title-fix-pages-button">Add a title to pages that need one.</button>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</form>
+
+    </div>
+    <div class="tabs-pane" id="tab4">
+
+<div class="actions-by-space-intro-text-container">
+
+<p class="actions-by-space-intro-text">Confluence implements Anonymous access by
+assiging the permissions of the user &quot;Anonymous&quot; to any user not logged 
+in.  When the user logs in, they get the permissions assigned to their name - which
+can be less than that of the user &quot;Anonymous&quot;.  This is not intuitive as
+most people expect the permissions granted to their authenticated credentials to be
+better or equal to anonmous access.  Normally an instance of 
+confluence will have a group that contains all of the valid users.  So, for anonymous
+access to work as most people expect, that <strong>all users group or groups</strong>
+must have the same or better permissions than the Anonymous user's permissions.
+This is a utility to make sure the <strong>all users group or groups</strong> have
+all of the permissions the Anonymous user has</p>
+
+<p class="actions-by-space-intro-text">Note, the default groups can be set in the
+<a href="$baseUrl/plugins/servlet/confluence-support/admin/configuration">Confluence 
+Support plugin configuration</a></p>
+
+</div>
+
+<div class="actions-by-space-table">
+   <div class="actions-by-space-table-row">
+      <div class="actions-by-space-table-cell">
+
+<form class="aui">
+    <div class="field-group">
+        <label for="fix-anonymous-access-space-key">Space Key</label>
+        <input class="text long-field" type="text"
+               id="fix-anonymous-access-space-key" name="fix-anonymous-access-space-key" placeholder="A Space Key">
+    </div>
+    <div class="field-group">
+        <label for="fix-anonymous-access-space-categories">Space Categories</label>
+        <input class="text long-field" type="text"
+               id="fix-anonymous-access-space-categories" name="fix-anonymous-access-space-categories" placeholder="Comma seperated list of Space Categories.  Defaults to all.">
+    </div>
+    <div class="field-group">
+        <label for="fix-anonymous-access-all-users-groups">All Users Group(s)</label>
+        <input class="text long-field" type="text" value="$!allUsersGroups"
+               id="fix-anonymous-access-all-users-groups" name="fix-anonymous-access-all-users-groups" placeholder="Comma seperated list of groups.">
+        <div class="description" >This is a comma seperated list of groups that represent all of the active users.</div>
+        <div id="error-for-fix-anonymous-all-users-groups" class="error" ></div>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button style="float:left;" class="aui-button" id="list-anonymous-access-issues-button">List Access Issues</button>
+            <button style="float:left;" class="aui-button aui-button-primary" id="fix-anonymous-access-issues-button">Fix Access Issues</button>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</form>
+
+      </div>
+   </div>
+</div>
+
+    </div>
+</div>
+
+<hr />
+
+<div class="actions-by-space-container actions-by-space-table">
+   <div class="actions-by-space-table-row">
+      <div class="actions-by-space-space-list-container actions-by-space-space-list-table-cell actions-by-space-table-cell">
+         <ul class="actions-by-space-space-list"></ul>
+      </div>
+      <div class="actions-by-space-results-container actions-by-space-table-cell">
+         <div class="actions-by-space-progress-container"></div>
+         <div class="actions-by-space-results-list-container">
+            <ul class="actions-by-space-results-list"></ul>
+         </div>
+      </div> 
+   </div>
+</div>
+
+  </body>
+</html>
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="authors-only-block" location="/com/keysight/html-elements/i18n/authors-only-block"/>
+
+   <xhtml-macro name="authors-only-block" key="authors-only-block" 
+                class="com.keysight.html.elements.macros.AuthorsOnlyBlock"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="no-border" type="boolean" default="false" />
+      </parameters>
+   </xhtml-macro>
+
+</module-container>

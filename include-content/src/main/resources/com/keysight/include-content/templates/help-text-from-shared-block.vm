@@ -1,0 +1,15 @@
+## Methods:  showPageAsDialogBox or showPageAsInlineDialog
+#if( $page )
+   #if( $textAsHtml )
+      <a href="#" onclick="keysightHelpText.$method( event, '$sectionId', '$page', '$!sharedBlockKey', '$!title', '$!tip' );">$textAsHtml</a>
+   #else
+      <a href="#" onclick="keysightHelpText.$method( event, '$sectionId', '$page', '$!sharedBlockKey', '$!title', '$!tip' );"><span class="aui-icon aui-icon-small aui-iconfont-help">Help</span></a>
+   #end
+#else
+   #if( $textAsHtml )
+      <a href="#">$textAsHtml</a>
+   #else
+      <a href="#"><span class="aui-icon aui-icon-small aui-iconfont-help">Help</span></a>
+   #end
+#end
+

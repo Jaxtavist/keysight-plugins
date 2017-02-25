@@ -1,0 +1,99 @@
+.keysight-status-flag {
+    color: #343434;
+    background-color: #e8e8e8;
+    min-width:88px;
+    border: 1px solid #343434;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 99%;
+    margin: 0;
+    padding: 3px 5px 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    test-transform: uppercase;
+}
+
+.keysight-status-Grey {
+    color: #343434;
+    background-color: #e8e8e8;
+    border-color: #e8e8e8;
+}
+
+.keysight-status-Green {
+    color: #e8e8e8;
+    background-color: #006600;
+    border-color: #006600;
+}
+
+.keysight-status-Yellow {
+    color: #343434;
+    background-color: #FFFF33;
+    border-color: #FFFF33;
+}
+
+.keysight-status-Red {
+    color: #e8e8e8;
+    background-color: #891518;
+    border-color: #891518;
+}
+
+.keysight-status-Blue {
+    color: #e8e8e8;
+    background-color: #003399;
+    border-color: #003399;
+}
+
+.keysight-status-White {
+    color: #000000;
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.keysight-status-Black {
+    color: #FFFFFF;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+
+#property-panel a.macro-property-panel-StatusFlagGrey span.icon {
+    display: block;
+    border: 1px solid #000000;
+    background: #e8e8e8;
+    height: 13px;
+    width: 13px;
+}
+
+#property-panel a.macro-property-panel-StatusFlagGreen span.icon {
+    display: block;
+    border: 1px solid #000000;
+    background: #006600;
+    height: 13px;
+    width: 13px;
+}
+
+#property-panel a.macro-property-panel-StatusFlagYellow span.icon {
+    display: block;
+    border: 1px solid #000000;
+    background: #FFFF33;
+    height: 13px;
+    width: 13px;
+}
+
+#property-panel a.macro-property-panel-StatusFlagRed span.icon {
+    display: block;
+    border: 1px solid #000000;
+    background: #891518;
+    height: 13px;
+    width: 13px;
+}
+
+#property-panel a.macro-property-panel-StatusFlagBlue span.icon {
+    display: block;
+    border: 1px solid #000000;
+    background: #003399;
+    height: 13px;
+    width: 13px;
+}

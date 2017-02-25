@@ -1,0 +1,24 @@
+.feedback-trigger-container{
+
+}
+
+.feedback-trigger{
+   float:left;
+}
+
+.feedback-trigger-image{
+
+}
+
+.feedback-trigger-text{
+   color:#555555;
+   font-size: 18px;
+   font-weight: bold;
+}
+
+.feedback-thankyou{
+   color:#891518;
+   font-size: 30px;
+   text-align:center;
+   margin-top:140px;
+}

@@ -1,0 +1,27 @@
+<h3>Introduction</h3>
+<p>The Include Shared Block with Replacement Macro uses regular
+expression substitution rules defined in the body of the
+macro to display the contents of a Shared Block defined in 
+another confluence page with simple string substitution.</p>
+<h3>Usage</h3>
+<h4>Identifying the Shared Block</h4>
+<p>In the macro parameters, the page on which the shared
+block is defined needs to be specified.  Optinally, the
+key identifying the shared block may be provided.  The key
+is a string that needs to match in both the Shared Block
+and the Include Shared Block before the contents may be
+pulled in. If no key is specified, the first shared block
+on the page will be pulled in</p>
+<h4>Defining String Replacement Rules</h4>
+<p>A substitution rules takes the form of</p>
+<p><pre>/original text/new text/</pre></p>
+<p>Every line in the body of the macro defines a new rule
+that will be executed in order (top to bottom).  The default
+delimiter is &quot;/&quot, however, that can be changed
+to any string using the &quot;Delimiter&quot; parameter in the
+macro definition.</p>
+<h3>Warning to the User</h3>
+<p>The substitution is performed on the final html and does not
+understand the difference between the page content and the html
+formatting, thus it can transform the underlying xml into unparsable
+gibberish causing the macro to be unrenderable.</p>

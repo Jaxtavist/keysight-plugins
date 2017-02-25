@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="link-to-window" location="/com/keysight/html-elements/i18n/link-to-window"/>
+
+   <xhtml-macro name="link-to-window" key="link-to-window" 
+                class="com.keysight.html.elements.macros.LinkToWindow"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="page" type="confluence-content" required="true">
+                      <option key="showNameInPlaceholder" value="false"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                   <parameter name="link-text" type="string">
+                      <option key="showNameInPlaceholder" value="false"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+</module-container>

@@ -1,0 +1,74 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+   <plugin-info>
+      <description>${project.description}</description>
+      <version>${project.version}</version>
+      <vendor name="${project.organization.name}" url="${project.organization.url}" />
+      <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+      <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+      <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+      <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+      <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+      <scan-modules>
+           <folder>META-INF/blueprints</folder>
+           <folder>META-INF/macros</folder>
+           <folder>META-INF/rest</folder>
+      </scan-modules>
+   </plugin-info>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="test-ecosystem" location="/com/keysight/test-ecosystem/i18n/test-ecosystem"/>
+    
+   <!-- add our web resources -->
+   <web-resource key="test-ecosystem-resources" name="Test Ecosystem Web Resources" >
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:space-blueprints</dependency>
+      <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>
+      <dependency>com.atlassian.confluence.plugins.confluence-ui-components:label-picker</dependency>
+
+      <!-- SOY transformer -->
+      <transformation extension="soy">
+         <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+         </transformer>
+      </transformation>
+
+      <!-- i18n Javascript Transformer -->
+      <transformation extension="js">
+         <transformer key="jsI18n" />
+      </transformation>
+        
+      <resource type="download" name="test-ecosystem.css"                        location="/css/test-ecosystem.css"/>
+      <resource type="download" name="etms.css"                                  location="/css/etms.css"/>
+      <resource type="download" name="sharedoc.css"                              location="/css/sharedoc.css"/>
+      <resource type="download" name="test-ecosystem.js"                         location="/js/test-ecosystem.js"/>
+      <resource type="download" name="test-ecosystem-navbar.js"                  location="/js/test-ecosystem-navbar.js"/>
+      <resource type="download" name="test-ecosystem-basic-space-dialog-page.js" location="/soy/basic-space-dialog-page.soy"/>
+      <resource type="download" name="test-ecosystem-tutorial-dialog-page.js"    location="/soy/tutorial-dialog-page.soy"/>
+      <resource type="download" name="images/"  location="/images"/>
+
+      <context>test-ecosystem</context>
+      <context>main</context>
+      <context>preview</context>
+      <context>macro-browser</context>
+   </web-resource>
+
+   <web-resource key="test-ecosystem-editor-resources" name="Test Ecosystem Editor Web Resources.">
+      <resource type="download" name="special-handling-properties-editor.js"     location="/js/special-handling-properties-editor.js"/>
+      <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+      <context>macro-browser</context>
+   </web-resource>
+
+
+   <!-- Add a panel section to the Dashboard -->
+   <web-panel key="test-ecosystem-dashboard-section" name="Test Ecosystem Dashboard Section" location="atl.dashboard.secondary" weight="20">
+      <description>Displays the custom sections on the left side of the dashboard</description>
+      <resource name="view" type="confluence-velocity" location="/com/keysight/test-ecosystem/templates/test-ecosystem-dashboard-section.vm"></resource>
+   </web-panel>
+
+   <!-- Helper to render xml macros in velocity -->
+   <velocity-context-item key="myHelper" 
+                          name="My Velocity Helper" 
+                          class="com.keysight.test.ecosystem.helpers.MyVelocityHelper" 
+                          context-key="myHelper" />;
+    
+</atlassian-plugin>

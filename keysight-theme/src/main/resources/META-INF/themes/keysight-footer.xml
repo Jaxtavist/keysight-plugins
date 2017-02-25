@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <theme key="keysight-theme-footer" name="Keysight Footer Theme" class="com.atlassian.confluence.themes.BasicTheme">
+      <description>Keysight Footer Theme - a theme with the Keysight colors and footer</description>
+      
+      <!-- Add in AND REFERENCE the default style sheet -->
+      <body-class>lighter-editor theme-default aui-layout aui-theme-default keysight-theme-footer</body-class>
+      
+      <resource type="download" name="default-theme.css" location="/includes/css/default-theme.css">
+         <param name="source" value="webContext"/>
+      </resource>
+
+      <!-- Add in the custom style sheet -->
+      <resource type="download" name="keysight-theme-full.css" location="/css/keysight-theme-full.css"/>
+
+      <!-- Specify a custom default color scheme -->
+      <colour-scheme key="com.keysight.keysight-theme:keysight-colour-scheme"/>
+      
+      <!-- Put a screenshot example 110x73 -->
+      <resource key="icon" name="themeicon.gif" type="download" location="/images/screenshot.gif"/>
+
+      <!-- recommended in the example -->
+      <param name="includeClassicStyles" value="false"/>
+        
+      <!-- Enable the Atlassian sidebar -->
+      <space-ia value="true"/>
+      
+      <!-- Add a custom layouts -->
+      <layout key="com.keysight.keysight-theme:main"/>
+   </theme>
+  
+</module-container>

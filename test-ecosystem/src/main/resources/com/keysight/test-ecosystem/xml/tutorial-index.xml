@@ -1,0 +1,42 @@
+<at:declarations>
+   <at:var at:name="createFromTemplateMacro"/>       
+   <at:var at:name="contentReportTableMacro"/>       
+   <at:var at:name="propertiesReportMacro"/>       
+   <at:var at:name="recentActivityMacro"/>       
+   <at:var at:name="contributorsMacro"/>       
+</at:declarations>
+
+<ac:layout>
+   <ac:layout-section ac:type="single">
+      <ac:layout-cell>
+         <p style="text-align: right;">
+            <at:var at:name="createFromTemplateMacro" at:rawxhtml="true"/>
+         </p>
+      </ac:layout-cell>
+   </ac:layout-section>
+   
+   <ac:layout-section ac:type="single">
+      <ac:layout-cell>
+         <h2>Available Tutorials</h2>
+         <p>
+            <at:var at:name="propertiesReportMacro" at:rawxhtml="true"/>
+         </p>
+      </ac:layout-cell>
+   </ac:layout-section>
+
+   <ac:layout-section ac:type="two_equal">
+      <ac:layout-cell>
+         <h2>Recent Activity</h2>
+         <p>
+            <at:var at:name="recentActivityMacro" at:rawxhtml="true"/>
+         </p>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <h2>Contributors</h2>
+         <p>
+            <at:var at:name="contributorsMacro" at:rawxhtml="true"/>
+         </p>
+      </ac:layout-cell>
+   </ac:layout-section>
+
+</ac:layout>

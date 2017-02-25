@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="help-text" location="/com/keysight/include-content/i18n/help-text"/>
+ 
+   <xhtml-macro name="help-text" key="help-text" 
+                class="com.keysight.include.content.macros.HelpText"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+              <parameter name="text"  type="string" />
+              <parameter name="title" type="string" />
+              <parameter name="tip"   type="string" />
+              <parameter name="type"  type="enum" default="Dialog Box">
+                      <value name="Dialog Box" />
+                      <value name="Popup" />
+              </parameter>
+      </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="help-text-from-page" key="help-text-from-page" 
+                class="com.keysight.include.content.macros.HelpTextFromPage"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="page" type="confluence-content" required="true">
+            <option key="includeDatePath" value="true" />
+         </parameter>
+         <parameter name="text" type="string" />
+         <parameter name="title" type="string" />
+         <parameter name="tip"   type="string" />
+         <parameter name="type"  type="enum" default="Dialog Box">
+             <value name="Dialog Box" />
+             <value name="Popup" />
+         </parameter>
+      </parameters>
+      <property-panel>
+         <button id="goto-target-page" label="Go to Included Page"/>
+      </property-panel>
+   </xhtml-macro>
+
+   <xhtml-macro name="help-text-from-shared-block" key="help-text-from-shared-block" 
+                class="com.keysight.include.content.macros.HelpTextFromSharedBlock"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="page" type="confluence-content" required="true">
+            <option key="includeDatePath" value="true" />
+         </parameter>
+         <parameter name="shared-block-key" type="string"/>
+         <parameter name="text" type="string" />
+         <parameter name="title" type="string" />
+         <parameter name="tip"   type="string" />
+         <parameter name="type"  type="enum" default="Dialog Box">
+             <value name="Dialog Box" />
+             <value name="Popup" />
+         </parameter>
+      </parameters>
+      <property-panel>
+         <button id="goto-target-page" label="Go to Included Page"/>
+      </property-panel>
+   </xhtml-macro>
+
+</module-container>
+

@@ -1,0 +1,29 @@
+<h3>Introduction</h3>
+
+<p>The shared block identifies a portion of the page
+contents which may be inserted into other pages using the
+Include Shared Block or Include Shared Block With Replacment
+macros.</p>
+
+<h3>Usage</h3>
+
+<p>If there are multiple shared blocks on a page, they can
+be differentiated by specifying a &quot;key&quot in the macro
+parameters.  The two macros for including shared blocks can
+then target the shared block by page and key.</p>
+
+<h4>Parameters</h4>
+
+<p><strong>Shared Block Key</strong>: The shared block key 
+is a string to uniquely identify this shared block on the page.</p>
+
+<p><strong>Hidden</strong>: If flagged, the shared block will 
+not be shown where the shared block macro is inserted; however, 
+it can be inserted into other pages that use macros to include the 
+content such as the include-shared-block or help-text-from-shared-block.
+A common use case is to create a hidden shared block on a page, then 
+use the help-text-from-shared-block to have an inline help popup.</p>
+
+<p><strong>Allow Anonymous Access </strong>: If checked, the content
+of the shared block may be included and seen on pages by users who 
+do not have permissions to see the page the macro is place in.</p>

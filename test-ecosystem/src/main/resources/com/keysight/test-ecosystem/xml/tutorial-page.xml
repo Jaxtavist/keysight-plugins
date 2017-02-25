@@ -1,0 +1,61 @@
+<at:declarations>
+   <at:var at:name="contentByLabelMacro"/>
+</at:declarations>
+
+<ac:layout>
+   <ac:layout-section ac:type="two_right_sidebar">
+      <ac:layout-cell>
+         <h2>Overview</h2>
+         <p>
+            <ac:structured-macro ac:name="excerpt">
+               <ac:parameter ac:name="atlassian-macro-output-type">INLINE</ac:parameter>
+               <ac:rich-text-body>
+<p>
+   <ac:placeholder>This should be a paragraph that describes what the tutorial will cover.
+   It needs to be in the excerpt macro so the summary can be included 
+   automatically in the index listing page.</ac:placeholder>
+</p>
+               </ac:rich-text-body>
+            </ac:structured-macro>
+         </p>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <ac:structured-macro ac:name="details">
+            <ac:rich-text-body>
+<table>
+   <tbody>
+      <tr>
+         <th>Experience Level</th>
+         <td><ac:placeholder> Advanced, Intermediate, Beginner</ac:placeholder></td>
+      </tr>
+      <tr>
+         <th>Prerequisites</th>
+         <td><ac:placeholder>List just preceding steps, such as a prior tutoral rather than the everything.</ac:placeholder></td>
+      </tr>
+      <tr>
+         <th>Estimated time to complete:</th>
+         <td><ac:placeholder>An hour</ac:placeholder></td>
+      </tr>
+      <tr>
+         <th>Applicable to:</th>
+         <td><ac:placeholder>example: Gondor, TCE</ac:placeholder></td>
+      </tr>
+   </tbody>
+</table>
+            </ac:rich-text-body>
+         </ac:structured-macro>
+      </ac:layout-cell>
+   </ac:layout-section>
+   <ac:layout-section ac:type="single">
+      <ac:layout-cell>
+<h2>Step by Step Instructions</h2>
+<p>
+<ac:placeholder>Go through the body of the tutorial here</ac:placeholder>
+</p>
+<h2>Related Tutorials</h2>
+<p>
+   <at:var at:name="contentByLabelMacro" at:rawxhtml="true"/>
+</p>
+      </ac:layout-cell>
+   </ac:layout-section>
+</ac:layout>

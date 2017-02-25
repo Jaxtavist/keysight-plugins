@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="include-children" location="/com/keysight/include-content/i18n/include-children"/>
+ 
+   <xhtml-macro name="include-children" key="include-children" 
+                class="com.keysight.include.content.macros.IncludeChildren"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="page" type="confluence-content">
+            <option key="includeDatePath" value="true" />
+         </parameter>
+         <parameter name="exclude-page-title" type="boolean"/>
+         <parameter name="levels-to-include" type="string" />
+      </parameters>
+   </xhtml-macro>
+
+</module-container>
+

@@ -1,0 +1,30 @@
+{namespace Test.Ecosystem.Tutorial}
+/**
+* Need to have a comment here
+*/
+{template .dialogForm}
+<form action="#" method="post" id="tutorial-dialog-wizard-page-form" class="aui">
+   <fieldset>
+      <div class="field-group">
+         <label for="test-ecosystem-create-page-dialog-title">Name<span class="aui-icon icon-required">icon</span></label>
+         <input id="test-ecosystem-create-page-dialog-title" 
+                class="text long-field" 
+                type="text" 
+                name="title" 
+                title="title" 
+                placeholder="Tutorial Title"/>
+         <div class="error"></div>
+      </div>
+      <div class="field-group">
+         <label for="test-ecosystem-blueprint-labels">Labels</label>
+         <input id="test-ecosystem-blueprint-labels" 
+                name="labelsString" 
+                class="text select2-input long-field" 
+                type="text" 
+                title="labelsString" 
+                placeholder="Add any appropriate labels"/>
+         <div class="error"></div>
+      </div>
+   </fieldset>
+</form>
+{/template}

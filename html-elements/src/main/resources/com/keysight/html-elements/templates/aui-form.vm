@@ -1,0 +1,10 @@
+<form class="aui $!form-layout" action="$url" target="$target">
+#foreach( $formElement in $formElements )
+$formElement.htmlAui()
+#end
+<div class="buttons-container">
+   <div class="buttons">
+      <input class="button submit" type="submit" value="$submit" id="submit01">
+   </div>
+</div>
+</form>

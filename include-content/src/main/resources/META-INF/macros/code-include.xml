@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="code-include" location="/com/keysight/include-content/i18n/code-include"/>
+            
+   <velocity-context-item key="myHelper" 
+                          name="My Velocity Helper" 
+                          class="com.keysight.include.content.helpers.MyVelocityHelper" 
+                          context-key="myHelper" />;
+
+   <web-resource key="code-include-macro-browser-resources" name="Resources for the code-include macro in the editor.">
+       <resource type="download" name="code-include-macro-browser.js" location="js/code-include-macro-browser.js" />
+       <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+       <context>macro-browser</context>
+   </web-resource>
+
+   <xhtml-macro name="code-include" key="code-include" 
+                class="com.keysight.include.content.macros.CodeInclude"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="url"  type="string" required="true"/>
+                   <parameter name="language"         type="string" />
+                   <parameter name="username"         type="string" />
+                   <parameter name="password"         type="string" />
+                   <parameter name="title"            type="string" />
+                   <parameter name="start-regex"      type="string" />
+                   <parameter name="exclude-first-matched-line" type="boolean" />
+                   <parameter name="end-regex"        type="string" />
+                   <parameter name="include-last-matched-line"  type="boolean" />
+                   <parameter name="multiple-regions" type="boolean" />
+                   <parameter name="initial-line"     type="string" />
+                   <parameter name="join-line"        type="string" />
+                   <parameter name="final-line"       type="string" />
+                   <parameter name="collapse"         type="boolean" />
+                   <parameter name="linenumbers"      type="boolean" />
+                   <parameter name="theme" type="enum">
+                      <value name="Default"/>
+                      <value name="DJango"/>
+                      <value name="Emacs"/>
+                      <value name="FadeToGrey"/>
+                      <value name="Midnight"/>
+                      <value name="RDark"/>
+                      <value name="Eclipse"/>
+                      <value name="Confluence"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+
+</module-container>
+

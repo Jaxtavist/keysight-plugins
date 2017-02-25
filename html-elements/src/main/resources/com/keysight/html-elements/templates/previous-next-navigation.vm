@@ -1,0 +1,29 @@
+<div class="columnLayout three-equal" data-layout="three-equal">
+   <div class="keysight-cell cell normal" data-type="normal">
+      <div class="innerCell">
+         <p style="text-align: left;">
+#if( !$no-previous-page-button )
+<button class="aui-button keysight-button $!button-style" href="$previous-button-url">$previous-button-text</button>
+#end
+         </p>
+      </div>
+   </div>
+   <div class="keysight-cell cell normal" data-type="normal">
+      <div class="innerCell">
+         <p style="text-align: center;">
+#if( !$no-parent-page-button )
+<button class="aui-button keysight-button $!button-style" href="$parent-button-url">$parent-button-text</button>
+#end
+         </p>
+      </div>
+   </div>
+   <div class="keysight-cell cell normal" data-type="normal">
+      <div class="innerCell">
+         <p style="text-align: right;">
+#if( !$no-next-page-button )
+<button class="aui-button keysight-button $!button-style" href="$next-button-url">$next-button-text</button>
+#end
+         </p>
+      </div>
+   </div>
+</div>

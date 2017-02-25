@@ -1,0 +1,9 @@
+<h3>Introduction</h3>
+
+<p>The Special Handling Properties macro is a prototype to assist in 
+migrating the Special Handling Request for Quote database into Confluence.</p>
+
+<p>Every entry in the database has a table of properties, some of which are
+constrained to be one of several choices.  By making this a macro, some of the
+same rules can be applied.  It also makes it easier to find and work with the information
+from other macros if the information is properties of another macro</p>

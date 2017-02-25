@@ -1,0 +1,220 @@
+<ac:layout>
+   <ac:layout-section ac:type="three_equal">
+      <ac:layout-cell>
+         <h1><strong>&amp;</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="&amp;" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>A</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="A" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>B</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="B" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>C</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="C" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>D</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="D" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>E</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="E" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>F</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="F" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>G</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="G" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>H</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="H" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <h1><strong>I</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="I" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>J</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="J" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>K</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="K" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>L</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="L" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>M</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="M" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>N</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="N" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>O</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="O" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>P</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="P" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>Q</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="Q" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <h1><strong>R</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="R" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>S</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="S" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>T</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="T" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>U</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="U" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>V</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="V" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>W</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="W" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>X</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="X" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>Y</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="Y" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+         <h1><strong>Z</strong></h1>
+         <hr />
+         <p><ac:structured-macro ac:name="include" ac:schema-version="1">
+               <ac:parameter ac:name="">
+                  <ac:link> <ri:page ri:content-title="Z" /></ac:link>
+               </ac:parameter>
+         </ac:structured-macro></p>
+      </ac:layout-cell>
+   </ac:layout-section>
+   <ac:layout-section ac:type="two_equal">
+      <ac:layout-cell>
+         <h2>Recent space activity</h2>
+         <p><ac:structured-macro ac:name="recently-updated" ac:schema-version="1">
+               <ac:parameter ac:name="types">page, comment, blogpost</ac:parameter>
+               <ac:parameter ac:name="max">5</ac:parameter>
+               <ac:parameter ac:name="hideHeading">true</ac:parameter>
+               <ac:parameter ac:name="theme">social</ac:parameter>
+         </ac:structured-macro></p>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <h2>Space contributors</h2>
+         <p><ac:structured-macro ac:name="contributors" ac:schema-version="1">
+               <ac:parameter ac:name="mode">list</ac:parameter>
+               <ac:parameter ac:name="scope">descendants</ac:parameter>
+               <ac:parameter ac:name="limit">5</ac:parameter>
+               <ac:parameter ac:name="showLastTime">true</ac:parameter>
+               <ac:parameter ac:name="order">update</ac:parameter>
+         </ac:structured-macro></p>
+      </ac:layout-cell>
+   </ac:layout-section>
+</ac:layout>

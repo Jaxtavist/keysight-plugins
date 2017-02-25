@@ -1,0 +1,162 @@
+{namespace KeysightTheme.Templates}
+
+/**
+ * Renders the contact form form
+ *
+ * @param identifier
+ * @param contact
+ * @param ccToEmail
+ * @param defaultName
+ * @param defaultEmail
+ * @param spaceKey
+ */
+{template .contactForm}
+<div id="contact-form-body">
+<form id="contact-form-form" class="aui">
+    <input type="hidden" id="contact-form-identifier" name="contact-form-identifier" value="{$identifier}"/>
+    <input type="hidden" id="contact-form-contact" name="contact-form-contact" value="{$contact}"/>
+    <input type="hidden" id="contact-form-type" name="contact-form-type" value="General"/>
+    <input type="hidden" id="contact-form-cc-to-email" name="contact-form-cc-to-email" value="{$ccToEmail}"/>
+    <input type="hidden" id="contact-form-space-key" name="contact-form-space-key" value="{$spaceKey}"/>
+    <div class="field-group">
+        <label for="contact-form-name">Name</label>
+        <input class="text long-field" type="text"
+               id="contact-form-name"
+               name="contact-form-name" 
+               value="{$defaultName}"
+               placeholder="(Optional)">
+    </div>
+    <div class="field-group">
+        <label for="contact-form-email">Email Address</label>
+        <input class="text long-field" type="text"
+               id="contact-form-email"
+               name="contact-form-email" 
+               value="{$defaultEmail}"
+               placeholder="(Optional)">
+    </div>
+    <div class="field-group">
+        <label for="contact-form-text">Comments</label>
+        <textarea class="textarea long-field" name="contact-form-text"
+                  id="contact-form-text" 
+                  rows="10"
+                  placeholder="Write here..."></textarea>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <input class="button submit" type="submit" value="Send" id="contact-form-submit">
+        </div>
+    </div>
+</form>
+</div>
+{/template}
+
+/**
+ * Renders the contact form form
+ *
+ * @param identifier
+ * @param contact
+ * @param ccToEmail
+ * @param defaultName
+ * @param defaultEmail
+ * @param spaceKey
+ */
+{template .contactFormIdentificationRequired}
+<div id="contact-form-body">
+<form id="contact-form-form" class="aui">
+    <input type="hidden" id="contact-form-identifier" name="contact-form-identifier" value="{$identifier}"/>
+    <input type="hidden" id="contact-form-contact" name="contact-form-contact" value="{$contact}"/>
+    <input type="hidden" id="contact-form-type" name="contact-form-type" value="General"/>
+    <input type="hidden" id="contact-form-cc-to-email" name="contact-form-cc-to-email" value="{$ccToEmail}"/>
+    <input type="hidden" id="contact-form-space-key" name="contact-form-space-key" value="{$spaceKey}"/>
+    <div class="field-group">
+        <label for="contact-form-name">Name<span class="aui-icon icon-required">(required)</span></label>
+        <input class="text long-field" type="text"
+               id="contact-form-name"
+               name="contact-form-name" 
+               value="{$defaultName}"
+               placeholder="(Required)">
+    </div>
+    <div class="field-group">
+        <label for="contact-form-email">Email Address<span class="aui-icon icon-required">(required)</span></label>
+        <input class="text long-field" type="text"
+               id="contact-form-email"
+               name="contact-form-email" 
+               value="{$defaultEmail}"
+               placeholder="(Required)">
+    </div>
+    <div class="field-group">
+        <label for="contact-form-text">Comments</label>
+        <textarea class="textarea long-field" name="contact-form-text"
+                  id="contact-form-text" 
+                  rows="10"
+                  placeholder="Write here..."></textarea>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <input class="button submit" type="submit" value="Send" id="contact-form-submit">
+        </div>
+    </div>
+</form>
+</div>
+{/template}
+
+/**
+ * Renders the contact form form
+ *
+ * @param identifier
+ * @param contact
+ * @param ccToEmail
+ * @param defaultName
+ * @param defaultEmail
+ * @param spaceKey
+ */
+{template .contactFormKeysightAsk}
+<div id="contact-form-body">
+<form id="contact-form-form" class="aui">
+    <input type="hidden" id="contact-form-identifier" name="contact-form-identifier" value="{$identifier}"/>
+    <input type="hidden" id="contact-form-contact" name="contact-form-contact" value="{$contact}"/>
+    <input type="hidden" id="contact-form-cc-to-email" name="contact-form-cc-to-email" value="{$ccToEmail}"/>
+    <input type="hidden" id="contact-form-space-key" name="contact-form-space-key" value="{$spaceKey}"/>
+    <div class="field-group">
+        <label for="contact-form-name">Name</label>
+        <input class="text long-field" type="text"
+               id="contact-form-name"
+               name="contact-form-name" 
+               value="{$defaultName}"
+               placeholder="(Optional)">
+    </div>
+    <div class="field-group">
+        <label for="contact-form-email">Email Address</label>
+        <input class="text long-field" type="text"
+               id="contact-form-email"
+               name="contact-form-email" 
+               value="{$defaultEmail}"
+               placeholder="(Optional)">
+    </div>
+    <div class="field-group">
+        <label for="contact-form-type">Type of Feedback</label>
+        <select class="select long-field" id="contact-form-type" name="contact-form-type">
+            <option>Comment</option>
+            <option>Contribute Content</option>
+            <option>Correction/Suggestion</option>
+            <option>General Question</option>
+            <option>Technical Question</option>
+            <option>Other</option>
+        </select>
+    </div>
+    <div class="field-group">
+        <label for="contact-form-text">Comments</label>
+        <textarea class="textarea long-field" name="contact-form-text"
+                  id="contact-form-text" 
+                  rows="10"
+                  placeholder="Your comment here..."></textarea>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <input class="button submit" type="submit" value="Send" id="contact-form-submit">
+        </div>
+    </div>
+</form>
+</div>
+{/template}
+

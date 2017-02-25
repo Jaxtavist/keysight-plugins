@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="faq" location="/com/keysight/include-content/i18n/faq"/>
+
+   <web-resource key="faq-macro-browser-resources" name="Resources for the faq macro in the editor.">
+       <resource type="download" name="faq-macro-browser.js" location="js/faq-macro-browser.js" />
+       <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+       <context>macro-browser</context>
+   </web-resource>
+ 
+   <xhtml-macro name="faq" key="faq" 
+                class="com.keysight.include.content.macros.Faq"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="labels"                      type="string"/>
+          <parameter name="spaceKeys"                   type="string"/>
+          <parameter name="page"                        type="confluence-content"/>
+          <parameter name="renderStyle" default="Expand"  type="enum">
+              <value name="Expand"/>
+              <value name="Link"/>
+              <value name="Popup"/>
+          </parameter>
+          <parameter name="renderContent" default="Page"  type="enum">
+              <value name="First Excerpt"/>
+              <value name="First Shared Block"/>
+              <value name="Page"/>
+          </parameter>
+          <parameter name="popupTitle"                    type="string"/>
+          <parameter name="andLabels"                     type="boolean"/>
+          <parameter name="includeDecendants"             type="boolean"/>
+          <parameter name="includeSpace"                  type="boolean"/>
+          <parameter name="includeLastModificationDate"   type="boolean"/>
+          <parameter name="includeLastModificationAuthor" type="boolean"/>
+          <parameter name="includeLabels"                 type="boolean"/>
+          <parameter name="includeLikes"                  type="boolean"/>
+      </parameters>
+   </xhtml-macro>
+
+</module-container>
+

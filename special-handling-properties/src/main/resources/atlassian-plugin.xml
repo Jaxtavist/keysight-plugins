@@ -1,0 +1,80 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2"> 
+   <plugin-info>
+      <description>${project.description}</description>
+      <version>${project.version}</version>
+      <vendor name="${project.organization.name}" url="${project.organization.url}" />
+      <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+      <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+      <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+      <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+      <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+   </plugin-info>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="i18n" location="special-handling-properties"/> 
+    
+   <!-- add our web resources -->
+   <web-resource key="special-handling-properties-resources" name="Special Handling Properties Content Web Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>com.keysight.plugins.confluence.additional-macro-parameter-types:additional-macro-parameter-types-resources</dependency>
+        
+      <resource type="download" name="special-handling-properties.css" location="css/special-handling-properties.css"/>
+      <resource type="download" name="special-handling-properties.js" location="js/special-handling-properties.js"/>
+      <resource type="download" name="images/" location="images"/>
+      <resource type="download" name="templates/" location="templates"/>
+      
+      <context>special-handling-properties</context>
+      <context>atl.general</context>
+      <context>preview</context>
+   </web-resource>
+
+   <xhtml-macro name="special-handling-properties" key="special-handling-properties" 
+                class="com.keysight.plugins.confluence.special.handling.properties.macros.SpecialHandlingProperties"
+                icon="/download/resources/${project.groupId}.${project.artifactId}:special-handling-properties-resources/images/keysight-logo-80x80.png">
+                <description>Creates a widgit to manage the properties of Special Handling quote properties</description>
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="pl" type="enum" required="true">
+            <value name="PL12" />
+            <value name="PL15" />
+         </parameter>
+         <parameter name="status" type="enum" required="true">
+            <value name="A - Active" />
+            <value name="C - Check Oracle" />
+            <value name="O - Obsolete" />
+            <value name="S - Devel-Quote OK" />
+            <value name="X - Devel-No Quote" />
+         </parameter>
+         <parameter name="type" type="enum" default="SSH">
+            <value name="E" />
+            <value name="M" />
+            <value name="SSE" />
+            <value name="SSH" />
+            <value name="SSP" />
+         </parameter>
+         <parameter name="availability" type="string" />
+         <parameter name="price"        type="int" required="true" />
+         <parameter name="dnqa"         type="date" required="true" />
+         <parameter name="originator"   type="username" />
+         <parameter name="ta"           type="enum" default="Add">
+            <value name="Add" />
+            <value name="Total" />
+         </parameter>
+      </parameters>
+   </xhtml-macro>
+
+
+   <xhtml-macro name="special-handling-docs" key="special-handling-docs" 
+                class="com.keysight.plugins.confluence.special.handling.properties.macros.SpecialHandlingDocuments"
+                icon="/download/resources/${project.groupId}.${project.artifactId}:special-handling-properties-resources/images/keysight-logo-80x80.png">
+                <description>Creates a widgit to create link to Special Handling Documents</description>
+      <category name="confluence-content" />
+      <parameters>
+	 <parameter name="model" type="string" />
+	 <parameter name="option" type="string" />
+      </parameters>
+   </xhtml-macro>
+
+   <!-- import from the product container -->
+   <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
+</atlassian-plugin>

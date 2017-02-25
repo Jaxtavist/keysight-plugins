@@ -1,0 +1,6 @@
+<h3>Documents for model "$model" with option "$option"</h3>
+<ul>
+#foreach($documentReference in $documents)
+<li><a href="$documentReference.getUrl()">$documentReference.getLastComponent()</a></li>
+#end
+</ul>

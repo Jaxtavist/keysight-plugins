@@ -1,0 +1,16 @@
+<h3>Introduction</h3>
+<p>The Include Shared Block Macro is simliar to the
+Confluence Excerpt Include - but instead of pulling in 
+the contents of the first discovered Excerpt Macro it pulls
+in the contents of either the first discovered Shared Block 
+Macro or the specified Shared Block Macro.  This ability to
+target a particular Shared Block rather than the first one
+is what gives this macro purpose.</p>
+<h3>Usage</h3>
+<p>In the macro parameters, the page on which the shared
+block is defined needs to be specified.  Optinally, the
+key identifying the shared block may be provided.  The key
+is a string that needs to match in both the Shared Block
+and the Include Shared Block before the contents may be
+pulled in. If no key is specified, the contents of the
+first Shared Block on the page will be pulled in.</p>

@@ -1,0 +1,95 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images" )
+<div id="keysight-header-outer">
+<div id="keysight-header-inner">
+
+<div id="keysight-logo">
+<img src="$images/keysight-technologies-trimmed.png" width="201" height="50" border="0" alt="Keysight Technologies"/>
+</div>
+
+<div id="keysight-search-form">
+   <form name="gs" method="get" style="margin:0;" action="https://keygoogle.cos.is.keysight.com/search" onSubmit="googlePopulateParams(this);">
+   <!--    **** Please customize the value of the hidden field below ('googleCurrentSite') to use the url of the site on which this form is being used -->
+   <input type="hidden" name="googleCurrentSite" value="wiki2.collaboration.is.keysight.com">
+   <script language="Javascript">
+function googlePopulateParams(form){
+var selIndx = form.googleDropDown.selectedIndex;	
+//If searching within a site, populates the 'as_sitesearch'    	
+// parameter used by Google	
+if(form.googleDropDown.options[selIndx].value == "[Site]")	{		
+ form.as_sitesearch.value = form.googleCurrentSite.value;		 
+ form.site.value = "keysight_intranet_all";	
+}	else	{		
+ form.as_sitesearch.value = "";		
+ form.site.value = form.googleDropDown.options[selIndx].value;	
+}
+}var googleQueryModified = false;
+   </script>
+
+   <div id="keysight-search-drop-down">
+      <div id="keysight-search-drop-down-3">
+         <input type="image" value="Go!" border="0" src="$images/btn_srch.gif" width="20" height="20" />
+      </div>
+
+      <div id="keysight-search-drop-down-2">
+         <!-- Google Search Box -->
+         <input style="padding:0 0 0 2px;margin:0 0 0 4px;height:16px;color:gray;font-size:12px;" type="text" name="q" value="Search Sonoma County Intranet" onFocus="if (!googleQueryModified) { this.value = ''; this.style.color = 'black'; }" onKeyPress="googleQueryModified=true;" />
+         <!-- 		
+            A list of all possible query parameters can be found here:				
+            Google Search Protocol Reference:				
+            http://code.google.com/apis/searchappliance/documentation/60/xml_reference.html	
+         -->
+         <input type="hidden" name="client" value="keysight_intranet" />
+         <input type="hidden" name="output" value="xml_no_dtd" />
+         <input type="hidden" name="proxystylesheet" value="keysight_intranet" />
+         <input type="hidden" name="access" value="p" />
+         <input type="hidden" name="sort" value="date:D:L:d1" />
+         <input type="hidden" name="entqr" value="3" />
+         <input type="hidden" name="oe" value="UTF-8" />
+         <input type="hidden" name="ie" value="UTF-8" />
+         <input type="hidden" name="ud" value="1" />
+         <input type="hidden" name="as_sitesearch" value="" />
+         <input type="hidden" name="site" value="keysight_intranet_all" />
+         <input type="hidden" name="getfields" value="*" />
+         <input type="hidden" name="filter" value="0" />
+      </div>
+
+      <div id="keysight-search-drop-down-1">
+         <!-- The order of the dropdown options is customizable -->
+         <select style="font-family: Arial; font-size: 11px; color:#555555;" name="googleDropDown" size="1" onChange="if(!googleQueryModified) { this.form.q.value='Search ' + this.options[this.selectedIndex].text; this.form.q.style.color='gray'; }">
+            <option value="[Site]">Wiki 2</option>
+            <option value="keysight_intranet_all">Keysight Intranet</option>
+         </select>
+      </div>
+   </div>
+
+   <div style="clear:both"></div>
+   </form>
+   <a href="https://keygoogle.cos.is.keysight.com/user_help.html">Search Tips</a><span id="keysight-search-line"> | </span><a href="https://keygoogle.cos.is.keysight.com/search?site=keysight_intranet_all%26client=keysight_intranet%26output=xml_no_dtd%26proxystylesheet=keysight_intranet%26ie=UTF-8%26access=p%26sort=date%3AD%3AL%3Ad1%26entqr=3%26oe=UTF-8%26ud=1%26proxycustom=<ADVANCED/>">Advanced Search</a>
+</div>
+
+<div style="clear:both"></div>
+</div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+   // do this here inline as Confluence bundles up the javascript into 
+   // something that cannot be processed by IE8 and therefore never gets
+   // executed;
+
+   var badBrowser;
+
+   if (document.all && document.querySelector && !document.addEventListener) {
+      badBrowser = true;
+   }
+   
+   if( badBrowser ){
+      alert( "Warning, you are using an old and incompatible version of Internet Explorer. "
+             + "Confluence requires Internet Explorer 9 or higher or the latest "
+             + "version of Chrome or Firefox.  Firefox provides the "
+             + "most complete and fluid user experience and is recommended."
+      );
+   }
+//]]>
+</script>
+

@@ -1,0 +1,14 @@
+.wysiwyg-macro[data-macro-name="numberedheadings"] h1:before,
+.wysiwyg-macro[data-macro-name="numberedheadings"] h2:before,
+.wysiwyg-macro[data-macro-name="numberedheadings"] h3:before,
+.wysiwyg-macro[data-macro-name="numberedheadings"] h4:before,
+.wysiwyg-macro[data-macro-name="numberedheadings"] h5:before,
+.wysiwyg-macro[data-macro-name="numberedheadings"] h6:before  {
+   content: attr(data-nh-numbering);
+}
+
+.numbered-heading-example-box {
+   margin: 10px 50px 10px 50px;
+   padding: 50px;
+   border: 1px solid #343434;
+}

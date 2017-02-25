@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <web-resource name="Guidance Editor Resources" key="guidance-editor-resources">
+       <context>editor</context>
+       <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+       <resource type="download" name="guidance-editor.js" location="js/guidance-editor.js"/>
+       <resource type="download" name="guidance-editor.css" location="css/guidance-editor.css"/>
+   </web-resource>
+            
+   <xhtml-macro name="guideline-inline" key="guideline-inline" 
+                class="com.keysight.guidance.macros.GuideLineInline"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="guidance" type="enum">
+              <option key="showNameInPlaceholder" value="false"/>
+              <option key="showValueInPlaceholder" value="true"/>
+              <value name="Do"/>
+              <value name="Consider"/>
+              <value name="Avoid"/>
+              <value name="Do Not"/>
+          </parameter>
+      </parameters>
+      <property-panel>
+          <space />
+          <button id="InlineGuidelineDo" label="Do" />
+          <button id="InlineGuidelineConsider" label="Consider" />
+          <button id="InlineGuidelineAvoid" label="Avoid" />
+          <button id="InlineGuidelineDoNot" label="Do Not" />
+          <space />
+      </property-panel>
+   </xhtml-macro>
+
+   <xhtml-macro name="guideline-block" key="guideline-block" 
+                class="com.keysight.guidance.macros.GuideLine"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+          <parameter name="guidance" type="enum" default="Auto">
+              <option key="showNameInPlaceholder" value="false"/>
+              <option key="showValueInPlaceholder" value="true"/>
+              <value name="Auto"/>
+              <value name="Do"/>
+              <value name="Consider"/>
+              <value name="Avoid"/>
+              <value name="Do Not"/>
+          </parameter>
+      </parameters>
+      <property-panel>
+          <space />
+          <button id="BlockGuidelineAuto" label="Auto" />
+          <button id="BlockGuidelineDo" label="Do" />
+          <button id="BlockGuidelineConsider" label="Consider" />
+          <button id="BlockGuidelineAvoid" label="Avoid" />
+          <button id="BlockGuidelineDoNot" label="Do Not" />
+          <space />
+      </property-panel>
+   </xhtml-macro>
+
+   <xhtml-macro name="do" key="do" 
+                class="com.keysight.guidance.macros.Do"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="consider" key="consider" 
+                class="com.keysight.guidance.macros.Consider"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="avoid" key="avoid" 
+                class="com.keysight.guidance.macros.Avoid"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="do-not" key="do-not" 
+                class="com.keysight.guidance.macros.DoNot"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp-guideline" key="lp-guideline" 
+                class="com.keysight.guidance.macros.GuideLine"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
+                <category name="confluence-content" />
+      <parameters>
+          <parameter name="guidance" type="enum">
+              <option key="showNameInPlaceholder" value="false"/>
+              <option key="showValueInPlaceholder" value="true"/>
+              <value name="Auto"/>
+              <value name="Do"/>
+              <value name="Consider"/>
+              <value name="Avoid"/>
+              <value name="Do Not"/>
+          </parameter>
+      </parameters>
+      <property-panel>
+          <space />
+          <button id="LpGuidelineAuto" label="Auto" />
+          <button id="LpGuidelineDo" label="Do" />
+          <button id="LpGuidelineConsider" label="Consider" />
+          <button id="LpGuidelineAvoid" label="Avoid" />
+          <button id="LpGuidelineDoNot" label="Do Not" />
+          <space />
+      </property-panel>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_guideline_do" key="lp_guideline_do" 
+	        state="disabled"
+                class="com.keysight.guidance.macros.Do"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_guideline_consider" key="lp_guideline_consider" 
+	        state="disabled"
+                class="com.keysight.guidance.macros.Consider"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_guideline_avoid" key="lp_guideline_avoid" 
+	        state="disabled"
+                class="com.keysight.guidance.macros.Avoid"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_guideline_donot" key="lp_guideline_donot" 
+	        state="disabled"
+                class="com.keysight.guidance.macros.DoNot"
+                icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+</module-container>

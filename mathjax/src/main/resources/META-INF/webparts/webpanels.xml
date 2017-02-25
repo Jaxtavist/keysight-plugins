@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <web-panel key="include-mathjax-library" location="atl.header">
+        <resource name="view" type="static"><![CDATA[
+           <script type="x-mathjax-config">
+           </script>
+           <script type="text/javascript" 
+                   async 
+                   src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+           </script>
+]]>
+        </resource>
+    </web-panel>
+
+</module-container>

@@ -1,0 +1,285 @@
+{namespace Keysight.Include.Content.FAQ.Soy.Templates}
+
+/**
+ * Container
+ */
+{template .initializeContainer}
+    <div class="keysight-faq-container">
+        <div class="keysight-faq-header"></div>
+        <div class="keysight-faq-body"></div>
+        <div class="button-spinner keysight-spinner"></div>
+        <div class="keysight-faq-footer"></div>
+    </div>
+{/template}
+
+/**
+ * PageInfo
+ * @param includeSpace 
+ * @param spaceName 
+ * @param spaceUrl 
+ * @param includeLastModificationDate 
+ * @param lastModificationDate 
+ * @param includeLastModificationAuthorName
+ * @param lastModificationAuthorName 
+ * @param includeLastModificationAuthorUserName
+ * @param lastModificationAuthorUserName 
+ * @param includeLikes 
+ * @param likeCount 
+ * @param includeLabels 
+ * @param labels 
+ */
+{template .pageInfo}
+<div class="page-metadata">
+    <ul>
+        {if $includeSpace == 1 }
+            <li class="page-metadata-modification-info">
+                <a href="{$spaceUrl}">From Space "{$spaceName}".</a>
+            </li>
+        {/if}
+        {if $includeLastModificationDate == 1 }
+            <li class="page-metadata-modification-info">
+                Last modified {$lastModificationDate}
+                {if not $includeLastModificationAuthorName == 1 and not $includeLastModificationAuthorUserName == 1 }
+                .
+                {/if}
+            </li>
+        {/if}
+        {if $includeLastModificationAuthorName == 1 or $includeLastModificationAuthorUserName == 1 }
+            <li class="page-metadata-modification-info">
+            {if $includeLastModificationDate == 1}
+                by&nbsp;
+            {else}
+                Last modified by&nbsp;
+            {/if}
+
+            {if $includeLastModificationAuthorName == 1 and $includeLastModificationAuthorUserName == 1 }
+                {$lastModificationAuthorName} ({$lastModificationAuthorUserName}).
+            {elseif $includeLastModificationAuthorName == 1 }
+                {$lastModificationAuthorName}.
+            {elseif $includeLastModificationAuthorUserName == 1 }
+                {$lastModificationAuthorUserName}.
+            {/if}
+            </li>
+        {/if}
+        {if $includeLikes == 1 }
+            <li class="page-metadata-modification-info">
+                Likes: {$likeCount}
+            </li>
+        {/if}
+    </ul>
+</div>
+{if $includeLabels == 1 }
+    <div class="page-metadata">
+        <ul>
+            <li class="page-metadata-modification-info">
+                Labels:
+            </li>
+            <ul class="label-list">
+{foreach $label in $labels}
+                <li class="aui-label keysight-page-info-label">{$label}</li>
+{/foreach}
+            </ul>
+        </ul>
+    </div>
+{/if}
+{/template}
+
+
+/**
+ * Header
+ */
+{template .header}
+{/template}
+
+/**
+ * Link Table Header Row 
+ * @param includeSpace 
+ * @param includeLastModificationDate 
+ * @param includeLastModificationAuthorName
+ * @param includeLastModificationAuthorUserName
+ * @param includeLikes 
+ * @param includeLabels 
+ */
+{template .linkTableHeaderRow}
+   <thead class="tableFloatingHeaderOriginal">
+   <tr><th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="1"
+                 tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                 aria-label="Page Title: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+       Page Title</th>
+       {if $includeSpace == 1 }
+           <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="2"
+                 tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                 aria-label="Space: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+           Space</th>
+       {/if}
+       {if $includeLastModificationDate == 1 }
+           <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="3"
+                 tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                 aria-label="Modified on: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+           Modified On</th>
+       {/if}
+       {if $includeLastModificationAuthorName == 1 or $includeLastModificationAuthorUserName }
+           <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="4"
+                 tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                 aria-label="Modified on: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+           Last Contributor</th>
+       {/if}
+       {if $includeLikes == 1 }
+           <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="5"
+                 tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                 aria-label="Likes: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+           Likes</th>
+       {/if}
+       {if $includeLabels == 1 }
+           <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="6"
+                 tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                 aria-label="Labels: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+           Labels</th>
+       {/if}
+   </tr>
+   </thead>
+{/template}
+
+/**
+ * Popup Table Data Row 
+ * @param popupAnchor
+ * @param uniqueId
+ * @param pageId
+ * @param pageTitle
+ * @param pageUrl 
+ * @param includeSpace 
+ * @param spaceName 
+ * @param spaceUrl 
+ * @param includeLastModificationDate 
+ * @param lastModificationDate 
+ * @param includeLastModificationAuthorName
+ * @param lastModificationAuthorName 
+ * @param includeLastModificationAuthorUserName
+ * @param lastModificationAuthorUserName 
+ * @param includeLikes 
+ * @param likeCount 
+ * @param includeLabels 
+ * @param labels 
+ */
+{template .popupTableDataRow}
+   <tr><td class="confluenceTd">
+       {if $popupAnchor == 1 }
+           <a href="#" class="faq-popup-item" page-id="{$pageId}" page-title="{$pageTitle}" content-id="faq-popup-item-{$uniqueId}">{$pageTitle}</a>
+       {else}
+           <a href="{$pageUrl}">{$pageTitle}</a>
+       {/if}
+       </td>
+       {if $includeSpace == 1 }
+           <td class="confluenceTd"><a href="{$spaceUrl}">{$spaceName}</a></td>
+       {/if}
+       {if $includeLastModificationDate == 1 }
+           <td class="confluenceTd">{$lastModificationDate}</td>
+       {/if}
+       {if $includeLastModificationAuthorName == 1 and $includeLastModificationAuthorUserName == 1 }
+           <td class="confluenceTd">{$lastModificationAuthorName} ({$lastModificationAuthorUserName})</td>
+       {elseif $includeLastModificationAuthorName == 1 }
+           <td class="confluenceTd">{$lastModificationAuthorName}</td>
+       {elseif $includeLastModificationAuthorUserName == 1 }
+           <td class="confluenceTd">{$lastModificationAuthorUserName}</td>
+       {/if}
+       {if $includeLikes == 1 }
+           <td class="confluenceTd">{$likeCount}</td>
+       {/if}
+           {if $includeLabels == 1 }
+           <td class="confluenceTd"><ul class="label-list keysight-faq-link-table-label-list">
+{foreach $label in $labels}
+                <li class="aui-label">{$label}</li>
+{/foreach}
+           </ul></td>
+       {/if}
+   </tr>
+{/template}
+
+/**
+ * Dialog2 Section
+ * @param sectionId
+ * @param title
+ * @param tip
+ * @param closeMethod
+ * @param openMethod
+ * @param includeLinkToPage
+ */
+{template .dialog2section}
+    <section id="{$sectionId}" role="dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" data-aui-modal="true" aria-hidden="true">
+
+        <!-- Dialog header -->
+        <header class="aui-dialog2-header">
+            <!-- The dialog's title -->
+            <h2 class="aui-dialog2-header-main">{$title}</h2>
+        </header>
+
+        <!-- Main dialog content -->
+        <div class="aui-dialog2-content">
+            <div class="button-spinner" id="keysight-spinner"></div>
+        </div>
+
+        <!-- Dialog footer -->
+        <footer class="aui-dialog2-footer">
+            <!-- Actions to render on the right of the footer -->
+            <div class="aui-dialog2-footer-actions">
+                {if $includeLinkToPage == 1 }
+                    <button id="dialog-close-button" class="aui-button aui-button-link" onclick="{$closeMethod}">Close</button>
+                    <button id="dialog-submit-button" class="aui-button aui-button-primary" onclick="{$openMethod}">Open Page</button>
+                {else}
+                    <button id="dialog-close-button" class="aui-button aui-button-primary" onclick="{$closeMethod}">OK</button>
+                {/if}
+            </div>
+            <!-- Hint text is rendered on the left of the footer -->
+            <div class="aui-dialog2-footer-hint">{$tip}</div>
+        </footer>
+    </section>
+{/template}
+
+
+
+/**
+ * ExpandItem
+ * @param text
+ * @param pageId
+ * @param uniqueId
+ * @param pageTitle
+ * @param pageUrl 
+ * @param spaceName 
+ * @param spaceUrl 
+ * @param lastModificationDate 
+ * @param lastModificationAuthorName 
+ * @param lastModificationAuthorUserName 
+ * @param likeCount 
+ * @param labels 
+ */
+{template .expandItem}
+    <div id="expander-{$uniqueId}"
+         class="expand-container conf-macro output-block" 
+         data-hasbody="true"
+         data-macro-name="expand" 
+         page-id="{$pageId}"
+         page-title="{$pageTitle}"
+         page-url="{$pageUrl}"
+         space-name="{$spaceName}"
+         space-url="{$spaceUrl}"
+         last-modification-date="{$lastModificationDate}"
+         last-modification-author-name="{$lastModificationAuthorName}"
+         last-modification-author-user-name="{$lastModificationAuthorUserName}"
+         like-count="{$likeCount}"
+         labels="{$labels}"
+    >
+        <div id="expander-control-{$uniqueId}" class="expand-control">
+            <span class="expand-control-icon icon">&nbsp</span>
+            <span class="expand-control-text">{$text}</span>
+        </div>
+        <div id="expander-content-{$uniqueId}" class="expand-content expand-hidden"></div>
+    </div>
+{/template}
+
+/**
+ * Footer
+ # @param i 
+ */
+{template .footer}
+    <div class="keysight-faq-list-loading-text">{$i} items</div>
+{/template}

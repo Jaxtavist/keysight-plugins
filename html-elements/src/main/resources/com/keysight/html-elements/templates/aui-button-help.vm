@@ -1,0 +1,191 @@
+<h3>Introduction</h3>
+
+<p>The AUI Button macros provide users a way of placing buttons
+consistent with the Confluence look and feel on a page. There are 
+several use cases for the button macros</p>
+
+<ul>
+<li>Create a button which links a url, confluence page, attachment or space.</li>
+<li>Create a button to a previous, next or parent page.</li>
+<li>Create a group of buttons.</li>
+<li>Create a split button.  A Split Button has a link to a url on the left, and a dropdown menu of url links on the right.</li>
+</ul>
+
+<h4>Button Styles</h4>
+
+<p>
+<button class="aui-button">Basic Button</button>
+<button class="aui-button aui-button-primary">Primary Button</button>
+<button class="aui-button aui-button-link">Link Button</button>
+<button class="aui-button aui-button-subtle">Subtle Button</button>
+</p>
+
+<h4>Button Group</h4>
+
+<div class="aui-buttons">
+   <button class="aui-button">Button 1</button>
+   <button class="aui-button">Button 2</button>
+   <button class="aui-button">Button 3</button>
+</div>
+
+<h4>Split Button</h4>
+
+<p>Split Buttons are a special variant of the Button Group.  The left part of the button 
+acts like a regular button. The right part is a dropdown menu to other urls</p>
+
+<div class="aui-buttons">
+    <button class="aui-button aui-button-split-main">Split main</button>
+    <button class="aui-button aui-dropdown2-trigger aui-button-split-more" aria-haspopup="true" aria-owns="split-container-dropdown">Split more</button>
+    <div id="split-container-dropdown" class="aui-dropdown2 aui-style-default" data-container="split-button-demo" role="menu" aria-hidden="true" style="z-index:4000">
+        <ul class="aui-list-truncate">
+            <li><a>Menu item 1</a></li>
+            <li><a>Menu item 2</a></li>
+            <li><a>Menu item 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<hr/>
+
+<h3>AUI Button</h3>
+
+<p>The <strong>AUI Button</strong> provides a basic button that links to a url, page or 
+attachment or space in Confluence.  The primary parameter, URL, is configured to 
+automaticaly search for and insert Confluence Pages.  This is a convienence
+feature and a normal URL may be insert into the field even though no matching
+Confluence content is found.</p>
+
+<h4>Parameters</h4>
+<p><strong>URL</strong>: URL to visit when the button is pressed.  Any url may be 
+provided, but the field is configured to automatically search for and insert 
+Confluence Pages or Attachments.</p>
+<p><strong>Space Key</strong>: Confluence did not provide a easy widget for creating a
+dropdown list of matching pages or spaces.  However, they did make a widget for selecting
+a page and another one for selecting a space.  As the developer is being lazy, I included
+both.  The URL is required; however, if a space is selected with the Space widget it
+will override the URL value.</p>
+<p><strong>Button Text</strong>: The text printed on the button</p>
+<p><strong>Button Style</strong>: Standard, Primary, Link or Subtle.  See the example above</p>
+
+<hr/>
+
+<h3>Download Attachment Button</h3>
+
+<p>The <strong>AUI Download Attachment Button</strong> creates a direct link to download
+a attachment from the current page.  By using the link style, this can be used as a 
+workaround to avoid the default behavior of Confluence to preview files before downloading them.</p>
+
+<h4>Parameters</h4>
+
+<p><strong>Attachment</strong>: The attachment to link to. </p>
+<p><strong>Button Text</strong>: The text printed on the button.  If left blank, the name of the Attachment will be used.</p>
+<p><strong>Button Style</strong>: Standard, Primary, Link or Subtle.  See the example above</p>
+
+<hr/>
+
+<h3>Previous Page Button</h3>
+
+<p>The previous button finds the previous sibling page.  If there is no sibling it will link to
+the parent page.  If there is no parent page, it will not display anything.</p>
+
+<h4>Parameters</h4>
+<p><strong>Show Page Title</strong>: By default, the macro will place the &quot;&lt;&quot; character in the button.  If this
+option is seleted, the title of the previous page will be used</p>
+<p><strong>Button Text</strong>: If any text is supplied here, it will be used for the button text rather than the default.
+The keyword <strong>\$title</strong> will be replaced by the title of the previous page.  An example is <strong>&lt; \$title</strong></p>
+<p><strong>Button Style</strong>: Standard, Primary, Link or Subtle.  See the example above</p>
+
+<hr/>
+
+<h3>Parent Page Button</h3>
+
+<p>The parent button finds the parent page.  If there is no parent page, it will not display anything.</p>
+
+<h4>Parameters</h4>
+<p><strong>Show Page Title</strong>: By default, the macro will place the &quot;^&quot; character in the button.  If this
+option is seleted, the title of the parent page will be used</p>
+<p><strong>Button Text</strong>: If any text is supplied here, it will be used for the button text rather than the default.
+The keyword <strong>\$title</strong> will be replaced by the title of the parent page.</p>
+<p><strong>Button Style</strong>: Standard, Primary, Link or Subtle.  See the example above</p>
+
+<hr/>
+
+<h3>Next Page Button</h3>
+
+<p>The next button finds the next sibling page.  If there is no following sibling page, it will link to
+the next sibling of the parent page.  Should the parent also not have a next sibling, the macro will continue
+to walk up the tree looking for an ancestor page with a next sibling to link to.  If no next sibling page can be
+found, it will not display anything.</p>
+
+<h4>Parameters</h4>
+<p><strong>Show Page Title</strong>: By default, the macro will place the &quot;&gt;&quot; character in the button.  If this
+option is seleted, the title of the parent page will be used</p>
+<p><strong>Button Text</strong>: If any text is supplied here, it will be used for the button text rather than the default.
+The keyword <strong>\$title</strong> will be replaced by the title of the parent page. An example is <strong>\$title &gt</strong>.</p>
+<p><strong>Button Style</strong>: Standard, Primary, Link or Subtle.  See the example above</p>
+
+<hr/>
+
+<h3>Previous-Parent-Next Page Navigation</h3>
+
+<p>The <strong>Previous-Parent-Next Page Navigation</strong> macro provides a three section
+element with the Previous Page Button on the left, the Parent Page Button in the center
+and the Next Page Button on the Right.
+
+<h4>Parameters</h4>
+<p><strong>Show Page Title</strong>: If selected, will use the page titles rather than <strong>&lt;</strong>, <strong>^</strong> and <strong>&gt;</strong>.</p>
+<p><strong>Exclude the Parent Button</strong>: If selected, the parent page button will be excluded.</p>
+<p><strong>Previous Page Button Text</strong>: If supplied, this text will be used for the Previous Page Button.  The keyword <strong>\$title</strong> will be
+replaced by the title of the previous page.</p>
+<p><strong>Parent Page Button Text</strong>: If supplied, this text will be used for the Parent Page Button.  The keyword <strong>\$title</strong> will be
+replaced by the title of the parent page.</p>
+<p><strong>Next Page Button Text</strong>: If supplied, this text will be used for the Next Page Button.  The keyword <strong>\$title</strong> will be
+replaced by the title of the next page.</p>
+<p><strong>Button Style</strong>: Standard, Primary, Link or Subtle.  See the example above</p>
+
+<hr/>
+
+<h3>AUI Button Group</h3>
+
+<p>The <strong>AUI Button Group</strong> is a container for one or more <strong>AUI Button</strong> macros.
+When placed in a group, the buttons will be merged into a single graphical element rather than having spaces
+between them.</p>
+
+<h4>Parameters</h4>
+<p>None</p>
+
+<hr/>
+
+<h3>AUI Split Button</h3>
+
+<p>The <strong>AUI Split Button</strong> has a normal button and a dropdown for extra options.
+In order to work properly, it needs to be inside of a button group.  For the simple case
+of a single split button, there is an option for the macro to supply the button group container
+rather than inserting the <strong>AUI Split Button</strong> macro inside of an <strong>AUI Button Group</strong>
+macro.</p>
+
+<h4>The Drop Down Menu</h4>
+
+<p>The drop down menu is expected to be a unordered list of links in the body of the <strong>AUI Split Button</strong> macro.
+For example:</p>
+
+<pre>
+&lt;ul&gt;
+   &lt;li&gt; &lt;a href="http://www.example.com"&gt;Example 1&lt;/a&gt; &lt;/li&gt;
+   &lt;li&gt; &lt;a href="http://www.example.com"&gt;Example 2&lt;/a&gt; &lt;/li&gt;
+   &lt;li&gt; &lt;a href="http://www.example.com"&gt;Example 2&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<h4>Parameters</h4>
+
+<p><strong>URL</strong>: URL to visit when the button is pressed.  Any url may be 
+provided, but the field is configured to automatically search for and insert 
+Confluence Pages or Attachments.</p>
+<p><strong>Space Key</strong>: Confluence did not provide a easy widget for creating a
+dropdown list of matching pages or spaces.  However, they did make a widget for selecting
+a page and another one for selecting a space.  As the developer is being lazy, I included
+both.  The URL is required; however, if a space is selected with the Space widget it
+will override the URL value.</p>
+<p><strong>Create Button Group</strong>: The split button must be in a button group.  If checked, the button group will be created.  If not checked, the macro should be inserted into the body of an <strong>AUI Button Group</strong> macro.</p>
+<p><strong>Button Text</strong>: The text printed on the button</p>

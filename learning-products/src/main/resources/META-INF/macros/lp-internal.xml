@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <xhtml-macro name="lp-internal" key="lp-internal" 
+                class="com.keysight.learning.products.macros.LpInternal"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+   <xhtml-macro name="lp_internal" key="lp_internal" 
+                state="disabled"
+                class="com.keysight.learning.products.macros.LpInternal"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+</module-container>

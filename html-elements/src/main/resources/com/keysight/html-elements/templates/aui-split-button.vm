@@ -1,0 +1,13 @@
+#if( $create-button-group )
+<div class=aui-buttons>
+#end
+   <button class="aui-button keysight-button aui-button-split-main" href="$button-url">$button-text</button>
+   <button class="aui-button aui-dropdown2-trigger aui-button-split-more"
+           aria-haspopup="true" aria-controls="$dropdown-menu-id" 
+           aria-expanded="false" href="#" resolved=""
+           aria-owns="$dropdown-menu-id">Split more</button>
+   <div id="$dropdown-menu-id" class="aui-style-default aui-dropdown2" role="menu" aria-hidden="true">$renderedBodyHtml</div>
+#if( $create-button-group )
+</div>
+#end
+

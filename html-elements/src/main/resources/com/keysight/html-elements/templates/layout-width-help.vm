@@ -1,0 +1,21 @@
+<h3>Introduction</h3>
+
+<p>The content editor in Confluence can create sections with either one, two or three columns.
+The default layouts are one of the following options:</p>
+
+<ul>
+   <li>100%</li>
+   <li>50% | 50%</li>
+   <li>29.9% | 70.1%</li>
+   <li>70.1% | 29.9%</li>
+   <li>33% | 33% | 33%</li>
+   <li>19.9% | 60.2% | 19.9%</li>
+</ul>
+ 
+
+<p>Confluence provides no way to set a custom width of the layout section.  This macro
+uses javascript to override the default and set the width</p>
+
+<h3>Parameters</h3>
+<p><strong>Layout Width</strong>: Sets the width of the table. Example: 90% or 400px. The value will be
+inserted as the value for the css width property in the the sections element's style attribute.</p>

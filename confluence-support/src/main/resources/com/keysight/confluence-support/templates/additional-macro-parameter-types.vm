@@ -1,0 +1,10 @@
+<div class="additinal-macro-parameter-types" >
+
+<h2>The Date</h2>
+<p>
+Date: <strong>$myDate</strong><br />
+Integer: <strong>$myInteger</strong><br />
+Float: <strong>$myFloat</strong>
+</p>
+
+</div>

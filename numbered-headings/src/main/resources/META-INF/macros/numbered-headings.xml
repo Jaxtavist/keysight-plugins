@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <web-resource key="nh-macro-browser-fields" name="Numbered Headings Macro Browser Fields">
+        <description>Javascript to assist in the macro browser fields for all of the Numbered Heading Macros.</description>
+        <resource type="download" name="nh-macro-browser-fields.js" location="js/nh-macro-browser-fields.js"/>
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+        <context>macro-browser</context>
+    </web-resource>
+
+    <web-resource key="nh-tinymce-css-resources" name="Numbered Headings (Legacy) CSS resources">
+        <description>CSS resources for the Legacy Numbered Headings Macro</description>
+        <resource type="download" name="nh.css" location="css/nh.css"/>
+        <context>editor-content</context>
+    </web-resource>
+
+    <web-resource key="nh-tinymce-js-resources" name="Javascript for the Legacy Numbered Headings Macro">
+        <description>This should be disabled if the Transitional Numbered Headings macro is enabled</description>
+        <resource type="download" name="nh-tinymce-plugin.js" location="js/nh-tinymce-plugin.js"/>
+        <context>editor</context>
+        <dependency>confluence.web.resources:page-editor</dependency>
+        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+    </web-resource>
+
+    <web-resource key="nh-transitional-tinymce-js-resources" name="Javascript for the Transitional Numbered Headings Macro">
+        <description>This should be enabled if the Transitional Numbered Headings macro is enabled</description>
+        <resource type="download" name="nh-transitional-tinymce-plugin.js" location="js/nh-transitional-tinymce-plugin.js"/>
+        <context>editor</context>
+        <dependency>confluence.web.resources:page-editor</dependency>
+        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+    </web-resource>
+
+    <web-resource key="numbered-headings-tinymce-js-resources" name="Javascript for the Numbered Headings Macro">
+        <description>Javascript for the Numbered Headings Macro</description>
+        <resource type="download" name="numbered-headings-tinymce-plugin.js" location="js/numbered-headings-tinymce-plugin.js"/>
+        <context>editor</context>
+        <dependency>confluence.web.resources:page-editor</dependency>
+        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+    </web-resource>
+
+    <xhtml-macro name="numbered-headings-for-page" key="numbered-headings-for-page" 
+                 class="nl.avisi.numbered.headings.macro.NumberedHeadingsMacroForPage"
+                 icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png">
+        <device-type>mobile</device-type>
+        <category name="formatting"/>
+        <parameters>
+            <parameter name="number-format" type="enum" default="decimal">
+                <value name="decimal"/>
+                <value name="iso-2145"/>
+                <value name="full-decimal"/>
+                <value name="lower-latin"/>
+                <value name="lower-roman"/>
+                <value name="lower-greek"/>
+                <value name="upper-latin"/>
+                <value name="upper-roman"/>
+                <value name="upper-greek"/>
+                <value name="custom"/>
+            </parameter>
+            <parameter name="start-numbering-with" type="string"/>
+            <parameter name="start-numbering-at" type="enum" default="h1">
+                <value name="h1"/>
+                <value name="h2"/>
+                <value name="h3"/>
+                <value name="h4"/>
+                <value name="h5"/>
+                <value name="h6"/>
+            </parameter>
+            <parameter name="skip-headings" type="string"/>
+            <parameter name="h1" type="string"/>
+            <parameter name="h2" type="string"/>
+            <parameter name="h3" type="string"/>
+            <parameter name="h4" type="string"/>
+            <parameter name="h5" type="string"/>
+            <parameter name="h6" type="string"/>
+        </parameters>
+        <property-panel>
+           <button id="n-h-f-p-start-at-0" label="Start numbering at"/>
+           <button id="n-h-f-p-start-at-1" label="1"/>
+           <button id="n-h-f-p-start-at-2" label="2"/>
+           <button id="n-h-f-p-start-at-3" label="3"/>
+           <button id="n-h-f-p-start-at-4" label="4"/>
+           <button id="n-h-f-p-start-at-5" label="5"/>
+           <button id="n-h-f-p-start-at-6" label="6"/>
+           <button id="n-h-f-p-start-at-7" label="7"/>
+           <button id="n-h-f-p-start-at-8" label="8"/>
+           <button id="n-h-f-p-start-at-9" label="9"/>
+           <button id="n-h-f-p-start-at-10" label="10"/>
+        </property-panel>
+    </xhtml-macro>
+
+    <xhtml-macro name="numbered-headings" key="numbered-headings" 
+                 class="nl.avisi.numbered.headings.macro.NumberedHeadingsMacro"
+                 icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png">
+        <device-type>mobile</device-type>
+        <category name="formatting"/>
+        <parameters>
+            <parameter name="number-format" type="enum" default="decimal">
+                <value name="decimal"/>
+                <value name="iso-2145"/>
+                <value name="full-decimal"/>
+                <value name="lower-latin"/>
+                <value name="lower-roman"/>
+                <value name="lower-greek"/>
+                <value name="upper-latin"/>
+                <value name="upper-roman"/>
+                <value name="upper-greek"/>
+                <value name="custom"/>
+            </parameter>
+            <parameter name="start-numbering-with" type="string"/>
+            <parameter name="start-numbering-at" type="enum" default="h1">
+                <value name="h1"/>
+                <value name="h2"/>
+                <value name="h3"/>
+                <value name="h4"/>
+                <value name="h5"/>
+                <value name="h6"/>
+            </parameter>
+            <parameter name="skip-headings" type="string"/>
+            <parameter name="h1" type="string"/>
+            <parameter name="h2" type="string"/>
+            <parameter name="h3" type="string"/>
+            <parameter name="h4" type="string"/>
+            <parameter name="h5" type="string"/>
+            <parameter name="h6" type="string"/>
+        </parameters>
+        <property-panel>
+           <button id="n-h-start-at-0" label="Start numbering at"/>
+           <button id="n-h-start-at-1" label="1"/>
+           <button id="n-h-start-at-2" label="2"/>
+           <button id="n-h-start-at-3" label="3"/>
+           <button id="n-h-start-at-4" label="4"/>
+           <button id="n-h-start-at-5" label="5"/>
+           <button id="n-h-start-at-6" label="6"/>
+           <button id="n-h-start-at-7" label="7"/>
+           <button id="n-h-start-at-8" label="8"/>
+           <button id="n-h-start-at-9" label="9"/>
+           <button id="n-h-start-at-10" label="10"/>
+        </property-panel>
+    </xhtml-macro> 
+
+    <xhtml-macro name="numberedheadings" key="numberedheadings-transition" 
+                 state="disabled"
+                 class="nl.avisi.numbered.headings.macro.TransitionalNumberedHeadingsMacro"
+                 icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png">
+        <device-type>mobile</device-type>
+        <category name="formatting"/>
+        <parameters>
+            <parameter name="number-format" type="enum" default="decimal">
+                <value name="decimal"/>
+                <value name="iso-2145"/>
+                <value name="full-decimal"/>
+                <value name="lower-latin"/>
+                <value name="lower-roman"/>
+                <value name="lower-greek"/>
+                <value name="upper-latin"/>
+                <value name="upper-roman"/>
+                <value name="upper-greek"/>
+                <value name="custom"/>
+            </parameter>
+            <parameter name="start-numbering-with" type="string"/>
+            <parameter name="start-numbering-at" type="enum" default="h1">
+                <value name="h1"/>
+                <value name="h2"/>
+                <value name="h3"/>
+                <value name="h4"/>
+                <value name="h5"/>
+                <value name="h6"/>
+            </parameter>
+            <parameter name="skip-headings" type="string"/>
+            <parameter name="h1" type="string"/>
+            <parameter name="h2" type="string"/>
+            <parameter name="h3" type="string"/>
+            <parameter name="h4" type="string"/>
+            <parameter name="h5" type="string"/>
+            <parameter name="h6" type="string"/>
+        </parameters>
+        <property-panel>
+           <button id="nh-start-at-0" label="Start numbering at"/>
+           <button id="nh-start-at-1" label="1"/>
+           <button id="nh-start-at-2" label="2"/>
+           <button id="nh-start-at-3" label="3"/>
+           <button id="nh-start-at-4" label="4"/>
+           <button id="nh-start-at-5" label="5"/>
+           <button id="nh-start-at-6" label="6"/>
+           <button id="nh-start-at-7" label="7"/>
+           <button id="nh-start-at-8" label="8"/>
+           <button id="nh-start-at-9" label="9"/>
+           <button id="nh-start-at-10" label="10"/>
+        </property-panel>
+    </xhtml-macro>
+
+    <xhtml-macro name="numberedheadings" key="numberedheadings-legacy" 
+                 class="nl.avisi.numbered.headings.macro.LegacyNumberedHeadingsMacro"
+                 icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png">
+        <device-type>mobile</device-type>
+        <category name="formatting"/>
+        <parameters>
+            <parameter name="number-format" type="enum" default="decimal">
+                <value name="decimal"/>
+                <value name="iso-2145"/>
+                <value name="full-decimal"/>
+                <value name="lower-latin"/>
+                <value name="lower-roman"/>
+                <value name="lower-greek"/>
+                <value name="upper-latin"/>
+                <value name="upper-roman"/>
+                <value name="upper-greek"/>
+                <value name="custom"/>
+            </parameter>
+            <parameter name="start-numbering-with" type="string"/>
+            <parameter name="start-numbering-at" type="enum" default="h1">
+                <value name="h1"/>
+                <value name="h2"/>
+                <value name="h3"/>
+                <value name="h4"/>
+                <value name="h5"/>
+                <value name="h6"/>
+            </parameter>
+            <parameter name="skip-headings" type="string"/>
+            <parameter name="h1" type="string"/>
+            <parameter name="h2" type="string"/>
+            <parameter name="h3" type="string"/>
+            <parameter name="h4" type="string"/>
+            <parameter name="h5" type="string"/>
+            <parameter name="h6" type="string"/>
+        </parameters>
+        <property-panel>
+           <button id="nh-start-at-0" label="Start numbering at"/>
+           <button id="nh-start-at-1" label="1"/>
+           <button id="nh-start-at-2" label="2"/>
+           <button id="nh-start-at-3" label="3"/>
+           <button id="nh-start-at-4" label="4"/>
+           <button id="nh-start-at-5" label="5"/>
+           <button id="nh-start-at-6" label="6"/>
+           <button id="nh-start-at-7" label="7"/>
+           <button id="nh-start-at-8" label="8"/>
+           <button id="nh-start-at-9" label="9"/>
+           <button id="nh-start-at-10" label="10"/>
+        </property-panel>
+    </xhtml-macro>
+
+    <macro name="numberedheadings" key="numbered-headings-legacy-macro" 
+           class="nl.avisi.numbered.headings.macro.LegacyNumberedHeadingsMacro"
+           icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png" >
+        <category name="formatting"/>
+        <parameters>
+            <parameter name="number-format" type="enum" default="decimal">
+                <value name="decimal"/>
+                <value name="iso-2145"/>
+                <value name="full-decimal"/>
+                <value name="lower-latin"/>
+                <value name="lower-roman"/>
+                <value name="lower-greek"/>
+                <value name="upper-latin"/>
+                <value name="upper-roman"/>
+                <value name="upper-greek"/>
+                <value name="custom"/>
+            </parameter>
+            <parameter name="h1" type="string"/>
+            <parameter name="h2" type="string"/>
+            <parameter name="h3" type="string"/>
+            <parameter name="h4" type="string"/>
+            <parameter name="h5" type="string"/>
+            <parameter name="h6" type="string"/>
+            <parameter name="start-numbering-with" type="int"/>
+            <parameter name="start-numbering-at" type="enum" default="h1">
+                <value name="h1"/>
+                <value name="h2"/>
+                <value name="h3"/>
+                <value name="h4"/>
+                <value name="h5"/>
+                <value name="h6"/>
+            </parameter>
+        </parameters>
+    </macro>
+
+</module-container>

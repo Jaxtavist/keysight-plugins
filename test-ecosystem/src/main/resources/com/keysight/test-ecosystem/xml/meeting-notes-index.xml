@@ -1,0 +1,25 @@
+<at:declarations>
+   <at:var at:name="createFromTemplateMacro"/>       
+   <at:var at:name="taskReportMacro"/>       
+   <at:var at:name="contentReportTableMacro"/>       
+</at:declarations>
+
+<p style="text-align: right;">
+    <at:var at:name="createFromTemplateMacro" at:rawxhtml="true"/>
+</p>
+
+<h2>Incomplete tasks from meetings</h2>
+<ac:structured-macro ac:name="panelbox">
+   <ac:parameter ac:name="title">Open Tasks</ac:parameter>
+   <ac:parameter ac:name="name">Keysight Dark Gray</ac:parameter>
+   <ac:rich-text-body>
+<p>
+    <at:var at:name="taskReportMacro" at:rawxhtml="true"/>
+</p>
+   </ac:rich-text-body>
+</ac:structured-macro>
+
+<h2>All meeting notes</h2>
+<p>
+    <at:var at:name="contentReportTableMacro" at:rawxhtml="true"/>
+</p>

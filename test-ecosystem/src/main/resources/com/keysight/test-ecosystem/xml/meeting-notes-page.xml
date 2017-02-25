@@ -1,0 +1,58 @@
+<at:declarations>
+   <at:var at:name="currentDate" />
+   <at:var at:name="author" />
+   <at:var at:name="attendee" />
+</at:declarations>
+
+<ac:layout>
+   <ac:layout-section ac:type="two_equal">
+      <ac:layout-cell>
+         <h2>Meeting Agenda:</h2>
+         <ul>
+            <li><ac:placeholder>First Item</ac:placeholder></li>
+         </ul>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <h2>Meeting Info:</h2>
+         <ac:structured-macro ac:name="details">
+            <ac:rich-text-body>
+               <table>
+                  <tbody>
+                     <tr>
+                        <th>Meeting Date:</th>
+                        <td><at:var at:name="currentDate" at:rawxhtml="true"/></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </ac:rich-text-body>
+         </ac:structured-macro>
+      </ac:layout-cell>
+   </ac:layout-section>
+   <ac:layout-section ac:type="two_equal">
+      <ac:layout-cell>
+         <h2>Action Items:</h2>
+         <ac:task-list>
+            <ac:task>
+               <ac:task-id>1</ac:task-id>
+               <ac:task-status>incomplete</ac:task-status>
+               <ac:task-body>
+                  <ac:placeholder ac:type="mention">Type your task here, using &quot;@&quot; to assign to a user and &quot;//&quot; to select a due date</ac:placeholder>
+               </ac:task-body>
+            </ac:task>
+         </ac:task-list>
+      </ac:layout-cell>
+      <ac:layout-cell>
+         <h2>Attendees:</h2>
+         <ul>
+            <li><at:var at:name="author" at:rawxhtml="true"/></li>
+            <li><at:var at:name="attendee" at:rawxhtml="true"/></li>
+         </ul>
+      </ac:layout-cell>
+   </ac:layout-section>
+   <ac:layout-section ac:type="single">
+      <ac:layout-cell>
+         <h2>Meeting Notes:</h2>
+         <p>&nbsp;</p>
+      </ac:layout-cell>
+   </ac:layout-section>
+</ac:layout>

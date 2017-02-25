@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+
+
+
+   <!-- Keysight color scheme -->
+   <colour-scheme key="keysight-colour-scheme" name="Keysight Color Scheme" class="com.atlassian.confluence.themes.BaseColourScheme">
+       <colour key="property.style.topbarcolour" value="#555555"/>
+       <colour key="property.style.breadcrumbstextcolour" value="#E8E8E8"/>
+       <colour key="property.style.headerbuttonbasebgcolour" value="#E90029"/>
+       <colour key="property.style.headerbuttontextcolour" value="#E8E8E8"/>
+       <colour key="property.style.topbarmenuselectedbgcolour" value="#555555"/>
+       <colour key="property.style.topbarmenuselectedtextcolour" value="#E90029"/>
+       <colour key="property.style.topbarmenuitemtextcolour" value="#333333"/>
+       <colour key="property.style.menuitemselectedbgcolour" value="#C70025"/>
+       <colour key="property.style.menuitemselectedtextcolour" value="#E8E8E8"/>
+       <colour key="property.style.menuselectedbgcolour" value="#9C9C9C"/>
+       <colour key="property.style.menuitemtextcolour" value="#555555"/>
+       <colour key="property.style.headingtextcolour" value="#555555"/>
+       <colour key="property.style.spacenamecolour" value="#555555"/>
+       <colour key="property.style.linkcolour" value="#E90029"/>
+       <colour key="property.style.bordercolour" value="#751d2d"/>
+       <colour key="property.style.navbgcolour" value="#555555"/>
+       <colour key="property.style.navtextcolour" value="#E8E8E8"/>
+       <colour key="property.style.navselectedbgcolour" value="#9C9C9C"/>
+       <colour key="property.style.navselectedtextcolour" value="#E8E8E8"/>
+       <colour key="property.style.searchfieldbgcolour" value="#E8E8E8"/>
+       <colour key="property.style.searchfieldtextcolour" value="#555555"/>
+   </colour-scheme> 
+  
+</module-container>

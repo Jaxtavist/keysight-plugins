@@ -1,0 +1,37 @@
+## Developed by: Scott Selberg
+## Date created: 02/09/2015
+#set( $documentationUrl = "https://wiki2.collaboration.is.keysight.com/display/TestEcosystem/Page+State" )
+
+#if( $isDocumentation )
+      </div>
+   </div>
+   <div class="keysight-title-page-state-content-container">
+      <div class="keysight-title-page-state-content">
+      <div id="keysight-title-page-state-content-box" class="page-state-box page-state-$initialState">
+
+#if( $canEdit )
+<span class="page-state-label"><a href="$documentationUrl">Page State:</a></span>
+<div class="aui-buttons">
+   <button class="aui-button aui-dropdown2-trigger" 
+           href="#"
+           aria-owns="page-state-dropdown"
+           aria-haspopup="true"
+           id="page-state-button">$pageStates.get( $initialState )</button>
+</div>
+
+<div id="page-state-dropdown" class="aui-style-default aui-dropdown2">
+   <ul class="aui-list-truncate">
+      #foreach( $item in $pageStateKeys ) 
+      <li id="page-state-$item"><a href="#">$pageStates.get( $item )</a></li>
+      #end
+   </ul>
+</div>
+#else
+<span class="page-state-label"><a href="$documentationUrl">Page State:</a> <b>$pageStates.get($initialState)</b></span>
+#end
+
+      </div>
+      </div>
+   </div>
+</div>
+#end

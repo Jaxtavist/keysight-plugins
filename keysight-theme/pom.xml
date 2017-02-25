@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   
+    <artifactId>keysight-theme</artifactId>
+    <version>5.1.0</version>
+    <name>Keysight Theme</name>
+    <description>This plugin provides several modules used to create a Keysight Theme</description>
+   
+    <properties>       
+        <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+    </properties>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>atlassian-plugin</packaging>
+    <parent>
+        <groupId>com.keysight</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+     <build>
+        <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-confluence-plugin</artifactId>
+                <version>${amps.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <productVersion>${confluence.version}</productVersion>
+                    <productDataVersion>${confluence.data.version}</productDataVersion>
+                    <enableQuickReload>true</enableQuickReload>
+                    <enableFastdev>false</enableFastdev>
+                    <encoding>${encoding}</encoding>
+                    <instructions>
+                        <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
+  
+                        <!-- Add package to export here -->
+                        <Export-Package>
+			            </Export-Package>
+
+                        <!-- Add package import here -->
+                        <Import-Package>
+                            org.springframework.osgi.*;resolution:="optional",
+                            org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            com.atlassian.confluence.core,
+                            com.atlassian.confluence.content.render.xhtml,
+                            com.atlassian.confluence.labels,
+                            com.atlassian.confluence.languages,
+			                com.atlassian.confluence.like,
+			                com.atlassian.confluence.macro,
+                            com.atlassian.confluence.plugin.services,
+                            com.atlassian.confluence.plugins.ia.service,
+                            com.atlassian.confluence.pages,
+                            com.atlassian.confluence.security,
+                            com.atlassian.confluence.setup.settings,
+                            com.atlassian.confluence.spaces,
+			                com.atlassian.confluence.themes,
+                            com.atlassian.confluence.user,
+                            com.atlassian.confluence.xhtml.api,
+			                com.atlassian.confluence*,
+			                com.atlassian.core.task,
+                            com.atlassian.event.api,
+                            com.atlassian.sal.api,
+                            com.atlassian.sal.api.transaction,
+                            com.atlassian.sal.api.user,
+                            *
+                        </Import-Package>
+
+                        <Atlassian-Scan-Folders>
+                            META-INF/layouts,
+                            META-INF/macros,
+                            META-INF/rest,
+                            META-INF/themes,
+                            META-INF/webitems,
+                            META-INF/webpanels,
+                            META-INF/blueprints,
+                        </Atlassian-Scan-Folders>
+  
+                        <!-- Ensure plugin is spring powered - see https://extranet.atlassian.com/x/xBS9hQ  -->
+                        <Spring-Context>*</Spring-Context>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+  
+</project>

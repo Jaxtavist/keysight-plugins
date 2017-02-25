@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+    <!-- The keysight header -->
+   <web-panel key="keysight-header-section" name="Keysight Header" location="keysight.header" weight="20">
+      <description>Displays the custom Keysight header section</description>
+     
+      <!-- We only want to render this web panel when our custom theme is activated. Otherwise, if a built-in theme is activated, the footer will appear twice! -->
+      <!-- Set the 'value' for each condition param element to be the fully-qualified plugin module key of your theme module. For example, if your plugin key is "com.example.confluence.test-plugin" and the &lt;theme&gt; module has a key of "my-theme", then you should set the value here to be "com.example.confluence.test-plugin:my-theme".-->
+      <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+         <param name="themes" value="com.keysight.keysight-theme:keysight-theme-full"/>
+      </condition>
+
+      <!-- this is the velocity template built in to Confluence that displays the standard keysight footer -->
+      <resource name="view" type="confluence-velocity" location="/com/keysight/keysight-theme/templates/keysight-header.vm"></resource>
+   </web-panel>
+   
+   <!-- The Keysight footer -->
+   <web-panel key="keysight-footer-section" name="Keysight Footer" location="keysight.footer" weight="20">
+      <description>Displays the custom Keysight footer section</description>
+     
+      <!-- We only want to render this web panel when our custom theme is activated. Otherwise, if a built-in theme is activated, the footer will appear twice! -->
+      <!-- Set the 'value' for each condition param element to be the fully-qualified plugin module key of your theme module. For example, if your plugin key is "com.example.confluence.test-plugin" and the &lt;theme&gt; module has a key of "my-theme", then you should set the value here to be "com.example.confluence.test-plugin:my-theme".-->
+      <conditions type="OR">
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-theme-footer"/>
+         </condition>
+      </conditions>
+
+      <!-- this is the velocity template built in to Confluence that displays the standard keysight footer -->
+      <resource name="view" type="confluence-velocity" location="/com/keysight/keysight-theme/templates/keysight-footer.vm"></resource>
+   </web-panel>
+
+   <!-- Webpanels to wrap the title block and add a page state widget on the right side -->
+   <web-panel key="keysight-page-state-pre-title-section" name="Keysight Page State Pre Title" location="keysight.pageStatePreTitle">
+      <description>Displays the page state control before the title</description>
+      <label key="page-state-pre-title"/>   
+      <context-provider class="com.keysight.keysight.theme.helpers.KeysightContextProvider"/>
+      <resource name="view" type="confluence-velocity" location="/com/keysight/keysight-theme/templates/keysight-page-state-pre-title.vm"></resource>
+   </web-panel>
+   
+   <web-panel key="keysight-page-state-post-title-section" name="Keysight Page State Post Title" location="keysight.pageStatePostTitle">
+      <description>Displays the page state control after the title</description>
+      <label key="page-state-post-title"/>   
+      <context-provider class="com.keysight.keysight.theme.helpers.KeysightContextProvider"/>
+      <resource name="view" type="confluence-velocity" location="/com/keysight/keysight-theme/templates/keysight-page-state-post-title.vm"></resource>
+   </web-panel>
+ 
+</module-container>

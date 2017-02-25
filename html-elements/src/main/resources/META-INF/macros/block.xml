@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="block" location="/com/keysight/html-elements/i18n/block"/>
+   
+   <xhtml-macro name="block" key="block" 
+                class="com.keysight.html.elements.macros.Block"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="width" type="string" />
+	 <parameter name="alignment" type="enum">
+            <value name="Left" />
+            <value name="Center" />
+	    <value name="Right" />
+         </parameter>
+      </parameters>
+   </xhtml-macro>
+
+</module-container>

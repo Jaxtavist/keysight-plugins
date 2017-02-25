@@ -1,0 +1,161 @@
+{namespace Keysight.Confluence.Support.Soy.Templates}
+
+/**
+ * Progress Container
+ * @param index the number of spaces which have been listed.
+ * @param count the number of spaces to be listed.
+ */
+{template .progressContainer}
+<div class="keysight-progress-container-inner">
+   <div class="button-spinner" id="keysight-progress-spinner"></div>
+   <div class="keysight-progress-container-text">{$index} of {$count} Spaces.</div>
+   <div style="clear:both"></div>
+</div>
+{/template}
+
+/**
+ * Space Inventory Container
+ */
+{template .spaceInventoryContainer}
+<table class="confluenceTable tablesorter" id="keysight-space-inventory-ajax-table" role="grid">
+<thead><tr>
+   <th>Count</th>
+   <th>Key</th>
+   <th>Name</th>
+   <th>Type</th>
+   <th>Status</th>
+   <th>Page Count</th>
+   <th>Last Modification Date</th>
+   <th>X Days Ago</th>
+   <th>Admin Users</th>
+   <th>R/W Users</th>
+   <th>R Users</th>
+</tr></thead>
+</table>
+{/template}
+
+/**
+ * Space Info Row
+ * @param count
+ * @param key
+ * @param name
+ * @param type
+ * @param status
+ * @param pageCount
+ * @param lastModificationDate
+ * @param xDaysAgo
+ * @param adminUsers
+ * @param readWriteUsers
+ * @param readOnlyUsers
+ */
+{template .spaceInfoRow}
+<tr>
+   <td class="confluenceTd">{$count}</td>
+   <td class="confluenceTd">{$key}</td>
+   <td class="confluenceTd">{$name}</td>
+   <td class="confluenceTd">{$type}</td>
+   <td class="confluenceTd">{$status}</td>
+   <td class="confluenceTd">{$pageCount}</td>
+   <td class="confluenceTd">{$lastModificationDate}</td>
+   <td class="confluenceTd">{$xDaysAgo}</td>
+   <td class="confluenceTd">{$adminUsers |noAutoescape}</td>
+   <td class="confluenceTd">{$readWriteUsers |noAutoescape}</td>
+   <td class="confluenceTd">{$readOnlyUsers |noAutoescape}</td>
+</tr>
+{/template}
+
+/**
+ * Users List Progress Container
+ * @param index the number of spaces which have been listed.
+ * @param count the number of spaces to be listed.
+ */
+{template .usersListProgressContainer}
+<div class="keysight-progress-container-inner">
+   <div class="button-spinner" id="keysight-progress-spinner"></div>
+   <div class="keysight-progress-container-text">{$index} of {$count} Users.</div>
+   <div style="clear:both"></div>
+</div>
+{/template}
+
+/**
+ * Users List Container
+ */
+{template .usersListContainer}
+<div class="keysight-progress-container-inner">
+   <div class="keysight-never-logged-in-user-list-container">
+      <h2>Never Logged In</h2>
+      <ul id="keysight-never-logged-in-user-list"></ul>
+   </div>
+   <div class="keysight-user-info-table">
+      <h2>Has Logged In</h2>
+<table class="confluenceTable tablesorter" id="keysight-active-user-ajax-table" role="grid">
+<thead><tr>
+   <th>Count</th>
+   <th>Login Name</th>
+   <th>User Name</th>
+   <th>Last Login</th>
+   <th>Logged in X Days Ago</th>
+</tr></thead>
+</table>
+   </div>
+   <div style="clear:both"></div>
+</div>
+{/template}
+
+/**
+ * User Info Row
+ * @param count
+ * @param loginName
+ * @param userName
+ * @param lastLogin
+ * @param loggedInXDaysAgo
+ */
+{template .userInfoRow}
+<tr>
+   <td class="confluenceTd">{$count}</td>
+   <td class="confluenceTd">{$loginName}</td>
+   <td class="confluenceTd">{$userName}</td>
+   <td class="confluenceTd">{$lastLogin}</td>
+   <td class="confluenceTd">{$loggedInXDaysAgo}</td>
+</tr>
+{/template}
+
+/**
+ * Replace Text Confirmation
+ * @param originalText
+ * @param replacementText
+ * @param closeMethod
+ * @param openMethod
+ */
+{template .replaceTextConfirmation}
+    <section id="replace-page-confirmation-dialog" role="dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" data-aui-modal="true" aria-hidden="true">
+
+        <!-- Dialog header -->
+        <header class="aui-dialog2-header">
+            <!-- The dialog's title -->
+            <h2 class="aui-dialog2-header-main">Replace Text Confirmation</h2>
+        </header>
+
+        <!-- Main dialog content -->
+        <div class="aui-dialog2-content">
+            <p>The text &quot;<strong>{$originalText}</strong>&quot; is about to be
+            replaced with &quot;<strong>{$replacementText}</strong>&quot; on a number
+            of pages.</p>.
+            <p>This routine will replace text in the storage format of the macro 
+            and can transform it into invalid xml totally breaking it.  Be sure 
+            you have tested the substitution and made of backup before you run this.</p>
+        </div>
+
+        <!-- Dialog footer -->
+        <footer class="aui-dialog2-footer">
+            <!-- Actions to render on the right of the footer -->
+            <div class="aui-dialog2-footer-actions">
+                <button id="dialog-close-button" class="aui-button aui-button-link" onclick="{$closeMethod}">Cancel</button>
+                <button id="dialog-submit-button" class="aui-button aui-button-primary" onclick="{$openMethod}">Do It</button>
+            </div>
+            <!-- Hint text is rendered on the left of the footer -->
+            <div class="aui-dialog2-footer-hint">Be sure your data is backed up.</div>
+        </footer>
+    </section>
+{/template}
+

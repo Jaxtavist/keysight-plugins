@@ -1,0 +1,15 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images" )
+#set( $askLogo = "$images/ask-ico.png" )
+#if( $contact )
+<div class="feedback-trigger-container">
+   <div class="feedback-trigger feedback-trigger-image">
+      <img src="$askLogo" onclick="contactFormKeysightAsk( '$identifier', '$contact', '$ccToEmail', '$defaultName', '$defaultEmail' '$dialogTitle', '$!dialogHelpText'  )" />
+   </div>
+   #if( $textWithHtml )
+      <div class="feedback-trigger feedback-trigger-text">
+         <p onclick="contactFormKeysightAsk( '$identifier', '$contact', '$ccToEmail', '$defaultName', '$defaultEmail', '$dialogTitle', '$!dialogHelpText'  )" >$textWithHtml</p>
+      </div>
+   #end
+   <div style="clear:both;"></div>
+</div>
+#end

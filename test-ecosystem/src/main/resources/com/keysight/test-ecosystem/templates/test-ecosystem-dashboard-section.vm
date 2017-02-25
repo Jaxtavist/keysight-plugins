@@ -1,0 +1,31 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images" )
+<div class="dashboard-item wiki-content">
+
+<div class="test-ecosystem-dashboard-item">
+<span class="test-ecosystem-dashboard-item-icon" style="background-image:url($images/keysight-logo-48x48.png);">Icon</span>
+<div class="test-ecosystem-dashboard-item-body">
+<a href="/display/keysightWikiII">Keysight Wiki II:</a> Information
+about this wiki including:
+<ul>
+   <li><a href="/display/keysightWikiII/Support">Support</a></li>
+   <li><a href="/display/keysightWikiII/Guidelines">Guidelines</a></li>
+   <li><a href="/display/keysightWikiII/User+Training">Training</a></li>
+</ul>
+</div>
+</div>
+
+<div class="test-ecosystem-dashboard-item">
+<span class="test-ecosystem-dashboard-item-icon" style="background-image:url($images/test-ecosystem-logo-48x48.png);">Icon</span>
+<div class="test-ecosystem-dashboard-item-body">
+<a href="/display/TestEcosystem">The Test Ecosystem:</a> A collection of spaces
+used to document a number of manufacturing applications such as
+<ul>
+   <li><a href="/display/presidio">Presidio</a></li>
+   <li><a href="/display/gondor">Gondor</a></li>
+   <li><a href="/display/zeno">Zeno</a></li>
+   <li><a href="/display/ofapps">of_apps</a></li>
+</ul>
+</div>
+</div>
+
+</div>

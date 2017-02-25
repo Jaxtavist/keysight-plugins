@@ -1,0 +1,38 @@
+.auto-guidance-detection-failed {
+   border: 5px solid red;
+   background-color: #891518;
+   padding: 5px;
+   color: #FFFFFF;
+}
+
+
+.lp-guidance-table {
+   width:100%;
+}
+
+.lp-guidance-icon-column {
+   width:11px;
+}
+
+.lp-guidance-text-column {
+}
+
+.lp-guidance-text-column p {
+   margin-top:0px;
+   margin-bottom:10px;
+}
+
+.guidance-icon {
+}
+
+.guidance-term {
+   font-weight:bold;
+}
+
+.guidance-check {
+   /* color: #555555; /* Keysight Gray */
+}
+
+.guidance-ballot-x {
+   /* color: #555555; /* Keysight Gray */
+}

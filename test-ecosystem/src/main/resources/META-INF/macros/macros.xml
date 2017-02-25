@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="macros" location="/com/keysight/test-ecosystem/i18n/macros"/>
+
+   <xhtml-macro name="test-ecosystem-navbar" key="test-ecosystem-navbar" 
+                class="com.keysight.test.ecosystem.macros.Navbar"
+		icon="/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images/keysight-logo-80x80.png">
+      <category name="communication"/>
+      <parameters/>
+   </xhtml-macro>
+   
+</module-container>

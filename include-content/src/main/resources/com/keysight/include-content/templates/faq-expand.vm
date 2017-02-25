@@ -1,0 +1,20 @@
+<div class="keysight-faq-container">
+    <div class="keysight-faq-header"></div>
+    <div class="keysight-faq-body">
+#foreach($page in $pages)
+        <div id="expander-$uniqueId">
+            #if( $sharedBlock )
+                $myHelper.convertStorageToView( $page.getExpandIncludedSharedBlockHtml() )
+            #elseif ( $excerpt )
+                $myHelper.convertStorageToView( $page.getExpandIncludedExcerptHtml() )
+            #else
+                $myHelper.convertStorageToView( $page.getExpandIncludedPageHtml() )
+            #end
+        </div>
+#end
+    </div>
+    <div class="button-spinner keysight-spinner"></div>
+    <div class="keysight-faq-footer">
+        <div class="keysight-faq-list-loading-text">$pages.size() items</div>
+    </div>
+</div>

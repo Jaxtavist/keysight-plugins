@@ -1,0 +1,8 @@
+<h3>Introduction</h3>
+
+<p>The Link To Window macro creates a link that will open 
+in a new window or tab.</p>
+
+<h4>Parameters</h4>
+<p><strong>Link URL</strong>: The Confluence page or fully qualified url.</p>
+<p><strong>Link Text</strong>: The text of the link</p>

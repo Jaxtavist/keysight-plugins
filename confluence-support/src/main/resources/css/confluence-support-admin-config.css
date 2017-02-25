@@ -1,0 +1,17 @@
+.config-container{
+   display:table;
+}
+
+.config-row{
+   display:table-row;
+}
+
+.config-cell{
+   display:table-cell;
+   padding:10px;
+   margin: 5px;
+}
+
+form.aui .field-group.confluence-support-remove-button-container {
+   padding: 4px 0px 4px 0px;
+}

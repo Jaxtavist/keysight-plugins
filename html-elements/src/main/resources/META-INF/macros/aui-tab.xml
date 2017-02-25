@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="aui-tab" location="/com/keysight/html-elements/i18n/aui-tab"/>
+    
+   <xhtml-macro name="aui-tab" key="aui-tab" 
+                class="com.keysight.html.elements.macros.AuiTab"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="title" type="string" required="true">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="active" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="id" type="string">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+   <xhtml-macro name="aui-tab-group" key="aui-tab-group" 
+                class="com.keysight.html.elements.macros.AuiTabGroup"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="vertical" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+   <xhtml-macro name="aui-child-tab" key="aui-child-tab" 
+                class="com.keysight.html.elements.macros.AuiChildTabs"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="root" type="confluence-content">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="vertical" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="reverse" type="boolean"/>
+                   <parameter name="ltrunc" type="string"/>
+                   <parameter name="rtrunc" type="string"/>
+                </parameters>
+        </xhtml-macro>
+
+   <xhtml-macro name="aui-pages-tab" key="aui-pages-tab" 
+                class="com.keysight.html.elements.macros.AuiPagesTabs"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="vertical" type="boolean"/>
+                   <parameter name="hide-not-permitted-tabs" type="boolean"/>
+                   <parameter name="on-creation-date" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                   <parameter name="on-date" type="date">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                </parameters>
+        </xhtml-macro>
+        
+   <xhtml-macro name="aui-pages-by-label-tab" key="aui-pages-by-lab-tab" 
+                class="com.keysight.html.elements.macros.AuiPagesByLabelTabs"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="label" type="string" required="true">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="limit" type="int">
+                      <option key="showNameInPlaceholder" value="false"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                   <parameter name="vertical" type="boolean">
+                      <option key="showNameInPlaceholder" value="false"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                   <parameter name="on-creation-date" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                   <parameter name="on-date" type="date">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="ltrunc" type="string">
+                      <option key="showNameInPlaceholder" value="false"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                   <parameter name="rtrunc" type="string">
+                      <option key="showNameInPlaceholder" value="false"/>
+                      <option key="showValueInPlaceholder" value="false"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+
+   <xhtml-macro name="localtab" key="localtab" 
+                state="disabled"
+                class="com.keysight.html.elements.macros.AuiTab"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="title" type="string" required="true">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="active" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="id" type="string">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+   <xhtml-macro name="localtabgroup" key="localtabgroup" 
+                state="disabled"
+                class="com.keysight.html.elements.macros.AuiTabGroup"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="vertical" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+   <xhtml-macro name="childtabs" key="childtabs" 
+                state="disabled"
+                class="com.keysight.html.elements.macros.AuiChildTabs"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="root" type="confluence-content">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="vertical" type="boolean">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="reverse" type="boolean"/>
+                   <parameter name="ltrunc" type="string"/>
+                </parameters>
+   </xhtml-macro>
+
+</module-container>

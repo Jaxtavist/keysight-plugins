@@ -1,0 +1,4 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.learning-products:learning-products-resources/images" )
+#if( $code )
+$lpHelper.convertStorageToView( $code )
+#end

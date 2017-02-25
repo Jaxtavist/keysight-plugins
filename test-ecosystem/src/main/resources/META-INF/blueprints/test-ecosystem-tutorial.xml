@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Test Ecosystem Tutorial i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-tutorial"/>
+
+   <web-item key="test-ecosystem-tutorial-web-item" 
+             i18n-name-key="test-ecosystem.tutorial.web-item.title"
+             section="system.create.dialog/content">
+      <description key="test-ecosystem.tutorial.web-item.description" />
+      <resource name="icon" type="download" location="/images/tutorial-48x48.png" />
+      <param name="blueprintKey" value="test-ecosystem-tutorial-blueprint" />
+   </web-item>
+   
+   <blueprint key="test-ecosystem-tutorial-blueprint" 
+              i18n-name-key="test-ecosystem.tutorial.blueprint.title"
+              index-key="test-ecosystem-tutorial"
+              content-template-key="test-ecosystem-tutorial-page"
+              index-template-key="test-ecosystem-tutorial-index">
+      <dialog-wizard key="test-ecosystem-tutorial-dialog-wizard">
+         <dialog-page key="test-ecosystem-tutorial-create-dialog-page-1"
+                      id="test-ecosystem-tutorial-create-dialog-page-1"
+                      template-key="Test.Ecosystem.Tutorial.dialogForm"
+                      title-key="test-ecosystem.tutorial.create-dialog.title"
+                      description-header-key="test-ecosystem.tutorial.create-dialog.heading"
+                      description-content-key="test-ecosystem.tutorial.create-dialog.description"
+                      last="true"/>
+      </dialog-wizard>
+   </blueprint>
+   
+   <content-template key="test-ecosystem-tutorial-index" 
+                     i18n-name-key="test-ecosystem.tutorial.index.title">
+      <resource name="template" type="download" location="/com/keysight/test-ecosystem/xml/tutorial-index.xml" />
+      <context-provider class="com.keysight.test.ecosystem.helpers.TutorialIndexContextProvider"/>
+   </content-template>
+   
+   <content-template key="test-ecosystem-tutorial-page" 
+                     i18n-name-key="test-ecosystem.tutorial.page.title">
+      <resource name="template" type="download" location="/com/keysight/test-ecosystem/xml/tutorial-page.xml" />
+      <context-provider class="com.keysight.test.ecosystem.helpers.TutorialPageContextProvider"/>
+   </content-template>
+
+   <!--
+   <component key="test-ecosystem-tutorial-event-listener" class="com.keysight.test.ecosystem.events.TutorialEventListener"/>
+   -->
+</module-container>

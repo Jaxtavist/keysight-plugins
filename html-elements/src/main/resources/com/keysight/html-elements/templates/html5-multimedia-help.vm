@@ -1,0 +1,87 @@
+<h3>Introuction</h3>
+
+<p>The html5 multimedia macro is used to display a multimedia
+file (audio or video) via the &lt;video&gt; and &lt;audio&gt;
+tags introduced with html5.</p>
+
+<p>The macro has two modes of operation.  One way is to attach 
+a multimedia file to the page and use the macro to display it. The
+other is to to provide a url.</p>
+
+<p>For larger audio/video files is it highly recommended to host them
+externally to Confluence and provide the URL rather than attaching the
+file to the page.  This is because there are daily backups of the Confluence
+data going back one week and the upgrade process makes backups of the
+backups.  Therefore, a 1 GB video file will consume about 10 GB of 
+real hard drive space when attached to Confluence.  If hosted on a 
+regular share, it will only consume 2 GB - assuming backups are enabled.
+A file share has been setup for this purpose.  Contact Scott Selberg
+to get details.</p>
+
+<p>The macro does not support the ability to expose a multimedia 
+attachment from a page other than the one the macro is placed on.  
+If there is a desire to place an attached video file on two pages, the 
+recommended approach is to create a video container page where the file
+is attached and the multimedia macro is used and then use the
+include-page macro to place the video on each of the destination pages.</p>
+
+<p>This macro has two forms: multimedia and html5-multimedia.  The former
+is a direct replacement for the multimedia macro provided with Atlassian
+Confluence.  The Atlassian provided multimedia macro does not work very
+well with modern browsers.  For example, to display an mp4 file it insists
+on using Apple's Quicktime plugin which may or may not be installed. Html5
+browsers support playing mp4 files natively.  For compatibility reasons, 
+the parameters available to the multimedia expression of this macro are
+identical to the parameters of the default multimedia macro.  The html5-multimedia
+macro provides a few more parameters to expose some of the functionality
+provided by the html5 tags.</p>
+
+<h3>Macro Parameters</h3>
+<p><strong>Attachment:</strong> This is the name of the multimedia attachment.
+The dropdown list will be automatically constructed from the page attachments.
+For the macro to work, either the Attachment or URL must be provided.</p>
+
+<p><strong>Url (html5-multimedia only):</strong> This is the url to the multimedia file.
+For the macro to work, either the Attachment or URL must be provided.</p>
+
+<p><strong>Video dimension presets (html5-multimedia only):</strong> These are some common dimensions for video files.
+If a preset is set, the Width and Height parameters will be ignored.</p>
+
+<p><strong>Width:</strong> Sets the width of the video container.
+If a preset is set, the Width and Height parameters will be ignored.</p>
+
+<p><strong>Height:</strong> Sets the height of the video container.
+If a preset is set, the Width and Height parameters will be ignored.</p>
+
+<p><strong>Poster (html5-multimedia only):</strong> A url to a static picture presented when the
+video is not playing.</p>
+
+<p><strong>AutoPlay:</strong> If checked, the video will start to play when
+the page is loaded.</p>
+
+<p><strong>Loop playback (html5-multimedia only):</strong> If checked, the video will re-start 
+after it finishes.</p>
+
+<p><strong>File contains audio only (html5-multimedia only):</strong> If checked, the &lt;audio&gt; tags
+will be used to only show the audio player.  If not checked the use of the &lt;audio&gt;
+or &lt;video&gt; tags will be determined by the file type defaulting to the &lt;video&gt;
+if the answer is unclear</p>
+
+<p><strong>Add a link to download the attachment (html5-multimedia only):</strong> A direct url to the 
+video file will be provided if this is checked.</p>
+
+<h3>Supported Video Formats</h3>
+
+<ul>
+   <li>mp4</li>
+   <li>ogg</li>
+   <li>webm</li>
+</ul>
+
+<h3>Supported Audio Formats</h3>
+
+<ul>
+   <li>mp3</li>
+   <li>ogg</li>
+   <li>wav</li>
+</ul>

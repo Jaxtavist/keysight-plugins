@@ -1,0 +1,16 @@
+.keysight-active-user-table{
+   width:100%;
+}
+
+.keysight-never-logged-in-user-list-container{
+   float:left;
+   margin-right:50px;
+}
+
+.keysight-user-info-table{
+   float:left;
+}
+
+.keysight-progress-spinner {
+   width:25px;
+}

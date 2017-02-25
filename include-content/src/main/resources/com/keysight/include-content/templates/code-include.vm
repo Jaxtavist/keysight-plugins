@@ -1,0 +1,3 @@
+#if( $code )
+$myHelper.convertStorageToView( $code )
+#end

@@ -1,0 +1,389 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Structure */
+body {
+    	font-family:Keysight Sans, Arial, sans-serif
+}
+
+.expand-control-text {
+   color: #e90029;
+}
+
+::-moz-selection { /* Code for Firefox */ 
+   color: #e8e8e8;
+   background: #891518;
+}
+::selection {
+   color: #e8e8e8;
+   background: #891518;
+}
+::-webkit-selection {
+   color: #e8e8e8;
+   background: #891518;
+}
+
+.keysight-view-page-mode :focus{
+   outline: #891518 auto 5px;
+}
+
+.aui-dd-parent .aui-dropdown li.dropdown-item.active a.item-link,
+.aui-dd-parent .aui-dropdown a.item-link:hover,
+.aui-dd-parent .aui-dropdown a.item-link:active,
+.aui-dd-parent .aui-dropdown a.item-link:focus,
+.aui-dropdown a.item-link:hover,
+.aui-dropdown a.item-link:active,
+.aui-dropdown a.item-link:focus {
+  background: #891518;
+  color: #e8e8e8;
+}
+
+
+.aui-message {
+  border: 1px solid #891518;
+}
+
+.aui-message:before {
+  background-color: #891518;
+  color: #e8e8e8;
+}
+
+.aui-navgroup-vertical .aui-nav > li > a,
+.aui-nav-vertical > li > a,
+.aui-navgroup-horizontal .aui-nav > li a {
+  color: #891518;
+}
+
+.aui-header .aui-button.aui-button-primary {
+  background: #555555;
+}
+
+.aui-button.aui-button-primary:active {
+  background: #555555;
+}
+
+.aui-dropdown2.aui-style-default .active,
+.aui-dropdown2.aui-style-default .aui-dropdown2-active {
+  background-color: #555555;
+  color: #e8e8e8;
+}
+
+.aui-header .aui-dropdown2-trigger.active,
+.aui-header a:focus,
+.aui-header a:hover,
+.aui-header a:active {
+  background-color: #891518;
+  color: #e8e8e8;
+}
+
+.aui-button.aui-button-primary,
+.aui-button.aui-button-primary:visited {
+  background: #555555;
+  color: #e8e8e8;
+}
+
+.aui-button.aui-button-link,
+.aui-button.aui-button-link:visited {
+  color: #e90029;
+}
+
+.aui-header .aui-nav .aui-button-primary,
+.aui-header .aui-nav .aui-button-primary:link,
+.aui-header .aui-nav .aui-button-primary:visited {
+  background: #555555;
+  color: #e8e8e8;
+}
+
+.aui-dialog .dialog-page-menu li.page-menu-item button.item-button {
+  color: #891518;
+}
+
+.aui-dialog .dialog-page-menu li.page-menu-item button.item-button:active,
+.aui-dialog .dialog-page-menu li.page-menu-item.selected button.item-button:active {
+  background-color: #891518;
+  color: #e8e8e8;
+}
+
+.aui-dialog .dialog-button-panel a.button-panel-link {
+  color: #891518;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item.toolbar-item-link .toolbar-trigger {
+  color: #891518;
+}
+
+.aui-button.aui-button-text,
+.aui-button.aui-button-text:visited {
+    color: #891518; /*@aui-link-color*/
+}
+
+.aui-select2-drop .select2-results .select2-highlighted {
+  background-color: #891518;
+  color: #e8e8e8;
+}
+
+.aui-label {
+  color: #3572b0;
+}
+
+.aui-button:focus,
+.aui-button.aui-button-primary:focus {
+   outline: 5px auto #e90029;
+}
+
+.aui-button.aui-button-primary:hover,
+.aui-button.aui-button-primary:focus{
+   background:#666666;
+}
+
+.aui-button.aui-button-primary[disabled],
+.aui-button.aui-button-primary[disabled]:hover,
+.aui-button.aui-button-primary[disabled]:focus,
+.aui-button.aui-button-primary[disabled]:active,
+.aui-button.aui-button-primary[aria-disabled="true"],
+.aui-button.aui-button-primary[aria-disabled="true"]:hover,
+.aui-button.aui-button-primary[aria-disabled="true"]:focus,
+.aui-button.aui-button-primary[aria-disabled="true"]:active {
+  background: #666666;
+}
+
+.aui-header .aui-button-primary.aui-button-split-main:hover + .aui-button.aui-dropdown2-trigger.aui-button-split-more:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more.active:hover:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more.active:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more:hover:before,
+.aui-header .aui-button-primary.aui-dropdown2-trigger.aui-button-split-more:before {
+   border-color: transparent;
+}
+
+.aui-lozenge-complete {
+   background-color:#891518;
+   border-color:#891518;
+}
+
+/* this is the background for the number of inbox items */
+.mw-anchor.unread .badge{
+   background:#891518;
+}
+
+.keysight-view-page-mode .wiki-content a.current-user-mention,
+.keysight-view-page-mode .wiki-content a.current-user-mention:link,
+.keysight-view-page-mode .wiki-content a.current-user-mention:active,
+.keysight-view-page-mode .wiki-content a.current-user-mention:hover,
+.keysight-view-page-mode .wiki-content a.current-user-mention:visited{
+   background:#891518;
+   color:#e8e8e8 !important;
+   border:1px solid #555555;
+   border-radius:3px;
+   text-decoration: none;
+}
+
+.wiki-content a.current-user-mention:hover{
+   text-decoration: underline;
+}
+
+/* These values need to be sync with keysight-theme.js and KeysightPageStateConstants.java */
+.page-state-box{        }
+.page-state-note{       }
+.page-state-draft{      }
+.page-state-reviewed{   }
+.page-state-finalized{  }
+.page-state-has-errors{ }
+.page-state-incomplete{ }
+.page-state-deprecated{ }
+
+/* Should contain all floated and non-floated content, so it needs to
+ * establish a new block formatting context without using overflow: hidden. */
+.keysight-title-container {
+  display: inline-block;
+  width: 100%;
+  zoom: 1; /* new block formatting context via hasLayout for IE 6/7 */
+}
+
+/* Needs to make space for the sidebar. */
+.keysight-title-content-container {
+  float:left;
+  margin-right: 200px;
+}
+
+/* Establishes a new block formatting context to insulate descendants from
+ * the floating sidebar. */
+.keysight-title-content {
+  display: inline-block;
+  width: 100%;
+  zoom: 1; /* new block formatting context via hasLayout for IE 6/7 */
+}
+
+/* Fixed-width floated sidebar. */
+.keysight-title-page-state-content-container {
+  float: right;
+  width: 200px;
+}
+
+.keysight-title-page-state-content {
+  display: inline-block;
+  width: 100%;
+  text-align:right;
+  padding: 6px 0px 6px 0px;
+  zoom: 1; /* new block formatting context via hasLayout for IE 6/7 */
+}
+
+.keysight-page-state-ok {
+}
+
+.keysight-page-state-warn {
+   background-color:#FFFF00;
+}
+
+.keysight-page-state-error {
+   background-color: #E90029;
+}
+
+/* Keysight Header */
+#keysight-header-outer{
+        margin:0px;
+        padding:0px;
+        background:#FFFFFF;
+}
+
+#keysight-header-inner{
+        margin:0px;
+        padding:0px;
+        border-bottom: #E90029 solid 4px;
+}
+
+#keysight-logo {
+        float: left;
+	margin: 0px;
+	padding: 18px 0px 13px 20px;
+}
+
+.acs-side-bar a,
+.acs-side-bar td a{
+   color: #E90029;
+}
+
+#keysight-search-form {
+        margin-top: 11px;
+        margin-right: 18px;
+        width: 340px;
+        float: right;
+        text-align: right;
+        font-size: 11px;
+        color:#9c9c9c;
+        line-height: 20px;
+        padding: 10px;
+}
+
+#keysight-search-form a {
+        color:#9c9c9c;
+        text-decoration: none;
+}
+
+#keysight-search-form a:hover{
+        text-decoration: underline;
+} 
+
+#keysight-search-line {
+	word-spacing: 8px;
+}
+
+#keysight-search-drop-down {
+        width:100%;
+        padding:0px;
+        margin:0px;
+        border:none;
+        white-space: nowrap;
+}
+
+#keysight-search-drop-down-1{
+        float:right;
+}
+
+#keysight-search-drop-down-2{
+        float:right;
+}
+
+#keysight-search-drop-down-3{
+        float:right;
+}
+
+/* Keysight Footer */
+#keysight-footer {
+	height: auto;
+	margin: 0 auto;
+	padding:25px 0;
+	font-size: 11px;
+}
+
+#keysight-footer | {
+	margin: 0 15px;
+}
+
+#keysight-footmenu-interior, #keysight-footmenu-interior a {
+	color: #9c9c9c;
+	font-weight: normal;
+	font-size: 11px;
+	text-decoration: none;	
+}
+
+#keysight-footmenu-interior a:hover {
+	text-decoration: underline;
+}
+
+#keysight-footmenu-interior a {
+	word-spacing: 0;
+}
+
+#keysight-footmenu-interior{
+	word-spacing: 15px;
+}
+
+/* Keysight Footer Navbar */
+#keysight-footer-navbar-container {
+        color: #9c9c9c;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 0px;
+        white-space: nowrap;
+        }
+
+#keysight-footer-navbar {
+        margin: 0 auto;
+        padding: 0px;
+}
+
+#keysight-footer-navbar ul {
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        }
+
+#keysight-footer-navbar li {
+        display: inline;
+        }
+
+#keysight-footer-navbar a:link, #footer-navbar a:visited {
+        color: #9c9c9c;
+        }
+
+#keysight-footer-navbar a:hover, #footer-navbar a:active {
+        color: #9c9c9c;
+        }
+
+#keysight-footer-navbar li + li:before {
+        content: " | ";
+}
+
+/* Keysight Copyright */
+#keysight-copyright-int {
+	word-spacing: normal;
+	color: #9c9c9c;
+	font-weight: normal;
+	font-size: 11px;
+	font-weight:bold;
+	margin: 25px 0 15px;
+}
+
+/* Override Confluence Styles */
+.gettingstarted .main-banner {
+   color:#E90029;
+}

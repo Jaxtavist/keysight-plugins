@@ -1,0 +1,5 @@
+<p>The Panel Box macro is an alias to Navigation Box.  It was included to 
+support backwards compability when the BitVoodoo PanelBox plugin was 
+removed and the functionality replaced in the Keysight Theme Plugin.</p>
+
+#parse( "/com/keysight/keysight-theme/templates/navigation-box-help.vm" )

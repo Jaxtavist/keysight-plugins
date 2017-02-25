@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="HTML Elements Rest Interface" key="html-elements-rest-resource" path="/html-elements" version="1.0">
+       <description>This is a rest resource to provide macro documentation.</description>
+    </rest>
+
+</module-container>
+

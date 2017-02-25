@@ -1,0 +1,12 @@
+<h3>Introduction</h3>
+
+<p>Note, the Local Tab Group is an alias to the AUI Tab Group macro provided
+for backwards compatibility</p>
+
+<p>AUI Tab Group defines a container for AUI Tab macros.  The container
+can hold unlimited AUI Tab macros.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Vertical Orientation</strong>: If checked, tabs will be positioned vertically rather than horizontally.</p>
+

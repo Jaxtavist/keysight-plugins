@@ -1,0 +1,24 @@
+<h3>Introduction</h3>
+
+<p>The purpose of this macro is to create a nested list of links
+to the documentation for one or more applications hosted at
+<a href="https://api.is.keysight.com/cgi-bin/org/of_apps/apiManager/apiManager.cgi">https://api.is.keysight.com</a>
+.</p>
+
+<h3>Examples</h3>
+Note, all patterns are matched in a case insensitive way.
+
+<h3>Parameters</h3>
+<p><strong>Application Name</strong>: This field can either be used to exactly identify the application
+to include, or it can be a pattern representing one or more applications to include.  The question mark,
+&quot;?&quot, is treated as a wild card for a single character.  The asterisk, &quot;*&quot;, is 
+a wild card for any number of characters.  If it starts and ends with a &quot;/&quot, then it
+will be treated as a regular expression</p>
+<p><strong>Show Collapsed</strong>: By default, the list will be shown as an expanded list where the user
+may click on an application name to hide those versions.  If checked, the list will show as collapsed
+ by default.
+<p><strong>Hide Application Name</strong>: If checked and only one application is identified at 
+<a href="https://api.is.keysight.com">https://api.is.keysight.com</a>, then just the versions
+of the application will be displayed.
+</p>
+

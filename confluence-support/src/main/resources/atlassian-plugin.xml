@@ -1,0 +1,63 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+        <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+        <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+        <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+        <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+        <param name="configure.url">/plugins/servlet/confluence-support/admin/configuration</param> 
+        <scan-modules>
+           <folder>META-INF/admin</folder>
+           <folder>META-INF/macros</folder>
+           <folder>META-INF/rest</folder>
+        </scan-modules>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="confluence-support" location="/com/keysight/confluence-support/i18n/confluence-support"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="confluence-support-resources" name="confluence-support Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.keysight.confluence-support:macro-browser-resources</dependency>
+        
+        <resource type="download" name="confluence-support.css" location="/css/confluence-support.css"/>
+        <resource type="download" name="empty-trash.css" location="/css/empty-trash.css"/>
+        <resource type="download" name="confluence-support.js" location="/js/confluence-support.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>confluence-support</context>
+        <context>macro-browser</context>
+        <context>preview</context>
+    </web-resource>
+
+    <web-resource key="macro-browser-resources" name="Macro Browser Resources">
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+      
+        <resource type="download" name="additional-macro-browser.css" location="css/additional-macro-browser.css"/>
+        <resource type="download" name="additional-macro-browser.js" location="js/additional-macro-browser.js"/>
+        <resource type="download" name="additional-macro-browser-fields.js" location="soy/additional-macro-browser-fields.soy"/>
+ 
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:aui-date-picker</dependency>
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+        <context>macro-browser</context>
+        <context>preview</context>
+   </web-resource>
+
+   <velocity-context-item key="myHelper" 
+                           name="My Velocity Helper" 
+                           class="com.keysight.confluence.support.helpers.MyVelocityHelper" 
+			   context-key="myHelper" />;
+
+</atlassian-plugin>

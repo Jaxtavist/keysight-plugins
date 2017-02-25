@@ -1,0 +1,9 @@
+##<a href="#" data-aui-trigger aria-controls="$sectionId">$text</a>
+#if( $textAsHtml )
+   <a href="#" onclick="keysightHelpText.showInlineDialog( event, '$sectionId' );">$textAsHtml</a>
+#else
+   <a href="#" onclick="keysightHelpText.showInlineDialog( event, '$sectionId' );"><span class="aui-icon aui-icon-small aui-iconfont-help">Help</span></a>
+#end
+<aui-inline-dialog id="$sectionId">
+$bodyAsHtml
+</aui-inline-dialog>

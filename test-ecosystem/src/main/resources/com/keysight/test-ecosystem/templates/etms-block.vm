@@ -1,0 +1,22 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images" )
+#set( $igeLogo = "$images/ige-48x20.png" )
+#set( $tceLogo = "$images/tce-48x20.png" )
+#set( $mmaLogo = "$images/mma-48x20.png" )
+#set( $fseLogo = "$images/fse-48x20.png" )
+
+<div class="etms-block-super-container">
+<div class="etms-block-container">
+   <div class="etms-block-icons">
+#if( $fse )<img src="$fseLogo"/>#end
+#if( $ige )<img src="$igeLogo"/>#end
+#if( $mma )<img src="$mmaLogo"/>#end
+#if( $tce )<img src="$tceLogo"/>#end
+   </div>
+   <div class="etms-block-content-container">
+      <div class="etms-block-content">
+         #if( $title )<p class="etms-block-content-title">$title</p>#end
+         $body
+      </div>
+   </div>
+</div>
+</div>

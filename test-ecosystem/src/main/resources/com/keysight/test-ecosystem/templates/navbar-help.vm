@@ -1,0 +1,5 @@
+<h3>Introduction</h3>
+
+<p>The Test Ecosystem Navbar inserts a group of buttons to central spaces in the 
+Test Ecosystem.  The buttons are maintained in a macro to make it easier to updated
+them globally across all of the test ecosystem spaces.</p>

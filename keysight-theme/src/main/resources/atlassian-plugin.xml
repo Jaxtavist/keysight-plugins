@@ -1,0 +1,104 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+   <plugin-info>
+      <description>${project.description}</description>
+      <version>${project.version}</version>
+      <vendor name="${project.organization.name}" url="${project.organization.url}" />
+      <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+      <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+      <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+      <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+      <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+      <scan-modules>
+           <folder>META-INF/blueprints</folder>
+           <folder>META-INF/layouts</folder>
+           <folder>META-INF/macros</folder>
+           <folder>META-INF/rest</folder>
+           <folder>META-INF/themes</folder>
+           <folder>META-INF/webitems</folder>
+           <folder>META-INF/webpanels</folder>
+      </scan-modules>
+   </plugin-info>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="keysight-theme" location="/com/keysight/keysight-theme/i18n/keysight-theme"/>
+       
+   <!-- add our web resources -->
+   <web-resource key="keysight-theme-resources" name="Keysight Theme Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+   	    <!-- These dependencies need references in the pom as well-->
+	    <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:space-blueprints</dependency>
+	    <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>
+          
+        <transformation extension="js">
+           <transformer key="jsI18n" />
+        </transformation> 
+
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+
+        <resource type="download" name="keysight-theme.css" location="/css/keysight-theme.css"/>
+	    <resource type="download" name="contact-form.css" location="/css/contact-form.css"/>
+        <resource type="download" name="keysight-theme.js" location="/js/keysight-theme.js"/>
+        <resource type="download" name="contact-form.js" location="/js/contact-form.js"/>
+        <resource type="download" name="keysight-theme-templates.js" location="/soy/keysight-theme-templates.soy"/>
+	    <resource type="download" name="macro-help.js" location="/js/macro-help.js"/>
+        <resource type="download" name="images/" location="/images"/>
+	    <resource type="download" name="keysight-logo-16x16.png" location="/images/keysight-logo-16x16.png"/>
+        <resource type="download" name="keysight-space-dialog-page.js" location="/soy/keysight-space-dialog-page.soy"/>
+        <resource type="download" name="keysight-theme-blueprints.js" location="/js/keysight-theme-blueprints.js"/>
+
+        <context>keysight-theme</context>
+        <context>atl.general</context>
+        <context>atl.admin</context>
+        <context>preview</context>
+    </web-resource>
+
+    <velocity-context-item key="myHelper" 
+                           name="My Velocity Helper" 
+                           class="com.keysight.keysight.theme.helpers.MyVelocityHelper" 
+			               context-key="myHelper" />;
+
+    <servlet-filter name="Image Redirect Filter" 
+	                key="image-redirect-filter" 
+		            class="com.keysight.keysight.theme.helpers.ImageRedirectFilter" 
+		            location="after-encoding" 
+		            weight="100">
+		    <url-pattern>/images/border/button_active_bg.png</url-pattern>
+		    <url-pattern>/images/icons/avatar_group_16.png</url-pattern>
+		    <url-pattern>/images/icons/avatar_group_24.png</url-pattern>
+		    <url-pattern>/images/icons/avatar_group_32.png</url-pattern>
+		    <url-pattern>/images/icons/avatar_group_48.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/add_profile_pic.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-1.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-2.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-3.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-4.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-5.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-6.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-7.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-8.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-10.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-11.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-12.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-14.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-15.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-16.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-18.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-19.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-20.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-24.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/Avatar-25.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/default.gif</url-pattern>
+		    <url-pattern>/images/icons/profilepics/default.png</url-pattern>
+		    <url-pattern>/images/icons/profilepics/default_16.png</url-pattern>
+        <dispatcher>REQUEST</dispatcher>   
+        <dispatcher>FORWARD</dispatcher>   
+    </servlet-filter>
+
+</atlassian-plugin>

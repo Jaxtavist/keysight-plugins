@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Test Ecosystem Basic Page Blueprint i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-basic-page"/>
+   
+   <web-item key="test-ecosystem-basic-page-web-item" 
+             i18n-name-key="test-ecosystem.basic-page.web-item.title" 
+             section="system.create.dialog/content">
+      <description key="test-ecosystem.basic-page.web-item.description" />
+      <resource name="icon" type="download" location="/images/test-ecosystem-basic-page-blueprint-48x48.png" />
+      <param name="blueprintKey" value="test-ecosystem-basic-page-blueprint" />
+   </web-item>
+   
+   <blueprint key="test-ecosystem-basic-page-blueprint" 
+              index-key="test-ecosystem"
+              i18n-name-key="test-ecosystem.basic-page.blueprint.title"
+              content-template-key="test-ecosystem-basic-page-blueprint-template"
+              disable-index-page="true" />
+   
+   <content-template key="test-ecosystem-basic-page-blueprint-template" 
+                     i18n-name-key="test-ecosystem.basic-page.page.title">
+      <resource name="template" type="download" location="/com/keysight/test-ecosystem/xml/basic-page.xml" />
+      <context-provider class="com.keysight.test.ecosystem.helpers.BasicPageContextProvider"/>
+   </content-template>
+  
+   <!--  
+   <component key="test-ecosystem-basic-page-event-listener" class="com.keysight.test.ecosystem.events.BasicPageEventListener"/>
+   -->
+</module-container>

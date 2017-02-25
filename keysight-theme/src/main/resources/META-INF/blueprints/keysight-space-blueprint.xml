@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <resource type="i18n" name="Keysight Space Blueprint i18n" location="/com/keysight/keysight-theme/i18n/keysight-space"/>
+
+   <!-- Keysight Space Blueprint -->
+   <web-item key='keysight-space-web-item' 
+             i18n-name-key='keysight-space.web-item.title'
+             section='system.create.space.dialog/content'>
+      <resource name='icon' type='download' location='images/keysight-space-logo-48x48.png'/>
+      <description key='keysight-space.web-item.description'/>
+      <param name='blueprintKey' value='keysight-space-blueprint'/>
+   </web-item>
+   
+   <space-blueprint key="keysight-space-blueprint"
+                    i18n-name-key="keysight-space.blueprint.title"
+                    category="keysight">
+      <content-template ref="keysight-space-homepage"/>
+      <dialog-wizard key="keysight-space-blueprint-wizard">
+         <dialog-page key="keysight-space-create-dialog-page-1"
+                      id="keysight-space-create-dialog-page-1"
+                      template-key="Keysight.Space.dialogForm"
+                      title-key="keysight-space.create-dialog.title"
+                      description-header-key="keysight-space.create-dialog.heading"
+                      description-content-key="keysight-space.create-dialog.description"
+                      last="true"/>
+      </dialog-wizard>
+   </space-blueprint>
+
+   <content-template key="keysight-space-homepage" 
+                     i18n-name-key="keysight-space.homepage.title">
+      <description key="keysight-space.homepage.description"/>
+      <resource name="template" type="download" location="/com/keysight/keysight-theme/xml/keysight-space-homepage.xml"/>
+   </content-template>
+
+   <!--
+   <component key="keysight-space-event-listener" class="com.keysight.events.KeysightSpaceEventListener"/>
+   -->
+
+</module-container>

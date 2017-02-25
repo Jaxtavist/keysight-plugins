@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="sharedoc" location="/com/keysight/test-ecosystem/i18n/sharedoc"/>
+
+   <xhtml-macro name="sharedoc-link-bank" key="sharedoc-link-bank" 
+                class="com.keysight.test.ecosystem.macros.ShareDocLinkBank"
+                icon="/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images/sharedoc-logo-80x80.png">
+      <category name="formatting"/>
+      <parameters>
+         <parameter name="base-url" type="string" required="false">
+            <option key="showNameInPlaceholder" value="false" />       
+            <option key="showValueInPlaceholder" value="true" />       
+         </parameter>
+         <parameter name="include-pdf" type="boolean" requried="false">
+            <option key="showNameInPlaceholder" value="false" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+      </parameters>
+   </xhtml-macro>
+   
+   <xhtml-macro name="sharedoc-link" key="sharedoc-link" 
+                class="com.keysight.test.ecosystem.macros.ShareDocLink"
+                icon="/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images/sharedoc-logo-80x80.png">
+      <category name="formatting"/>
+      <parameters>
+         <parameter name="url" type="string" required="true">
+            <option key="showNameInPlaceholder" value="false" />    
+            <option key="showValueInPlaceholder" value="false" /> 
+         </parameter>
+         <parameter name="link" type="string" required="false">
+            <option key="showNameInPlaceholder" value="false" /> 
+            <option key="showValueInPlaceholder" value="true" />      
+         </parameter>
+         <parameter name="include-pdf" type="boolean" requried="false">
+            <option key="showNameInPlaceholder" value="false" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+         <parameter name="info-url" type="string" required="false">
+            <option key="showNameInPlaceholder" value="false" /> 
+            <option key="showValueInPlaceholder" value="true" />      
+         </parameter>
+         <parameter name="base-url" type="string" required="false">
+            <option key="showNameInPlaceholder" value="false" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+      </parameters>
+   </xhtml-macro>
+</module-container>

@@ -1,0 +1,10 @@
+<div class="aui-tab">
+   <div class="aui-tabs  horizontal-tabs" role="application">
+      <ul class="tabs-menu" role="tablist">
+         <li class="menu-item $active-tab" role="presentation">
+            <a href="#$linkId" id="1234567890" role="tab" aria-selected="true"><strong>$title</strong></a>
+         </li>
+      </ul>
+      <div class="tabs-pane $active-pane" id="$linkId" role="tabpanel" aria-hidden="false">$body</div>
+   </div>
+</div>

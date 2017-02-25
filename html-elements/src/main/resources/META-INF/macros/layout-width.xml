@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="layout-width" location="/com/keysight/html-elements/i18n/layout-width"/>
+   
+   <xhtml-macro name="layout-width" key="layout-width" 
+                class="com.keysight.html.elements.macros.LayoutWidth"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="layout-width"   type="string" />
+      </parameters>
+   </xhtml-macro>
+
+</module-container>

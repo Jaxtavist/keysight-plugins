@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="aui-buttons" location="/com/keysight/html-elements/i18n/aui-buttons"/>
+
+   <web-resource key="aui-buttons-attachment-selector" name="AUI Browser Attachment Selector">
+      <resource type="download" name="aui-buttons-attachment-selector.js" location="/js/aui-buttons-attachment-selector.js" />
+      <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+      <context>macro-browser</context>
+   </web-resource>
+    
+   <xhtml-macro name="button-group" key="button-group" 
+                class="com.keysight.html.elements.macros.AuiButtonGroup"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters/>
+   </xhtml-macro>
+    
+   <xhtml-macro name="button" key="button" 
+                class="com.keysight.html.elements.macros.AuiButton"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="button-url"   type="confluence-content" required="true"/>
+                   <parameter name="spaceKey"     type="spacekey" />
+                   <parameter name="button-text"  type="string" />
+                   <parameter name="button-style" type="enum">
+                      <value name="Standard"/>
+                      <value name="Primary"/>
+                      <value name="Link-Style"/>
+                      <value name="Subtle"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+    
+   <xhtml-macro name="split-button" key="split-button" 
+                class="com.keysight.html.elements.macros.AuiSplitButton"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="button-url"          type="confluence-content" required="true"/>
+                   <parameter name="spaceKey"            type="spacekey" />
+                   <parameter name="button-text"         type="string" />
+                   <parameter name="create-button-group" type="boolean" />
+                </parameters>
+   </xhtml-macro>
+   
+   <xhtml-macro name="next-button" key="next-button" 
+                class="com.keysight.html.elements.macros.AuiNextButton"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="show-title"       type="boolean"/>
+                   <parameter name="next-button-text" type="string" />
+                   <parameter name="button-style"     type="enum">
+                      <value name="Standard"/>
+                      <value name="Primary"/>
+                      <value name="Link-Style"/>
+                      <value name="Subtle"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+    
+   <xhtml-macro name="previous-button" key="previous-button" 
+                class="com.keysight.html.elements.macros.AuiPreviousButton"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="show-title"           type="boolean"/>
+                   <parameter name="previous-button-text" type="string" />
+                   <parameter name="button-style"         type="enum">
+                      <value name="Standard"/>
+                      <value name="Primary"/>
+                      <value name="Link-Style"/>
+                      <value name="Subtle"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+    
+   <xhtml-macro name="parent-button" key="parent-button" 
+                class="com.keysight.html.elements.macros.AuiParentButton"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="show-title"         type="boolean"/>
+                   <parameter name="parent-button-text" type="string" />
+                   <parameter name="button-style"       type="enum">
+                      <value name="Standard"/>
+                      <value name="Primary"/>
+                      <value name="Link-Style"/>
+                      <value name="Subtle"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+    
+   <xhtml-macro name="previous-next-navigation" key="previous-next-navigation" 
+                class="com.keysight.html.elements.macros.PreviousNextNavigation"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="show-title"            type="boolean"/>
+                   <parameter name="exclude-parent-button" type="boolean"/>
+                   <parameter name="previous-button-text"  type="string" />
+                   <parameter name="parent-button-text"    type="string" />
+                   <parameter name="next-button-text"      type="string" />
+                   <parameter name="button-style"          type="enum">
+                      <value name="Standard"/>
+                      <value name="Primary"/>
+                      <value name="Link-Style"/>
+                      <value name="Subtle"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+
+   
+   <xhtml-macro name="download-attachment-button" key="download-attachment-button" 
+                class="com.keysight.html.elements.macros.AuiDownloadAttachmentButton"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <parameters>
+                   <parameter name="page" type="confluence-content" hidden="true" />
+                   <parameter name="name" type="attachment" required="true">
+                      <alias name="" />
+                   </parameter>
+                   <parameter name="button-text" type="string" />
+                   <parameter name="button-style" type="enum">
+                      <value name="Standard"/>
+                      <value name="Primary"/>
+                      <value name="Link-Style"/>
+                      <value name="Subtle"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+</module-container>

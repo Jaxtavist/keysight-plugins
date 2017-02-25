@@ -1,0 +1,43 @@
+{namespace Keysight.Include.Content.Help.Text.Soy.Templates}
+
+/**
+ * Dialog2 Section
+ * @param sectionId
+ * @param title
+ * @param tip
+ */
+{template .dialog2section}
+    <section id="{$sectionId}" role="dialog" class="aui-layer aui-dialog2 aui-dialog2-medium" data-aui-modal="true" aria-hidden="true">
+
+        <!-- Dialog header -->
+        <header class="aui-dialog2-header">
+            <!-- The dialog's title -->
+            <h2 class="aui-dialog2-header-main">{$title}</h2>
+        </header>
+
+        <!-- Main dialog content -->
+        <div class="aui-dialog2-content">
+            <div class="button-spinner" id="keysight-help-text-progress-spinner"></div>
+        </div>
+
+        <!-- Dialog footer -->
+        <footer class="aui-dialog2-footer">
+            <!-- Actions to render on the right of the footer -->
+            <div class="aui-dialog2-footer-actions">
+                <button id="dialog-submit-button" class="aui-button aui-button-primary" onclick="keysightHelpText.close();">OK</button>
+            </div>
+            <!-- Hint text is rendered on the left of the footer -->
+            <div class="aui-dialog2-footer-hint">{$tip}</div>
+        </footer>
+    </section>
+{/template}
+
+/**
+ * Inline Dialog Section
+ * @param sectionId
+ */
+{template .inlineDialog}
+    <aui-inline-dialog id="{$sectionId}">
+        <div class="button-spinner" id="keysight-help-text-progress-spinner"></div>
+    </aui-inline-dialog>
+{/template}

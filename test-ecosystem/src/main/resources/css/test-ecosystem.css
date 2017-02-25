@@ -1,0 +1,56 @@
+.test-ecosystem-tutorial-properties-header {
+   text-align: left;
+   background: #555555;
+   color: #e8e8e8;
+}
+
+.test-ecosystem-tutorial-properties-value {
+   text-align: left;
+}
+
+
+/* Make the content list table full width and left justified */
+table.test-ecosystem-content-list {
+   width: 100%;
+   text-align:left;
+}       
+/* Turn the header row background white */
+table.test-ecosystem-content-list.tablesorter > thead > tr > th {
+   background-color:#FFFFFF;
+}
+/* Add a solid line below the table header */
+table.test-ecosystem-content-list.tablesorter > thead > tr {
+   border-bottom: 2px solid #e8e8e8;
+}
+/* Add a more subtle solid line below each row */
+table.test-ecosystem-content-list.tablesorter > tbody > tr > td {
+   border-bottom: 1px solid #e8e8e8;
+}
+
+.test-ecosystem-content-list-title {
+}
+
+
+.test-ecosystem-dashboard-item {
+   position:relative;
+   display:block;
+   padding: 10px 10px 10px 58px;
+}
+
+.test-ecosystem-dashboard-item-icon {
+   backgrond-position:center;
+   position:absolute;
+   left: 5px;
+   top: 10px;
+   background-repeat:none;
+   display: inline-block; 
+   height:48px;
+   width:48px;
+   vertical-align:text-bottom;
+   text-indent:-999em;
+   text-align:left;
+}
+
+.test-ecosystem-dashboard-item-body {
+   display:block;
+}

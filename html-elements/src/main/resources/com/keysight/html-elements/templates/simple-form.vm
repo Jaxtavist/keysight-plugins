@@ -1,0 +1,22 @@
+#if( $alignment )
+<div style="text-align: $alignment">
+#end
+
+<form action="$url" target="$target">
+#foreach( $formElement in $formElements )
+$formElement.html()
+#end
+#if( $submit-alignment )
+#if( $alignment )
+</div>
+#end
+<div style="text-align: $submit-alignment">
+#end
+#if( $submit-seperator )
+$submit-seperator.getSeperator()
+#end
+<input type="submit" value="$submit">
+</form>
+#if( $alignment || $submit-alignment )
+</div>
+#end

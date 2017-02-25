@@ -1,0 +1,17 @@
+<module-container>
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="additional-macro-parameter-types" location="/com/keysight/confluence-support/i18n/additional-macro-parameter-types"/> 
+    
+   <xhtml-macro name="additional-macro-parameter-types" key="additional-macro-parameter-types" 
+	   class="com.keysight.confluence.support.macros.AdditionalMacroParameterTypes"
+	   state="disabled"
+           icon="/download/resources/com.keysight.confluence-support:confluence-support-resources/images/keysight-logo-80x80.png">
+      <category name="development" />
+      <parameters>
+	 <parameter name="myInteger" type="int" required="true"/>
+	 <parameter name="myFloat"   type="string"/>
+	 <parameter name="myDate"    type="date"/>
+      </parameters>
+   </xhtml-macro>
+
+</module-container>

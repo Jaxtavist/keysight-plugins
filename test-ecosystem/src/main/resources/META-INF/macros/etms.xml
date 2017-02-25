@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="etms" location="/com/keysight/test-ecosystem/i18n/etms"/>
+   
+   <xhtml-macro name="etms-block" key="etms-block" 
+                class="com.keysight.test.ecosystem.macros.EtmsBlock"
+                icon="/download/resources/com.keysight.test-ecosystem:test-ecosystem-resources/images/ige-80x80.png">
+      <category name="formatting"/>
+      <parameters>
+         <parameter name="title" type="string">
+            <option key="showNameInPlaceholder"  value="false" />       
+            <option key="showValueInPlaceholder" value="true" />       
+         </parameter>
+         <parameter name="fse" type="boolean">
+            <option key="showNameInPlaceholder"  value="true" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+         <parameter name="ige" type="boolean">
+            <option key="showNameInPlaceholder"  value="true" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+         <parameter name="mma" type="boolean">
+            <option key="showNameInPlaceholder"  value="true" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+         <parameter name="tce" type="boolean">
+            <option key="showNameInPlaceholder"  value="true" />       
+            <option key="showValueInPlaceholder" value="false" />       
+         </parameter>
+      </parameters>
+   </xhtml-macro>
+   
+</module-container>

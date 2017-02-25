@@ -1,0 +1,195 @@
+<h2>Introduction</h2>
+
+<p>The numbered headings macros are designed to automatically number the headings
+in the html (h1, h2, h3, h4, h5 and h6).  The macro gives authors a lot of
+control over exactly how that numbering will be formatted.</p>
+
+<h3>Example of predefined number formats</h3>
+
+<p>
+   <ul>
+      <li>decimal (default) - 1, 2, 3, 4, etc.</li>
+      <li>iso-2145 - 1, 2, 3, 4, etc.</li>
+      <li>full-decimal - one, two, three, four, etc.</li>
+      <li>lower-latin - a, b, c, d, etc.</li>
+      <li>lower-roman - i, ii, iii, iv, etc.</li>
+      <li>lower-greek - α, β, γ, δ, etc.</li>
+      <li>upper-latin - A, B, C, D, etc.</li>
+      <li>upper-roman - I, II, III, IV, etc.</li>
+      <li>upper-greek - Α, Β, Γ, Δ, etc.</li>
+      <li>custom - Customize the formatting any way you like.</li>
+   </ul>
+</p>
+
+<p>Version 4 of the Numbered Headings macro introduces some very significant
+changes.  The most notable is an alternate implementation.  Prior to version 4,
+the numbered headings macro applied styles in the editor to diplay the
+numbering and then rendered the number as inline text when the macro was
+viewed.  This provided an opportunity sequentially number headings across
+multiple pages when exporting into word or pdf.  However, it had some
+downsides.  The numbering you see in the browser may not match the numbering
+when exported.  All numbering had to be performed inside the body of the macro,
+so the usual workflow was to place a single numbered heading macro on the page
+and place all content inside of it.  Thus any change was flagged as a change of
+the entire page content.</p>
+
+<p>An alternate approach was to insert the numbering inline with the editor so
+that it saved with the page content.  This meant that what you see is what you
+get.  It also opened the door for the <strong>Numbered Headings For
+Page</strong> macro, which is a bodyless macro that can set the numbering
+parameters for the body of the page.  In other words, there is no need to work
+in the body of the <strong>Numbered Headings</strong> macro!</p>
+
+<p>  In order to support the need for automatic sequential numbering, there are
+two macros introduced.  The <strong>Renumber And Include Page</strong> and
+<strong>Renumber and Include Children</strong>. These two macros are developed
+to pull in a page with numbered headings and re-number them as appropriate.  An
+advantage of this approach is that should the administrator decided to discard
+the <Numbered Headings> plugin, the content will still be visible and numbered
+- it just won't automatically number/renumber any more.</p>
+
+<h2>Numbered Heading Macro Variants</h2>
+
+<h3>Numbered Headings For Page</h3>
+
+<p>The <strong>Numbered Headings For Page</strong> is expected to be the 
+most commonly used macros in the collection.  It is a bodyless macro
+that turns on the numbering of the headings in the body of the editor.<p>
+
+<h3>Numbered Headings</h3>
+
+<p>The <strong>Numbered Headings</strong> macro allows an author to 
+define a block within which headings are numbered.  If the <strong>
+Numbered Headings</strong> macro is inserted onto a page that also 
+has the <strong>Numbered Headings For Page</strong> macro, the
+content in the body of the macro will be treated independantly of the
+content in the body of the page.</p>
+
+<h3>Numbered Headings (Legacy)</h3>
+
+<p>The <strong>Numbered Headings (Legacy)</strong> macro is provided
+for backwards compatibility.  As the versions of the plugin prior to
+4 depended on the numbering being rendered when viewed the legacy implementation
+of the macro needs to be present.  This macro should operate just
+as the version prior to version 4.</p> 
+
+<h3>Numbered Headings (Transitional) - <em>Disabled by default</em></h3>
+
+<p>The <strong>Numbered Headings (Transitional)</strong> macro is provided
+to help people migrate content from the old implementation to the new.  This
+macro operates just like the <strong>Numbered Headings</strong> macro.  See
+the section on <strong>Implementation Migration</strong> for details.</p>
+
+<h3>Renumber And Include Page</h3>
+
+<p>The <strong>Renumber And Include Page</strong> macro does just what
+the title says.  It expects to pull in a page with numberings, and then
+re-number/re-style them.</p>
+
+<h3>Renumber And Include Children</h3>
+
+<p>The <strong>Renumber And Include Children</strong> macro identifies
+a parent page, then serializes the children of that page onto the current
+page.  In doing so, it will make sure the numbering for all of the headings
+is sequential.</p>
+
+<h2>Implementation Migration</h2>
+
+<p>Prior to version 4, the <strong>Numbered Headings</strong> macro contained a
+lot of content and no numberings.  When rendered, the nubmering would be
+applied which allowed the macro to sequentially number headings across pages.
+To migrate to the new style, the Confluence administrator needs to disable the
+<strong>Numbered Headings (Legacy)</strong> and enable the <strong>Numbered
+Headings (Transitional)</strong> macro.  Additionally, the Confluence
+administrator needs to disable the <strong>Numbered Headings (Legacy) CSS
+resources</strong> and the <strong>Javascript for the Legacy Numbered Headings
+Macro</strong>.  At this point, when a page that used the <strong>Numbered
+Headings</strong> prior to version 4 or the <strong>Numbered Headings
+(Legacy)</strong> at or after version 4 you should see the content but no
+numberings.  If you edit the page, the numbers should be added in.  Ideally, it
+would be nice to place the <strong>Numbered Headings For Page</strong> and put
+all of the content in the body of the page rather than the body of the
+<strong>Numbered Headings (Transitional)</strong> macro, but that is not
+required.  Save the page and it should now be saved with the headings embedded
+inline.</p>
+
+<h2>Sequential Numbering Across Pages</h2>
+
+<p>When exporting a set of pages into a PDF, the <strong>Numbered Headings
+(Legacy)</strong> macro will automatically number them sequentially provided
+that the author has not explicitly told the macro where to start numbering.
+This is the same behavior as seen prior to version 4.  With the new
+implmentation, the author is expected to set the starting number for every
+page.  There are two vehicles that can be used to create different views that
+are also sequentially numbered.  The <strong>Renumber and Include Page</strong>
+macro can be used to create a live <em>clone</em> of a page with an alternate
+numbering.  The <strong>Renumber and Include Children</strong> can be used to
+serialize the content in the child pages of an identified parent page into a
+sequentially numbered view.</p>
+
+<h2>Parameters</h2>
+
+<p><strong>Number format</strong>: The numbring format to use</p>
+<p>
+   <ul>
+      <li>decimal (default) - 1, 2, 3, 4, etc.</li>
+      <li>iso-2145 - 1, 2, 3, 4, etc.</li>
+      <li>full-decimal - one, two, three, four, etc.</li>
+      <li>lower-latin - a, b, c, d, etc.</li>
+      <li>lower-roman - i, ii, iii, iv, etc.</li>
+      <li>lower-greek - α, β, γ, δ, etc.</li>
+      <li>upper-latin - A, B, C, D, etc.</li>
+      <li>upper-roman - I, II, III, IV, etc.</li>
+      <li>upper-greek - Α, Β, Γ, Δ, etc.</li>
+      <li>custom - Customize the formatting any way you like.</li>
+   </ul>
+</p>
+<p><strong>Start numbering With</strong> (optional): The numerical value to start the numbering at.  This is 
+useful when you want to resume numbering on a sibling or child page.  When clicking
+on the macro but before opening the Macro Browser, you can press one of the numbers as a shortcut for setting this
+value.  If you select <strong>Start numbering at</strong>, then the value for this field will be blanked out.</p>
+
+<p><strong>Start numbering At</strong> (optional): This is which heading to start numbering at. It is strongly
+recommended to numbering at h1 which is the default.  Use this only where you have large number of pages with
+existing content that start with a heading other then h1.</p>
+
+<p><strong>Skip Headings</strong> (optional): This is a comma seperated list of headings which should not be
+numbered. An example might be <em>h5</em>, or <em>h6</em></p>
+
+<h3>Custom Format Parameters</h3>
+
+<p>Note, these are only visible if <strong>custom</strong> is selected as the <strong>Number format</strong>.</p>
+
+<p>The value for the custom parameters is some arbitray text with some rule elements for how to number that item.  The 
+rule elements take the format of [<heading number>.<number format>] such as [h1.decimal].  For example, the following
+
+<ul>
+   <li>h1 format = &quot;Chapter [h1.upper-roman]:&quot;</li>
+   <li>h2 format = &quot;Paragraph [h1.upper-roman].[h2.upper-latin]:&quot;</li>
+   <li>h3 format = &quot;Sub [h3.lower-roman]:&quot;</li>
+</ul>
+
+<p>will produce output like</p>
+
+<div class="numbered-heading-example-box">
+<h1>Chapter I: The good old days</h1>
+
+<h2>Paragraph I.A: How it all began</h2>
+
+</h3>Sub i: My father met my mother...</h3>
+</div>
+
+
+<p><strong>h1 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h2 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h3 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h4 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h5 format</strong> (optional): Text plus rule elements.</p>
+<p><strong>h6 format</strong> (optional): Text plus rule elements.</p>
+
+<h2>Custom Renderer</h2>
+
+<p>It is possible to write a totally custom number format.  For details
+visit <a href="https://addons.avisi.com/numbered-headings/documentation">
+https://addons.avisi.com/numbered-headings/documentation<a></p>
+

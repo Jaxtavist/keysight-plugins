@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="Lerning Products Rest Interface" key="leaning-products-rest-resource" path="/learning-products" version="1.0">
+       <description>This is a rest resource to provide macro documentation.</description>
+    </rest>
+
+</module-container>
+

@@ -1,0 +1,29 @@
+#if( $collapsed )
+#set( $viewableStyle = "keysight-api-documentation-hidden" )
+#set( $triangleStyle = "keysight-api-documentation-right" )
+#else
+#set( $viewableStyle = "keysight-api-documentation-visible" )
+#set( $triangleStyle = "keysight-api-documentation-down" )
+#end
+
+<ul class="keysight-api-documentation-names">
+#foreach ($mapEntry in $applicationTree.entrySet())
+   #if( $oneApplication )
+
+   #foreach ($entry in $mapEntry.value)
+   <li class="keysight-api-documentation-version"><a href="$apiServer/$mapEntry.key/$entry">$entry</a></li>
+   #end
+
+   #else
+
+   <li class="$triangleStyle"><a href="#" onclick='toggleSubListVisibility(event);'>$mapEntry.key</a>
+      <ul class="keysight-api-documentation-names $viewableStyle">
+         #foreach ($entry in $mapEntry.value)
+         <li class="keysight-api-documentation-version"><a href="http://$apiServer/$mapEntry.key/$entry">$entry</a></li>
+         #end
+      </ul>
+   </li>
+
+   #end
+#end
+</ul>

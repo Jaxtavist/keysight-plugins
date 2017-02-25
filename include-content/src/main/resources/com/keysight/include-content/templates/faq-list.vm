@@ -1,0 +1,90 @@
+#set( $dataColumnIndex = 1 )
+<div class="keysight-faq-container">
+    <div class="keysight-faq-header"></div>
+    <div class="keysight-faq-body">
+
+
+    <table class="keysight-faq-link-table confluenceTable tablesorter tablesorter-default" role="grid">
+        <thead class="tableFloatingHeaderOriginal">
+            <tr><th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="$dataColumnIndex"
+                    tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                    aria-label="Page Title: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+            Page Title</th>
+            #set( $dataColumnIndex = $dataColumnIndex + 1 )
+        #if( $includeSpace )
+            <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="$dataColumnIndex"
+                  tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                  aria-label="Space: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+            Space</th>
+            #set( $dataColumnIndex = $dataColumnIndex + 1 )
+        #end
+        #if( $includeLastModificationDate )
+            <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="$dataColumnIndex"
+                  tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                  aria-label="Modified on: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+            Modified On</th>
+            #set( $dataColumnIndex = $dataColumnIndex + 1 )
+        #end
+        #if( $includeLastModificationAuthorName || $includeLastModificationAuthorUserName )
+            <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="$dataColumnIndex"
+                  tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                  aria-label="Modified on: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+            Last Contributor</th>
+            #set( $dataColumnIndex = $dataColumnIndex + 1 )
+        #end
+        #if( $includeLikes )
+            <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="$dataColumnIndex"
+                  tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                  aria-label="Likes: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+            Likes</th>
+            #set( $dataColumnIndex = $dataColumnIndex + 1 )
+        #end
+        #if( $includeLabels )
+            <th class="confluenceTh tablesorter-header sortableHeader tablesorter-headerUnSorted" data-column="$dataColumnIndex"
+                  tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none"
+                  aria-label="Labels: No sort applied, activate to apply an ascending sort" style="user-select: none;">
+            Labels</th>
+            #set( $dataColumnIndex = $dataColumnIndex + 1 )
+        #end
+            </tr>
+        </thead>
+        <tbody class="keysight-faq-link-table-body">
+           #foreach( $page in $pages )
+           <tr><td class="confluenceTd">
+                   <a href="$baseUrl$page.getPageUrl()">$page.getPageTitle()</a>
+               </td>
+               #if( $includeSpace )
+                   <td class="confluenceTd"><a href="$baseUrl$page.getSpaceUrl()">$page.getSpaceName()</a></td>
+               #end
+               #if( $includeLastModificationDate )
+                   <td class="confluenceTd">$page.getLastModificationTimeShort()</td>
+               #end
+               #if( $includeLastModificationAuthorName && $includeLastModificationAuthorUserName )
+                   <td class="confluenceTd">$page.getLastModificationAuthorName() ($page.getLastModificationAuthorUserName())</td>
+               #elseif( $includeLastModificationAuthorName )
+                   <td class="confluenceTd">$page.getLastModificationAuthorName()</td>
+               #elseif( $includeLastModificationAuthorUserName )
+                   <td class="confluenceTd">$page.getLastModificationAuthorUserName()</td>
+               #end
+               #if( $includeLikes )
+                   <td class="confluenceTd">$page.getLikeCount()</td>
+               #end
+               #if( $includeLabels )
+                   <td class="confluenceTd"><ul class="label-list keysight-faq-link-table-label-list">
+                   #foreach( $label in $page.getPage().getLabels() )
+                        <li class="aui-label">$label.getName()</li>
+                   #end
+                   </ul></td>
+               #end
+           </tr>
+        #end
+        </tbody>
+    </table>
+
+    </div>
+    <div class="button-spinner keysight-spinner"></div>
+    <div class="keysight-faq-footer">
+        <div class="keysight-faq-list-loading-text">$pages.size() items</div>
+    </div>
+</div>
+

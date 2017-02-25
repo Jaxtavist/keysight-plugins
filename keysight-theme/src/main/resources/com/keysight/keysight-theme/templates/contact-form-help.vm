@@ -1,0 +1,25 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.keysight-theme:keysight-theme-resources/images" )
+#set( $askLogo = "$images/ask-ico.png" )
+<h3>Introduction</h3>
+
+<p>The contact feedback macro places the Keysight Ask logo
+onto the page linked to a popup form that will send an email.
+The sender has the option of identifying themselves or not.</p>
+
+<p>This macro is part of the toolset for setting up department
+pages within Confluence</p>
+
+<h3>Parameters</h3>
+<p><strong>Form Identifier</strong>: The form identifier text is prepended to the email such that the contact person can tell which form the email came from.</p>
+<p><strong>Contact Person</strong>: The username of the person who will receive the email or a valid email address.</p>
+<p><strong>CC To Email</strong>: If checked and the user provides an email address, that address will be cc'd on the email.</p>
+<p><strong>Image</strong>: Which image (if any) to show.</p>
+<p><strong>Text</strong>: Text to display to the right of the image.</p>
+<p><strong>Dialog Box Title</strong>: Text to display in the header of the feedback dialog box.</p>
+<p><strong>Dialog Box Help</strong>: Text to display in the lower left corner of the feedback dialog box.</p>
+
+<h3>Cautions</h3>
+<p>Using single or double quotes in any of the fields can break
+the javascript that triggers the dialog.  It is strongly recommended
+to not use them.</p>
+

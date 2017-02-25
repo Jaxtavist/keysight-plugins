@@ -1,0 +1,8 @@
+<h3>Introduction</h3>
+
+<p>Learning Products Block Quote</p>
+
+<h3>Parameters</h3>
+<p><strong>Width</strong>: Sets the width of the table. Example: 90% or 400px. The value will be
+inserted as the value for the css width property in the the sections element's style attribute.</p>
+<p><strong>Alignment</strong>: One of Left, Center or Right</p>

@@ -1,0 +1,81 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+   <plugin-info>
+      <description>${project.description}</description>
+      <version>${project.version}</version>
+      <vendor name="${project.organization.name}" url="${project.organization.url}" />
+      <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+      <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+      <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+      <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+      <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+      <scan-modules>
+           <folder>META-INF/rest</folder>
+           <folder>META-INF/blueprints</folder>
+           <folder>META-INF/webparts</folder>
+      </scan-modules>
+   </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="glossary" location="/com/keysight/glossary/i18n/glossary"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="glossary-resources" name="Glossary Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+	    <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+	    <!-- These dependencies need references in the pom as well-->
+	    <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:space-blueprints</dependency>
+	    <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:resources</dependency>
+
+        <!-- transform calls to AJS.getText() inside JS files -->
+        <transformation extension="js">
+            <transformer key="jsI18n"/>
+        </transformation>
+
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+        
+	    <resource type="download" name="glossary.css"            location="/css/glossary.css"/>
+	    <resource type="download" name="glossary.js"             location="/js/glossary.js"/>
+	    <resource type="download" name="glossary-blueprints.js"  location="/js/glossary-blueprints.js"/>
+	    <resource type="download" name="images/"                 location="/images"/>
+
+	    <resource type="download" name="glossary-space-dialog-page.js" location="/soy/glossary-space-dialog-page.soy"/>
+	
+	    <!--
+	    The below soy template is not used as the html for it is very simple. This is left as an example in
+            case more complex html is needed
+	    <resource type="download" name="glossary-container-soy.js" location="/soy/glossary-container.soy"/>
+        -->
+
+        <context>glossary</context>
+        <context>main</context>
+        <context>preview</context>
+        <context>atl.general</context>
+    </web-resource>
+
+    <!-- This is a required dependency for the MailService class -->
+    <!--
+    <component-import key="task-manager" interface="com.atlassian.core.task.MultiQueueTaskManager"/>
+    -->
+
+    <!-- This is the component that can be used as a dependency in other classes, setting public='true' will enable other plugins to use this service-->
+    <!--
+    <component key="mailService" class="com.keysight.glossary.helpers.MailServiceImpl" public="true">
+        <interface>com.keysight.glossary.helpers.MailService</interface>
+    </component>
+    -->
+
+    <!-- import from the product container -->
+    <!--
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
+    <component-import key="transactionTemplate"  name="Hibernate Transaction Template" interface="com.atlassian.sal.api.transaction.TransactionTemplate" />
+    <component-import key="sidebar-link-service" interface="com.atlassian.confluence.plugins.ia.service.SidebarLinkService" />
+    -->
+
+
+</atlassian-plugin>

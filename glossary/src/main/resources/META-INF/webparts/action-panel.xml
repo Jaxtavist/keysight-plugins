@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <!-- register a button when hightlighting text -->
+    <web-item key="show-glossary-container" name="Show Definition" section="page.view.selection/action-panel" weight="30">
+        <label key="Show Definition"/>
+        <styleClass>aui-iconfont-devtools-file-commented</styleClass>
+    </web-item>
+
+</module-container>
+

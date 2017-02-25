@@ -1,0 +1,64 @@
+<h3>Introduction</h3>
+<p>The help text macros are widgets that provide some text that when
+clicked will popup a box with some helpful text.  The macro comes
+in three flavors: <strong>Help Text</strong>, <strong>Help Text 
+From Page</strong> and <strong>Help Text From Shared Block</strong>.</p>
+
+<h3>Block vs Inline Variants</h3>
+<p>The <strong>Help Text</strong> macro is the block variant.  It is very
+easy to use.  The author inserts the macro, the text to display is provided
+as one of the macro parameters, the help text is placed in the body of the 
+macro. While simple to use, this macro has the limitation that it cannot 
+be inserted inline with regular text.<p>
+
+<p>The <strong>Help Text from Page</strong> and <strong>Help Text from 
+Shared Block</strong> macros can be inserted inline because they
+pull the help content from a page or a shared block on the server.</p>
+
+<h3>Example Use Case</h3>
+<p>This use case is designed to provide popup help when clicking on words 
+on the page.  First, insert one or more <strong>Shared Block</strong> macros
+at the bottom of the page. Be sure to include a <i>Shared Block Key</i>.  If
+the intent is to only view the help via the <strong>Help Text From Shared Block</strong>
+macro, it's advisable to set the <i>Hidden</i> flag in the <strong>Shared
+Block</strong>macro parameters. At
+this point it's best to save the page as the macro needs the content of the
+shared block on the server so it can pull it down for the help popup.  Then
+edit the page again, and add the <strong>Help Text From Shared Block</strong>
+macro.  Enter the title of the current page and the shared block key. 
+And when you view the page, the text should now be clickable and bring up the
+content in the <strong>Shared Block</strong> macro body.</p>
+
+<h3>A word of caution</h3>
+<p>There are no intentional limitations placed on how much help text
+may be provided.  It's recommended to use the popup variant for very brief 
+help message, the dialog box for medium sized help messages and to not use
+popup text for lenghly help text messages.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Page</strong>:For the help-text-from-page and help-text-from-shared-block
+macros, this parameter determines the page which will either provide the content
+or contains the shared block</p>
+
+<p><strong>Shared Block Key</strong>:For the help-text-from-shared-block
+macros, this parameter if set will select which shared block is included.
+If no key is set, the first shared block on the page will be included.</p>
+
+<p><strong>Text</strong>:The text to display on the page.  If no
+text is supplied the help icon, <span class="aui-icon aui-icon-small aui-iconfont-help">Help</span>
+, will be displayed.  The text &quot;(?)&quot; will be substitured with the 
+<span class="aui-icon aui-icon-small aui-iconfont-help">Help</span>.</p>
+
+<p><strong>Title</strong>:If using the dialog box variant, the text
+provided in this space will be inserted as the title of the dialog box.</p>
+
+<p><strong>Tip</strong>:If using the dialog box variant, the tip
+provided in this space will be inserted in the footer of the dialog box.</p>
+
+<p><strong>Type</strong>:The help text can be shown with either of two widgets.
+The <b>Dialog Box</b> will bring up dialog box on top of the page that the user
+will need to close via the close button.  The <b>Popup</b> will bring up a small
+popup box next to the item clicked.  Clicking off the widget will automatically
+close it.</p>
+

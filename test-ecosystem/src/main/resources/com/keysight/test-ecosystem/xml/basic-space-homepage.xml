@@ -1,0 +1,148 @@
+<ac:layout>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <p>
+        <ac:structured-macro ac:name="test-ecosystem-navbar"/>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="single">
+    <ac:layout-cell>
+      <ac:structured-macro ac:name="tip">
+        <ac:parameter ac:name="title">Welcome to your new Test Ecosystem space!</ac:parameter>
+        <ac:rich-text-body>
+          <p>This space is created with the Test Ecosystem blueprint. Various things have been done to integrate it in with the Keysight Test Ecosystem. It does depend on the Test Ecosystem space being up and configured.</p>
+        </ac:rich-text-body>
+      </ac:structured-macro>
+      <h2>Finish setting up the spaceComplete these tasks to get started</h2>
+<p>
+<ac:task-list>
+        
+<ac:task>
+<ac:task-id>10</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>Add a space description</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>11</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>Add space categories</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>12</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>Add home page labels</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>15</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>Configure the Sidebar - Add Space Shortcuts</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>16</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>Configure the Sidebar - Disable the Blog if it's not going to be used</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>17</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>Configure the Sidebar - Set the space icon</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>18</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body>
+   <strong>If necessary, add the documentation space category</strong>
+</ac:task-body>
+</ac:task>
+
+</ac:task-list>
+
+</p>
+<h2>What has been done</h2>
+<p>
+        
+<ac:task-list>
+        
+<ac:task>
+        
+<ac:task-id>20</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body>
+   <strong>Assign Space Permissions</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>21</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body>
+   <strong>Create the Admin Section</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>22</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body>
+   <strong>Restrict editing the Admin Section to the Admin group</strong>
+</ac:task-body>
+</ac:task>
+
+<ac:task>
+<ac:task-id>23</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body>
+   <strong>Promote the Test Ecosystem Basic Page Blueprint</strong>
+</ac:task-body>
+</ac:task>
+
+</ac:task-list>
+
+</p>
+    </ac:layout-cell>
+  </ac:layout-section>
+  <ac:layout-section ac:type="two_equal">
+    <ac:layout-cell>
+      <h2>Recent space activity</h2>
+      <p>
+        <ac:structured-macro ac:name="recently-updated">
+          <ac:parameter ac:name="max">5</ac:parameter>
+          <ac:parameter ac:name="hideHeading">true</ac:parameter>
+          <ac:parameter ac:name="theme">social</ac:parameter>
+          <ac:parameter ac:name="types">page, comment, blogpost</ac:parameter>
+        </ac:structured-macro>
+      </p>
+    </ac:layout-cell>
+    <ac:layout-cell>
+      <h2>Space contributors</h2>
+      <p>
+        <ac:structured-macro ac:name="contributors">
+          <ac:parameter ac:name="limit">5</ac:parameter>
+          <ac:parameter ac:name="scope">descendants</ac:parameter>
+          <ac:parameter ac:name="order">update</ac:parameter>
+          <ac:parameter ac:name="showLastTime">true</ac:parameter>
+          <ac:parameter ac:name="mode">list</ac:parameter>
+        </ac:structured-macro>
+      </p>
+    </ac:layout-cell>
+  </ac:layout-section>
+</ac:layout>

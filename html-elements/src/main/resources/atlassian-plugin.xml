@@ -1,0 +1,51 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+        <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+        <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+        <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+        <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+        <scan-modules>
+           <folder>META-INF/macros</folder>
+           <folder>META-INF/rest</folder>
+        </scan-modules>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="html-elements" location="/com/keysight/html-elements/i18n/html-elements"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="html-elements-resources" name="Html Elements Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.keysight.html-elements:macro-browser-resources</dependency>
+        
+        <resource type="download" name="html-elements.css" location="/css/html-elements.css"/>
+        <resource type="download" name="aui-buttons.css" location="/css/aui-buttons.css"/>
+        <resource type="download" name="authors-only-block.css" location="/css/authors-only-block.css"/>
+        <resource type="download" name="block.css" location="/css/block.css"/>
+
+        <resource type="download" name="html-elements.js" location="/js/html-elements.js"/>
+        <resource type="download" name="macro-help.js" location="/js/macro-help.js"/>
+	    <resource type="download" name="aui-buttons.js" location="/js/aui-buttons.js"/>
+	    <resource type="download" name="table-width.js" location="/js/table-width.js"/>
+	    <resource type="download" name="layout-width.js" location="/js/layout-width.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>html-elements</context>
+	    <context>atl.general</context>
+	    <context>main</context>
+        <context>macro-browser</context>
+        <context>preview</context>
+    </web-resource>
+
+    <web-resource key="html-elements-editor-resources" name="Html Elements Editor Web Resources.">
+        <resource type="download" name="html-elements-editor.js" location="js/html-elements-editor.js" />
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+        <context>macro-browser</context>
+    </web-resource>
+
+
+</atlassian-plugin>

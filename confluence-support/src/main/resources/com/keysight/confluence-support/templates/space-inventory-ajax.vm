@@ -1,0 +1,15 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.confluence-support:confluence-support-resources/images" )
+#set( $igeLogo = "$images/ige-48x20.png" )
+#set( $count = 1 )
+<html>
+  <head>
+    $webResourceManager.requireResource("com.keysight.confluence-support:confluence-support-admin-resources")
+    $webResourceManager.requireResource("com.keysight.confluence-support:confluence-support-space-inventory-resources")
+    <title>$i18n.getText("com.keysight.confluence-support.space-inventory-ajax.title")</title>
+    <meta name="decorator" content="atl.admin">
+  </head>
+  <body>
+<div id="keysight-space-inventory-progress-container"></div>
+<div id="keysight-space-inventory-container"></div>
+  </body>
+</html>

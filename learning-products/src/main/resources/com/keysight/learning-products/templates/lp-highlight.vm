@@ -1,0 +1,29 @@
+##Use display:none in following line to  hide text in Wiki, but pass it through to MS Word.
+
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.learning-products:learning-products-resources/images" )
+
+#if( $renderWithTables )
+<div class="table-wrap">
+   <table class="keysight-lp-block-table confluenceTable">
+      <tr>
+         <td class="keysight-lp-type-identifying-cell confluenceTd" ><img src="$images/$image"/></td>
+         <td class="$colorClass confluenceTd">
+#if( $enableLpTag )$lpTag#end
+$body
+#if( $enableLpTag )$endLpTag#end
+         </td>
+      </tr>
+   </table>
+</div>
+#else
+<div class="keysight-pseudo-table keysight-lp-highlight-container">
+   <div class="keysight-pseudo-table-tr keysight-lp-highlight-container-row">
+      <div class="keysight-pseudo-table-td keysight-lp-highlight-icon-container">
+         <div class="$iconColorClass keysight-lp-highlight-icon">$!iconText</div>
+      </div>
+      <div class="keysight-pseudo-table-td keysight-lp-highlight-body-container">
+         <div class="keysight-lp-highlight-body $colorClass">$body</div>
+      </div>
+   </div>
+</div>
+#end

@@ -1,0 +1,17 @@
+#property-panel a.macro-property-panel-LpGuidelineDo span.panel-button-text:before,
+#property-panel a.macro-property-panel-LpGuidelineConsider span.panel-button-text:before,
+#property-panel a.macro-property-panel-InlineGuidelineDo span.panel-button-text:before,
+#property-panel a.macro-property-panel-InlineGuidelineConsider span.panel-button-text:before,
+#property-panel a.macro-property-panel-BlockGuidelineDo span.panel-button-text:before,
+#property-panel a.macro-property-panel-BlockGuidelineConsider span.panel-button-text:before {
+    content: "\002714 ";
+}
+
+#property-panel a.macro-property-panel-LpGuidelineAvoid span.panel-button-text:before,
+#property-panel a.macro-property-panel-LpGuidelineDoNot span.panel-button-text:before,
+#property-panel a.macro-property-panel-InlineGuidelineAvoid span.panel-button-text:before,
+#property-panel a.macro-property-panel-InlineGuidelineDoNot span.panel-button-text:before,
+#property-panel a.macro-property-panel-BlockGuidelineAvoid span.panel-button-text:before,
+#property-panel a.macro-property-panel-BlockGuidelineDoNot span.panel-button-text:before {
+    content: "\002718 ";
+}

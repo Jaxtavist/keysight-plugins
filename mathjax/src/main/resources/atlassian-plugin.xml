@@ -1,0 +1,48 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+   <plugin-info>
+      <description>${project.description}</description>
+      <version>${project.version}</version>
+      <vendor name="${project.organization.name}" url="${project.organization.url}" />
+      <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+      <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+      <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+      <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+      <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+      <scan-modules>
+         <folder>META-INF/macros</folder>
+         <folder>META-INF/rest</folder>
+         <folder>META-INF/webparts</folder>
+      </scan-modules>
+   </plugin-info>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="mathjax" location="/com/keysight/mathjax/i18n/mathjax"/>
+    
+   <!-- add our web resources -->
+   <web-resource key="mathjax-resources" name="Mathjax Web Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+      <!-- transform Soy templates into JS -->
+      <transformation extension="soy">
+         <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+         </transformer>
+      </transformation>
+       
+      <resource type="download" name="mathjax.css" location="/css/mathjax.css"/>
+      <resource type="download" name="mathjax.js" location="/js/mathjax.js"/>
+      <resource type="download" name="macro-help.js" location="/js/macro-help.js"/>
+      <resource type="download" name="activate-string-fields.js" location="/js/activate-string-fields.js"/>
+      <resource type="download" name="string-fields.js" location="soy/string-fields.soy"/>
+      <resource type="download" name="images/" location="/images"/>
+
+      <context>mathjax</context>
+      <context>atl.general</context>
+      <context>main</context>
+      <context>macro-browser</context>
+      <context>preview</context>
+   </web-resource>
+    
+</atlassian-plugin>

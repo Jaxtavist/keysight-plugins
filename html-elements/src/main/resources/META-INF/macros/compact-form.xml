@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="compact-form" location="/com/keysight/html-elements/i18n/compact-form"/>
+    
+   <xhtml-macro name="compact-form" key="compact-form" 
+                class="com.keysight.html.elements.macros.CompactForm"
+                icon="/download/resources/com.keysight.html-elements:html-elements-resources/images/keysight-logo-80x80.png">
+                <category name="confluence-content"/>
+                <parameters>
+                   <parameter name="style" type="enum" default="AUI">
+                      <value name="AUI"/>
+                      <value name="Plain HTML"/>
+                   </parameter>
+                   <parameter name="url" type="string" required="true">
+                      <option key="showNameInPlaceholder" value="true"/>
+                      <option key="showValueInPlaceholder" value="true"/>
+                   </parameter>
+                   <parameter name="target" type="enum" default="New Window or Tab">
+                      <value name="Same Window or Tab"/>
+                      <value name="New Window or Tab"/>
+                   </parameter>
+                   <parameter name="submit" type="string" />
+                   <parameter name="form-layout" type="enum" >
+                      <value name="Long Label"/>
+                      <value name="Top Label"/>
+                      <value name="Unsectioned"/>
+                   </parameter>
+                   <parameter name="seperator" type="string" />
+                   <parameter name="alignment" type="enum" >
+                      <value name="Left"/>
+                      <value name="Center"/>
+                      <value name="Right"/>
+                   </parameter>
+                   <parameter name="submit-seperator" type="string" />
+                   <parameter name="submit-alignment" type="enum" >
+                      <value name="Left"/>
+                      <value name="Center"/>
+                      <value name="Right"/>
+                   </parameter>
+                </parameters>
+   </xhtml-macro>
+   
+</module-container>

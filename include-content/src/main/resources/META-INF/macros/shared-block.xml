@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <!-- add our i18n resource -->
+   <resource type="i18n" name="shared-block" location="/com/keysight/include-content/i18n/shared-block"/>
+ 
+   <xhtml-macro name="shared-block" key="shared-block" 
+                class="com.keysight.include.content.macros.SharedBlock"
+                icon="/download/resources/com.keysight.include-content:include-content-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters>
+         <parameter name="shared-block-key" type="string"/>
+         <parameter name="allowAnonymousAccess" type="boolean"/>
+         <parameter name="hidden" type="boolean"/>
+      </parameters>
+   </xhtml-macro>
+
+</module-container>
+

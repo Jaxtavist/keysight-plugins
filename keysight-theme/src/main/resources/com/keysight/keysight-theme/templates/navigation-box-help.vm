@@ -1,0 +1,44 @@
+<h3>Introduction</h3>
+
+<p>The purpose of the Navigation box is to create a consistent
+graphical element for lists of links.  The Navigation Box
+currently supports three styles.</p>
+
+<h3>Examples</h3>
+
+<div class="panel navigation-box-container conf-macro output-block" data-hasbody="true" data-macro-name="navigation-box">
+   <div class="navigation-box navigation-box-header navigation-box-top keysight-dark-red keysight-dark-red-header">
+      Keysight Dark Red
+   </div>
+   <div class="navigation-box navigation-box-body   keysight-dark-red keysight-dark-red-body">
+      <p>Sample Text</p>
+   </div>
+</div>
+<div class="panel navigation-box-container conf-macro output-block" data-hasbody="true" data-macro-name="navigation-box">
+   <div class="navigation-box navigation-box-header navigation-box-top keysight-gray keysight-gray-header">
+      Keysight Gray
+   </div>
+   <div class="navigation-box navigation-box-body   keysight-gray keysight-gray-body">
+      <p>Sample Text</p>
+   </div>
+</div>
+<div class="panel navigation-box-container conf-macro output-block" data-hasbody="true" data-macro-name="navigation-box">
+   <div class="navigation-box navigation-box-header navigation-box-top keysight-dark-gray keysight-dark-gray-header">
+      Keysight Dark Gray 
+   </div>
+   <div class="navigation-box navigation-box-body   keysight-dark-gray keysight-dark-gray-body">
+      <p>Sample Text</p>
+   </div>
+</div>
+<div class="panel navigation-box-container conf-macro output-block" data-hasbody="true" data-macro-name="navigation-box">
+   <div class="navigation-box-top navigation-box navigation-box-body   keysight-dark-red keysight-dark-red-body">
+      <p>Navibation box with no title (all styles)</p>
+   </div>
+</div>
+
+<h3>Parameters</h3>
+<p><strong>Style</strong>: Three Styles are supplied: Keysight Dark Red, Keysight Gray, Keysight Dark Gray
+<p><strong>Title</strong>: If present, the specified text will be added to the top of the navigation box.
+if there is no text, the header for the navigation box will not be displayed</p>
+<p><strong>Title Link Destination</strong>: If present, the title will be a link to the url provided in this field.</p>
+

@@ -1,0 +1,168 @@
+/* block quote styles */
+
+table.keysight-lp-block-quote {
+    margin-left:28px;
+    background-color:#f9f9f9;
+    border-left: 10px solid #ccc;
+    font-style:italic;
+    width:75%;
+    overflow-y: hidden; 
+}
+
+td.keysight-lp-block-quote {
+    border:none;
+    border-collapse:collapse;
+    padding: 0px;
+    text-align:left;
+}
+
+span.keysight-lp-block-quote {
+  color: #ccc;
+  font-size: 6em;
+  margin-right: 0.25em;
+  line-height: 0.1em;
+  vertical-align: -0.6em;
+}
+
+/* highlight block styles - table implementation */
+table.keysight-lp-block-table {
+    border:none !important;
+    margin-left:28px;
+    width:70%;
+}
+.keysight-lp-block-table td {
+    border:none !important;
+    padding: 7px 10px;
+    vertical-align: top;
+}
+
+.keysight-lp-block-table td p {
+   margin-top: 10px;
+}
+
+.keysight-lp-type-identifying-cell {
+    width:56px;
+}
+
+.keysight-lp-type-identifying-cell img {
+    padding-top:3px;
+    width:56px;
+    height:auto;
+}
+
+
+/* highlight block styles - div implementation */
+div.keysight-pseudo-table {
+   display: table;
+}
+
+div.keysight-pseudo-table-tr {
+   display: table-row;
+}
+
+div.keysight-pseudo-table-td {
+   display: table-cell;
+}
+
+.keysight-lp-highlight-container {
+   border:none !important;
+   margin-left:28px;
+   margin-top:20px;
+   margin-bottom:20px;
+   width:70%;
+   vertical-align: top;
+}
+
+.keysight-lp-highlight-container-row {
+}
+
+.keysight-lp-highlight-icon-container {
+   border:none !important;
+   padding: 7px 10px;
+   width:56px;
+}
+
+.keysight-lp-highlight-icon {
+   color:#FFFFFF;
+   text-align: center;
+   font-family: "Arial", "Helvetica Neue", "Helvetica", "san-serif";
+   font-size: 9px;
+   padding: 2px 0px 1px 0px;
+   vertical-align: center;
+}
+
+.keysight-lp-highlight-body-container {
+   padding: 0px 2px 0px 4px;
+   vertical-align: top;
+}
+
+.keysight-lp-highlight-body {
+   padding: 7px 10px;
+}
+
+/* highlight block background colors */
+.keysight-lp-icon-gray-background{   background-color:#9c9c9c; } 
+.keysight-lp-icon-green-background{  background-color:#00973e; } 
+.keysight-lp-icon-red-background{    background-color:#e90029; } 
+.keysight-lp-icon-yellow-background{ background-color:#ffba00; } 
+.keysight-lp-icon-blue-background{   background-color:#00487b; } 
+
+.keysight-lp-gray-background{   background-color:#ededed; } 
+.keysight-lp-green-background{  background-color:#ccffcc; } 
+.keysight-lp-red-background{    background-color:#ffc1c1; } 
+.keysight-lp-yellow-background{ background-color:#fce6c9; } 
+.keysight-lp-blue-background{   background-color:#ccffff; } 
+
+/* LP Internal Styling */
+.lp-internal {
+    padding: 1px 5px 1px 5px;
+    background-color: #ccffcc;
+}
+
+.lp-internal-content-container{
+   border: 0;
+   background: none;
+   border-radius: 0;
+   padding: 5px 5px 5px 5px;
+}
+
+.lp-internal-content-top{
+   border-top-left-radius: 8px;
+   border-top-right-radius: 8px;
+   -moz-border-radius-topleft: 8px;
+   -moz-border-radius-topright: 8px;
+   -webkit-border-top-left-radius: 8px;
+   -webkit-border-top-right-radius: 8px;
+}
+
+.lp-internal-content{
+   background: #00000 none repeat scroll 0 0;
+   border: 1px solid #555555;
+   overflow: hidden;
+}
+
+.lp-internal-content-header{
+   color: #e8e8e8;
+   background-color: #891518;
+
+   line-height: 2;
+   text-align: center;
+   padding: 0 12px;
+   font-weight: bold;
+} 
+
+.lp-internal-content-body{
+   padding:10px;
+
+   border-top: none;
+   border-bottom: 1px solid #555555;
+   border-left: 1px solid #555555;
+   border-right: 1px solid #555555;
+   border-bottom-left-radius: 8px;
+   border-bottom-right-radius: 8px;
+   -moz-border-radius-bottomleft: 8px;
+   -moz-border-radius-bottomright: 8px;
+   -webkit-border-bottom-left-radius: 8px;
+   -webkit-border-bottom-right-radius: 8px;
+}
+

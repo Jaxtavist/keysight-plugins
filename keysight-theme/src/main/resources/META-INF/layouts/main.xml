@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+    
+   <!-- The override of the main decorator -->
+   <layout key="main" name="Main Decorator" class="com.atlassian.confluence.themes.VelocityDecorator" overrides="/decorators/main.vmd">
+      <resource type="velocity" name="decorator" location="/com/keysight/keysight-theme/templates/main.vmd" />
+   </layout>
+ 
+</module-container>
