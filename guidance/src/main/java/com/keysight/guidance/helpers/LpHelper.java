@@ -18,4 +18,14 @@ public class LpHelper
         }
         return bFlag;
     }
+
+    public static boolean IsPdfExport(ConversionContext context)
+    {
+        boolean bFlag = false;
+        // Note, scroll office output to Word using the display type of pdf
+        if( context.getOutputType().matches( "pdf" ) ){
+            bFlag = true;
+        }
+        return bFlag;
+    }
 }
