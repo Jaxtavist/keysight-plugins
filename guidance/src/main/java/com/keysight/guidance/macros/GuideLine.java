@@ -10,12 +10,13 @@ import com.keysight.guidance.helpers.LpHelper;
 
 public class GuideLine implements Macro
 {
-    protected final static String BODY           = "body";        
-    protected final static String LEADING_TAG    = "leadingTagAsHtml";        
-    protected final static String GUIDANCE       = "guidance";        
-    protected final static String GUIDANCE_CLASS = "guidanceClass";        
-    protected final static String GUIDANCE_GLYPH = "guidanceGlyphAsHtml";        
-    protected final static String LP_EXPORT      = "lpExport";
+    protected final static String BODY                  = "body";        
+    protected final static String LEADING_TAG           = "leadingTagAsHtml";        
+    protected final static String GUIDANCE              = "guidance";        
+    protected final static String GUIDANCE_CLASS        = "guidanceClass";        
+    protected final static String GUIDANCE_GLYPH        = "guidanceGlyphAsHtml";        
+    protected final static String LP_EXPORT             = "lpExport";
+    protected final static String WORD_OR_PDF_EXPORT    = "wordOrPdfExport";
     protected final static String AUTO_DETECTION_FAILED = "autoGuidanceDetectionFailed";
 
     protected final static String DO       = "DO";
@@ -52,7 +53,7 @@ public class GuideLine implements Macro
     protected String getGuidanceGlyph(){ return CHECK; }
     protected String getGuidanceClass(){ return GUIDANCE_CHECK; }
     protected String getLpStartTag(){ return LP_DO_START_TAG; }
-    protected boolean allowLpTag(){ return true; }
+    protected boolean allowLpTag(){ return false; }
 
     @Override
     public String execute(Map<String, String> parameters, String body, ConversionContext context)
@@ -137,6 +138,10 @@ public class GuideLine implements Macro
         lpEndTag = lpStartTag.replaceAll( "START@$", "END@" );
         if( allowLpTag() && LpHelper.IsLpExport( context ) ){
            velocityContext.put( LP_EXPORT, "true" );
+        }
+
+        if( LpHelper.IsWordOrPdfExport( context ) ){
+           velocityContext.put( WORD_OR_PDF_EXPORT, "true" );
         }
 
 	    if( guidance.equals( DO ) ){

@@ -1,6 +1,8 @@
 package com.keysight.guidance.helpers;
 
 import java.util.Map;
+import com.atlassian.confluence.content.render.xhtml.ConversionContext;
+import com.keysight.guidance.helpers.LpHelper;
 
 public class GuidelineDescription
 {
@@ -131,17 +133,23 @@ public class GuidelineDescription
         return this.term;
     }
 
-    public String span()
+    public String span( ConversionContext context )
     {
+       String guidanceTerm = this.getTerm().toUpperCase();
+
+       if( LpHelper.IsWordOrPdfExport( context ) ){
+          guidanceTerm = String.format( "<b>%s</b>", guidanceTerm );
+       }
+
        return String.format( "<span class=\"%s\">%s</span>&nbsp<span class=\"guidance-term\">%s</span>",
                              this.getGuidanceClass(),
                              this.getGuidanceGlyph(),
-                             this.getTerm().toUpperCase() );
+                             guidanceTerm );
     }
 
-    public String html() 
+    public String html( ConversionContext context ) 
     {
-       return this.span();
+       return this.span( context );
     }
 
     public String img() 

@@ -87,7 +87,8 @@
    </xhtml-macro>
 
    <xhtml-macro name="lp-guideline" key="lp-guideline" 
-                class="com.keysight.guidance.macros.GuideLine"
+                state="disabled"
+                class="com.keysight.guidance.macros.LpGuideLine"
                 icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
                 <category name="confluence-content" />
       <parameters>
@@ -113,32 +114,32 @@
    </xhtml-macro>
 
    <xhtml-macro name="lp_guideline_do" key="lp_guideline_do" 
-	        state="disabled"
-                class="com.keysight.guidance.macros.Do"
+                state="disabled"
+                class="com.keysight.guidance.macros.LpDo"
                 icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
       <category name="confluence-content" />
       <parameters/>
    </xhtml-macro>
 
    <xhtml-macro name="lp_guideline_consider" key="lp_guideline_consider" 
-	        state="disabled"
-                class="com.keysight.guidance.macros.Consider"
+                state="disabled"
+                class="com.keysight.guidance.macros.LpConsider"
                 icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
       <category name="confluence-content" />
       <parameters/>
    </xhtml-macro>
 
    <xhtml-macro name="lp_guideline_avoid" key="lp_guideline_avoid" 
-	        state="disabled"
-                class="com.keysight.guidance.macros.Avoid"
+                state="disabled"
+                class="com.keysight.guidance.macros.LpAvoid"
                 icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
       <category name="confluence-content" />
       <parameters/>
    </xhtml-macro>
 
    <xhtml-macro name="lp_guideline_donot" key="lp_guideline_donot" 
-	        state="disabled"
-                class="com.keysight.guidance.macros.DoNot"
+                state="disabled"
+                class="com.keysight.guidance.macros.LpDoNot"
                 icon="/download/resources/com.keysight.guidance:guidance-resources/images/lp-keysight-logo-80x80.png">
       <category name="confluence-content" />
       <parameters/>

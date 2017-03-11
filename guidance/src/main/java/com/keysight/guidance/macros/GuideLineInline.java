@@ -92,8 +92,7 @@ public class GuideLineInline extends BaseMacro implements Macro, StreamableMacro
                          final ConversionContext context) throws IOException 
     {
         GuidelineDescription guidelineDescription = getGuidelineDescription( parameters );
-        System.out.println( guidelineDescription.html() );
-        html.append( guidelineDescription.html() );
+        html.append( guidelineDescription.html( context ) );
     }
     
     private GuidelineDescription getGuidelineDescription( Map<String, String> parameters ){

@@ -15,7 +15,11 @@ $lpStartTag
 $!leadingTagAsHtml<span class="guidance-term"><b>$!guidance</b></span>&nbsp;$!body
 $lpEndTag
 #else
-$!leadingTagAsHtml<span class="guidance-term">$!guidance</span>&nbsp;$!body
+   #if( $wordOrPdfExport )
+      $!leadingTagAsHtml<span class="guidance-term"><b>$!guidance</b></span>&nbsp;$!body
+   #else
+      $!leadingTagAsHtml<span class="guidance-term">$!guidance</span>&nbsp;$!body
+   #end
 #end
       </td>
    </tr>
