@@ -8,8 +8,9 @@
 
     <form id="confluence-support-admin-config" class="aui">
 
-       <h2>Actions By Space - Default Groups for Fix Anonymous Access Tab</h2>
-       <div id="groups-list"><ul class="groups"></ul></div>
+       <h2>Default groups for the Fix Anonymous Access tab in Actions by Space</h2>
+       <div id="group-list-container" class="list-container"></div>
+       <br />
        <div class="config-input-container">
           <div class="confing-input-row">
              <div class="config-input-cell">
@@ -20,8 +21,10 @@
                 </div>
              </div>
              <div class="config-input-cell config-input-buttons">
-                <div class="buttons-container right-button">
-                   <input id="add-group" class="button submit" type="submit" value="Add Group">
+                <div class="field-group right-button">
+                   <div class="buttons-container right-button">
+                      <input id="add-group" class="button submit" type="submit" value="Add Group">
+                   </div>
                 </div>
              </div>
           </div>
@@ -29,8 +32,9 @@
 
        <hr />
 
-       <h2>Email Address to send New Space Creation notification to</h2>
-       <div id="email-list"><ul class="emails"></ul></div>
+       <h2>Email addresses which will receive new space creation notifications.</h2>
+       <div id="email-list-container" class="list-container"></div>
+       <br />
        <div class="config-input-continer">
           <div class="config-input-row">
              <div class="config-input-cell">
@@ -41,8 +45,10 @@
                 </div>
              </div>
              <div class="config-input-cell">
-                <div class="buttons-container right-button">
-                   <input id="add-email" class="button submit" type="submit" value="Add Email Address">
+                <div class="field-group right-button">
+                   <div class="buttons-container right-button">
+                      <input id="add-email" class="button submit" type="submit" value="Add Email Address">
+                   </div>
                 </div>
              </div>
           </div>

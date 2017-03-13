@@ -19,6 +19,7 @@ import com.atlassian.confluence.user.AuthenticatedUserThreadLocal;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.atlassian.confluence.mail.template.ConfluenceMailQueueItem;
@@ -29,6 +30,23 @@ import static com.atlassian.confluence.mail.template.ConfluenceMailQueueItem.MIM
 import com.keysight.confluence.support.helpers.MailService;
 import com.keysight.confluence.support.helpers.MailServiceImpl;
 
+import com.atlassian.sal.api.pluginsettings.PluginSettings;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
+import com.atlassian.sal.api.transaction.TransactionCallback;
+import com.atlassian.sal.api.transaction.TransactionTemplate;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
+import java.net.URLDecoder;
+import java.io.StringReader;
+
+import com.keysight.confluence.support.helpers.PluginConfig;
+
 @Component
 public class ConfluenceSupportSpaceEventListener implements DisposableBean
 {
@@ -38,21 +56,27 @@ public class ConfluenceSupportSpaceEventListener implements DisposableBean
     private final UserAccessor userAccessor;
     private final MailService mailService;
     private final MultiQueueTaskManager taskManager;
+    private final PluginSettingsFactory pluginSettingsFactory;
+    private final TransactionTemplate transactionTemplate;
 
     @Autowired
     public ConfluenceSupportSpaceEventListener(EventPublisher eventPublisher,
-                               MultiQueueTaskManager taskManager,
-                           SettingsManager settingsManager,
+                                               MultiQueueTaskManager taskManager,
+                                               PluginSettingsFactory pluginSettingsFactory,
+                                               SettingsManager settingsManager,
                                                SpaceManager spaceManager,
+                                               TransactionTemplate transactionTemplate,
                                                UserAccessor userAccessor )
     {
         this.eventPublisher  = eventPublisher;
-        this.taskManager     = taskManager;
+        this.pluginSettingsFactory = pluginSettingsFactory;
         this.settingsManager = settingsManager;
         this.spaceManager    = spaceManager;
+        this.taskManager     = taskManager;
+        this.transactionTemplate = transactionTemplate;
         this.userAccessor    = userAccessor;
 
-    mailService = new MailServiceImpl( taskManager );
+        mailService = new MailServiceImpl( taskManager );
         eventPublisher.register(this);
     }
 
@@ -66,9 +90,34 @@ public class ConfluenceSupportSpaceEventListener implements DisposableBean
         Map <String, Object> eventContext = event.getContext();
         String emailSubject;
         StringBuilder emailText = new StringBuilder();
-        String adminEmailList = "pdl-wiki2-admin@keysight.com";
-
+        List<String> emailAddresses = new ArrayList<String>();
         User loggedInUser = AuthenticatedUserThreadLocal.getUser();
+
+        try{
+            PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute(new TransactionCallback(){
+                public Object doInTransaction(){
+                    PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                    PluginConfig pluginConfig = new PluginConfig();
+                    pluginConfig.setXml( (String) settings.get(PluginConfig.class.getName() + ".xml"));
+                    return pluginConfig;
+                };
+            });
+
+            String pluginConfigXml = URLDecoder.decode( pluginConfig.getXml() );
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse( new InputSource( new StringReader(pluginConfigXml) ) );
+            Element root = document.getDocumentElement();
+            NodeList allNodes = root.getElementsByTagName( "on-space-creation-notification-email-address" );
+            for( int i = 0; i < allNodes.getLength(); i++ ){
+               if( allNodes.item(i).getNodeType() == Node.ELEMENT_NODE){ 
+                  emailAddresses.add( allNodes.item(i).getTextContent() );
+               }
+            }
+
+        } catch( Exception e ){
+        }
 
         emailSubject = "New Confluence Space Created: " + space.getName();
         emailText.append( "<h1>A new space in Confluence has been created!</h1>\n" );
@@ -84,12 +133,14 @@ public class ConfluenceSupportSpaceEventListener implements DisposableBean
         }
         emailText.append( "</ul>\n" );
     
-        try{
-           MailQueueItem mailQueueItem = new ConfluenceMailQueueItem( adminEmailList, emailSubject, emailText.toString(), MIME_TYPE_HTML);
-           mailService.sendEmail( mailQueueItem );
-        } catch( Exception e ){
-           System.out.println( "Failed to sending email test." );
-           System.out.println( e );
+        for( String emailAddress : emailAddresses ){
+           try{
+              MailQueueItem mailQueueItem = new ConfluenceMailQueueItem( emailAddress, emailSubject, emailText.toString(), MIME_TYPE_HTML);
+              mailService.sendEmail( mailQueueItem );
+           } catch( Exception e ){
+              System.out.println( "Failed to sending email test." );
+              System.out.println( e );
+           }
         }
 
         return;
