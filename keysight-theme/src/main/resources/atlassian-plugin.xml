@@ -8,7 +8,7 @@
       <param name="plugin-banner">images/keysight-banner-560x274.png</param>
       <param name="vendor-icon">images/keysight-icon-16x16.png</param>
       <param name="vendor-logo">images/keysight-logo-72x72.png</param>
-      <param name="configure.url">/plugins/servlet/keysight-theme/admin/configuration</param>
+      <!-- <param name="configure.url">/plugins/servlet/keysight-theme/admin/configuration</param> -->
       <scan-modules>
            <folder>META-INF/admin</folder>
            <folder>META-INF/blueprints</folder>
