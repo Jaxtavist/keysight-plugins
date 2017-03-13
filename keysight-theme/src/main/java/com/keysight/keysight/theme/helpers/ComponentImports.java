@@ -35,8 +35,11 @@ public class ComponentImports
     @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
     @ComponentImport com.atlassian.confluence.user.UserAccessor                     userAccessor;
     @ComponentImport com.atlassian.event.api.EventPublisher                         eventPublisher;
+    @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
+    @ComponentImport com.atlassian.sal.api.pluginsettings.PluginSettingsFactory     pluginSettingsFactory;
     @ComponentImport com.atlassian.sal.api.transaction.TransactionTemplate          transactionTemplate;
     @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
+    @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
 
   
     private ComponentImports()

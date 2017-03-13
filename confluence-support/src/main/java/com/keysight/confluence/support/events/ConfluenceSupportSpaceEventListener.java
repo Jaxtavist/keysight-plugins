@@ -41,8 +41,8 @@ public class ConfluenceSupportSpaceEventListener implements DisposableBean
 
     @Autowired
     public ConfluenceSupportSpaceEventListener(EventPublisher eventPublisher,
-		    			       MultiQueueTaskManager taskManager,
-					       SettingsManager settingsManager,
+                               MultiQueueTaskManager taskManager,
+                           SettingsManager settingsManager,
                                                SpaceManager spaceManager,
                                                UserAccessor userAccessor )
     {
@@ -52,7 +52,7 @@ public class ConfluenceSupportSpaceEventListener implements DisposableBean
         this.spaceManager    = spaceManager;
         this.userAccessor    = userAccessor;
 
-	mailService = new MailServiceImpl( taskManager );
+    mailService = new MailServiceImpl( taskManager );
         eventPublisher.register(this);
     }
 
@@ -63,28 +63,27 @@ public class ConfluenceSupportSpaceEventListener implements DisposableBean
         //}
 
         Space space = event.getSpace();
-	Map <String, Object> eventContext = event.getContext();
-	String emailSubject;
-	StringBuilder emailText = new StringBuilder();
-	String adminEmailList = "pdl-wiki2-admin@keysight.com";
+        Map <String, Object> eventContext = event.getContext();
+        String emailSubject;
+        StringBuilder emailText = new StringBuilder();
+        String adminEmailList = "pdl-wiki2-admin@keysight.com";
 
-	User loggedInUser = AuthenticatedUserThreadLocal.getUser();
+        User loggedInUser = AuthenticatedUserThreadLocal.getUser();
 
         emailSubject = "New Confluence Space Created: " + space.getName();
         emailText.append( "<h1>A new space in Confluence has been created!</h1>\n" );
-	emailText.append( "<p><a href=\"" + settingsManager.getGlobalSettings().getBaseUrl() + space.getUrlPath() + "\">"+space.getName()+"</a></p>\n" );
+        emailText.append( "<p><a href=\"" + settingsManager.getGlobalSettings().getBaseUrl() + space.getUrlPath() + "\">"+space.getName()+"</a></p>\n" );
 
-	emailText.append( "<p>Created by: <b>" + loggedInUser.getFullName() + " (" + loggedInUser.getName() + ")</b></p>\n" );
-	emailText.append( "<p>Blueprint Key: <b> " + event.getSpaceBlueprint().getModuleCompleteKey() + "</b></p>\n" );
+        emailText.append( "<p>Created by: <b>" + loggedInUser.getFullName() + " (" + loggedInUser.getName() + ")</b></p>\n" );
+        emailText.append( "<p>Blueprint Key: <b> " + event.getSpaceBlueprint().getModuleCompleteKey() + "</b></p>\n" );
 
 
-
-	emailText.append( "<ul>\n" );
-	for( String key : eventContext.keySet() ) {
-           emailText.append( "   <li>" + key + " => " + eventContext.get( key ).toString() + "</li>\n" );
-	}
-	emailText.append( "</ul>\n" );
-	
+        emailText.append( "<ul>\n" );
+        for( String key : eventContext.keySet() ) {
+            emailText.append( "   <li>" + key + " => " + eventContext.get( key ).toString() + "</li>\n" );
+        }
+        emailText.append( "</ul>\n" );
+    
         try{
            MailQueueItem mailQueueItem = new ConfluenceMailQueueItem( adminEmailList, emailSubject, emailText.toString(), MIME_TYPE_HTML);
            mailService.sendEmail( mailQueueItem );

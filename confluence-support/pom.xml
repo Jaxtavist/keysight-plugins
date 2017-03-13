@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>confluence-support</artifactId>
-    <version>1.9.0</version>
+    <version>1.10.0</version>
     <name>Confluence Support</name>
     <description>This plugin provides various macros to assist supporting confluence.</description>
    

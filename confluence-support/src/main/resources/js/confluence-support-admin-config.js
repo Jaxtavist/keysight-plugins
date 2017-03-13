@@ -3,40 +3,40 @@
     // form the URL
     var url = AJS.contextPath() + "/rest/confluence-support/1.0/admin-config/configuration";
 
-    function addConfigBox(){
-       AJS.$("#config-body").append( Keysight.Confluence.Support.Admin.Config.Templates.config() );
-
-       AJS.$(".all-users-group-remove").unbind( "click" );
-       AJS.$(".all-users-group-remove").click(function(e) { 
-          $(this).closest( ".config-container" ).remove();
-       });
-    }
-
     AJS.toInit(function() {
-       addConfigBox();
 
-       AJS.$("#confluence-support-add-all-users-group").click(function(e) { 
+       AJS.$("#add-group").click(function(e) { 
           e.preventDefault();
-          addConfigBox();
+          addGroup();
+       });
+
+       AJS.$("#add-email").click(function(e) { 
+          e.preventDefault();
+          addGroup();
        });
 
        AJS.$("#confluence-support-admin-config").submit(function(e) { 
           e.preventDefault();
 
-          var config = new Array();
+          var groupconfig = new Array();
+          var emailconfig = new Array();
 
-          AJS.$(".config-container").each( function( index ) {
-             config.push( '<all-users-group>' 
-                          + AJS.$(this).find(".confluence-support-all-users-group").attr("value") 
-                          + '</all-users-group>'
-                        );
+          AJS.$(".saved-group").each( function( index ) {
+             groupconfig.push( '<all-users-group>' + $(this).html(); + '</all-users-group>' );
+          });
+
+          AJS.$(".saved-email").each( function( index ) {
+             emailconfig.push( '<on-space-creation-notification-email>' + $(this).html(); + '</on-space-creation-notification-email>' );
           });
 
           var xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + "\n"
                         + '<plugin-configuration>' + "\n"
                         + '   <all-users-groups>' + "\n"
-                        + config.join( "\n" )  
+                        + groupconfig.join( "\n" )  
                         + '   </all-users-groups>' + "\n"
+                        + '   <on-space-creation-notification-emails>' + "\n"
+                        + emailconfig.join( "\n" )  
+                        + '   </on-space-creation-notification-emails>' + "\n"
                         + '</plugin-configuration>' + "\n";
 
           AJS.$.ajax({
@@ -48,6 +48,7 @@
           }).done(function () { alert("Configuration updated"); 
           }).fail(function (self, status, error) { alert(error); 
           });
+               */
        });
 
        $.ajax({
@@ -55,11 +56,19 @@
            dataType: "json"
        }).done(function(pluginConfiguration) { 
            $xml = AJS.$( AJS.$.parseXML( decodeURIComponent(pluginConfiguration.xml) ) );
+
            $xml.find( "all-users-group" ).each( function( index ) {
-              if( index > 0 ){ addConfigBox(); }
-              container = AJS.$(".config-container").last();
-              container.find(".confluence-support-all-users-group").val( $(this).html() );
+              AJS.$(".groups").append( "<li>"
+                                          + "<span class="saved-group">"+$(this).html()+"</span>" + "&nbsp;<a href=\"#\" onclick=\"removeemail();\">[remove]</a>"
+                                       +"</li>\n" );
            });
+
+           $xml.find( "on-space-creation-notification-email" ).each( function( index ) {
+              AJS.$(".groups").append( "<li>"
+                                          + $(this).html() + "&nbsp;<a href=\"#\" onclick=\"removeemail();\">[remove]</a>"
+                                       +"</li>\n" );
+           });
+
        }).fail(function(self,status,error){
           alert( error );
        });

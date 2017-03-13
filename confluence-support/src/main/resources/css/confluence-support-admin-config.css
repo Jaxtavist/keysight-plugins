@@ -12,6 +12,28 @@
    margin: 5px;
 }
 
+.config-input-container{
+   display:table;
+}
+
+.config-input-row{
+   display:table-row;
+}
+
+.config-input-buttons{
+   padding: 50px 10px 10px 10px;
+}
+
+.config-input-cell{
+   display:table-cell;
+   padding:10px 25px 10px 10px;
+   margin: 5px;
+}
+
+form.aui div.right-button {
+   padding: 4px 0px 4px 4px;
+}
+
 form.aui .field-group.confluence-support-remove-button-container {
    padding: 4px 0px 4px 0px;
 }
