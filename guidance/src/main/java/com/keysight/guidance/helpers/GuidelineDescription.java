@@ -27,6 +27,15 @@ public class GuidelineDescription
     public final static String CONSIDER_IMAGE = "Consider.92x24.png";
     public final static String AVOID_IMAGE    = "Avoid.62x24.png";
 
+    public final static String CHECK_PNG        = "check.10x10.png";
+    public final static String BALLOT_X_PNG     = "x.8x12.png";
+    public final static String RED_CHECK_PNG    = "red-check.10x10.png";
+    public final static String RED_BALLOT_X_PNG = "red-x.8x12.png";
+    public final static int CHECK_PNG_WIDTH     = 10;
+    public final static int CHECK_PNG_HEIGHT    = 10;
+    public final static int BALLOT_X_PNG_WIDTH  = 8;
+    public final static int BALLOT_X_PNG_HEIGHT = 12;
+
     public final static int DO_WIDTH        = 40;
     public final static int DO_NOT_WIDTH    = 73;
     public final static int CONSIDER_WIDTH  = 92;
@@ -50,7 +59,6 @@ public class GuidelineDescription
                                                                 DO_NOT,
                                                                 CONSIDER,
                                                                 AVOID };
-
 
     public final static String DEFAULT_TERM = DO;
     public final static int DEFAULT_WIDTH = DO_WIDTH;
@@ -135,16 +143,41 @@ public class GuidelineDescription
 
     public String span( ConversionContext context )
     {
+       baseUrlIsValid();
        String guidanceTerm = this.getTerm().toUpperCase();
+       String html;
 
        if( LpHelper.IsWordOrPdfExport( context ) ){
           guidanceTerm = String.format( "<b>%s</b>", guidanceTerm );
        }
 
-       return String.format( "<span class=\"%s\">%s</span>&nbsp<span class=\"guidance-term\">%s</span>",
-                             this.getGuidanceClass(),
-                             this.getGuidanceGlyph(),
-                             guidanceTerm );
+       if( LpHelper.IsPdfExport( context ) ){
+           if( this.getGuidanceGlyph().equals( CHECK ) ){
+              html = String.format( "<img src=\"%s%s/%s\" alt=\"%s\" height=\"%d\" width=\"%d\"/>&nbsp;<span class=\"guidance-term\">%s</span>",
+                                    this.getBaseUrl(),
+                                    RESOURCE_DIR, 
+                                    RED_CHECK_PNG,
+                                    this.getAltText().toUpperCase(), 
+                                    CHECK_PNG_HEIGHT,
+                                    CHECK_PNG_WIDTH,
+                                    guidanceTerm );
+           } else {
+              html = String.format( "<img src=\"%s%s/%s\" alt=\"%s\" height=\"%d\" width=\"%d\"/>&nbsp;<span class=\"guidance-term\">%s</span>",
+                                    this.getBaseUrl(),
+                                    RESOURCE_DIR, 
+                                    RED_BALLOT_X_PNG,
+                                    this.getAltText().toUpperCase(), 
+                                    BALLOT_X_PNG_HEIGHT,
+                                    BALLOT_X_PNG_WIDTH,
+                                    guidanceTerm );
+           }
+       } else {
+           html = String.format( "<span class=\"%s\">%s</span>&nbsp<span class=\"guidance-term\">%s</span>",
+                                 this.getGuidanceClass(),
+                                 this.getGuidanceGlyph(),
+                                 guidanceTerm );
+       }
+       return html;
     }
 
     public String html( ConversionContext context ) 
