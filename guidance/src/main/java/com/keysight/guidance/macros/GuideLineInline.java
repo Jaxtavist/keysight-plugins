@@ -22,18 +22,45 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
 
+import com.atlassian.sal.api.pluginsettings.PluginSettings;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
+import com.atlassian.sal.api.transaction.TransactionCallback;
+import com.atlassian.sal.api.transaction.TransactionTemplate;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
+import java.net.URLDecoder;
+import java.io.StringReader;
+
 import java.util.Map;
 
 import com.keysight.guidance.helpers.GuidelineDescription;
+import com.keysight.guidance.helpers.PluginConfig;
 
 public class GuideLineInline extends BaseMacro implements Macro, StreamableMacro, EditorImagePlaceholder
 {
+    private final PluginSettingsFactory pluginSettingsFactory;
+    private final TransactionTemplate transactionTemplate;
     private final SettingsManager settingsManager;
-    private GuidelineDescription guidelineDescription;
 
-    public GuideLineInline( SettingsManager settingsManager )
+    private GuidelineDescription guidelineDescription;
+    private boolean renderHtmlWithPngImage   = false;
+    private boolean renderPdfWithPngImage    = true;
+    private boolean renderWordWithPngImage   = false;
+    private boolean renderScrollWithPngImage = false;
+
+    public GuideLineInline( PluginSettingsFactory pluginSettingsFactory,
+                            SettingsManager settingsManager,
+                            TransactionTemplate transactionTemplate )
     {
+        this.pluginSettingsFactory = pluginSettingsFactory;
         this.settingsManager = settingsManager;
+        this.transactionTemplate = transactionTemplate;
     }
 
     @Override
@@ -91,13 +118,63 @@ public class GuideLineInline extends BaseMacro implements Macro, StreamableMacro
                          final Map<String, String> parameters, 
                          final ConversionContext context) throws IOException 
     {
+        parsePluginConfiguration();
         GuidelineDescription guidelineDescription = getGuidelineDescription( parameters );
+        guidelineDescription.setRenderHtmlWithPngImage( renderHtmlWithPngImage );
+        guidelineDescription.setRenderPdfWithPngImage( renderPdfWithPngImage );
+        guidelineDescription.setRenderWordWithPngImage( renderWordWithPngImage );
+        guidelineDescription.setRenderScrollWithPngImage( renderScrollWithPngImage );
         html.append( guidelineDescription.html( context ) );
     }
     
     private GuidelineDescription getGuidelineDescription( Map<String, String> parameters ){
         String baseUrl = settingsManager.getGlobalSettings().getBaseUrl();
         return new GuidelineDescription( baseUrl, parameters);
+    }
+
+    private void parsePluginConfiguration(){
+        String[] outputTypes = new String[]{ "for-html", "for-pdf", "for-word", "for-scroll" };
+        boolean nodeValue = true;
+
+        try{
+            PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute(new TransactionCallback(){
+                public Object doInTransaction(){
+                    PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                    PluginConfig pluginConfig = new PluginConfig();
+                    pluginConfig.setXml( (String) settings.get(PluginConfig.class.getName() + ".xml"));
+                    return pluginConfig;
+                };
+            });
+
+            String pluginConfigXml = URLDecoder.decode( pluginConfig.getXml() );
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse( new InputSource( new StringReader(pluginConfigXml) ) );
+            Element root = document.getDocumentElement();
+
+            for( String outputType : outputTypes ){
+                NodeList nodeList = root.getElementsByTagName( outputType );
+                if( nodeList.getLength() > 0 && nodeList.item(0).getNodeType() == Node.ELEMENT_NODE ){
+                    if( nodeList.item(0).getTextContent().equals( "true" ) ){
+                        nodeValue = true;
+                    } else {
+                        nodeValue = false;
+                    }
+                    
+                    if( outputType.equals( "for-html" ) ){
+                        renderHtmlWithPngImage = nodeValue;
+                    } else if( outputType.equals( "for-pdf" ) ){
+                        renderPdfWithPngImage = nodeValue;
+                    } else if( outputType.equals( "for-word" ) ){
+                        renderWordWithPngImage = nodeValue;
+                    } else if( outputType.equals( "for-scroll" ) ){
+                        renderScrollWithPngImage = nodeValue;
+                    }
+                }
+            }
+        } catch( Exception e ){
+        }
     }
 
     /**

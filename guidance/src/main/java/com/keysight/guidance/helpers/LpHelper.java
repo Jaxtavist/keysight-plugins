@@ -22,8 +22,26 @@ public class LpHelper
     public static boolean IsPdfExport(ConversionContext context)
     {
         boolean bFlag = false;
-        // Note, scroll office output to Word using the display type of pdf
         if( context.getOutputType().matches( "pdf" ) ){
+            bFlag = true;
+        }
+        return bFlag;
+    }
+
+    public static boolean IsWordExport(ConversionContext context)
+    {
+        boolean bFlag = false;
+        // Note, scroll office output to Word triggers the output type to be pdf
+        if( context.getOutputType().matches( "word" ) ){
+            bFlag = true;
+        }
+        return bFlag;
+    }
+
+    public static boolean IsScrollExport(ConversionContext context)
+    {
+        boolean bFlag = false;
+        if( context.hasProperty("scroll-mode") ){
             bFlag = true;
         }
         return bFlag;

@@ -12,6 +12,10 @@ public class GuidelineDescription
     private String altText;
     private String guidanceGlyph;
     private String guidanceClass;
+    private boolean renderHtmlWithPngImage   = false;
+    private boolean renderPdfWithPngImage    = true;
+    private boolean renderWordWithPngImage   = false;
+    private boolean renderScrollWithPngImage = false;
     private int height;
     private int width;
 
@@ -27,10 +31,12 @@ public class GuidelineDescription
     public final static String CONSIDER_IMAGE = "Consider.92x24.png";
     public final static String AVOID_IMAGE    = "Avoid.62x24.png";
 
-    public final static String CHECK_PNG        = "check.10x10.png";
-    public final static String BALLOT_X_PNG     = "x.8x12.png";
     public final static String RED_CHECK_PNG    = "red-check.10x10.png";
     public final static String RED_BALLOT_X_PNG = "red-x.8x12.png";
+    public final static String BLACK_CHECK_PNG    = "check.10x10.png";
+    public final static String BLACK_BALLOT_X_PNG = "x.8x12.png";
+    public final static String CHECK_PNG        = BLACK_CHECK_PNG;
+    public final static String BALLOT_X_PNG     = BLACK_BALLOT_X_PNG;
     public final static int CHECK_PNG_WIDTH     = 10;
     public final static int CHECK_PNG_HEIGHT    = 10;
     public final static int BALLOT_X_PNG_WIDTH  = 8;
@@ -141,7 +147,24 @@ public class GuidelineDescription
         return this.term;
     }
 
-    public String span( ConversionContext context )
+    public String htmlWithUnicodeCharacter( ConversionContext context )
+    {
+       String guidanceTerm = this.getTerm().toUpperCase();
+       String html;
+
+       if( LpHelper.IsWordOrPdfExport( context ) ){
+          guidanceTerm = String.format( "<b>%s</b>", guidanceTerm );
+       }
+
+       html = String.format( "<span class=\"%s\">%s</span>&nbsp<span class=\"guidance-term\">%s</span>",
+                             this.getGuidanceClass(),
+                             this.getGuidanceGlyph(),
+                             guidanceTerm );
+
+       return html;
+    }
+
+    public String htmlWithPngImage( ConversionContext context )
     {
        baseUrlIsValid();
        String guidanceTerm = this.getTerm().toUpperCase();
@@ -151,38 +174,60 @@ public class GuidelineDescription
           guidanceTerm = String.format( "<b>%s</b>", guidanceTerm );
        }
 
-       if( LpHelper.IsPdfExport( context ) ){
-           if( this.getGuidanceGlyph().equals( CHECK ) ){
-              html = String.format( "<img src=\"%s%s/%s\" alt=\"%s\" height=\"%d\" width=\"%d\"/>&nbsp;<span class=\"guidance-term\">%s</span>",
-                                    this.getBaseUrl(),
-                                    RESOURCE_DIR, 
-                                    RED_CHECK_PNG,
-                                    this.getAltText().toUpperCase(), 
-                                    CHECK_PNG_HEIGHT,
-                                    CHECK_PNG_WIDTH,
-                                    guidanceTerm );
-           } else {
-              html = String.format( "<img src=\"%s%s/%s\" alt=\"%s\" height=\"%d\" width=\"%d\"/>&nbsp;<span class=\"guidance-term\">%s</span>",
-                                    this.getBaseUrl(),
-                                    RESOURCE_DIR, 
-                                    RED_BALLOT_X_PNG,
-                                    this.getAltText().toUpperCase(), 
-                                    BALLOT_X_PNG_HEIGHT,
-                                    BALLOT_X_PNG_WIDTH,
-                                    guidanceTerm );
-           }
+       if( this.getGuidanceGlyph().equals( CHECK ) ){
+          html = String.format( "<img src=\"%s%s/%s\" alt=\"%s\" height=\"%d\" width=\"%d\"/>&nbsp;<span class=\"guidance-term\">%s</span>",
+                                this.getBaseUrl(),
+                                RESOURCE_DIR, 
+                                CHECK_PNG,
+                                this.getAltText().toUpperCase(), 
+                                CHECK_PNG_HEIGHT,
+                                CHECK_PNG_WIDTH,
+                                guidanceTerm );
        } else {
-           html = String.format( "<span class=\"%s\">%s</span>&nbsp<span class=\"guidance-term\">%s</span>",
-                                 this.getGuidanceClass(),
-                                 this.getGuidanceGlyph(),
-                                 guidanceTerm );
+          html = String.format( "<img src=\"%s%s/%s\" alt=\"%s\" height=\"%d\" width=\"%d\"/>&nbsp;<span class=\"guidance-term\">%s</span>",
+                                this.getBaseUrl(),
+                                RESOURCE_DIR, 
+                                BALLOT_X_PNG,
+                                this.getAltText().toUpperCase(), 
+                                BALLOT_X_PNG_HEIGHT,
+                                BALLOT_X_PNG_WIDTH,
+                                guidanceTerm );
        }
+
        return html;
     }
 
     public String html( ConversionContext context ) 
     {
-       return this.span( context );
+       String html;
+
+       if( LpHelper.IsScrollExport( context ) ){
+          if( this.getRenderScrollWithPngImage() ){
+              html = htmlWithPngImage( context );
+          } else {
+              html = htmlWithUnicodeCharacter( context );
+          }
+       } else if( LpHelper.IsWordExport( context ) ){
+          if( this.getRenderWordWithPngImage() ){
+              html = htmlWithPngImage( context );
+          } else {
+              html = htmlWithUnicodeCharacter( context );
+          }
+       } else if( LpHelper.IsPdfExport( context ) ){
+          if( this.getRenderPdfWithPngImage() ){
+              html = htmlWithPngImage( context );
+          } else {
+              html = htmlWithUnicodeCharacter( context );
+          }
+       } else {
+          if( this.getRenderHtmlWithPngImage() ){
+              html = htmlWithPngImage( context );
+          } else {
+              html = htmlWithUnicodeCharacter( context );
+          }
+       }
+          
+       return html;
     }
 
     public String img() 
@@ -258,5 +303,33 @@ public class GuidelineDescription
     }
     public String getGuidanceClass(){
         return this.guidanceClass;
+    }
+
+    public void setRenderHtmlWithPngImage( boolean bFlag ){
+       this.renderHtmlWithPngImage = bFlag;
+    }
+    public boolean getRenderHtmlWithPngImage(){
+        return this.renderHtmlWithPngImage;
+    }
+
+    public void setRenderPdfWithPngImage( boolean bFlag ){
+       this.renderPdfWithPngImage = bFlag;
+    }
+    public boolean getRenderPdfWithPngImage(){
+        return this.renderPdfWithPngImage;
+    }
+
+    public void setRenderWordWithPngImage( boolean bFlag ){
+       this.renderWordWithPngImage = bFlag;
+    }
+    public boolean getRenderWordWithPngImage(){
+        return this.renderWordWithPngImage;
+    }
+
+    public void setRenderScrollWithPngImage( boolean bFlag ){
+       this.renderScrollWithPngImage = bFlag;
+    }
+    public boolean getRenderScrollWithPngImage(){
+        return this.renderScrollWithPngImage;
     }
 }

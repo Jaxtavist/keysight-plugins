@@ -6,6 +6,24 @@ import com.atlassian.confluence.content.render.xhtml.ConversionContext;
 import com.atlassian.confluence.macro.Macro;
 import com.atlassian.confluence.macro.MacroExecutionException;
 import com.atlassian.confluence.plugin.services.VelocityHelperService;
+import com.atlassian.confluence.setup.settings.SettingsManager;
+
+import com.atlassian.sal.api.pluginsettings.PluginSettings;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
+import com.atlassian.sal.api.transaction.TransactionCallback;
+import com.atlassian.sal.api.transaction.TransactionTemplate;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
+import java.net.URLDecoder;
+import java.io.StringReader;
+
+import com.keysight.guidance.helpers.PluginConfig;
 import com.keysight.guidance.helpers.LpHelper;
 
 public class GuideLine implements Macro
@@ -18,6 +36,7 @@ public class GuideLine implements Macro
     protected final static String LP_EXPORT             = "lpExport";
     protected final static String WORD_OR_PDF_EXPORT    = "wordOrPdfExport";
     protected final static String AUTO_DETECTION_FAILED = "autoGuidanceDetectionFailed";
+    protected final static String BASE_URL              = "baseUrl";
 
     protected final static String DO       = "DO";
     protected final static String CONSIDER = "CONSIDER";
@@ -41,11 +60,40 @@ public class GuideLine implements Macro
     protected final static String CHECK          = HEAVY_CHECK;
     protected final static String BALLOT_X       = HEAVY_BALLOT_X;
 
-    protected final VelocityHelperService velocityHelperService;
+    protected final static String RED_CHECK_PNG      = "red-check.10x10.png";
+    protected final static String RED_BALLOT_X_PNG   = "red-x.8x12.png";
+    protected final static String BLACK_CHECK_PNG    = "check.10x10.png";
+    protected final static String BLACK_BALLOT_X_PNG = "x.8x12.png";
+    protected final static String CHECK_PNG        = BLACK_CHECK_PNG;
+    protected final static String BALLOT_X_PNG     = BLACK_BALLOT_X_PNG;
+    protected final static int CHECK_PNG_WIDTH     = 10;
+    protected final static int CHECK_PNG_HEIGHT    = 10;
+    protected final static int BALLOT_X_PNG_WIDTH  = 8;
+    protected final static int BALLOT_X_PNG_HEIGHT = 12;
+    
+    protected final static String GUIDANCE_IMAGE = "guidanceImage";
+    protected final static String GUIDANCE_IMAGE_WIDTH = "guidanceImageWidth";
+    protected final static String GUIDANCE_IMAGE_HEIGHT = "guidanceImageHeight";
 
-    public GuideLine( VelocityHelperService velocityHelperService )
+    private boolean renderHtmlWithPngImage   = false;
+    private boolean renderPdfWithPngImage    = true;
+    private boolean renderWordWithPngImage   = false;
+    private boolean renderScrollWithPngImage = false;
+
+    protected final PluginSettingsFactory pluginSettingsFactory;
+    protected final TransactionTemplate transactionTemplate;
+    protected final VelocityHelperService velocityHelperService;
+    protected final SettingsManager settingsManager;
+
+    public GuideLine( PluginSettingsFactory pluginSettingsFactory,
+                      SettingsManager settingsManager,
+                      TransactionTemplate transactionTemplate,
+                      VelocityHelperService velocityHelperService )
     {
-       this.velocityHelperService = velocityHelperService;
+        this.pluginSettingsFactory = pluginSettingsFactory;
+        this.settingsManager = settingsManager;
+        this.transactionTemplate = transactionTemplate;
+        this.velocityHelperService = velocityHelperService;
     }
 
     protected boolean fixedGuidance(){ return false; }
@@ -68,6 +116,8 @@ public class GuideLine implements Macro
         String lpEndTag      = "";
         String leadingTag    = "";
         String providedGuidanceTerm = "";
+
+        parsePluginConfiguration();
 
         // This code is used to move the start of the html tag before the guidance term rather 
         // than after it.
@@ -154,6 +204,21 @@ public class GuideLine implements Macro
                body = body.replaceAll( "^(?i)(?s)\\s*Do\\s*Not\\b\\s*", "" );
 	    }
 
+        if( LpHelper.IsScrollExport( context ) ){
+           if( renderScrollWithPngImage ){
+              setGuidanceImage( velocityContext, guidance );
+           }
+        } else if( LpHelper.IsWordExport( context ) ){
+           if( renderWordWithPngImage ){
+              setGuidanceImage( velocityContext, guidance );
+           }
+        } else if( LpHelper.IsPdfExport( context ) ){
+           if( renderPdfWithPngImage ){
+              setGuidanceImage( velocityContext, guidance );
+           }
+        } else if( renderHtmlWithPngImage ){
+           setGuidanceImage( velocityContext, guidance );
+        }
 
         velocityContext.put( GUIDANCE,       guidance );
         velocityContext.put( GUIDANCE_GLYPH, guidanceGlyph );
@@ -161,8 +226,67 @@ public class GuideLine implements Macro
         velocityContext.put( LP_START_TAG,   lpStartTag );
         velocityContext.put( LP_END_TAG,     lpEndTag );
         velocityContext.put( BODY,           body );
+        velocityContext.put( BASE_URL,       settingsManager.getGlobalSettings().getBaseUrl() );
 
         return velocityHelperService.getRenderedTemplate( template, velocityContext);
+    }
+
+    private void setGuidanceImage( Map<String, Object> velocityContext, String guidance )
+    {
+	    if( guidance.equals( DO_NOT ) || guidance.equals( AVOID ) ){
+           velocityContext.put( GUIDANCE_IMAGE, BALLOT_X_PNG );
+           velocityContext.put( GUIDANCE_IMAGE_WIDTH, BALLOT_X_PNG_WIDTH );
+           velocityContext.put( GUIDANCE_IMAGE_HEIGHT, BALLOT_X_PNG_HEIGHT );
+        } else {
+           velocityContext.put( GUIDANCE_IMAGE, CHECK_PNG );
+           velocityContext.put( GUIDANCE_IMAGE_WIDTH, CHECK_PNG_WIDTH );
+           velocityContext.put( GUIDANCE_IMAGE_HEIGHT, CHECK_PNG_HEIGHT );
+        }
+    }
+
+    private void parsePluginConfiguration(){
+        String[] outputTypes = new String[]{ "for-html", "for-pdf", "for-word", "for-scroll" };
+        boolean nodeValue = true;
+
+        try{
+            PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute(new TransactionCallback(){
+                public Object doInTransaction(){
+                    PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                    PluginConfig pluginConfig = new PluginConfig();
+                    pluginConfig.setXml( (String) settings.get(PluginConfig.class.getName() + ".xml"));
+                    return pluginConfig;
+                };
+            });
+
+            String pluginConfigXml = URLDecoder.decode( pluginConfig.getXml() );
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse( new InputSource( new StringReader(pluginConfigXml) ) );
+            Element root = document.getDocumentElement();
+
+            for( String outputType : outputTypes ){
+                NodeList nodeList = root.getElementsByTagName( outputType );
+                if( nodeList.getLength() > 0 && nodeList.item(0).getNodeType() == Node.ELEMENT_NODE ){
+                    if( nodeList.item(0).getTextContent().equals( "true" ) ){
+                        nodeValue = true;
+                    } else {
+                        nodeValue = false;
+                    }
+
+                    if( outputType.equals( "for-html" ) ){
+                        renderHtmlWithPngImage = nodeValue;
+                    } else if( outputType.equals( "for-pdf" ) ){
+                        renderPdfWithPngImage = nodeValue;
+                    } else if( outputType.equals( "for-word" ) ){
+                        renderWordWithPngImage = nodeValue;
+                    } else if( outputType.equals( "for-scroll" ) ){
+                        renderScrollWithPngImage = nodeValue;
+                    }
+                }
+            }
+        } catch( Exception e ){
+        }
     }
 
     @Override

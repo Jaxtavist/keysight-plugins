@@ -2,7 +2,7 @@
 <module-container>
 
     <resource type="i18n" name="config-admin" location="/com/keysight/guidance/i18n/config-admin"/>
-    <!--
+
     <web-resource key="guidance-admin-config-resources" name="Guidance Admin Config Web Resources">
       <dependency>com.atlassian.auiplugin:ajs</dependency>
       <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
@@ -25,7 +25,6 @@
    <servlet key="admin-servlet" class="com.keysight.guidance.helpers.AdminUI">
            <url-pattern>/guidance/admin/configuration</url-pattern>
    </servlet>
--->
  
 </module-container>
 

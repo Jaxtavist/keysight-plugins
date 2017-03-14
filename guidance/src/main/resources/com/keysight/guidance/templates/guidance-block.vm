@@ -1,3 +1,5 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.guidance:guidance-resources/images" )
+
 #if( $autoGuidanceDetectionFailed )
 <div class="auto-guidance-detection-failed">The instance of the guidance
 macro below is set to automatically determine the guidance term from the 
@@ -8,7 +10,15 @@ defaulted to <strong>DO</strong></div>
 
 <table class="lp-guidance-table">
    <tr>
+#if( $guidanceImage )
+      <td class="lp-guidance-icon-column" valign="top"><img src="$images/$guidanceImage" 
+                                                            alt="$guidance"
+                                                            height="$guidanceImageHeight"
+                                                            width="$guidanceImageWidth" /></td>
+#else
       <td class="lp-guidance-icon-column" valign="top"><span class="lp-guidance-icon $guidanceClass">$guidanceGlyphAsHtml</span></td>
+#end
+
       <td class="lp-guidance-text-column">
 #if( $lpExport )
 $lpStartTag

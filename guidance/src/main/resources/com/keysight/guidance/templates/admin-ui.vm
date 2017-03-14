@@ -8,28 +8,38 @@
 
     <form id="guidance-admin-config" class="aui">
 
-       <h2>Check and Ballot X rendering.</h2>
-       <p>The plugin can render the &#10004; and &#10008; glypys in two ways: unicode character or png image.
-       The unicode glyph looks better and is scalable, but doesn't show up in the default pdf export from 
-       confluence.  The image doesn't look as good, but does show up.  To make matters worse, some plugins
-       like ScrollOffice tell the code that a pdf is being generated when it's really creating a word
-       document - and the glyph works in the ScrollOffice word file but not the pdf export. Sheesh!</p>
-       <div id="group-list-container" class="list-container"></div>
-       <br />
-       <div class="config-input-container">
-          <div class="field-group">
-             <div class="checkbox">
-                <input class="checkbox" type="checkbox" id="for-html" name="for-html">
-                <label for="for-html">Use image rather than glyph for HTML output.</label>
-             </div>
-             <div class="checkbox">
-                <input class="checkbox" type="checkbox" id="for-pdf" name="for-pdf">
-                <label for="for-pdf">Use image rather than glyph for PDF output.</label>
-             </div>
-             <div class="checkbox">
-                <input class="checkbox" type="checkbox" id="for-word" name="for-word">
-                <label for="for-pdf">Use image rather than glyph for Word output.</label>
-             </div>
+       <h2>Check and Ballot X Rendering.</h2>
+       <p>The plugin can render the &#10004; and &#10008; glyphs in two ways - unicode character or png image.
+       The unicode character looks better and is scalable, but doesn't show up in the default pdf export from 
+       Confluence.  The png image doesn't look as good, but does show up.  It is suspected that providing
+       a custom font collection for pdf generation will allow the pdf export to properly render the unicode 
+       character.</p>
+
+       <p>To complicate matters, some plugins like <b>ScrollOffice</b> tell the code that a pdf is being 
+       generated when it's really creating a word document.  And in that particular case the unicode
+       character does works in word file generated from the ScrollOffice plugin.  This makes it very 
+       difficult to provide default settings that work in every case.  Therefore, this configuration page
+       can be used by the administrator to set the rendering mode for the various output format as
+       appropriate for their installation of Confluence.</p>
+
+       <h3>Guidance Plugin Rendering Defaults</h3>
+       <hr />
+       <div class="field-group">
+          <div class="checkbox">
+             <input class="checkbox" type="checkbox" id="for-html" name="for-html">
+             <label for="for-html">Use image rather than a unicode character for <b>HTML</b> output.</label>
+          </div>
+          <div class="checkbox">
+             <input class="checkbox" type="checkbox" id="for-pdf" name="for-pdf">
+             <label for="for-pdf">Use image rather than a unicode character for <b>PDF</b> output.</label>
+          </div>
+          <div class="checkbox">
+             <input class="checkbox" type="checkbox" id="for-word" name="for-word">
+             <label for="for-pdf">Use image rather than a unicode character for <b>Word</b> output.</label>
+          </div>
+          <div class="checkbox">
+             <input class="checkbox" type="checkbox" id="for-scroll" name="for-word">
+             <label for="for-pdf">Use image rather than a unicode character when a <b>Scroll plugin</b> is rendering the output.</label>
           </div>
        </div>
 
