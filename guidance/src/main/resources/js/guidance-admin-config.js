@@ -5,13 +5,15 @@ guidanceConfigHelper = (function ($) {
 
     methods['loadConfig'] = function(){
 
+
+
        $.ajax({
            url: url,
            dataType: "json"
        }).done(function(pluginConfiguration) { 
            var xml;
 
-           if( pluginConfiguration.xml.indexOf( "plugin-configuration" ) >= 0 ){
+           if( pluginConfiguration.xml ){
               $xml = AJS.$( AJS.$.parseXML( decodeURIComponent(pluginConfiguration.xml) ) );
            } else {
               var xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + "\n"
@@ -23,7 +25,7 @@ guidanceConfigHelper = (function ($) {
                             + "      <for-scroll>false</for-scroll>" + "\n"
                             + '   </glyph-rendering-defaults>' + "\n"
                             + '</plugin-configuration>' + "\n";
-              $xml = AJS.$( AJS.$.parseXML( decodeURIComponent(xmlString) ) );
+              $xml = AJS.$( AJS.$.parseXML( xmlString ) );
            }
 
            var forHtml = $xml.find( "for-html" );
