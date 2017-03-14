@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="keysight-theme-admin" location="/com/keysight/keysight-theme/i18n/keysight-theme-admin"/>
+
+    <web-resource key="keysight-theme-admin-config-resources" name="Keysight Theme Admin Config Web Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+      <!-- transform calls to AJS.getText() inside JS files -->
+      <transformation extension="js">
+         <transformer key="jsI18n"/>
+      </transformation>
+
+      <!-- transform Soy templates into JS -->
+      <transformation extension="soy">
+         <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+         </transformer>
+      </transformation>
+
+      <resource type="download" name="keysight-theme-admin-config.css" location="/css/keysight-theme-admin-config.css"/>
+      <resource type="download" name="keysight-theme-admin-config.js" location="/js/keysight-theme-admin-config.js"/>
+      <resource type="download" name="admin-ui-config-templates.js" location="/soy/admin-ui-config-templates.soy"/>
+      <resource type="download" name="images/" location="/images"/>
+   </web-resource>
+
+   <servlet key="admin-servlet" class="com.keysight.keysight.theme.helpers.AdminUI">
+      <url-pattern>/keysight-theme/admin/configuration</url-pattern>
+   </servlet>
+ 
+</module-container>
+

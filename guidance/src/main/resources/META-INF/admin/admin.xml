@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
+    <resource type="i18n" name="config-admin" location="/com/keysight/guidance/i18n/config-admin"/>
+    <!--
     <web-resource key="guidance-admin-config-resources" name="Guidance Admin Config Web Resources">
       <dependency>com.atlassian.auiplugin:ajs</dependency>
       <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
 
-      <!-- transform calls to AJS.getText() inside JS files -->
       <transformation extension="js">
          <transformer key="jsI18n"/>
       </transformation>
 
-      <!-- transform Soy templates into JS -->
       <transformation extension="soy">
          <transformer key="soyTransformer">
             <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
@@ -25,6 +25,7 @@
    <servlet key="admin-servlet" class="com.keysight.guidance.helpers.AdminUI">
            <url-pattern>/guidance/admin/configuration</url-pattern>
    </servlet>
+-->
  
 </module-container>
 

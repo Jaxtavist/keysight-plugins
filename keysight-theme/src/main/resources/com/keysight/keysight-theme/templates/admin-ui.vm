@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <title>Keysight Theme Configuration</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("com.keysight.keysight-theme:keysight-theme-admin-config-resources")
+  </head>
+  <body>
+    <p>When a space is created, an email with the details will be send to the following addresses.</p>
+    <form id="keysight-theme-admin-config" class="aui">
+       <div id="config-body"></div>
+       <div class="field-group">
+         <input id="keysight-theme-add-on-space-creation-email" type="submit" value="Add" class="button">
+         <input type="submit" value="Save" class="button">
+       </div>
+    </form>
+  </body>
+</html>

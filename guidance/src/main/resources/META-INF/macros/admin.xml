@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <web-resource key="guidance-admin-config-resources-2" name="Guidance Admin Config Web Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+      <!-- transform calls to AJS.getText() inside JS files -->
+      <transformation extension="js">
+         <transformer key="jsI18n"/>
+      </transformation>
+
+      <!-- transform Soy templates into JS -->
+      <transformation extension="soy">
+         <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+         </transformer>
+      </transformation>
+
+      <resource type="download" name="guidance-admin-config.css" location="/css/guidance-admin-config.css"/>
+      <resource type="download" name="guidance-admin-config.js" location="/js/guidance-admin-config.js"/>
+      <resource type="download" name="images/" location="/images"/>
+   </web-resource>
+
+   <servlet key="admin-servlet" class="com.keysight.guidance.helpers.AdminUI">
+           <url-pattern>/guidance/admin/configuration</url-pattern>
+   </servlet>
+ 
+</module-container>
+
