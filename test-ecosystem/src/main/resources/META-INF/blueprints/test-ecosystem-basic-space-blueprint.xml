@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="Test Ecosystem Space Blueprint i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-space-blueprint"/>
+   <resource type="i18n" name="test-ecosystem-space-blueprint" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-space-blueprint"/>
     
    <web-item key='test-ecosystem-basic-space-web-item' 
              i18n-name-key='test-ecosystem.basic-space.web-item.title'

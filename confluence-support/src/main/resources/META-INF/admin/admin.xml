@@ -2,7 +2,7 @@
 <module-container>
 
     <!-- add our i18n resource -->
-    <resource type="i18n" name="adminI18n" location="/com/keysight/confluence-support/i18n/confluence-support-admin"/>
+    <resource type="i18n" name="confluence-support-admin" location="/com/keysight/confluence-support/i18n/confluence-support-admin"/>
 
     <web-resource key="confluence-support-admin-resources" name="Confluence Support Admin Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>

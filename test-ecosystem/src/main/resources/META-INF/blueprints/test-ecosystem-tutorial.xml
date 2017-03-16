@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="Test Ecosystem Tutorial i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-tutorial"/>
+   <resource type="i18n" name="test-ecosystem-tutorial" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-tutorial"/>
 
    <web-item key="test-ecosystem-tutorial-web-item" 
              i18n-name-key="test-ecosystem.tutorial.web-item.title"

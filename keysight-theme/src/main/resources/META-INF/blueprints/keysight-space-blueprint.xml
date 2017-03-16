@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="Keysight Space Blueprint i18n" location="/com/keysight/keysight-theme/i18n/keysight-space"/>
+   <resource type="i18n" name="keysight-space" location="/com/keysight/keysight-theme/i18n/keysight-space"/>
 
    <!-- Keysight Space Blueprint -->
    <web-item key='keysight-space-web-item' 

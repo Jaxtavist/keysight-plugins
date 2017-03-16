@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="Test Ecosystem Meeting Notes i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-meeting-notes"/>
+   <resource type="i18n" name="test-ecosystem-meeting-notes" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-meeting-notes"/>
 
    <!-- Test Ecosystem Meeting Notes Blueprint -->
    <web-item key="test-ecosystem-meeting-notes-web-item" 

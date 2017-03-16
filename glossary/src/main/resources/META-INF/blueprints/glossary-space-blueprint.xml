@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="Glossary Blueprint i18n" location="/com/keysight/glossary/i18n/glossary-space"/>
+   <resource type="i18n" name="glossary-space" location="/com/keysight/glossary/i18n/glossary-space"/>
 
    <!-- Glossary Space Blueprint -->
    <web-item key='glossary-space-web-item' 

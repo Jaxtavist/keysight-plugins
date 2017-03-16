@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="Test Ecosystem Basic Page Blueprint i18n" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-basic-page"/>
+   <resource type="i18n" name="test-ecosystem-basic-page" location="/com/keysight/test-ecosystem/i18n/test-ecosystem-basic-page"/>
    
    <web-item key="test-ecosystem-basic-page-web-item" 
              i18n-name-key="test-ecosystem.basic-page.web-item.title" 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module-container>
 
-   <resource type="i18n" name="FAQ i18n" location="/com/keysight/include-content/i18n/faq-blueprint"/>
+   <resource type="i18n" name="faq-blueprint" location="/com/keysight/include-content/i18n/faq-blueprint"/>
    
    <web-item key="faq-web-item" 
              i18n-name-key="faq.web-item.title"
