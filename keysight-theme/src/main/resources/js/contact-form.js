@@ -100,8 +100,12 @@ keysightContactSpaceAdmins = (function($){
       e.preventDefault();
       e.stopPropagation();
       var spaceKey = AJS.Data.get("space-key");
-      var userName = AJS.Data.get("user-display-name") + " (" + AJS.Data.get("remote-user") + ")";
+      var userName = "";
       var userEmail = "";
+
+      if( AJS.Data.get("user-display-name" ) ){
+         userName = AJS.Data.get("user-display-name") + " (" + AJS.Data.get("remote-user") + ")";
+      }
 
       contactFormDialog.init( "contactForm", "Space Admin Contact", "", null, userName, userEmail, "Contact the Space Administrators", "", false, spaceKey );
       contactFormDialog.open();

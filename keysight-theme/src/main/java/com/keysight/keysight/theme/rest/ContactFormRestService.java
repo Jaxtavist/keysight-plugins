@@ -74,10 +74,12 @@ public class ContactFormRestService
       String fromEmail        = "";
       List<String> destinationEmails = new ArrayList<String>();
       Response response;
+      String spaceName        = "";
 
       if( !StringUtils.isEmpty( spaceKey ) && StringUtils.isEmpty( contact ) ){
          Space currentSpace = spaceManager.getSpace( spaceKey );
          if( currentSpace != null ){
+            spaceName = currentSpace.getName();
             List<User> admins = spaceManager.getSpaceAdmins( currentSpace );
             for( User admin : admins ){
 	           destinationEmails.add( admin.getEmail() );
@@ -107,6 +109,7 @@ public class ContactFormRestService
 
          emailSubject = "[" + identifier + "] " + "Webpage feedback of type " + type;
          emailText.append( "<p>Feedback from: " + name + " (" + email + ")</p>" );
+         emailText.append( "<p>Sent from the <b>Contact Form</b> in the space <b>" + spaceName + "</b> with the key <b>" + spaceKey + "</b></p>" );
          emailText.append( "<pre>" + text + "</pre>\n" );
       
          try{
