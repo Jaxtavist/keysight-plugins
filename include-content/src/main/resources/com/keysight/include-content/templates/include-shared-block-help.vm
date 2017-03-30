@@ -14,3 +14,19 @@ is a string that needs to match in both the Shared Block
 and the Include Shared Block before the contents may be
 pulled in. If no key is specified, the contents of the
 first Shared Block on the page will be pulled in.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Page</strong>:The name of the page containing the shared block
+to be displayed.</p>
+
+<p><strong>Shared Block Key</strong>:If a <b>Shared Block</b> on the target
+page has this string set in it's macro properties, that block will be
+inserted. If no key is set, the first shared block on the page will be included.
+If a key is set but no block matches, an error will be displayed.</p>
+
+<p><strong>Supress Permission Errors</strong>:If checked and there is a
+permissions problem when rendering the macro, no error message will be
+displayed.  For example, if the shared block is on a page the current user does
+not have permissions to see, then they will not see an error informing them
+that they don't have permissions to see the content.</p>

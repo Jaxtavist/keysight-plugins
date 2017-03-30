@@ -88,7 +88,11 @@ public class IncludeSharedBlockWithReplacement extends IncludePageWithReplacemen
                        if( macroDefinition.getParameter( ALLOW_ANONYMOUS_ACCESS ) != null || permissionManager.hasPermission(m_currentUser, Permission.VIEW, page) ){
                            html = macroDefinition.getBodyText();
                        } else {
-                           html = RenderUtils.blockError(ERROR + " You do not have permissions to view this content.", "" );
+                          if( parameters.containsKey( SUPPRESS_ERRORS ) ){
+                              html = "";
+                          } else {
+                              html = RenderUtils.blockError(ERROR + " You do not have permissions to view this content.", "" );
+                          }
                        }
                    break;
                 }
@@ -97,7 +101,11 @@ public class IncludeSharedBlockWithReplacement extends IncludePageWithReplacemen
                    if( macroDefinition.getParameter( ALLOW_ANONYMOUS_ACCESS ) != null || permissionManager.hasPermission(m_currentUser, Permission.VIEW, page) ){
                        html = macroDefinition.getBodyText();
                    } else {
-                       html = RenderUtils.blockError(ERROR + " You do not have permissions to view this content.", "" );
+                       if( parameters.containsKey( SUPPRESS_ERRORS ) ){
+                           html = "";
+                       } else {
+                           html = RenderUtils.blockError(ERROR + " You do not have permissions to view this content.", "" );
+                       }
                    }
                    break;
                 }

@@ -14,6 +14,7 @@
             <option key="includeDatePath" value="true" />
          </parameter>
          <parameter name="delimiter" type="string" default="/" />
+         <parameter name="suppress-errors" type="boolean"/>
       </parameters>
       <property-panel>
          <button id="goto-target-page" label="Go to Included Page"/>

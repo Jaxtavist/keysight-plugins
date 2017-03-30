@@ -34,6 +34,7 @@ public class IncludePageWithReplacement implements Macro
 
     protected static final String PAGE_KEY         = "page";
     protected static final String DELIMITER_KEY    = "delimiter";
+    protected static final String SUPPRESS_ERRORS  = "suppress-errors";
     protected static final String ERROR            = "Error: ";
     protected static final String NOT_FOUND        = "Page Not Found";
     protected static final String ALREADY_INCLUDED = "The page is already included";
@@ -163,7 +164,11 @@ public class IncludePageWithReplacement implements Macro
                DefaultConversionContext context = new DefaultConversionContext(new PageContext(page, conversionContext.getPageContext()));
                return renderer.render(strippedBody, context);
             } else {
-               return RenderUtils.blockError(ERROR + " You do not have permissions to view this content.", "" );
+               if( parameters.containsKey( SUPPRESS_ERRORS ) ){
+                   return "";
+               } else {
+                   return RenderUtils.blockError(ERROR + " You do not have permissions to view this content.", "" );
+               }
             }
         } finally {
             ContentIncludeStack.pop();

@@ -1,18 +1,41 @@
 <h3>Introduction</h3>
+
 <p>The Include Page with Replacement Macro uses regular
 expression substitution rules defined in the body of the
 macro to display the contents of another confluence page
 with simple string substitution.</p>
+
 <h3>Usage</h3>
+
 <p>A substitution rules takes the form of</p>
+
 <p><pre>/original text/new text/</pre></p>
+
 <p>Every line in the body of the macro defines a new rule
 that will be executed in order (top to bottom).  The default
 delimiter is &quot;/&quot, however, that can be changed
 to any string using the &quot;Delimiter&quot; parameter in the
 macro definition.</p>
+
 <h3>Warning to the User</h3>
+
 <p>The substitution is performed on the final html and does not
 understand the difference between the page content and the html
 formatting, thus it can transform the underlying xml into unparsable
 gibberish causing the macro to be unrenderable.</p>
+
+<h3>Parameters</h3>
+
+<p><strong>Page</strong>:The name of the page containing the shared block
+to be displayed.</p>
+
+<p><strong>Delimiter</strong>:The character to use to mark the start, middle
+and end of the substitution expression.  For example, if / is the 
+delimiter a valid substitution expression is <b>/this/that/</b>.  If the character
+&quot;!&quot; is the delimiter, the same expression now looks like <b>!this!that!</b>.</p>
+
+<p><strong>Supress Permission Errors</strong>:If checked and there is a
+permissions problem when rendering the macro, no error message will be
+displayed.  For example, if the current user does not have permissions to see
+the included page, then they will not see an error informing them that they
+don't have permissions to see the content.</p>

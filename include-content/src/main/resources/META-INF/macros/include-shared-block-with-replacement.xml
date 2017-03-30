@@ -14,6 +14,7 @@
          </parameter>
          <parameter name="shared-block-key" type="string"/>
          <parameter name="delimiter"        type="string" default="/" />
+         <parameter name="suppress-errors"  type="boolean"/>
       </parameters>
       <property-panel>
          <button id="goto-target-page" label="Go to Included Page"/>
