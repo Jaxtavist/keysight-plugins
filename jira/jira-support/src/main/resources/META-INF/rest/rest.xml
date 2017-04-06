@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="JIRA Support Rest Interface" key="jira-support-rest-resource" path="/jira-support" version="1.0">
+        <description>This is a rest resource to provide macro documentation.</description>
+    </rest>
+
+</module-container>
+

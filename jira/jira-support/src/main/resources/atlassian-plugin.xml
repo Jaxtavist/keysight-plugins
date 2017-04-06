@@ -1,0 +1,30 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+        <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+        <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+        <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+        <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+        <scan-modules>
+           <folder>META-INF/rest</folder>
+        </scan-modules>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="jira-support" location="/com/keysight/jira-support/i18n/jira-support"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="jira-support-resources" name="jira-support Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        
+        <resource type="download" name="jira-support.css" location="/css/jira-support.css"/>
+        <resource type="download" name="jira-support.js" location="/js/jira-support.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>jira-support</context>
+    </web-resource>
+
+</atlassian-plugin>
