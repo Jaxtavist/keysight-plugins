@@ -256,6 +256,7 @@
     <module>keysight-theme</module>
     <module>learning-products</module>
     <module>mathjax</module>
+    <module>numbered-headings</module>
     <module>test-ecosystem</module>
   </modules>
 </project>
