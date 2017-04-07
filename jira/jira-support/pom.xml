@@ -5,7 +5,7 @@
    
     <artifactId>jira-support</artifactId>
     <version>1.0.0</version>
-    <name>Jira Support</name>
+    <name>JIRA Support</name>
     <description>This plugin provides various macros to assist supporting JIRA.</description>
    
     <properties>       
