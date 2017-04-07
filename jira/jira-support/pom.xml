@@ -46,6 +46,7 @@
                         <Import-Package>
                             org.springframework.osgi.*;resolution:="optional",
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            com.atlassian.crowd.embedded.api,
                             com.atlassian.crowd.manager.directory,
                             *
                         </Import-Package>
