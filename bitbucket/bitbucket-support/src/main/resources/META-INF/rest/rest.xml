@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="Bitbucket Support Rest Interface" key="bitbucket-support-rest-resource" path="/bitbucket-support" version="1.0">
+        <description>This is the rest resource for the Bitbucket Support plugin.</description>
+    </rest>
+
+</module-container>
+
