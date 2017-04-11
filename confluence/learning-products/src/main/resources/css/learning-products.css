@@ -114,11 +114,13 @@ div.keysight-pseudo-table-td {
 .keysight-lp-blue-background{   background-color:#ccffff; } 
 
 /* LP Internal Styling */
+.lp-hide-modular-export,
 .lp-internal {
     padding: 1px 5px 1px 5px;
     background-color: #ccffcc;
 }
 
+.lp-hide-modular-container,
 .lp-internal-content-container{
    border: 0;
    background: none;
@@ -126,6 +128,7 @@ div.keysight-pseudo-table-td {
    padding: 5px 5px 5px 5px;
 }
 
+.lp-hide-modular-top,
 .lp-internal-content-top{
    border-top-left-radius: 8px;
    border-top-right-radius: 8px;
@@ -135,12 +138,14 @@ div.keysight-pseudo-table-td {
    -webkit-border-top-right-radius: 8px;
 }
 
+.lp-hide-modular,
 .lp-internal-content{
    background: #00000 none repeat scroll 0 0;
    border: 1px solid #555555;
    overflow: hidden;
 }
 
+.lp-hide-modular-header,
 .lp-internal-content-header{
    color: #e8e8e8;
    background-color: #891518;
@@ -151,6 +156,7 @@ div.keysight-pseudo-table-td {
    font-weight: bold;
 } 
 
+.lp-hide-modular-body,
 .lp-internal-content-body{
    padding:10px;
 

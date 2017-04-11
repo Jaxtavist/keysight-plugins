@@ -109,6 +109,17 @@ public class RestService
       return getMacroHelp( title, bodyTemplate );
    }
 
+   @GET
+   @Path("help/lp-hide-modular")
+   @Produces({MediaType.APPLICATION_JSON})
+   @Consumes({MediaType.APPLICATION_JSON})
+   public Response lpHideModularHelp( ){
+      String title = "LP Hide Modular Help";
+      String bodyTemplate = "/com/keysight/learning-products/templates/lp-hide-modular-help.vm";
+
+      return getMacroHelp( title, bodyTemplate );
+   }
+
    private Response getMacroHelp( String title, String bodyTemplate ){
       StringBuilder html = new StringBuilder();
       String headerTemplate = "/com/keysight/learning-products/templates/help-header.vm";

@@ -33,6 +33,9 @@ var learningProductsHelp = (function( $ ){
    methods[ 'showLpInternalHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "lp-internal" );
    }
+   methods[ 'showLpHideModularHelp' ] = function( e ){
+      macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "lp-hide-modular" );
+   }
    //
 
    // return the object with the methods

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>learning-products</artifactId>
-    <version>1.2.18</version>
+    <version>1.3.0</version>
     <name>Learning Products</name>
     <description>These macros assist in the Learning Products process for migrating content from Confluence to Madcap Flare.</description>
    
