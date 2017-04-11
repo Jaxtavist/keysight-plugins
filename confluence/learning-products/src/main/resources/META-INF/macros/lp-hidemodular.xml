@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+   <xhtml-macro name="lp-hide-modular" key="lp-hide-modular" 
+                class="com.keysight.learning.products.macros.LpHideModular"
+                icon="/download/resources/com.keysight.learning-products:learning-products-resources/images/keysight-logo-80x80.png">
+      <category name="confluence-content" />
+      <parameters/>
+   </xhtml-macro>
+
+</module-container>

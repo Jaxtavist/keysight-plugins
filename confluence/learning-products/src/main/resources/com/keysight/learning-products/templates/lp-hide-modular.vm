@@ -1,0 +1,12 @@
+#if( $lpExport )
+<div class="lp-hide-modular-export">
+<p>@LP_HIDEMODULAR_START@</p>
+$body
+<p>@LP_HIDEMODULAR@</p>
+</div>
+#else
+<div class="panel lp-hide-modular-container">
+   <div class="lp-hide-modular lp-hide-modular-top lp-hide-modular-header">Hide Modular</div>
+   <div class="lp-hide-modular lp-hide-modular-body">$body</div>
+</div> 
+#end
