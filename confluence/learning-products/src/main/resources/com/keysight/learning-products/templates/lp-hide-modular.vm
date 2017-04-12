@@ -2,7 +2,7 @@
 <div class="lp-hide-modular-export">
 <p>@LP_HIDEMODULAR_START@</p>
 $body
-<p>@LP_HIDEMODULAR@</p>
+<p>@LP_HIDEMODULAR_END@</p>
 </div>
 #else
 <div class="panel lp-hide-modular-container">

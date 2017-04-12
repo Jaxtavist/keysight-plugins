@@ -2,5 +2,7 @@
 
 <p>Learning Products Hide Modular</p>
 
-<p>Contact Ron Anderson for more information</p>
+<p>This macro is used when KMF Help is built.  If the Help is modular help,
+content marked with this macro will be excluded from KMF Help. If the Help is
+NOT modular, the content will be included in KMF Help.</p> 
 
