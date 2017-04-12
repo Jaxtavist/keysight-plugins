@@ -4,12 +4,12 @@
 <div class="test-ecosystem-dashboard-item">
 <span class="test-ecosystem-dashboard-item-icon" style="background-image:url($images/keysight-logo-48x48.png);">Icon</span>
 <div class="test-ecosystem-dashboard-item-body">
-<a href="/display/keysightWikiII">Keysight Wiki II:</a> Information
-about this wiki including:
+<a href="/display/KSF">Keysight Software Development:</a> Information
+about Software Development within Keysight
 <ul>
-   <li><a href="/display/keysightWikiII/Support">Support</a></li>
-   <li><a href="/display/keysightWikiII/Guidelines">Guidelines</a></li>
-   <li><a href="/display/keysightWikiII/User+Training">Training</a></li>
+   <li><a href="/display/KSF">KSF</a></li>
+   <li><a href="/display/KOSi">KOSi</a></li>
+   <li><a href="/display/keysightGuilds">Keysight Guilds</a></li>
 </ul>
 </div>
 </div>
