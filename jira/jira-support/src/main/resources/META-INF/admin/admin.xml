@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="jira-support-admin" location="/com/keysight/jira-support/i18n/jira-support-admin"/>
+
+    <web-resource key="jira-support-admin-resources" name="JIRA Support Admin Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+        <!-- transform calls to AJS.getText() inside JS files -->
+        <transformation extension="js">
+            <transformer key="jsI18n"/>
+        </transformation>
+
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
+
+        <resource type="download" name="jira-support.css"       location="/css/jira-support.css"/>
+        <resource type="download" name="jira-support-admin.css" location="/css/jira-support-admin.css"/>
+        <resource type="download" name="jira-support-admin.js"  location="/js/jira-support-admin.js"/>
+        <resource type="download" name="jira-support-user-list.js" location="/js/jira-support-user-list.js"/>
+        <resource type="download" name="admin-ui-templates.js"        location="/soy/admin-ui-templates.soy"/>
+        <resource type="download" name="images/" location="/images"/>
+    </web-resource>
+
+    <web-resource key="jira-support-user-list-resources" name="JIRA Support User List Web Resources">
+        <resource type="download" name="jira-support-user-list.js" location="/js/jira-support-user-list.js"/>
+    </web-resource>
+
+    <web-section key="jira-support-admin-functions" name="Keysight Admin Support" location="admin_plugins_menu">
+            <label key="com.keysight.jira-support.admin.section" />
+    </web-section>
+
+    <web-item key="active-users-list-ajax-menu-item" name="Active Users List" section="admin_plugins_menu/jira-support-admin-functions" weight="10">
+        <label key="com.keysight.jira-support.active-users-list-ajax" />
+        <link>/plugins/servlet/jira-support/admin/active-users-list-ajax</link>
+    </web-item>
+
+    <servlet key="active-users-list-ajax-action" name="Active Users List Action" class="com.keysight.jira.support.helpers.ActiveUsersListingAjax">
+            <url-pattern>/jira-support/admin/active-users-list-ajax</url-pattern>
+    </servlet>
+
+</module-container>
+

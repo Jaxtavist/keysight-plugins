@@ -17,6 +17,9 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 public class ComponentImports
 {
     @ComponentImport com.atlassian.crowd.manager.directory.DirectoryManager         directoryManager;
+    @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
+    @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
+    @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
 
     private ComponentImports()
     {

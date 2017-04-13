@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>jira-support</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>JIRA Support</name>
     <description>This plugin provides various macros to assist supporting JIRA.</description>
    
@@ -48,10 +48,13 @@
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
                             com.atlassian.crowd.embedded.api,
                             com.atlassian.crowd.manager.directory,
+                            com.atlassian.sal.api.auth,
+                            com.atlassian.sal.api.user,
                             *
                         </Import-Package>
   
                         <Atlassian-Scan-Folders>
+                            META-INF/admin,
                             META-INF/rest,
                         </Atlassian-Scan-Folders>
 

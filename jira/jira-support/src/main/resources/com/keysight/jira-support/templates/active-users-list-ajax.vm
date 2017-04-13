@@ -1,0 +1,16 @@
+#set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.jira-support:jira-support-resources/images" )
+#set( $igeLogo = "$images/ige-48x20.png" )
+#set( $count = 1 )
+<html>
+  <head>
+    $webResourceManager.requireResource("com.keysight.jira-support:jira-support-admin-resources")
+    $webResourceManager.requireResource("com.keysight.jira-support:jira-support-user-list-resources")
+    <title>$i18n.getText("com.keysight.jira-support.active-users-list-ajax.title")</title>
+    <meta name="decorator" content="atl.admin">
+  </head>
+  <body>
+<h1>Active Users List</h1>
+<div id="keysight-users-list-progress-container"></div>
+<div id="keysight-users-list-container"></div>
+  </body>
+</html>
