@@ -1,3 +1,11 @@
 div.keysight-tabs div.tabs-pane.active-pane{
    padding-top: 10px;
 }
+
+.keysight-no-table-border table.confluenceTable, 
+.keysight-no-table-border table.confluenceTable td, 
+.keysight-no-table-border table.confluenceTable th 
+{
+   border: 0;
+}
+

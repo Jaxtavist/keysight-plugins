@@ -132,6 +132,17 @@ public class RestService
    }
 
    @GET
+   @Path("help/extra-table-properties")
+   @Produces({MediaType.APPLICATION_JSON})
+   @Consumes({MediaType.APPLICATION_JSON})
+   public Response extraTablePropertiesHelp( ){
+      String title = "Extra Table Properties Help";
+      String bodyTemplate = "/com/keysight/html-elements/templates/extra-table-properties-help.vm";
+
+      return getMacroHelp( title, bodyTemplate );
+   }
+
+   @GET
    @Path("help/authors-only-block")
    @Produces({MediaType.APPLICATION_JSON})
    @Consumes({MediaType.APPLICATION_JSON})

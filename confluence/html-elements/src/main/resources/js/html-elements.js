@@ -39,6 +39,9 @@ var htmlElementsHelp = (function( $ ){
    methods[ 'showTableWidthHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "table-width" );
    }
+   methods[ 'showExtraTablePropertiesHelp' ] = function( e ){
+      macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "extra-table-properties" );
+   }
    methods[ 'showAuthorsOnlyBlockHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "authors-only-block" );
    }
