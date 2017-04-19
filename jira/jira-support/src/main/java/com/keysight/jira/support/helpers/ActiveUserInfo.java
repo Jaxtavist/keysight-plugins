@@ -40,6 +40,16 @@ public class ActiveUserInfo
       this.lastLoginDate = this.lastLoginDate();
       this.xDaysAgo = this.daysSinceLastLogin();
    }
+
+   public ActiveUserInfo( String username, String fullname, Long lastLoginTime ){
+      this.username = username;
+      this.fullname = fullname;
+      if( lastLoginTime != null && lastLoginTime > 500 ){
+         this.lastSuccessfulLoginDate = new Date( lastLoginTime );
+      }
+      this.lastLoginDate = this.lastLoginDate();
+      this.xDaysAgo = this.daysSinceLastLogin();
+   }
    
    public void setUsername( String username ){
       this.username = username;

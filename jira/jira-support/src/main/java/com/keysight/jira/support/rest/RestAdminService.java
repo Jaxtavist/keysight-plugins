@@ -22,18 +22,38 @@ import java.util.HashMap;
 import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 
-import com.atlassian.sal.api.user.UserManager;
 import com.keysight.jira.support.helpers.ActiveUserInfo;
 
-
+import com.atlassian.jira.bc.security.login.LoginInfo;
+import com.atlassian.jira.bc.security.login.LoginService;
+import com.atlassian.jira.bc.user.search.UserSearchService;
+import com.atlassian.jira.bc.user.search.UserSearchParams;
+import com.atlassian.jira.user.ApplicationUser;
+import com.atlassian.sal.api.user.UserManager;
+import com.atlassian.jira.security.GlobalPermissionManager;
+import com.atlassian.jira.permission.GlobalPermissionKey;
+import com.atlassian.jira.application.ApplicationAuthorizationService;
 
 @Path("/admin/")
 public class RestAdminService
 {
+   private final GlobalPermissionManager globalPermissionManager;
+   private final LoginService loginService;
    private final UserManager userManager;
+   private final UserSearchService userSearchService;
+   private final ApplicationAuthorizationService applicationAuthorizationService;
 
-   public RestAdminService( UserManager userManager){
-      this.userManager = userManager;
+   public RestAdminService( ApplicationAuthorizationService applicationAuthorzationService,
+                            GlobalPermissionManager globalPermissionManager,
+                            LoginService loginService,
+                            UserManager userManager,
+                            UserSearchService userSearchService){
+
+      this.applicationAuthorizationService = applicationAuthorzationService;
+      this.globalPermissionManager         = globalPermissionManager;
+      this.loginService                    = loginService;
+      this.userManager                     = userManager;
+      this.userSearchService               = userSearchService;
    }
 
    @GET
@@ -46,9 +66,15 @@ public class RestAdminService
       if (username == null || !userManager.isSystemAdmin(username)){
          return Response.status(Status.UNAUTHORIZED).build();
       }
-
+      
       List<String> activeUsernames = new ArrayList<String>();
-      //userAccessor.getUserNamesWithConfluenceAccess();
+
+      UserSearchParams userSearchParams = new UserSearchParams( true, true, false );
+      List<ApplicationUser> applicationUsers = userSearchService.findUsers( "a", userSearchParams );
+      for( ApplicationUser user : applicationUsers ){
+         activeUsernames.add( user.getUsername() );
+      } 
+      
       return Response.ok(activeUsernames).build();
    }
 
@@ -71,11 +97,10 @@ public class RestAdminService
       }
 
       for( String activeUsername : usernames ){
-         //ConfluenceUser activeUser = userAccessor.getUserByName( activeUsername );
-         //LoginInfo activeUserLoginInfo = loginManager.getLoginInfo( activeUser );
-         //currentUsers.add( new ActiveUserInfo( activeUsername, 
-                               //activeUser.getFullName(), 
-                           //activeUserLoginInfo.getLastSuccessfulLoginDate() ) );
+         LoginInfo activeUserLoginInfo = loginService.getLoginInfo( activeUsername );
+         currentUsers.add( new ActiveUserInfo( activeUsername, 
+                                               userManager.getUserProfile( activeUsername ).getFullName(), 
+                                               activeUserLoginInfo.getLastLoginTime() ) );
       }
 
       return Response.ok( currentUsers ).build();

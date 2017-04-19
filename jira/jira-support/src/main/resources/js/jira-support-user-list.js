@@ -24,9 +24,9 @@
 
     function toggleSpinner(){
        if (!spinning) {
-	  spinnerOn();
+      spinnerOn();
        } else {
-	  spinnerOff();
+      spinnerOff();
        }
     }
 
@@ -56,13 +56,13 @@
        } else {
           hasLoggedInCount++;
           AJS.$("#keysight-active-user-ajax-table tr:last").after(
-		          Keysight.JIRA.Support.Soy.Templates.userInfoRow({
+                  Keysight.JIRA.Support.Soy.Templates.userInfoRow({
                              count: listedCount,
-		             loginName:userInfo["username"],
-		             userName:userInfo["fullname"],
-		             lastLogin:userInfo["lastLoginDate"],
-		             loggedInXDaysAgo:userInfo["xDaysAgo"],
-		          })
+                     loginName:userInfo["username"],
+                     userName:userInfo["fullname"],
+                     lastLogin:userInfo["lastLoginDate"],
+                     loggedInXDaysAgo:userInfo["xDaysAgo"],
+                  })
           );
        }
     }
@@ -81,15 +81,15 @@
              dataType: "json",
              data: {
                 "usernames":usernames.slice(index,endIndex)
-	     },
+             },
           }).done(function (data){ 
-	     index = endIndex;
-	     for( var i = 0; i < data.length; i++ ){
+             index = endIndex;
+             for( var i = 0; i < data.length; i++ ){
                 addUserInfo( data[i] );
-	     }
+             }
              fillProgressContainer();
              spinnerOn();
-	     getUserInfo();
+             getUserInfo();
           }).fail(function (self, status, error) { 
              alert("Error" + error); 
              spinnerOff();
@@ -98,7 +98,7 @@
           spinnerOff();
        }
     }
-	    
+        
     // wait for the DOM (i.e., document "skeleton") to load. This likely isn't necessary for the current case,
     // but may be helpful for AJAX that provides secondary content.
     $(document).ready(function() {
@@ -111,14 +111,11 @@
            dataType: "json"
        }).done(function(data) { // when the configuration is returned...
            // ...populate the form.
-	   initializePage(data);
-	   getUserInfo();
+           initializePage(data);
+           getUserInfo();
        }).fail(function(self,status,error){
           alert( error );
        });
    });
 
 })(AJS.$ || jQuery);
-
-alert( "loading keysight stuff!" );
-

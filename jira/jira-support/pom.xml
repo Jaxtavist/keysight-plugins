@@ -48,6 +48,10 @@
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
                             com.atlassian.crowd.embedded.api,
                             com.atlassian.crowd.manager.directory,
+                            com.atlassian.jira.application,
+                            com.atlassian.jira.bc.user.search,
+                            com.atlassian.jira.bc.security.login,
+                            com.atlassian.jira.security,
                             com.atlassian.sal.api.auth,
                             com.atlassian.sal.api.user,
                             *

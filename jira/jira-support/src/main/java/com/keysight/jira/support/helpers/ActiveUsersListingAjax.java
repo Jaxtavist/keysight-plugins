@@ -20,28 +20,30 @@ public class ActiveUsersListingAjax extends HttpServlet
 {
    private final UserManager userManager;
    private final LoginUriProvider loginUriProvider;
-   private final TemplateRenderer renderer;
+   private final TemplateRenderer templateRenderer;
 
    public ActiveUsersListingAjax( LoginUriProvider loginUriProvider, 
-			                      TemplateRenderer renderer,
+			                      TemplateRenderer templateRenderer,
 		                          UserManager userManager ){
       this.loginUriProvider = loginUriProvider;
-      this.renderer = renderer;
+      this.templateRenderer = templateRenderer;
       this.userManager = userManager;
    }
 
    @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+
       String username = userManager.getRemoteUsername(request);
+      String template = "/com/keysight/jira-support/templates/active-users-list-ajax.vm";
+      Map<String, Object> velocityContext = new HashMap<String, Object>();
+
       if (username == null || !userManager.isSystemAdmin(username)){
          redirectToLogin(request, response);
          return;
       }
 
-      Map<String, Object> velocityContext = new HashMap<String, Object>();
-
       response.setContentType("text/html;charset=utf-8");
-      renderer.render("/com/keysight/jira-support/templates/active-users-list-ajax.vm", velocityContext, response.getWriter());
+      templateRenderer.render(template, velocityContext, response.getWriter());
    }
 
    private void redirectToLogin(HttpServletRequest request, HttpServletResponse response) throws IOException{
