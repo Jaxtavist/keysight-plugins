@@ -50,16 +50,38 @@
 
     function addUserInfo(userInfo){
        listedCount++;
+       if( userInfo["jiraSoftwareLicense"] && userInfo["jiraSoftwareLicense"] == "true" ){
+          swLicense = "Yes";
+       } else {
+          swLicense = "";
+       }
+
+       if( userInfo["jiraServiceDeskLicense"] && userInfo["jiraServiceDeskLicense"] == "true" ){
+          sdLicense = "Yes";
+       } else {
+          sdLicense = "";
+       }
+
        if( userInfo["lastLoginDate"] == "Never" ){
           neverLoggedInCount++;
-          AJS.$("#keysight-never-logged-in-user-list").after( "<li>" + userInfo["fullname"] + "(" + userInfo["username"] + ")</li>" );
+          AJS.$("#keysight-never-logged-in-user-ajax-table tr:last").after(
+                  Keysight.JIRA.Support.Soy.Templates.neverLoggedInUserInfoRow({
+                     count: listedCount,
+                     loginName:userInfo["username"],
+                     userName:userInfo["fullname"],
+                     swLicense:swLicense,
+                     sdLicense:sdLicense,
+                  })
+          );
        } else {
           hasLoggedInCount++;
           AJS.$("#keysight-active-user-ajax-table tr:last").after(
                   Keysight.JIRA.Support.Soy.Templates.userInfoRow({
-                             count: listedCount,
+                     count: listedCount,
                      loginName:userInfo["username"],
                      userName:userInfo["fullname"],
+                     swLicense:swLicense,
+                     sdLicense:sdLicense,
                      lastLogin:userInfo["lastLoginDate"],
                      loggedInXDaysAgo:userInfo["xDaysAgo"],
                   })

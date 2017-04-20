@@ -9,7 +9,7 @@
     <meta name="decorator" content="atl.admin">
   </head>
   <body>
-<h1>Active Users List</h1>
+<h1>$i18n.getText("com.keysight.jira-support.active-users-list-ajax.title")</h1>
 <div id="keysight-users-list-progress-container"></div>
 <div id="keysight-users-list-container"></div>
   </body>

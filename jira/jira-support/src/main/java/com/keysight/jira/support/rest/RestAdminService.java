@@ -85,7 +85,7 @@ public class RestAdminService
       List<String> activeUsernames = new ArrayList<String>();
 
       UserSearchParams userSearchParams = new UserSearchParams( true, true, false );
-      List<ApplicationUser> applicationUsers = userSearchService.findUsers( "a", userSearchParams );
+      List<ApplicationUser> applicationUsers = userSearchService.findUsers( "", userSearchParams );
       for( ApplicationUser user : applicationUsers ){
          if( applicationAuthorizationService.canUseApplication( user, ApplicationKeys.CORE ) ){
             activeUsernames.add( user.getUsername() );

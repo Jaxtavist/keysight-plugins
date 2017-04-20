@@ -23,7 +23,6 @@
         <resource type="download" name="jira-support.css"       location="/css/jira-support.css"/>
         <resource type="download" name="jira-support-admin.css" location="/css/jira-support-admin.css"/>
         <resource type="download" name="jira-support-admin.js"  location="/js/jira-support-admin.js"/>
-        <resource type="download" name="jira-support-user-list.js" location="/js/jira-support-user-list.js"/>
         <resource type="download" name="admin-ui-templates.js"        location="/soy/admin-ui-templates.soy"/>
         <resource type="download" name="images/" location="/images"/>
     </web-resource>

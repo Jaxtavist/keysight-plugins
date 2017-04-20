@@ -33,7 +33,15 @@
 <div class="keysight-progress-container-inner">
    <div class="keysight-never-logged-in-user-list-container">
       <h2>Never Logged In</h2>
-      <ul id="keysight-never-logged-in-user-list"></ul>
+<table class="confluenceTable tablesorter" id="keysight-never-logged-in-user-ajax-table" role="grid">
+<thead><tr>
+   <th>Count</th>
+   <th>Login Name</th>
+   <th>User Name</th>
+   <th>SW License</th>
+   <th>SD License</th>
+</tr></thead>
+</table>
    </div>
    <div class="keysight-user-info-table">
       <h2>Has Logged In</h2>
@@ -42,6 +50,8 @@
    <th>Count</th>
    <th>Login Name</th>
    <th>User Name</th>
+   <th>SW License</th>
+   <th>SD License</th>
    <th>Last Login</th>
    <th>Logged in X Days Ago</th>
 </tr></thead>
@@ -56,6 +66,8 @@
  * @param count
  * @param loginName
  * @param userName
+ * @param swLicense
+ * @param sdLicense
  * @param lastLogin
  * @param loggedInXDaysAgo
  */
@@ -64,7 +76,28 @@
    <td class="confluenceTd">{$count}</td>
    <td class="confluenceTd">{$loginName}</td>
    <td class="confluenceTd">{$userName}</td>
+   <td class="confluenceTd">{$swLicense}</td>
+   <td class="confluenceTd">{$sdLicense}</td>
    <td class="confluenceTd">{$lastLogin}</td>
    <td class="confluenceTd">{$loggedInXDaysAgo}</td>
 </tr>
 {/template}
+
+/**
+ * Never Logged In User Info Row
+ * @param count
+ * @param loginName
+ * @param userName
+ * @param swLicense
+ * @param sdLicense
+ */
+{template .neverLoggedInUserInfoRow}
+<tr>
+   <td class="confluenceTd">{$count}</td>
+   <td class="confluenceTd">{$loginName}</td>
+   <td class="confluenceTd">{$userName}</td>
+   <td class="confluenceTd">{$swLicense}</td>
+   <td class="confluenceTd">{$sdLicense}</td>
+</tr>
+{/template}
+
