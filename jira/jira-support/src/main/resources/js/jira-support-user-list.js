@@ -66,7 +66,7 @@
           neverLoggedInCount++;
           AJS.$("#keysight-never-logged-in-user-ajax-table tr:last").after(
                   Keysight.JIRA.Support.Soy.Templates.neverLoggedInUserInfoRow({
-                     count: listedCount,
+                     count: neverLoggedInCount,
                      loginName:userInfo["username"],
                      userName:userInfo["fullname"],
                      swLicense:swLicense,
@@ -77,7 +77,7 @@
           hasLoggedInCount++;
           AJS.$("#keysight-active-user-ajax-table tr:last").after(
                   Keysight.JIRA.Support.Soy.Templates.userInfoRow({
-                     count: listedCount,
+                     count: hasLoggedInCount,
                      loginName:userInfo["username"],
                      userName:userInfo["fullname"],
                      swLicense:swLicense,
