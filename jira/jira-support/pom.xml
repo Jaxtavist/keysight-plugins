@@ -54,7 +54,7 @@
                             com.atlassian.jira.security,
                             com.atlassian.jira.user.util,
                             com.atlassian.sal.api.auth,
-                            com.atlassian.sal.api.user,
+                            <!--com.atlassian.sal.api.user,-->
                             *
                         </Import-Package>
   
