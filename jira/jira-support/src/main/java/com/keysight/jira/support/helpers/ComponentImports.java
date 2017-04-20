@@ -20,6 +20,7 @@ public class ComponentImports
     @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
     @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
     @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
+    @ComponentImport com.atlassian.jira.user.util.UserManager                       jiraUserManager;
     @ComponentImport com.atlassian.jira.bc.user.search.UserSearchService            userSearchService;
     @ComponentImport com.atlassian.jira.bc.security.login.LoginService              loginService;
     @ComponentImport com.atlassian.jira.security.GlobalPermissionManager            globalPermissionManager;

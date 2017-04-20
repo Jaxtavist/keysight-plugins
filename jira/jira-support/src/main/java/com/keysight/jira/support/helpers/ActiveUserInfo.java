@@ -16,10 +16,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ActiveUserInfo
 {
    private Date lastSuccessfulLoginDate = null;
+
+   static final private String TRUE = "true";
+   static final private String FALSE = "false";
+
    @XmlElement private String username = "";
    @XmlElement private String fullname = "";
    @XmlElement private String lastLoginDate = "";
    @XmlElement private String xDaysAgo = "";
+   @XmlElement private String jiraCoreLicense = "false";
+   @XmlElement private String jiraSoftwareLicense = "false";
+   @XmlElement private String jiraServiceDeskLicense = "false";
    
    public ActiveUserInfo( ){
    }
@@ -51,6 +58,51 @@ public class ActiveUserInfo
       this.xDaysAgo = this.daysSinceLastLogin();
    }
    
+   public void setJiraServiceDeskLicense( boolean flag ){
+      if( flag ){
+         this.jiraServiceDeskLicense = TRUE;
+      } else {
+         this.jiraServiceDeskLicense = FALSE;
+      }
+   }
+   public boolean getJiraServiceDeskLicense(){
+      if( this.jiraServiceDeskLicense.equals( TRUE ) ){
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   public void setJiraCoreLicense( boolean flag ){
+      if( flag ){
+         this.jiraCoreLicense = TRUE;
+      } else {
+         this.jiraCoreLicense = FALSE;
+      }
+   }
+   public boolean getJiraCoreLicense(){
+      if( this.jiraCoreLicense.equals( TRUE ) ){
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   public void setJiraSoftwareLicense( boolean flag ){
+      if( flag ){
+         this.jiraSoftwareLicense = TRUE;
+      } else {
+         this.jiraSoftwareLicense = FALSE;
+      }
+   }
+   public boolean getJiraSoftwareLicense(){
+      if( this.jiraSoftwareLicense.equals( TRUE ) ){
+         return true;
+      } else {
+         return false;
+      }
+   }
+
    public void setUsername( String username ){
       this.username = username;
    }

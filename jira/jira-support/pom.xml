@@ -52,6 +52,7 @@
                             com.atlassian.jira.bc.user.search,
                             com.atlassian.jira.bc.security.login,
                             com.atlassian.jira.security,
+                            com.atlassian.jira.user.util,
                             com.atlassian.sal.api.auth,
                             com.atlassian.sal.api.user,
                             *

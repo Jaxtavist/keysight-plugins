@@ -29,10 +29,12 @@ import com.atlassian.jira.bc.security.login.LoginService;
 import com.atlassian.jira.bc.user.search.UserSearchService;
 import com.atlassian.jira.bc.user.search.UserSearchParams;
 import com.atlassian.jira.user.ApplicationUser;
-import com.atlassian.sal.api.user.UserManager;
+//import com.atlassian.sal.api.user.UserManager;
 import com.atlassian.jira.security.GlobalPermissionManager;
 import com.atlassian.jira.permission.GlobalPermissionKey;
 import com.atlassian.jira.application.ApplicationAuthorizationService;
+import com.atlassian.jira.application.ApplicationKeys;
+import com.atlassian.jira.user.util.UserManager;
 
 @Path("/admin/")
 public class RestAdminService
@@ -62,8 +64,21 @@ public class RestAdminService
    @Produces(MediaType.APPLICATION_JSON)
    public Response getUserList(@Context HttpServletRequest request)
    {
+      /*
       String username = userManager.getRemoteUsername(request);
       if (username == null || !userManager.isSystemAdmin(username)){
+         return Response.status(Status.UNAUTHORIZED).build();
+      }
+      */
+
+      String username = request.getRemoteUser();
+      if( username == null ){
+         return Response.status(Status.UNAUTHORIZED).build();
+      }
+
+      ApplicationUser remoteUser = userManager.getUserByName( username );
+      if( remoteUser == null || !globalPermissionManager.hasPermission( GlobalPermissionKey.SYSTEM_ADMIN, remoteUser ) )
+      {
          return Response.status(Status.UNAUTHORIZED).build();
       }
       
@@ -72,7 +87,9 @@ public class RestAdminService
       UserSearchParams userSearchParams = new UserSearchParams( true, true, false );
       List<ApplicationUser> applicationUsers = userSearchService.findUsers( "a", userSearchParams );
       for( ApplicationUser user : applicationUsers ){
-         activeUsernames.add( user.getUsername() );
+         if( applicationAuthorizationService.canUseApplication( user, ApplicationKeys.CORE ) ){
+            activeUsernames.add( user.getUsername() );
+         }
       } 
       
       return Response.ok(activeUsernames).build();
@@ -84,10 +101,24 @@ public class RestAdminService
    @Produces(MediaType.APPLICATION_JSON)
    public Response getUserInfo( @Context HttpServletRequest request)
    {
+      /*
       String username = userManager.getRemoteUsername(request);
       if (username == null || !userManager.isSystemAdmin(username)){
          return Response.status(Status.UNAUTHORIZED).build();
       }
+      */
+
+      String username = request.getRemoteUser();
+      if( username == null ){
+         return Response.status(Status.UNAUTHORIZED).build();
+      }
+
+      ApplicationUser remoteUser = userManager.getUserByName( username );
+      if( remoteUser == null || !globalPermissionManager.hasPermission( GlobalPermissionKey.SYSTEM_ADMIN, remoteUser ) )
+      {
+         return Response.status(Status.UNAUTHORIZED).build();
+      }
+      
 
       List<ActiveUserInfo> currentUsers = new ArrayList<ActiveUserInfo>();
       String[] usernames = new String[0];
@@ -97,10 +128,25 @@ public class RestAdminService
       }
 
       for( String activeUsername : usernames ){
+         ApplicationUser activeUser = userManager.getUserByName( activeUsername );
          LoginInfo activeUserLoginInfo = loginService.getLoginInfo( activeUsername );
-         currentUsers.add( new ActiveUserInfo( activeUsername, 
-                                               userManager.getUserProfile( activeUsername ).getFullName(), 
-                                               activeUserLoginInfo.getLastLoginTime() ) );
+         ActiveUserInfo activeUserInfo =  new ActiveUserInfo( activeUsername, 
+                                                              activeUser.getDisplayName(), 
+                                                              activeUserLoginInfo.getLastLoginTime() );
+
+         if( activeUser != null && applicationAuthorizationService.canUseApplication( activeUser, ApplicationKeys.CORE ) ){
+            activeUserInfo.setJiraCoreLicense( true );
+         }
+
+         if( activeUser != null && applicationAuthorizationService.canUseApplication( activeUser, ApplicationKeys.SOFTWARE ) ){
+            activeUserInfo.setJiraSoftwareLicense( true );
+         }
+
+         if( activeUser != null && applicationAuthorizationService.canUseApplication( activeUser, ApplicationKeys.SERVICE_DESK ) ){
+            activeUserInfo.setJiraServiceDeskLicense( true );
+         }
+
+         currentUsers.add( activeUserInfo );
       }
 
       return Response.ok( currentUsers ).build();
