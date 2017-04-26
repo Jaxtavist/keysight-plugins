@@ -121,17 +121,6 @@ public class RestService
    }
 
    @GET
-   @Path("help/table-width")
-   @Produces({MediaType.APPLICATION_JSON})
-   @Consumes({MediaType.APPLICATION_JSON})
-   public Response tableWidthHelp( ){
-      String title = "Table and Column Width Help";
-      String bodyTemplate = "/com/keysight/html-elements/templates/table-width-help.vm";
-
-      return getMacroHelp( title, bodyTemplate );
-   }
-
-   @GET
    @Path("help/extra-table-properties")
    @Produces({MediaType.APPLICATION_JSON})
    @Consumes({MediaType.APPLICATION_JSON})

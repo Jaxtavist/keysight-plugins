@@ -36,9 +36,6 @@ var htmlElementsHelp = (function( $ ){
    methods[ 'showAuiButtonHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "aui-buttons" );
    }
-   methods[ 'showTableWidthHelp' ] = function( e ){
-      macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "table-width" );
-   }
    methods[ 'showExtraTablePropertiesHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "extra-table-properties" );
    }
