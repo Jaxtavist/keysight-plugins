@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <rest name="Database Rest Interface" key="database-rest-resource" path="/database" version="1.0">
+       <description>This is a rest resource for the Database plugin.</description>
+    </rest>
+
+</module-container>
+
