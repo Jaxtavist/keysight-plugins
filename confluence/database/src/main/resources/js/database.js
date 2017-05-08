@@ -12,6 +12,9 @@ var databaseHelp = (function( $ ){
    methods[ 'showMysqlQueryHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "mysql-query" );
    }
+   methods[ 'showDatabaseQueryHelp' ] = function( e ){
+      macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "database-query" );
+   }
 
    // return the object with the methods
    return methods;

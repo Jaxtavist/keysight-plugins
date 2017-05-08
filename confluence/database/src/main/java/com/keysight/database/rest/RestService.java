@@ -22,6 +22,17 @@ public class RestService
    }
 
    @GET
+   @Path("help/database-query")
+   @Produces({MediaType.APPLICATION_JSON})
+   @Consumes({MediaType.APPLICATION_JSON})
+   public Response databaseQueryHelp( ){
+      String title = "Database Query";
+      String bodyTemplate = "/com/keysight/database/templates/datbase-query-help.vm";
+
+      return getMacroHelp( title, bodyTemplate );
+   }
+
+   @GET
    @Path("help/mysql-query")
    @Produces({MediaType.APPLICATION_JSON})
    @Consumes({MediaType.APPLICATION_JSON})

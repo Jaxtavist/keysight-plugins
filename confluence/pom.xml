@@ -258,5 +258,6 @@
     <module>mathjax</module>
     <module>numbered-headings</module>
     <module>test-ecosystem</module>
+    <module>database</module>
   </modules>
 </project>

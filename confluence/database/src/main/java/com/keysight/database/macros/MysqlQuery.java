@@ -55,15 +55,12 @@ public class MysqlQuery implements Macro
 
            System.out.println( "\n\n\nPATH: " + new File( "." ).getCanonicalPath() + "\n\n\n" );
            File mysqlJar = new File("mysql-connector-java-5.1.40-bin.jar");
-
            if( mysqlJar.exists() ){
               System.out.println( "\n\n\nMYSQL JAR EXISTS\n\n\n" );
            } else {
               System.out.println( "\n\n\nMYSQL JAR DOES NOT EXISTS\n\n\n" );
            }
-
            ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-
            URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{mysqlJar.toURL()}, currentThreadClassLoader);
 
            // Replace the thread classloader - assumes // you have permissions to do so
