@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Database Support Admin</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("com.keysight.database:database-admin-config-resources")
+  </head>
+  <body>
+
+    <form id="database-admin-config" class="aui">
+
+       <h2>Default groups for the Fix Anonymous Access tab in Actions by Space</h2>
+       <div id="group-list-container" class="list-container"></div>
+       <br />
+       <div class="config-input-container">
+          <div class="confing-input-row">
+             <div class="config-input-cell">
+                <div class="field-group">
+                   <label for="new-group-name">Group Name</label>
+                   <input class="text full-width-field" type="text" id="new-group-name" name="new-group-name" title="New Group Name">
+                   <div class="error add-group-error"></div>
+                </div>
+             </div>
+             <div class="config-input-cell config-input-buttons">
+                <div class="field-group right-button">
+                   <div class="buttons-container right-button">
+                      <input id="add-group" class="button submit" type="submit" value="Add Group">
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+       <hr />
+
+       <h2>Email addresses which will receive new space creation notifications.</h2>
+       <div id="email-list-container" class="list-container"></div>
+       <br />
+       <div class="config-input-continer">
+          <div class="config-input-row">
+             <div class="config-input-cell">
+                <div class="field-group">
+                   <label for="new-email-address">Email Address</label>
+                   <input class="text full-width-field" type="text" id="new-email-address" name="new-email-address" title="New Email Address">
+                   <div class="error add-email-error"></div>
+                </div>
+             </div>
+             <div class="config-input-cell">
+                <div class="field-group right-button">
+                   <div class="buttons-container right-button">
+                      <input id="add-email" class="button submit" type="submit" value="Add Email Address">
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+    </form>
+  </body>
+</html>

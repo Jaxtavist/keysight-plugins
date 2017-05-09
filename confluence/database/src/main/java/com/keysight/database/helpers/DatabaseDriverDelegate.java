@@ -4,7 +4,13 @@ import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-// see http://www.kfu.com/~nsayer/Java/dyn-jdbc.html
+// This code is 98% copied from 
+// http://www.kfu.com/~nsayer/Java/dyn-jdbc.html
+//
+// On 5/8/2017, Nick Sayer sent me an email declaring
+// the code to be in the public domain and that I may
+// use his code in my project and distribute it under
+// an Apache 2 license.
 
 public class DatabaseDriverDelegate implements Driver {
 	private Driver driver;

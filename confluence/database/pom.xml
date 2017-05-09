@@ -55,10 +55,17 @@
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
                             com.atlassian.confluence.plugin.services,
                             com.atlassian.confluence.setup.settings,
+                            com.atlassian.sal.api.user,
+                            com.atlassian.sal.api.auth,
+                            com.atlassian.sal.api.transaction,
+                            com.atlassian.sal.api.pluginsettings,
+                            com.atlassian.templaterenderer,
+                            com.atlassian.user,
                             *
                         </Import-Package>
 
                         <Atlassian-Scan-Folders>
+                            META-INF/admin,
                             META-INF/macros,
                             META-INF/rest,
                         </Atlassian-Scan-Folders>
