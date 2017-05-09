@@ -2,6 +2,7 @@ package com.keysight.database.macros;
 
 import java.util.Map;
 import java.util.ArrayList;
+import java.lang.reflect.*;
 
 import com.atlassian.confluence.content.render.xhtml.ConversionContext;
 import com.atlassian.confluence.macro.Macro;
@@ -13,6 +14,7 @@ import com.atlassian.confluence.setup.settings.SettingsManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Driver;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +23,8 @@ import java.util.Date;
 import java.net.URLClassLoader;
 import java.net.URL;
 import java.io.File;
+
+import com.keysight.database.helpers.DatabaseDriverDelegate;
 
 
 public class DatabaseQuery implements Macro
@@ -61,32 +65,40 @@ public class DatabaseQuery implements Macro
 
        ArrayList<String> columnNames = new ArrayList<String>();
        ArrayList<ArrayList<String>> dataRows = new ArrayList<ArrayList<String>>();
+       File mysqlJar = new File("C:\\mysql\\mysql-connector-java-5.1.40-bin.jar");
+       URLClassLoader urlClassLoader;
+       Driver driver;
 
        if( parameters.containsKey( DATABASE_TYPE ) ){
           setDatabaseType( parameters.get( DATABASE_TYPE ) );
        }
 
        try {
+           URL url = mysqlJar.toURI().toURL();
+           String classname = "com.mysql.jdbc.Driver";
 
-           System.out.println( "\n\n\nPATH: " + new File( "." ).getCanonicalPath() + "\n\n\n" );
-           File mysqlJar = new File("mysql-connector-java-5.1.40-bin.jar");
+           //System.out.println( "\n\n\nPATH: " + new File( "." ).getCanonicalPath() + "\n\n\n" );
            if( mysqlJar.exists() ){
               System.out.println( "\n\n\nMYSQL JAR EXISTS\n\n\n" );
            } else {
               System.out.println( "\n\n\nMYSQL JAR DOES NOT EXISTS\n\n\n" );
            }
-           ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-           URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{mysqlJar.toURL()}, currentThreadClassLoader);
-
-           // Replace the thread classloader - assumes // you have permissions to do so
-           Thread.currentThread().setContextClassLoader(urlClassLoader);
 
            // This will load the MySQL driver, each DB has its own driver
            if( getDatabaseType().equals( "Mysql" ) ){
-              Class.forName("com.mysql.jdbc.Driver");
+              System.out.println( "\n\n\nLoad mysql driver\n\n\n" );
+		      url = mysqlJar.toURI().toURL();
+		      classname = "com.mysql.jdbc.Driver";
            } else if( getDatabaseType().equals( "Microsoft Sql Server" ) ){
-              Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+              System.out.println( "\n\n\nLoad sqlserver driver\n\n\n" );
+              classname = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
            }
+
+           urlClassLoader = new URLClassLoader(new URL[]{url}, System.class.getClassLoader());
+		   driver = (Driver)Class.forName(classname, true, urlClassLoader).newInstance();
+		   DriverManager.registerDriver(new DatabaseDriverDelegate(driver));
+
+           System.out.println( "\n\n\nTry to connect\n\n\n" );
 
            // Setup the connection with the DB
            //jdbc:mysql://localhost/feedback?user=sqluser&password=sqluserpw
@@ -98,7 +110,7 @@ public class DatabaseQuery implements Macro
            statement = connect.createStatement();
 
            // Result set get the result of the SQL query
-           resultSet = statement.executeQuery( parameters.get(body) );
+           resultSet = statement.executeQuery( body );
 
            // Get the Column Names
            for( int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++ ){
@@ -110,6 +122,7 @@ public class DatabaseQuery implements Macro
            while( resultSet.next() ){
               ArrayList<String> row = new ArrayList<String>();
               for( int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++ ){
+                 System.out.println( resultSet.getString(i) );
                  row.add( resultSet.getString(i) );
               }
               dataRows.add( row );

@@ -4,14 +4,16 @@
 
 <table>
 <tr>
+<th>index</th>
 #foreach( $column in $columnNames )
 <th>$column</th>
 #end
 </tr>
-#foreach( $row in $datarows )
+#foreach( $row in $dataRows )
 <tr>
+<td>index count</td>
 #foreach( $item in $row )
-<td>$column</td>
+<td>$!item</td>
 #end
 </tr>
 #end

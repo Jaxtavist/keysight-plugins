@@ -60,6 +60,14 @@ public class MysqlQuery implements Macro
            } else {
               System.out.println( "\n\n\nMYSQL JAR DOES NOT EXISTS\n\n\n" );
            }
+           System.out.println( "\n\n\n" );
+           ClassLoader cl = ClassLoader.getSystemClassLoader();
+           URL[] urls = ((URLClassLoader)cl).getURLs();
+           for(URL url: urls){
+              System.out.println(url.getFile());
+           }
+           System.out.println( "\n\n\n" );
+
            ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
            URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{mysqlJar.toURL()}, currentThreadClassLoader);
 
