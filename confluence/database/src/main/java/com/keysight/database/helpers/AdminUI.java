@@ -1,6 +1,10 @@
 package com.keysight.database.helpers;
 
 import java.io.IOException;
+import java.io.File;
+import java.util.Map;
+import java.util.HashMap;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,8 +37,11 @@ public class AdminUI extends HttpServlet
          return;
       }
 
+      Map<String,Object> velocityContext = new HashMap<String,Object>();
+      velocityContext.put( "relativeHome", new File(".").getCanonicalPath() );
+
       response.setContentType("text/html;charset=utf-8");
-      renderer.render("/com/keysight/database/templates/admin-ui.vm", response.getWriter());
+      renderer.render("/com/keysight/database/templates/admin-ui.vm", velocityContext, response.getWriter() );
    }
 
    private void redirectToLogin(HttpServletRequest request, HttpServletResponse response) throws IOException{

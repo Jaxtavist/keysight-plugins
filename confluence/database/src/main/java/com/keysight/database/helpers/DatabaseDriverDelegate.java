@@ -14,8 +14,8 @@ import java.util.logging.Logger;
 
 public class DatabaseDriverDelegate implements Driver {
 	private Driver driver;
-	public DatabaseDriverDelegate(Driver d) {
-		this.driver = d;
+	public DatabaseDriverDelegate(Driver driver) {
+        setRealDriver( driver );
 	}
 
 	public boolean acceptsURL(String u) throws SQLException, SQLFeatureNotSupportedException {
@@ -39,5 +39,12 @@ public class DatabaseDriverDelegate implements Driver {
 	public boolean jdbcCompliant() {
 		return this.driver.jdbcCompliant();
 	}
+
+    public Driver getRealDriver(){
+       return this.driver;
+    }
+    public void setRealDriver( Driver driver ){
+       this.driver = driver;
+    }
 }
  

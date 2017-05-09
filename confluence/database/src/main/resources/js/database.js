@@ -9,9 +9,6 @@ var databaseHelp = (function( $ ){
    var restVersion = "1.0";
 
    // module methods
-   methods[ 'showMysqlQueryHelp' ] = function( e ){
-      macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "mysql-query" );
-   }
    methods[ 'showDatabaseQueryHelp' ] = function( e ){
       macroHelpDocumentation.getMacroHelp( e, pluginId, restVersion, "database-query" );
    }

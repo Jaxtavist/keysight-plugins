@@ -79,4 +79,25 @@ public class RestAdminConfigService
 
       return Response.noContent().build();
    }
+
+   @GET
+   @Path("get-installed-drivers")
+   @Produces(MediaType.APPLICATION_JSON)
+   public Response getInstalledDrivers(@Context HttpServletRequest request)
+   {
+      String username = userManager.getRemoteUsername(request);
+      if (username == null || !userManager.isSystemAdmin(username)){
+         return Response.status(Status.UNAUTHORIZED).build();
+      }
+
+      return Response.ok(transactionTemplate.execute(new TransactionCallback(){
+         public Object doInTransaction(){
+            PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+            PluginConfig pluginConfig = new PluginConfig();
+            pluginConfig.setXml( (String) settings.get(PluginConfig.class.getName() + ".xml"));
+            return pluginConfig;
+         }
+      })).build();
+   }
+
 }

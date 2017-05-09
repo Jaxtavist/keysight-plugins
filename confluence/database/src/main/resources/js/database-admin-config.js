@@ -1,9 +1,11 @@
-DatabaseConfigHelper = (function ($) {
+databaseConfigHelper = (function ($) {
 
     var methods = new Object();
     var url = AJS.contextPath() + "/rest/database/1.0/admin-config/configuration";
-    var allUsersGroup = "all-users-group";
-    var onSpaceCreationNotificationEmailAddress = "on-space-creation-notification-email-address";
+
+    methods['save'] = function(){
+       saveConfig();
+    }
 
     methods['addGroup'] = function(){
        if( AJS.$("#group-list").length == 0 ){
@@ -12,17 +14,6 @@ DatabaseConfigHelper = (function ($) {
 
        appendGroup( AJS.$("#new-group-name").val() );
        AJS.$("#new-group-name").val("");
-
-       saveConfig();
-    }
-
-    methods['addEmail'] = function(){
-       if( AJS.$("#email-list").length == 0 ){
-           AJS.$("#email-list-container").html( "<ul id=\"email-list\"></ul>" );
-       }
-
-       appendEmail( AJS.$("#new-email-address").val() );
-       AJS.$("#new-email-address").val("");
 
        saveConfig();
     }
@@ -49,12 +40,14 @@ DatabaseConfigHelper = (function ($) {
            dataType: "json"
        }).done(function(pluginConfiguration) { 
 
-           $xml = AJS.$( AJS.$.parseXML( decodeURIComponent(pluginConfiguration.xml) ) );
+           if( pluginConfiguration.xml ){
+              $xml = AJS.$( AJS.$.parseXML( decodeURIComponent(pluginConfiguration.xml) ) );
+              $("#jdbc-driver-directory").val( $xml.find( "jdbc-driver-directory" ).html() );
+           }
 
-           AJS.$("#group-list-container").children().first().remove();
-           AJS.$("#email-list-container").children().first().remove();
+           //AJS.$("#group-list-container").children().first().remove();
 
-
+           /*
            var groups = $xml.find( allUsersGroup );
            if( groups.length > 0 ){
               AJS.$("#group-list-container").html( "<ul id=\"group-list\"></ul>" );
@@ -64,16 +57,7 @@ DatabaseConfigHelper = (function ($) {
            } else {
               AJS.$("#group-list-container").html( "<div class=\"none-saved\">No saved groups</div>" );
            }
-
-           var addresses = $xml.find( onSpaceCreationNotificationEmailAddress );
-           if( addresses.length > 0 ){
-              AJS.$("#email-list-container").html( "<ul id=\"email-list\"></ul>" );
-              $xml.find( onSpaceCreationNotificationEmailAddress ).each( function( index ) {
-                 appendEmail( $(this).html() );
-              });
-           } else {
-              AJS.$("#email-list-container").html( "<div class=\"none-saved\">No saved addresses.</div>" );
-           }
+           */
 
        }).fail(function(self,status,error){
           alert( error );
@@ -83,24 +67,17 @@ DatabaseConfigHelper = (function ($) {
 
     function saveConfig(){
        var groupconfig = new Array();
-       var emailconfig = new Array();
 
        AJS.$(".saved-group").each( function( index ) {
           groupconfig.push( '<all-users-group>' + $(this).html() + '</all-users-group>' );
        });
 
-       AJS.$(".saved-address").each( function( index ) {
-          emailconfig.push( '<on-space-creation-notification-email-address>' + $(this).html() + '</on-space-creation-notification-email-address>' );
-       });
-
+                     //+ '   <all-users-groups>' + "\n"
+                     //+ groupconfig.join( "\n" )  
+                     //+ '   </all-users-groups>' + "\n"
        var xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + "\n"
                      + '<plugin-configuration>' + "\n"
-                     + '   <all-users-groups>' + "\n"
-                     + groupconfig.join( "\n" )  
-                     + '   </all-users-groups>' + "\n"
-                     + '   <on-space-creation-notification-email-addresses>' + "\n"
-                     + emailconfig.join( "\n" )  
-                     + '   </on-space-creation-notification-email-addresses>' + "\n"
+                     + '   <jdbc-driver-directory>' + $("#jdbc-driver-directory").val() + "</jdbc-driver-directory>\n"
                      + '</plugin-configuration>' + "\n";
 
        AJS.$.ajax({
@@ -110,15 +87,10 @@ DatabaseConfigHelper = (function ($) {
           data: '{"xml":"' + encodeURIComponent(xmlString) + '"}',
           processData: false
        }).done(function () { 
-       }).fail(function (self, status, error) { alert(error); 
+          alert( "Config Saved" );
+       }).fail(function (self, status, error) { 
+          alert(error); 
        });
-    }
-
-    function appendEmail( emailAddress )
-    {
-       AJS.$("#email-list").append( "<li>"
-                                  + "<span class=\"saved-address\">"+emailAddress+"</span>" + "&nbsp;<a href=\"#\" onclick=\"confluenceSupportConfigHelper.removeEntry(event)\">[remove]</a>"
-                                  +"</li>\n" );
     }
 
     function appendGroup( groupName )
@@ -138,10 +110,10 @@ AJS.toInit(function() {
       //confluenceSupportConfigHelper.addGroup();
    });
 
-   AJS.$("#add-email").click(function(e) { 
+   AJS.$("#save-jdbc-driver-directory").click(function(e) { 
       e.preventDefault();
-      //confluenceSupportConfigHelper.addEmail();
+      databaseConfigHelper.save();
    });
 
-   //confluenceSupportConfigHelper.loadConfig();
+   databaseConfigHelper.loadConfig();
 });

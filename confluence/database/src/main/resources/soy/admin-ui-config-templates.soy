@@ -1,0 +1,22 @@
+{namespace Keysight.Database.Admin.Config.Templates}
+
+/**
+ * Credentials Container
+ */
+{template .config}
+   <div class="config-container">
+      <div class="config-row">
+         <div class="config-cell">
+            <div class="field-group">
+               <label for="name">{getText('confluence-support.admin.all-users-group')}</label>
+               <input type="text long-field" class="text confluence-support-all-users-group">
+            </div>
+         </div>
+         <div class="config-cell">
+            <div class="field-group confluence-support-remove-button-container">
+               <input class="aui-button all-users-group-remove" id="confluence-support-remove-button" type="button" value="{getText('confluence-support.admin.remove')}">
+            </div>
+         </div>
+      </div>
+   </div>
+{/template}

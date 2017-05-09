@@ -8,16 +8,6 @@
     <name>Database</name>
     <description>This plugin provides various macros to pull data from various databases.</description>
 
-    <!--
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.40</version>
-        </dependency>
-    </dependencies>
-    -->
-
     <properties>       
         <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>

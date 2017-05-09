@@ -8,51 +8,37 @@
 
     <form id="database-admin-config" class="aui">
 
-       <h2>Default groups for the Fix Anonymous Access tab in Actions by Space</h2>
-       <div id="group-list-container" class="list-container"></div>
-       <br />
-       <div class="config-input-container">
-          <div class="confing-input-row">
-             <div class="config-input-cell">
-                <div class="field-group">
-                   <label for="new-group-name">Group Name</label>
-                   <input class="text full-width-field" type="text" id="new-group-name" name="new-group-name" title="New Group Name">
-                   <div class="error add-group-error"></div>
-                </div>
-             </div>
-             <div class="config-input-cell config-input-buttons">
-                <div class="field-group right-button">
-                   <div class="buttons-container right-button">
-                      <input id="add-group" class="button submit" type="submit" value="Add Group">
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
+       <h2>Installed JDBC Drivers</h2>
 
-       <hr />
+       <p>In order to communicate with an external relational database system
+       such as mysql, the jdbc drivers need to be provided.  For licensing reasons,
+       these cannot be distributed with the plugin.  Please provide the directory
+       where the driver .jar files will be found on the server hosting Confluence.
+       Note, paths on windows should be specified as <b>C:\\JdbcDrivers</b> (with
+       double slashes) while linux paths should look like <b>/JdbcDrivers</b>.  Paths
+       may be absolute or relative.  If relative, they are relative to the directory
+       <b>$relativeHome</b>.</p>
 
-       <h2>Email addresses which will receive new space creation notifications.</h2>
-       <div id="email-list-container" class="list-container"></div>
-       <br />
        <div class="config-input-continer">
           <div class="config-input-row">
              <div class="config-input-cell">
                 <div class="field-group">
-                   <label for="new-email-address">Email Address</label>
-                   <input class="text full-width-field" type="text" id="new-email-address" name="new-email-address" title="New Email Address">
-                   <div class="error add-email-error"></div>
+                    <label for="jdbc-driver-directory">Local Directory with JDBC Drivers</label>
+                    <input class="text full-width-field" type="text" id="jdbc-driver-directory" name="jdbc-driver-directory" title="JDBC Driver Directory">
+                    <div class="error add-group-error"></div>
                 </div>
              </div>
              <div class="config-input-cell">
                 <div class="field-group right-button">
                    <div class="buttons-container right-button">
-                      <input id="add-email" class="button submit" type="submit" value="Add Email Address">
+                      <input id="save-jdbc-driver-directory" class="button submit" type="submit" value="Save">
                    </div>
                 </div>
              </div>
           </div>
        </div>
+
+       <div id="installed-drivers-container" class="list-container"></div>
 
     </form>
   </body>

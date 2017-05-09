@@ -9,8 +9,10 @@ import com.atlassian.confluence.macro.Macro;
 import com.atlassian.confluence.macro.MacroExecutionException;
 import com.atlassian.renderer.v2.components.HtmlEscaper;
 
-import com.atlassian.confluence.plugin.services.VelocityHelperService;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.confluence.setup.settings.SettingsManager;
+import com.atlassian.sal.api.transaction.TransactionTemplate;
+import com.atlassian.confluence.plugin.services.VelocityHelperService;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,9 +25,10 @@ import java.util.Date;
 import java.net.URLClassLoader;
 import java.net.URL;
 import java.io.File;
+import java.util.Enumeration;
 
 import com.keysight.database.helpers.DatabaseDriverDelegate;
-
+import com.keysight.database.helpers.SavedPluginSettings;
 
 public class DatabaseQuery implements Macro
 {
@@ -34,7 +37,9 @@ public class DatabaseQuery implements Macro
     private final static String USERNAME          = "username";
     private final static String PASSWORD          = "password";
 
+    private final PluginSettingsFactory pluginSettingsFactory;
     private final SettingsManager settingsManager;
+    private final TransactionTemplate transactionTemplate;
     private final VelocityHelperService velocityHelperService;
 
     private Connection connect = null;
@@ -42,10 +47,14 @@ public class DatabaseQuery implements Macro
     private ResultSet resultSet = null;
     private String databaseType = null;
 
-    public DatabaseQuery( SettingsManager settingsManager,
-                          VelocityHelperService velocityHelperService
+    public DatabaseQuery( PluginSettingsFactory pluginSettingsFactory,
+                          SettingsManager settingsManager,
+                          VelocityHelperService velocityHelperService,
+                          TransactionTemplate transactionTemplate
     ){
+        this.pluginSettingsFactory = pluginSettingsFactory;
         this.settingsManager            = settingsManager;
+        this.transactionTemplate = transactionTemplate;
         this.velocityHelperService      = velocityHelperService;
     }
 
@@ -63,75 +72,68 @@ public class DatabaseQuery implements Macro
        String template = "/com/keysight/database/templates/database-query.vm";
        Map<String, Object> velocityContext = velocityHelperService.createDefaultVelocityContext();
 
+       SavedPluginSettings pluginSettings = new SavedPluginSettings( pluginSettingsFactory, transactionTemplate );
+
        ArrayList<String> columnNames = new ArrayList<String>();
        ArrayList<ArrayList<String>> dataRows = new ArrayList<ArrayList<String>>();
-       File mysqlJar = new File("C:\\mysql\\mysql-connector-java-5.1.40-bin.jar");
+       File mysqlJar = new File("C:\\jdbc-drivers\\mysql-connector-java-5.1.40-bin.jar");
        URLClassLoader urlClassLoader;
        Driver driver;
+       String classname;
 
        if( parameters.containsKey( DATABASE_TYPE ) ){
           setDatabaseType( parameters.get( DATABASE_TYPE ) );
        }
 
        try {
-           URL url = mysqlJar.toURI().toURL();
-           String classname = "com.mysql.jdbc.Driver";
-
-           //System.out.println( "\n\n\nPATH: " + new File( "." ).getCanonicalPath() + "\n\n\n" );
-           if( mysqlJar.exists() ){
-              System.out.println( "\n\n\nMYSQL JAR EXISTS\n\n\n" );
-           } else {
-              System.out.println( "\n\n\nMYSQL JAR DOES NOT EXISTS\n\n\n" );
-           }
-
-           // This will load the MySQL driver, each DB has its own driver
-           if( getDatabaseType().equals( "Mysql" ) ){
-              System.out.println( "\n\n\nLoad mysql driver\n\n\n" );
-		      url = mysqlJar.toURI().toURL();
-		      classname = "com.mysql.jdbc.Driver";
-           } else if( getDatabaseType().equals( "Microsoft Sql Server" ) ){
-              System.out.println( "\n\n\nLoad sqlserver driver\n\n\n" );
-              classname = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-           }
-
-           urlClassLoader = new URLClassLoader(new URL[]{url}, System.class.getClassLoader());
-		   driver = (Driver)Class.forName(classname, true, urlClassLoader).newInstance();
-		   DriverManager.registerDriver(new DatabaseDriverDelegate(driver));
-
-           System.out.println( "\n\n\nTry to connect\n\n\n" );
-
-           // Setup the connection with the DB
-           //jdbc:mysql://localhost/feedback?user=sqluser&password=sqluserpw
            connect = DriverManager.getConnection( parameters.get(CONNECTION_STRING),
                                                   parameters.get(USERNAME),
                                                   parameters.get(PASSWORD) );
+       } catch( SQLException exception ) {
+          if( exception.getMessage().matches( ".*No suitable driver found.*" ) ){
+             pluginSettings.loadJdbcDriver( getDatabaseType() );
+             try {
+                connect = DriverManager.getConnection( parameters.get(CONNECTION_STRING),
+                                                       parameters.get(USERNAME),
+                                                       parameters.get(PASSWORD) );
+             } catch( Exception exception2 ){
+                throw new MacroExecutionException( exception2 );
+             }
+          } else {
+             throw new MacroExecutionException( exception );
+          }
+       } catch( Exception exception ){
+          throw new MacroExecutionException( exception );
+       }
 
-           // Statements allow to issue SQL queries to the database
-           statement = connect.createStatement();
+       if( connect != null ){
+           try {
+               // Statements allow to issue SQL queries to the database
+               statement = connect.createStatement();
 
-           // Result set get the result of the SQL query
-           resultSet = statement.executeQuery( body );
+               // Result set get the result of the SQL query
+               resultSet = statement.executeQuery( body );
 
-           // Get the Column Names
-           for( int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++ ){
-              columnNames.add( resultSet.getMetaData().getColumnName(i) );
+               // Get the Column Names
+               for( int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++ ){
+                  columnNames.add( resultSet.getMetaData().getColumnName(i) );
+               }
+               velocityContext.put( "columnNames", columnNames );
+
+               // Get the Column Names
+               while( resultSet.next() ){
+                  ArrayList<String> row = new ArrayList<String>();
+                  for( int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++ ){
+                     row.add( resultSet.getString(i) );
+                  }
+                  dataRows.add( row );
+               }
+               velocityContext.put( "dataRows", dataRows );
+           } catch( Exception e ) {
+              throw new MacroExecutionException( e );
+           } finally {
+              close();
            }
-           velocityContext.put( "columnNames", columnNames );
-
-           // Get the Column Names
-           while( resultSet.next() ){
-              ArrayList<String> row = new ArrayList<String>();
-              for( int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++ ){
-                 System.out.println( resultSet.getString(i) );
-                 row.add( resultSet.getString(i) );
-              }
-              dataRows.add( row );
-           }
-           velocityContext.put( "dataRows", dataRows );
-       } catch( Exception e ) {
-          throw new MacroExecutionException( e );
-       } finally {
-          close();
        }
 
        velocityContext.put( "bodyAsHtml", body );
