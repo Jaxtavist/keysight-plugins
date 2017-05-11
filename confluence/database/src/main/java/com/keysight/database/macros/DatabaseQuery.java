@@ -28,7 +28,7 @@ import java.io.File;
 import java.util.Enumeration;
 
 import com.keysight.database.helpers.DatabaseDriverDelegate;
-import com.keysight.database.helpers.SavedPluginSettings;
+import com.keysight.database.helpers.PluginHelper;
 
 public class DatabaseQuery implements Macro
 {
@@ -72,7 +72,7 @@ public class DatabaseQuery implements Macro
        String template = "/com/keysight/database/templates/database-query.vm";
        Map<String, Object> velocityContext = velocityHelperService.createDefaultVelocityContext();
 
-       SavedPluginSettings pluginSettings = new SavedPluginSettings( pluginSettingsFactory, transactionTemplate );
+       PluginHelper pluginHelper = new PluginHelper( pluginSettingsFactory, transactionTemplate );
 
        ArrayList<String> columnNames = new ArrayList<String>();
        ArrayList<ArrayList<String>> dataRows = new ArrayList<ArrayList<String>>();

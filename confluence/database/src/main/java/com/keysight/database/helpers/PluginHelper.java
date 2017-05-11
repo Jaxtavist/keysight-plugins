@@ -35,15 +35,15 @@ import java.sql.DriverManager;
 import java.sql.Driver;
 import java.net.URLClassLoader;
 
-public class SavedPluginSettings {
+public class PluginHelper {
    private String jdbcDriverDirectory;
    private Element root;
 
    private final PluginSettingsFactory pluginSettingsFactory;
    private final TransactionTemplate transactionTemplate;
 
-   public SavedPluginSettings( final PluginSettingsFactory pluginSettingsFactory,
-                               final TransactionTemplate transactionTemplate )
+   public PluginHelper( final PluginSettingsFactory pluginSettingsFactory,
+                        final TransactionTemplate transactionTemplate )
    {
       this.pluginSettingsFactory = pluginSettingsFactory;
       this.transactionTemplate = transactionTemplate;
