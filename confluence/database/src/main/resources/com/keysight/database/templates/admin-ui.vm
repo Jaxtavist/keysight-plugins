@@ -40,6 +40,11 @@
 
        <div id="installed-drivers-container" class="list-container"></div>
 
+       <hr />
+       <div id="database-configurations">
+       </div>
+       <input id="add-connection-profile" class="button submit" type="submit" value="Add Connection Profile">
+
     </form>
   </body>
 </html>

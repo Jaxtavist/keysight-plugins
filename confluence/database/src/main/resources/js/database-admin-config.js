@@ -18,6 +18,11 @@ databaseConfigHelper = (function ($) {
        saveConfig();
     }
 
+    methods['addConnectionProfile'] = function(e){
+       AJS.$("#connection-profiles").append( Keysight.Database.Admin.Config.Templates.connectionProfile( { id:"hello"} ) );
+
+    }
+
     methods['removeEntry'] = function(e){
        e.preventDefault();
        $(e.currentTarget).parent().remove(); 
@@ -113,6 +118,11 @@ AJS.toInit(function() {
    AJS.$("#save-jdbc-driver-directory").click(function(e) { 
       e.preventDefault();
       databaseConfigHelper.save();
+   });
+
+   AJS.$("#add-connection-profile").click(function(e) { 
+      e.preventDefault();
+      databaseConfigHelper.addConnectionProfile();
    });
 
    databaseConfigHelper.loadConfig();
