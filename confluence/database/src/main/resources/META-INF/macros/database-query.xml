@@ -10,10 +10,14 @@
       <category name="confluence-content" />
       <parameters>
          <parameter name="database-type" type="enum" required="true">
-            <value name="MySQL" />
+            <value name="DB2" />
+            <value name="Derby" />
             <value name="Microsoft SQL Server" />
+            <value name="MongoDB" />
+            <value name="MySQL" />
             <value name="Oracle" />
             <value name="PostgreSQL" />
+            <value name="Sybase" />
 	        <option key="showNameInPlaceholder" value="false" />
 	        <option key="showValueInPlaceholder" value="false" />
          </parameter>

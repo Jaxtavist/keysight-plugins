@@ -91,7 +91,7 @@ public class DatabaseQuery implements Macro
                                                   parameters.get(PASSWORD) );
        } catch( SQLException exception ) {
           if( exception.getMessage().matches( ".*No suitable driver found.*" ) ){
-             pluginSettings.loadJdbcDriver( getDatabaseType() );
+             pluginHelper.loadJdbcDriver( getDatabaseType() );
              try {
                 connect = DriverManager.getConnection( parameters.get(CONNECTION_STRING),
                                                        parameters.get(USERNAME),
