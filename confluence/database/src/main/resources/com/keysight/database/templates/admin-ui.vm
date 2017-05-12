@@ -41,7 +41,7 @@
        <div id="installed-drivers-container" class="list-container"></div>
 
        <hr />
-       <div id="database-configurations">
+       <div id="connection-profiles">
        </div>
        <input id="add-connection-profile" class="button submit" type="submit" value="Add Connection Profile">
 

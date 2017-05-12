@@ -19,8 +19,8 @@ databaseConfigHelper = (function ($) {
     }
 
     methods['addConnectionProfile'] = function(e){
-       AJS.$("#connection-profiles").append( Keysight.Database.Admin.Config.Templates.connectionProfile( { id:"hello"} ) );
-
+       AJS.$("#connection-profiles").append( Keysight.Database.Admin.Config.Templates.connectionProfile( { id:makeRandomViewId() } ) );
+       AJS.tabs.setup()
     }
 
     methods['removeEntry'] = function(e){
@@ -36,6 +36,23 @@ databaseConfigHelper = (function ($) {
        }
 
        saveConfig();
+    }
+
+    function makeRandomViewId( ){
+       var size = 10000000;
+       var number = Math.floor((Math.random() * size) + 1);
+       while( idExists( "view-" + number ) ){
+          number = Math.floor((Math.random() * size) + 1);
+       }
+       return number;
+    }
+
+    function idExists( id ){
+       var flag = false;
+       if($("#" + id).length != 0) {
+          flag = true;
+       }
+       return flag;
     }
 
     methods['loadConfig'] = function(){
