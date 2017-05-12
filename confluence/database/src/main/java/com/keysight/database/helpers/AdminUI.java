@@ -13,20 +13,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.net.URI;
 import com.atlassian.sal.api.auth.LoginUriProvider;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
+import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
 import com.atlassian.templaterenderer.TemplateRenderer;
 
+
+import com.keysight.database.helpers.PluginHelper;
+import com.keysight.database.helpers.DriverDetails;
 
 public class AdminUI extends HttpServlet
 {
    private final UserManager userManager;
    private final LoginUriProvider loginUriProvider;
-   private final TemplateRenderer renderer;
+   private final TemplateRenderer templateRenderer;
+   private final PluginSettingsFactory pluginSettingsFactory;
+   private final TransactionTemplate transactionTemplate;
 
-   public AdminUI(UserManager userManager, LoginUriProvider loginUriProvider, TemplateRenderer renderer){
-      this.userManager = userManager;
+   public AdminUI( LoginUriProvider loginUriProvider,
+                   PluginSettingsFactory pluginSettingsFactory,
+                   TemplateRenderer templateRenderer,
+                   TransactionTemplate transactionTemplate,
+                   UserManager userManager ){
       this.loginUriProvider = loginUriProvider;
-      this.renderer = renderer;
+      this.pluginSettingsFactory = pluginSettingsFactory;
+      this.templateRenderer = templateRenderer;
+      this.transactionTemplate = transactionTemplate;
+      this.userManager = userManager;
    }
 
    @Override
@@ -37,11 +50,36 @@ public class AdminUI extends HttpServlet
          return;
       }
 
-      Map<String,Object> velocityContext = new HashMap<String,Object>();
+      DriverDetails driverDetails = null;  
+      Map<String,Object> velocityContext = new HashMap<String, Object>();
       velocityContext.put( "relativeHome", new File(".").getCanonicalPath() );
+      PluginHelper pluginHelper = new PluginHelper( pluginSettingsFactory, transactionTemplate );
+
+      Map<String, String> driverKeyMap = new HashMap<String, String>();
+      driverKeyMap.put( "DB2", "db2" );
+      driverKeyMap.put( "Derby", "derby" );
+      driverKeyMap.put( "Microsoft SQL Server", "microsoftSqlServer" );
+      driverKeyMap.put( "MongoDB", "mongoDb" );
+      driverKeyMap.put( "MySQL", "mySql" );
+      driverKeyMap.put( "Oracle", "oracle" );
+      driverKeyMap.put( "PostgreSQL", "postgreSql" );
+      driverKeyMap.put( "Sybase", "sybase" );
+
+      for(String key: driverKeyMap.keySet()){
+         driverDetails = pluginHelper.getDriverDetails( key );
+         if( !driverDetails.isOk ){
+            velocityContext.put( driverKeyMap.get(key), "error" );
+            System.out.println( driverDetails.className );
+            System.out.println( driverDetails.url );
+         } else if( !driverDetails.isLocal ){
+            velocityContext.put( driverKeyMap.get(key), "warning" );
+         } else {
+            velocityContext.put( driverKeyMap.get(key), "ok" );
+         }
+      }
 
       response.setContentType("text/html;charset=utf-8");
-      renderer.render("/com/keysight/database/templates/admin-ui.vm", velocityContext, response.getWriter() );
+      templateRenderer.render("/com/keysight/database/templates/admin-ui.vm", velocityContext, response.getWriter() );
    }
 
    private void redirectToLogin(HttpServletRequest request, HttpServletResponse response) throws IOException{

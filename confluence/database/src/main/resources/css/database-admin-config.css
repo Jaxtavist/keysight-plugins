@@ -48,3 +48,18 @@ form.aui .field-group.confluence-support-remove-button-container {
 .none-saved {
    padding: 0px 0px 0px 25px;
 }
+
+.keysight-database-alert{
+   background-color: #000000;
+   color: #f3b632;
+}
+
+.keysight-database-ok{
+   background-color: #FFFFFF;
+   color: #6dac3a;
+}
+
+.keysight-database-not-ok{
+   background-color: #e90029;
+   color: #e8e8e8;
+}

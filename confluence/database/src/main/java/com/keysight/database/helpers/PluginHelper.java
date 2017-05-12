@@ -143,41 +143,47 @@ public class PluginHelper {
       }
    }
 
-   public void loadJdbcDriver( String driverKey )
+   public DriverDetails getDriverDetails( String driverKey )
    {
-      String classname = null;
       DriverDetails driverDetails = null;
 
       if( driverKey.equals( MYSQL_DRIVER_KEY ) ){
-         classname = MYSQL_CLASS_NAME;
          driverDetails = getJdbcDriver( MYSQL_DOWNLOAD, MYSQL_DRIVER_KEY, MYSQL_REGEX );
+         driverDetails.className = MYSQL_CLASS_NAME;
       } else if( driverKey.equals( SQL_SERVER_DRIVER_KEY ) ){
-         classname = SQL_SERVER_CLASS_NAME;
          driverDetails = getJdbcDriver( SQL_SERVER_DOWNLOAD, SQL_SERVER_DRIVER_KEY, SQL_SERVER_REGEX );
+         driverDetails.className = SQL_SERVER_CLASS_NAME;
       } else if( driverKey.equals( ORACLE_DRIVER_KEY ) ){
-         classname = ORACLE_CLASS_NAME;
          driverDetails = getJdbcDriver( ORACLE_DOWNLOAD, ORACLE_DRIVER_KEY, ORACLE_REGEX );
+         driverDetails.className = ORACLE_CLASS_NAME;
       } else if( driverKey.equals( POSTGRESQL_DRIVER_KEY ) ){
-         classname = POSTGRESQL_CLASS_NAME;
          driverDetails = getJdbcDriver( POSTGRESQL_DOWNLOAD, POSTGRESQL_DRIVER_KEY, POSTGRESQL_REGEX );
+         driverDetails.className = POSTGRESQL_CLASS_NAME;
       } else if( driverKey.equals( DB2_DRIVER_KEY ) ){
-         classname = DB2_CLASS_NAME;
          driverDetails = getJdbcDriver( DB2_DOWNLOAD, DB2_DRIVER_KEY, DB2_REGEX );
+         driverDetails.className = DB2_CLASS_NAME;
       } else if( driverKey.equals( DERBY_DRIVER_KEY ) ){
-         classname = DERBY_CLASS_NAME;
          driverDetails = getJdbcDriver( DERBY_DOWNLOAD, DERBY_DRIVER_KEY, DERBY_REGEX );
+         driverDetails.className = DERBY_CLASS_NAME;
       } else if( driverKey.equals( MONGODB_DRIVER_KEY ) ){
-         classname = MONGODB_CLASS_NAME;
          driverDetails = getJdbcDriver( MONGODB_DOWNLOAD, MONGODB_DRIVER_KEY, MONGODB_REGEX );
+         driverDetails.className = MONGODB_CLASS_NAME;
       } else if( driverKey.equals( SYBASE_DRIVER_KEY ) ){
-         classname = SYBASE_CLASS_NAME;
          driverDetails = getJdbcDriver( SYBASE_DOWNLOAD, SYBASE_DRIVER_KEY, SYBASE_REGEX );
+         driverDetails.className = SYBASE_CLASS_NAME;
       }
 
+      return driverDetails;
+   }
+
+   public void loadJdbcDriver( String driverKey )
+   {
+      DriverDetails driverDetails = getDriverDetails( driverKey );
+
       try{
-         if( !StringUtils.isEmpty( classname ) ){
+         if( !StringUtils.isEmpty( driverDetails.className ) ){
             URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{driverDetails.url}, System.class.getClassLoader());
-            Driver driver = (Driver)Class.forName(classname, true, urlClassLoader).newInstance();
+            Driver driver = (Driver)Class.forName(driverDetails.className, true, urlClassLoader).newInstance();
             DriverManager.registerDriver(new DatabaseDriverDelegate(driver));
          }
          printLoadedDrivers();
@@ -195,13 +201,16 @@ public class PluginHelper {
          try{
             driverDetails.url = new URL( url );
             driverDetails.isOk = true;
+            System.out.println( "url did parse: " + url );
          } catch( Exception exception ) {
             driverDetails.url = null;
             driverDetails.isOk = false;
+            System.out.println( "url did not parse: " + url + " " + exception );
          }
       } else {
          driverDetails.url = null;
          driverDetails.isOk = false;
+         System.out.println( "no url" );
       }
 
       if( !StringUtils.isEmpty( getJdbcDriverDirectory() ) ){

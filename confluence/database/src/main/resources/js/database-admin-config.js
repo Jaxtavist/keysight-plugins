@@ -19,8 +19,10 @@ databaseConfigHelper = (function ($) {
     }
 
     methods['addConnectionProfile'] = function(e){
-       AJS.$("#connection-profiles").append( Keysight.Database.Admin.Config.Templates.connectionProfile( { id:makeRandomViewId() } ) );
-       AJS.tabs.setup()
+       var id = makeRandomViewId();
+       AJS.$("#connection-profiles").append( Keysight.Database.Admin.Config.Templates.connectionProfile( { id:id } ) );
+       AJS.tabs.setup();
+       AJS.tabs.change( jQuery('a[href="#edit-' + id + '"]') );
     }
 
     methods['removeEntry'] = function(e){
