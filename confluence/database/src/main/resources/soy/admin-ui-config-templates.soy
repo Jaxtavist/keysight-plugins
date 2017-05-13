@@ -24,9 +24,28 @@
 /**
  * Connection Profile
  * @param id
+ * @param profileName
+ * @param profileDescription
+ * @param authorizedUsers
+ * @param authorizedGroups
+ * @param databaseType
+ * @param databaseServer
+ * @param databaseName
+ * @param databasePort
+ * @param databaseUsername
+ * @param databasePassword
+ * @param connectionStringSuffix
+ * @param db2Selected
+ * @param derbySelected
+ * @param microsoftSqlServerSelected
+ * @param mongoDbSelected
+ * @param mySqlSelected
+ * @param oracleSelected
+ * @param postgresSqlSelected
+ * @param sybaseSelected
  */
 {template .connectionProfile}
-<div class="aui-tabs horizontal-tabs">
+<div class="aui-tabs horizontal-tabs" id="connection-profile-{$id}">
     <ul class="tabs-menu">
         <li class="menu-item active-tab">
             <a href="#view-{$id}">View</a>
@@ -35,11 +54,147 @@
             <a href="#edit-{$id}">Edit</a>
         </li>
     </ul>
+
     <div class="tabs-pane active-pane" id="view-{$id}">
-       <h1>view pane</h1>
+       <div class="connection-profile view-connection-profile view-connection-profile-{$id}">
+
+<table border="0">
+   <tr>
+      <th>Profile Name</th>
+      <td id="view-profile-name-{$id}" >{$profileName}</td>
+      <th>Database Type</th>
+      <td id="view-database-type-{$id}" >{$databaseType}</td>
+   </tr>
+   <tr>
+      <th rowspan="4">Description</th>
+      <td rowspan="4" id="view-profile-description-{$id}" >{$profileDescription}</td>
+      <th>Database Name</th>
+      <td id="view-database-name-{$id}" >{$databaseName}</td>
+   </tr>
+   <tr>
+      <th>Database Server</th>
+      <td id="view-database-server-{$id}" >{$databaseServer}</td>
+   </tr>
+   <tr>
+      <th>Database Port</th>
+      <td id="view-database-port-{$id}" >{$databasePort}</td>
+   </tr>
+   <tr>
+      <th>Username</th>
+      <td id="view-database-username-{$id}" >{$databaseUsername}</td>
+   </tr>
+   <tr>
+      <th>Authorized Users</th>
+      <td id="view-authorized-users-{$id}" >{$authorizedUsers}</td>
+      <th>Password</th>
+      <td id="view-database-password-{$id}" >{$databasePassword}</td>
+   </tr>
+   <tr>
+      <th>Authorized Groups</th>
+      <td id="view-authorized-groups-{$id}" >{$authorizedGroups}</td>
+      <th>Connection String Suffix</th>
+      <td id="view-connection-string-suffix-{$id}" >{$connectionStringSuffix}</td>
+   </tr>
+   <tr>
+      <th>Connection String</th>
+      <td columnspan="3" id="view-connection-string-{$id}" ></td>
+   </tr>
+   <tr>
+      <th>Connection Status</th>
+      <td columnspan="3" id="view-connection-status-{$id}" ></td>
+   </tr>
+</table>
+
+       </div>
     </div>
+
     <div class="tabs-pane" id="edit-{$id}">
-       <h1>Edit pane</h1>
+       <div class="connection-profile edit-connection-profile" connection-profile-id="{$id}">
+
+<div class="keysight-table">
+   <div class="keysight-table-row">
+      <div class="keysight-table-cell">
+
+<form class="aui">
+    <div class="field-group">
+        <label for="profile-name-{$id}">Profile Name</label>
+        <input class="text long-field" id="profile-name-{$id}" type="text" name="profile-name-{$id}" placeholder="Required" value="{$profileName}">
+    </div>
+    <div class="field-group">
+        <label for="profile-description-{$id}">Description</label>
+        <textarea class="textarea long-field" rows="7" id="profile-description-{$id}" name="profile-description-{$id}" placeholder="" value="{$profileDescription}"></textarea>
+    </div>
+    <div class="field-group">
+        <label for="authorized-users-{$id}">Authorized Users</label>
+        <input class="text long-field" id="authorized-users-{$id}" type="text" name="authorized-users-{$id}" placeholder="Optional" value="{$authorizedUsers}">
+        <div class="description" >A comma seperated list of user names that may access this profile.</div>
+    </div>
+    <div class="field-group">
+        <label for="authorized-groups-{$id}">Authorized Groups</label>
+        <input class="text long-field" id="authorized-groups-{$id}" type="text" name="authorized-groups-{$id}" placeholder="Optional" value="{$authorizedGroups}">
+        <div class="description" >A comma seperated list of group names that may access this profile.</div>
+    </div>
+
+</form>
+
+      </div>
+      <div class="keysight-table-cell">
+
+<form class="aui">
+    <div class="field-group">
+        <label for="database-type-{$id}">Database Type</label>
+        <select class="select long-field" id="database-type-{$id}" name="database-type-{$id}">
+            <option {$db2Selected}>DB2</option>
+            <option {$derbySelected}>Derby</option>
+            <option {$microsoftSqlServerSelected}>Microsoft SQL Server</option>
+            <option {$mongoDbSelected}>MongoDB</option>
+            <option {$mySqlSelected}>MySQL</option>
+            <option {$oracleSelected}>Oracle</option>
+            <option {$postgresSqlSelected}>PostgreSQL</option>
+            <option {$sybaseSelected}>Sybase</option>
+        </select>
+    </div>
+    <div class="field-group">
+        <label for="database-name-{$id}">Database Name</label>
+        <input class="text long-field" id="database-name-{$id}" type="text" name="database-name-{$id}" placeholder="Required" value={$databaseName}>
+    </div>
+    <div class="field-group">
+        <label for="database-server-{$id}">Database Server</label>
+        <input class="text long-field" id="database-server-{$id}" type="text" name="database-server-{$id}" placeholder="Required" value={$databaseServer}>
+    </div>
+    <div class="field-group">
+        <label for="database-port-{$id}">Database Port</label>
+        <input class="text long-field" id="database-port-{$id}" type="text" name="database-port-{$id}" placeholder="Optional" value={$databasePort}>
+    </div>
+    <div class="field-group">
+        <label for="database-username-{$id}">Username</label>
+        <input class="text long-field" id="database-username-{$id}" type="text" name="database-username-{$id}" placeholder="Required" value={$databaseUsername}>
+    </div>
+    <div class="field-group">
+        <label for="database-password-{$id}">Password</label>
+        <input class="text long-field" id="database-password-{$id}" type="password" name="database-password-{$id}" placeholder="Required" value={$databasePassword}>
+    </div>
+    <div class="field-group">
+        <label for="connection-string-suffix-{$id}">Connection String Suffix</label>
+        <input class="text long-field" id="connection-string-suffix-{$id}" type="text" name="connection-string-suffix-{$id}" placeholder="Optional" value={$connectionStringSuffix}>
+        <div class="description" >This text will be appended to the connection string.</div>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button style="float:left;" class="aui-button delete-profile-button" connection-profile="{$id}">Delete</button>
+            <button style="float:left;" class="aui-button aui-button-primary update-profile-button" connection-profile="{$id}">Save</button>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</form>
+
+      </div>
+   </div>
+</div>
+
+       </div>
     </div>
 </div>
 {/template}
+
+

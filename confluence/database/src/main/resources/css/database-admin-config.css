@@ -38,11 +38,22 @@ form.aui .field-group.confluence-support-remove-button-container {
    padding: 4px 0px 4px 0px;
 }
 
+.connection-profile{
+   border: 1px solid #343434;
+   background-color: #e8e8e8;
+   padding: 10px 10px 10px 10px;
+   margin: 25px;
+}
+
 .list-container {
    border: 1px solid #343434;
    background-color: #e8e8e8;
    padding: 10px 10px 10px 0px;
    margin: 25px 25px 0px 25px;
+}
+
+.list-container p {
+   padding-left: 25px;
 }
 
 .none-saved {
@@ -62,4 +73,21 @@ form.aui .field-group.confluence-support-remove-button-container {
 .keysight-database-not-ok{
    background-color: #e90029;
    color: #e8e8e8;
+}
+
+.keysight-table{
+   display:table;
+}
+
+.keysight-table-row{
+   display:table-row;
+}
+
+.keysight-table-cell{
+   display:table-cell;
+}
+
+div.connection-profile table tr th {
+   text-align: left;
+   vertical-align: text-top;
 }
