@@ -1,0 +1,57 @@
+Copyright 2015 Keysight Technologies
+
+With the exceptions listed below, the documents in this repository
+are licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Exceptions (And Credits)
+------------------------
+
+The java files in  at ./confluence/include-content/src/main/java leverage
+some code from teh Atlassian's PageIncludeMacro.java which is distributed
+under an Apache 2.0 license and can be found at 
+https://bitbucket.org/atlassian/confluence-advanced-macros-plugin/src/c62698ce0e80786c90960ea877e7f5f891ad5f21/src/main/java/com/atlassian/confluence/plugins/macros/advanced/PageIncludeMacro.java?at=master&fileviewer=file-view-default
+
+The javascript at ./confluence/include-content/src/main/resources/js/code-include-macro-browser.js
+uses code from Atlassian's code-macro-languages.js which is distributed under
+an Apache 2.0 license and can be found at
+https://bitbucket.org/atlassian/confluence-newcode-macro-plugin/src/b0a1c50cab62152374f1df23296c2c8acba13b4d/src/main/resources/scripts/code-macro-languages.js?at=master&fileviewer=file-view-default
+
+The ./confluence/numbered-headings macro is a fork of the Avisi Numbered 
+Headings macro.  This is distributed with a 2-Clause BSD License.  At the
+time of this writing, there is no license provided with the Avisi Numbered
+Headings source code at https://bitbucket.org/avisi/numbered-headings/overview; 
+however, it does mention the 2-clause BSD License on the Atlassian Marketplace
+Listing at https://marketplace.atlassian.com/plugins/nl.avisi.confluence.plugins.numberedheadings/server/overview
+
+The java code in ./confluence/database to dynamically import a jar jdbc driver
+was taken from http://www.kfu.com/~nsayer/Java/dyn-jdbc.html.  Nick Sayer <nsayer@kfu.com>
+declared this code to be public domain on May 8, 2017 in an email to saselberg@gmail.com
+
+> Go for it. I hereby declare that code is in the public domain.
+>
+> Sent from my iPhone
+> 
+> On May 8, 2017, at 8:48 PM, Scott Selberg <saselberg@gmail.com> wrote:
+> Hi,
+>
+> I was looking for a solution for dynamically loading the database driver
+> classes in Java.  You example at
+> http://www.kfu.com/~nsayer/Java/dyn-jdbc.html works great.  I'm planning on
+> posting my code on Bitbucket at https://bitbucket.org under an apache 2 open
+> source license.  I didn't see a license for your code, so I thought I would
+> contact you directly and make sure I have permission to copy and modify your
+> code in my application and then to publish the source code under the Apache 2
+> license. Your work will be attributed to you.
+>
+> Would that be OK with you?
+> -Scott

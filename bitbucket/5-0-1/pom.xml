@@ -3,10 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
-    <artifactId>4-9-1</artifactId>
+    <artifactId>5-0-1</artifactId>
     <version>1.0.0</version>
-    <name>4-9-1</name>
-    <description>This plugin provides a container for a 4-9-1 instance of Bitbucket.</description>
+    <name>5-0-1</name>
+    <description>This plugin provides a container for a Bitbucket instance.</description>
    
     <properties>       
         <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
@@ -30,6 +30,11 @@
                 <version>${amps.version}</version>
                 <extensions>true</extensions>
                 <configuration>
+                    <enableQuickReload>true</enableQuickReload>
+                    <enableFastdev>false</enableFastdev>
+		            <encoding>${encoding}</encoding>
+		            <jvmArgs>-Xms128m -Xmx2048m -XX:MaxPermSize=512m</jvmArgs>
+		            <jvmDebugPort>5005</jvmDebugPort>
                     <products>
                         <product>
                             <id>bitbucket</id>
@@ -51,7 +56,7 @@
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
                             *
                         </Import-Package>
-
+  
                         <!-- Ensure plugin is Spring powered -->
                         <Spring-Context>*</Spring-Context>
                     </instructions>
