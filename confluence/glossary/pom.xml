@@ -5,7 +5,7 @@
    
     <artifactId>glossary</artifactId>
     <version>2.2.0</version>
-    <name>Glossary</name>
+    <name>Basic Glossary</name>
     <description>This plugin provides the functionality to support a glossary.</description>
    
     <properties>       

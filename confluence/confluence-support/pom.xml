@@ -5,7 +5,7 @@
    
     <artifactId>confluence-support</artifactId>
     <version>1.9.1</version>
-    <name>Confluence Support</name>
+    <name>Keysight Admin Tools for Confluence</name>
     <description>This plugin provides various macros to assist supporting confluence.</description>
    
     <properties>       

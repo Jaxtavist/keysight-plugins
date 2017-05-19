@@ -5,7 +5,7 @@
    
     <artifactId>jira-support</artifactId>
     <version>1.1.0</version>
-    <name>JIRA Support</name>
+    <name>Keysight Admin Tools for JIRA</name>
     <description>This plugin provides various macros to assist supporting JIRA.</description>
    
     <properties>       

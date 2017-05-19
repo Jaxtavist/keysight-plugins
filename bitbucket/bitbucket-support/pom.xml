@@ -5,7 +5,7 @@
    
     <artifactId>bitbucket-support</artifactId>
     <version>1.0.0</version>
-    <name>Bitbucket Support</name>
+    <name>Keysight Admin Tools for Bitbucket</name>
     <description>This plugin provides various macros to assist supporting Bitbucket.</description>
    
     <properties>       
