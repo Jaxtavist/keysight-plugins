@@ -1,19 +1,40 @@
-<div class="keysight-tabs">
-   <div class="aui-tabs $orientation" role="application">
-      <ul class="tabs-menu" role="tablist">
-         #foreach( $tab in $tabs )
-         <li class="menu-item $tab.activeTab()" role="presentation">
-            <a href="#$tab.getPaneId()" id="$tab.getTabId()" role="tab" aria-selected="$tab.ariaSelected()"><strong>$tab.title()</strong></a>
-         </li>
-         #end
-      </ul>
-      #foreach( $tab in $tabs )
-      <div class="tabs-pane $tab.activePane()" id="$tab.paneId()" role="tabpanel" aria-hidden="$tab.ariaHidden()">
-#if( $show-tab-info )
-Last modified by $tab.getAuthorFullName() on $tab.showCreationDate() <a href="$tab.getPageUrl()">(Visit Page)</a></p>
-#end
-$tab.body()
-      </div>
+$webResourceManager.requireResource("com.keysight.html-elements:tab-resources")
+
+#if( $pdfOrWordOutput )
+
+   #foreach( $tab in $tabs )
+      <p><strong>$tab.title()</strong></p>
+
+      #if( $show-tab-info )
+      <p>Last modified by $tab.getAuthorFullName() on $tab.showCreationDate() <a href="$tab.getPageUrl()">(Visit Page)</a></p>
       #end
+
+      <div>
+      $tab.body()
+      </div>
+
+   #end
+
+#else
+
+   <div class="keysight-tabs">
+      <div class="aui-tabs $orientation" role="application">
+         <ul class="tabs-menu" role="tablist">
+            #foreach( $tab in $tabs )
+            <li class="menu-item $tab.activeTab()" role="presentation">
+               <a href="#$tab.getPaneId()" id="$tab.getTabId()" role="tab" aria-selected="$tab.ariaSelected()"><strong>$tab.title()</strong></a>
+            </li>
+            #end
+         </ul>
+         #foreach( $tab in $tabs )
+         <div class="tabs-pane $tab.activePane()" id="$tab.paneId()" role="tabpanel" aria-hidden="$tab.ariaHidden()">
+            #if( $show-tab-info )
+            Last modified by $tab.getAuthorFullName() on $tab.showCreationDate() <a href="$tab.getPageUrl()">(Visit Page)</a></p>
+            #end
+            $tab.body()
+         </div>
+         #end
+      </div>
    </div>
-</div>
+
+#end

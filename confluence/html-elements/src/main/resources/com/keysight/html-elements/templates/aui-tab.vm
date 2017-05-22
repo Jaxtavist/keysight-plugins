@@ -1,3 +1,5 @@
+$webResourceManager.requireResource("com.keysight.html-elements:tab-resources")
+
 <div class="aui-tab">
    <div class="aui-tabs  horizontal-tabs" role="application">
       <ul class="tabs-menu" role="tablist">

@@ -160,6 +160,11 @@
                    <parameter name="reverse" type="boolean"/>
                    <parameter name="ltrunc" type="string"/>
                 </parameters>
-   </xhtml-macro>
+    </xhtml-macro>
+
+    <web-resource key="tab-resources" name="Tab Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <resource type="download" name="tab-resources.js" location="/js/tab-resources.js"/>
+    </web-resource>
 
 </module-container>

@@ -65,6 +65,10 @@ public class AuiTabGroup implements Macro
       }
       velocityContext.put( "tabs", tabs );
 
+      if( context.getOutputType().matches( "(word|pdf)" ) ){
+         velocityContext.put( "pdfOrWordOutput", "true" );
+      }
+
       if( ShowPageInfo() ){
           velocityContext.put( "show-tab-info", "true" );
       }
