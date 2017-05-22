@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>html-elements</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <name>HTML Elements</name>
     <description>This plugin provides various macros to assist with the layout and presentation of content in Confluence.</description>
    
