@@ -22,7 +22,8 @@
     <!-- add our web resources -->
     <web-resource key="glossary-resources" name="Glossary Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
-	    <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
 
 	    <!-- These dependencies need references in the pom as well-->
 	    <dependency>com.atlassian.confluence.plugins.confluence-create-content-plugin:space-blueprints</dependency>
