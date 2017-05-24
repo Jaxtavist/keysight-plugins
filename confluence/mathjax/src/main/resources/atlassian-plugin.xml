@@ -45,5 +45,11 @@
       <context>macro-browser</context>
       <context>preview</context>
    </web-resource>
+
+   <web-resource key="mathjax-cdn-resources" name="Mathjax CDN Resources">
+      <!-- The script to download the latest was not working as expected, so 
+           for now I'm hard coded to 2.7.1 in the webpart -->
+      <!--<resource type="download" name="latest.js" location="/js/latest.js"/>-->
+   </web-resource>
     
 </atlassian-plugin>

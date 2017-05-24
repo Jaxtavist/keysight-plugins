@@ -16,8 +16,9 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 @Scanned
 public class ComponentImports
 {
-    @ComponentImport com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
     @ComponentImport com.atlassian.confluence.setup.settings.SettingsManager        settingsManager;
+    @ComponentImport com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
+    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
   
     private ComponentImports()
     {

@@ -44,8 +44,11 @@
                         <Import-Package>
                             org.springframework.osgi.*;resolution:="optional",
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            com.atlassian.confluence.plugin.services,
+                            com.atlassian.confluence.setup.settings,
+                            com.atlassian.confluence.xhtml.api,
                             *
-		        </Import-Package>
+                        </Import-Package>
 
                         <Atlassian-Scan-Folders>
                             META-INF/macros,

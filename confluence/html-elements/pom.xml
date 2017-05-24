@@ -41,17 +41,17 @@
   
                         <!-- Add package import here -->
                         <Import-Package>
-                            org.springframework.osgi.*;resolution:="optional",
-			    org.eclipse.gemini.blueprint.*;resolution:="optional",
-			    com.atlassian.confluence.pages,
-			    com.atlassian.confluence.spaces,
-                            com.atlassian.confluence.labels,
-			    com.atlassian.confluence.plugin.services,
-			    com.atlassian.confluence.setup.settings,
-			    com.atlassian.confluence.content.render.xhtml,
-			    com.atlassian.confluence.xhtml.api,
-			    com.atlassian.confluence.security,
-                            *
+                           org.springframework.osgi.*;resolution:="optional",
+                           org.eclipse.gemini.blueprint.*;resolution:="optional",
+                           com.atlassian.confluence.pages,
+                           com.atlassian.confluence.spaces,
+                           com.atlassian.confluence.labels,
+                           com.atlassian.confluence.plugin.services,
+                           com.atlassian.confluence.setup.settings,
+                           com.atlassian.confluence.content.render.xhtml,
+                           com.atlassian.confluence.xhtml.api,
+                           com.atlassian.confluence.security,
+                           *
 		        </Import-Package>
 
 		        <Atlassian-Scan-Folders>

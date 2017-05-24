@@ -1,0 +1,2 @@
+$webResourceManager.requireResource("com.keysight.mathjax:mathjax-cdn-resources")
+$bodyAsHtml
