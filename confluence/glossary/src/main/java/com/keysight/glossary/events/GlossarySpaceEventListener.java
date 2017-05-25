@@ -195,7 +195,7 @@ public class GlossarySpaceEventListener implements DisposableBean
            newPage.setTitle( letter );
            newPage.setSpace( space );
            newPage.setParent( space.getHomePage() );
-           newPage.setBodyAsString( "<p><ac:structured-macro ac:name=\"include-children\" ac:schema-version=\"1\"/></p>\n" );
+           newPage.setBodyAsString( "<p><ac:structured-macro ac:name=\"children\" ac:schema-version=\"1\"/></p>\n" );
            pageManager.saveContentEntity( newPage, null );
         }
 
