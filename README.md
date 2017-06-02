@@ -1,3 +1,5 @@
+![keysight-banner-560x274.png](https://bitbucket.org/repo/kMMaq9R/images/227789766-keysight-banner-560x274.png)
+
 This repository is a collection of plugins developed for and deployed with
 Keysight Technologies. 
 
@@ -40,4 +42,4 @@ To setup a new container, move into ./confluence and execute **atlas-create-conf
 I typically use the group id of com.keysight and the atifact name is the version with 
 dashes rather than periods (such as 6-2-0).  Then delete the folders under **test** and **src/main/java**.
 Lastly, copy the pom.xml from ./confluence/6-2-0 and update the version number inside.
-Then move into the new folder and execute **atlas-run**.  
+Then move into the new folder and execute **atlas-run**.
