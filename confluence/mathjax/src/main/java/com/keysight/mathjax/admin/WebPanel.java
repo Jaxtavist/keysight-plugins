@@ -1,21 +1,15 @@
 package com.keysight.mathjax.admin;
 
 import com.atlassian.plugin.PluginParseException;
-import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
-import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.plugin.web.ContextProvider;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 
-import javax.inject.Inject;
 import java.util.Map;
 
-@Scanned
 public class WebPanel implements ContextProvider {
-    @ComponentImport
     private PluginSettingsFactory pluginSettingsFactory;
 
-    @Inject
     public WebPanel(PluginSettingsFactory pluginSettingsFactory) {
         this.pluginSettingsFactory = pluginSettingsFactory;
     }

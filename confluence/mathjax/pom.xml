@@ -8,22 +8,6 @@
     <url>MathJax</url>
     <description>This plugin provides macros to insert equations using MathJax.</description>
 
-    <repositories>
-        <repository>
-            <id>atlassian-public</id>
-            <url>https://maven.atlassian.com/repository/public</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-                <checksumPolicy>warn</checksumPolicy>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <checksumPolicy>warn</checksumPolicy>
-            </releases>
-        </repository>
-    </repositories>
-
     <properties>
         <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
@@ -35,25 +19,6 @@
         <artifactId>parent</artifactId>
         <version>1.0.0</version>
     </parent>
-
-    <dependencies>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.sal</groupId>
-            <artifactId>sal-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.atlassian.templaterenderer</groupId>
-            <artifactId>atlassian-template-renderer-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
