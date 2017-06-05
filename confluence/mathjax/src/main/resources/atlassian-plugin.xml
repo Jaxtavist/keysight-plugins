@@ -1,55 +1,69 @@
 <atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
-   <plugin-info>
-      <description>${project.description}</description>
-      <version>${project.version}</version>
-      <vendor name="${project.organization.name}" url="${project.organization.url}" />
-      <param name="plugin-icon">images/keysight-icon-16x16.png</param>
-      <param name="plugin-logo">images/keysight-logo-144x144.png</param>
-      <param name="plugin-banner">images/keysight-banner-560x274.png</param>
-      <param name="vendor-icon">images/keysight-icon-16x16.png</param>
-      <param name="vendor-logo">images/keysight-logo-72x72.png</param>
-      <param name="atlassian-data-center-compatible">true</param>
-      <scan-modules>
-         <folder>META-INF/macros</folder>
-         <folder>META-INF/rest</folder>
-         <folder>META-INF/webparts</folder>
-      </scan-modules>
-   </plugin-info>
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}"/>
+        <param name="plugin-icon">images/keysight-icon-16x16.png</param>
+        <param name="plugin-logo">images/keysight-logo-144x144.png</param>
+        <param name="plugin-banner">images/keysight-banner-560x274.png</param>
+        <param name="vendor-icon">images/keysight-icon-16x16.png</param>
+        <param name="vendor-logo">images/keysight-logo-72x72.png</param>
+        <param name="atlassian-data-center-compatible">true</param>
+        <scan-modules>
+            <folder>META-INF/macros</folder>
+            <folder>META-INF/rest</folder>
+            <folder>META-INF/webparts</folder>
+        </scan-modules>
+    </plugin-info>
 
-   <!-- add our i18n resource -->
-   <resource type="i18n" name="mathjax" location="/com/keysight/mathjax/i18n/mathjax"/>
-    
-   <!-- add our web resources -->
-   <web-resource key="mathjax-resources" name="Mathjax Web Resources">
-      <dependency>com.atlassian.auiplugin:ajs</dependency>
-      <dependency>confluence.editor.actions:editor-macro-browser</dependency>
-      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="mathjax" location="/com/keysight/mathjax/i18n/mathjax"/>
 
-      <!-- transform Soy templates into JS -->
-      <transformation extension="soy">
-         <transformer key="soyTransformer">
-            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
-         </transformer>
-      </transformation>
-       
-      <resource type="download" name="mathjax.css" location="/css/mathjax.css"/>
-      <resource type="download" name="mathjax.js" location="/js/mathjax.js"/>
-      <resource type="download" name="macro-help.js" location="/js/macro-help.js"/>
-      <resource type="download" name="activate-string-fields.js" location="/js/activate-string-fields.js"/>
-      <resource type="download" name="string-fields.js" location="soy/string-fields.soy"/>
-      <resource type="download" name="images/" location="/images"/>
+    <!-- add our web resources -->
+    <web-resource key="mathjax-resources" name="Mathjax Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
 
-      <context>mathjax</context>
-      <context>atl.general</context>
-      <context>main</context>
-      <context>macro-browser</context>
-      <context>preview</context>
-   </web-resource>
+        <!-- transform Soy templates into JS -->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+            </transformer>
+        </transformation>
 
-   <web-resource key="mathjax-cdn-resources" name="Mathjax CDN Resources">
-      <!-- The script to download the latest was not working as expected, so 
-           for now I'm hard coded to 2.7.1 in the webpart -->
-      <!--<resource type="download" name="latest.js" location="/js/latest.js"/>-->
-   </web-resource>
-    
+        <resource type="download" name="mathjax.css" location="/css/mathjax.css"/>
+        <resource type="download" name="mathjax.js" location="/js/mathjax.js"/>
+        <resource type="download" name="macro-help.js" location="/js/macro-help.js"/>
+        <resource type="download" name="activate-string-fields.js" location="/js/activate-string-fields.js"/>
+        <resource type="download" name="string-fields.js" location="soy/string-fields.soy"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>mathjax</context>
+        <context>atl.general</context>
+        <context>main</context>
+        <context>macro-browser</context>
+        <context>preview</context>
+    </web-resource>
+
+    <web-resource key="mathjax-cdn-resources" name="Mathjax CDN Resources">
+        <!-- The script to download the latest was not working as expected, so
+             for now I'm hard coded to 2.7.1 in the webpart -->
+        <!--<resource type="downlonamename="latest.js" location="/js/latest.js"/>-->
+    </web-resource>
+
+    <web-item key="conf-menu-item" name="MathJax Configuration" section="system.admin/configuration" weight="10">
+        <description>Link to MathJax admin page.</description>
+        <label key="mathjax.admin.label"/>
+        <link linkId="mathjax-admin-link">/plugins/servlet/mathjax/admin</link>
+    </web-item>
+
+    <!--<rest key="rest" path="/mathjax-admin" version="1.0">-->
+        <!--<description>Provides REST resources for the admin UI.</description>-->
+    <!--</rest>-->
+
+    <servlet key="admin-servlet" class="com.keysight.mathjax.admin.AdminServlet">
+        <url-pattern>/mathjax/admin</url-pattern>
+    </servlet>
+
 </atlassian-plugin>

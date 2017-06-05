@@ -24,29 +24,8 @@
  */
 
 (function () {
-
-   var CDN = {
-     'cdnjs.cloudflare.com': {
-       api: 'https://api.cdnjs.com/libraries/mathjax?fields=version',
-       version: 'version',
-       mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/'
-     },
-     
-     'cdn.rawgit.com': {
-       api: 'https://api.github.com/repos/mathjax/mathjax/releases/latest',
-       version: 'tag_name',
-       mathjax: 'https://cdn.rawgit.com/mathjax/MathJax/'
-     },
-     
-     'cdn.jsdelivr.net': {
-       api: 'https://api.jsdelivr.com/v1/jsdelivr/libraries?name=mathjax&lastversion=*',
-       version: 'lastversion',
-       mathjax: 'https://cdn.jsdelivr.net/mathjax/'
-     }
-   };
-   
    function Error(message) {
-     if (console && console.log) console.log(message);
+     if (console && console.log) console.error(message);
    }
    
    function getScript() {

@@ -2,7 +2,7 @@
 <module-container>
 
     <rest name="Mathjax Rest Interface" key="mathjax-rest-resource" path="/mathjax" version="1.0">
-       <description>This is a rest resource to provide macro documentation.</description>
+        <description>This is a rest resource to provide macro documentation.</description>
     </rest>
 
 </module-container>

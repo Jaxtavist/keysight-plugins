@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>$i18n.getText("mathjax.admin.label")</title>
+        <meta name="decorator" content="atl.admin"/>
+        $webResourceManager.requireResource("com.keysight.mathjax:mathjax-resources")
+    </head>
+    <body>
+        <div style="width: 80%;">
+            <p>
+                This plugin requires a url from which to fetch the code for the MathJax library. This page allows you
+                to select among several known CDN's and generate a URL from which to fetch MathJax. However, you
+                can also manually enter a valid url in the CDN URL field if you wish to use a CDN not shown in the
+                generator.
+            </p>
+            <br/>
+            <div style="text-align: center">
+                Currently active CDN url: <code><span id="url-info"><!--URL to show--></span></code>
+            </div>
+            <br/>
+            <form id="urlGen" class="aui">
+                <h5>URL Generator</h5>
+                <div class="field-group">
+                    <label for="select-cdn">Select CDN</label>
+                    <select class="select" id="select-cdn" name="select-cdn" required="required">
+                        <option disabled="disabled">Select a CDN to use</option>
+                        <option value="cloudflare">Cloudflare</option>
+                        <option value="rawgit">Rawgit</option>
+                        <option value="jsdelivr">jsDelivr</option>
+                    </select>
+                    <select class="select" id="select-version" name="select-version" required="required">
+                        <option disabled="disabled">Select a Mathjax version to use</option>
+                    </select>
+                    <input type="submit" value="Generate URL" class="aui-button">
+                    </input>
+                </div>
+            </form>
+            <hr/>
+            <form id="admin" class="aui">
+                <div class="field-group">
+                    <label for="url">$i18n.getText("mathjax.admin.url.label")</label>
+                    <input
+                            name="url"
+                            id="url"
+                            class="text long-field"
+                            type="url"
+                            placeholder="Enter a valid CDN URL"
+                            required="required"
+                    />
+                </div>
+                <div class="field-group">
+                    <input type="submit" value="$i18n.getText('mathjax.admin.save.label')" class="aui-button">
+                    </input>
+                    <br/>
+                    <span id="message"><!--Success or failure message--></span>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
