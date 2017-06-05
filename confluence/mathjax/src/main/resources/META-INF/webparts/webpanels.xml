@@ -2,7 +2,7 @@
 <module-container>
 
     <web-panel key="include-mathjax-library" location="atl.header">
-        <context-provider class="com.keysight.mathjax.admin.WebPanel"/>
+        <context-provider class="com.keysight.mathjax.admin.UrlContextProvider"/>
         <resource name="view" type="velocity">
             <![CDATA[
                <script type="x-mathjax-config">
