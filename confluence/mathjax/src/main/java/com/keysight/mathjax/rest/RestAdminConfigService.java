@@ -1,4 +1,4 @@
-package com.keysight.mathjax.admin;
+package com.keysight.mathjax.rest;
 
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
@@ -6,6 +6,7 @@ import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
+import com.keysight.mathjax.helpers.PluginHelper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -19,17 +20,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Path("/admin/")
-public class ConfigResource {
-
-    private final String DEFAULT_URL = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+public class RestAdminConfigService {
 
     private final PluginSettingsFactory pluginSettingsFactory;
     private final TransactionTemplate transactionTemplate;
     private final UserManager userManager;
 
-    public ConfigResource( PluginSettingsFactory pluginSettingsFactory,
-                           TransactionTemplate transactionTemplate,
-                           UserManager userManager ) {
+    public RestAdminConfigService(PluginSettingsFactory pluginSettingsFactory,
+                                  TransactionTemplate transactionTemplate,
+                                  UserManager userManager ) {
         this.pluginSettingsFactory = pluginSettingsFactory;
         this.transactionTemplate = transactionTemplate;
         this.userManager = userManager;
@@ -45,22 +44,8 @@ public class ConfigResource {
 
         return Response.ok(transactionTemplate.execute(new TransactionCallback() {
             public Object doInTransaction() {
-                PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-                Config config = new Config();
-                Object url = null;
-
-                try
-                {
-                    url = settings.get(ConfigResource.Config.class.getName() + ".url");
-                    if (url.toString().equals("")) {
-                        url = DEFAULT_URL;
-                    }
-                    config.setUrl((String) url );
-                }
-                catch( Exception exception )
-                {
-                   config.setUrl( DEFAULT_URL );
-                }
+                RestAdminConfigService.Config config = new RestAdminConfigService.Config();
+                config.setUrl(PluginHelper.getStoredUrl(pluginSettingsFactory));
                 return config;
             }
         })).build();
@@ -81,7 +66,7 @@ public class ConfigResource {
                 return null;
             }
         });
-        return Response.ok().build();
+        return Response.noContent().build();
     }
 
     @XmlRootElement
