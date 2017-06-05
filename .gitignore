@@ -1,3 +1,6 @@
+# used to ignore the Atlassian Application container projects
+/*/*-*-*/
+
 # -- Java Git Ignore --
 # https://github.com/github/gitignore/blob/master/Java.gitignore
 # Compiled class file
