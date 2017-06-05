@@ -2,7 +2,7 @@
     <head>
         <title>$i18n.getText("mathjax.admin.label")</title>
         <meta name="decorator" content="atl.admin"/>
-        $webResourceManager.requireResource("com.keysight.mathjax:mathjax-resources")
+        $webResourceManager.requireResource("com.keysight.mathjax:mathjax-admin-resources")
     </head>
     <body>
         <div style="width: 80%;">
@@ -14,11 +14,12 @@
             </p>
             <br/>
             <div style="text-align: center">
-                Currently active CDN url: <code><span id="url-info"><!--URL to show--></span></code>
+                Currently active CDN url<br/>
+                <code><span id="url-info"><!--URL to show--></span></code>
             </div>
             <br/>
             <form id="urlGen" class="aui">
-                <h5>URL Generator</h5>
+                <h2>URL Generator</h2>
                 <div class="field-group">
                     <label for="select-cdn">Select CDN</label>
                     <select class="select" id="select-cdn" name="select-cdn" required="required">
@@ -35,6 +36,7 @@
                 </div>
             </form>
             <hr/>
+            <h2>Configure URL</h2>
             <form id="admin" class="aui">
                 <div class="field-group">
                     <label for="url">$i18n.getText("mathjax.admin.url.label")</label>

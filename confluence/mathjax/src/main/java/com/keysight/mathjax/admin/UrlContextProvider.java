@@ -10,6 +10,8 @@ import java.util.Map;
 public class UrlContextProvider implements ContextProvider {
     private PluginSettingsFactory pluginSettingsFactory;
 
+    private static String DEFAULT_URL = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+
     public UrlContextProvider(PluginSettingsFactory pluginSettingsFactory) {
         this.pluginSettingsFactory = pluginSettingsFactory;
     }
@@ -21,10 +23,19 @@ public class UrlContextProvider implements ContextProvider {
     public Map<String, Object> getContextMap(Map<String, Object> context) {
         // Get the url string from the admin controlled settings
         // If it's null, default to a hardcoded value.
-        PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-        Object url = settings.get(ConfigResource.Config.class.getName() + ".url");
-        if (url.toString().equals("")) {
-            url = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+        Object url = null;
+
+        try
+        {
+            PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+            url = settings.get(ConfigResource.Config.class.getName() + ".url");
+            if (url.toString().equals("")) {
+                url = DEFAULT_URL;
+            }
+        }
+        catch( Exception exception )
+        {
+            url = DEFAULT_URL;
         }
 
         context.put("url", url);

@@ -20,15 +20,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Path("/admin/")
 public class ConfigResource {
-    private final UserManager userManager;
+
+    private final String DEFAULT_URL = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+
     private final PluginSettingsFactory pluginSettingsFactory;
     private final TransactionTemplate transactionTemplate;
+    private final UserManager userManager;
 
-    public ConfigResource(UserManager userManager, PluginSettingsFactory pluginSettingsFactory,
-                          TransactionTemplate transactionTemplate) {
-        this.userManager = userManager;
+    public ConfigResource( PluginSettingsFactory pluginSettingsFactory,
+                           TransactionTemplate transactionTemplate,
+                           UserManager userManager ) {
         this.pluginSettingsFactory = pluginSettingsFactory;
         this.transactionTemplate = transactionTemplate;
+        this.userManager = userManager;
     }
 
     @GET
@@ -43,7 +47,20 @@ public class ConfigResource {
             public Object doInTransaction() {
                 PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
                 Config config = new Config();
-                config.setUrl((String) settings.get(Config.class.getName() + ".url"));
+                Object url = null;
+
+                try
+                {
+                    url = settings.get(ConfigResource.Config.class.getName() + ".url");
+                    if (url.toString().equals("")) {
+                        url = DEFAULT_URL;
+                    }
+                    config.setUrl((String) url );
+                }
+                catch( Exception exception )
+                {
+                   config.setUrl( DEFAULT_URL );
+                }
                 return config;
             }
         })).build();

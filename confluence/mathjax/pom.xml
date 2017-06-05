@@ -48,10 +48,16 @@
                             com.atlassian.confluence.plugin.services,
                             com.atlassian.confluence.setup.settings,
                             com.atlassian.confluence.xhtml.api,
+                            com.atlassian.sal.api.auth,
+                            com.atlassian.sal.api.pluginsettings,
+                            com.atlassian.sal.api.transaction,
+                            com.atlassian.sal.api.user,
+                            com.atlassian.templaterenderer,
                             *
                         </Import-Package>
 
                         <Atlassian-Scan-Folders>
+                            META-INF/admin,
                             META-INF/macros,
                             META-INF/rest,
                             META-INF/webparts,

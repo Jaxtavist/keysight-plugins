@@ -9,7 +9,10 @@
         <param name="vendor-icon">images/keysight-icon-16x16.png</param>
         <param name="vendor-logo">images/keysight-logo-72x72.png</param>
         <param name="atlassian-data-center-compatible">true</param>
+        <param name="configure.url">/plugins/servlet/mathjax/admin/configuration</param> 
+      
         <scan-modules>
+            <folder>META-INF/admin</folder>
             <folder>META-INF/macros</folder>
             <folder>META-INF/rest</folder>
             <folder>META-INF/webparts</folder>
@@ -51,19 +54,5 @@
              for now I'm hard coded to 2.7.1 in the webpart -->
         <!--<resource type="downlonamename="latest.js" location="/js/latest.js"/>-->
     </web-resource>
-
-    <web-item key="conf-menu-item" name="MathJax Configuration" section="system.admin/configuration" weight="10">
-        <description>Link to MathJax admin page.</description>
-        <label key="mathjax.admin.label"/>
-        <link linkId="mathjax-admin-link">/plugins/servlet/mathjax/admin</link>
-    </web-item>
-
-    <!--<rest key="rest" path="/mathjax-admin" version="1.0">-->
-        <!--<description>Provides REST resources for the admin UI.</description>-->
-    <!--</rest>-->
-
-    <servlet key="admin-servlet" class="com.keysight.mathjax.admin.AdminServlet">
-        <url-pattern>/mathjax/admin</url-pattern>
-    </servlet>
 
 </atlassian-plugin>
