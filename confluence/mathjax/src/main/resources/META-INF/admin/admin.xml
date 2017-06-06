@@ -4,7 +4,7 @@
     <!--
     <web-item key="conf-menu-item" name="MathJax Configuration" section="system.admin/configuration" weight="10">
         <description>Link to MathJax admin page.</description>
-        <label key="mathjax.admin. "/>
+        <label key="mathjax.admin.label"/>
         <link linkId="mathjax-admin-link">/plugins/servlet/mathjax/admin/configuration</link>
     </web-item>
     -->

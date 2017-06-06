@@ -28,7 +28,7 @@ public class RestAdminConfigService {
 
     public RestAdminConfigService(PluginSettingsFactory pluginSettingsFactory,
                                   TransactionTemplate transactionTemplate,
-                                  UserManager userManager ) {
+                                  UserManager userManager) {
         this.pluginSettingsFactory = pluginSettingsFactory;
         this.transactionTemplate = transactionTemplate;
         this.userManager = userManager;
@@ -45,7 +45,7 @@ public class RestAdminConfigService {
         return Response.ok(transactionTemplate.execute(new TransactionCallback() {
             public Object doInTransaction() {
                 RestAdminConfigService.Config config = new RestAdminConfigService.Config();
-                config.setUrl(PluginHelper.getStoredUrl(pluginSettingsFactory));
+                config.setUrl(PluginHelper.getStoredUrl());
                 return config;
             }
         })).build();
