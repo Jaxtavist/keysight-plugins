@@ -8,21 +8,21 @@ import com.keysight.mathjax.helpers.PluginHelper;
 import java.util.Map;
 
 public class UrlContextProvider implements ContextProvider {
+    private final PluginSettingsFactory pluginSettingsFactory;
+    private static String URL = "url";
 
     public UrlContextProvider(PluginSettingsFactory pluginSettingsFactory) {
+        this.pluginSettingsFactory = pluginSettingsFactory;
     }
 
-    public void init(Map<String, String> params)
-            throws PluginParseException {
+    public void init(Map<String, String> params) throws PluginParseException {
     }
 
     public Map<String, Object> getContextMap(Map<String, Object> context) {
-        // Get the url string from the admin controlled settings
-        // If it's null, default to a hardcoded value.
 
-        String url = PluginHelper.getStoredUrl();
+        PluginHelper pluginHelper = new PluginHelper( pluginSettingsFactory );
+        context.put( URL, pluginHelper.getUrl() );
 
-        context.put("url", url);
         return context;
     }
 }
