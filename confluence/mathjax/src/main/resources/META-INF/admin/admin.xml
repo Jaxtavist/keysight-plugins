@@ -9,8 +9,8 @@
     </web-item>
     -->
 
-    <servlet key="admin-servlet" class="com.keysight.mathjax.admin.AdminServlet">
-            <url-pattern>/mathjax/admin/configuration</url-pattern>
+    <servlet key="admin-servlet" class="com.keysight.mathjax.admin.AdminUI">
+        <url-pattern>/mathjax/admin/configuration</url-pattern>
     </servlet>
 
     <web-resource key="mathjax-admin-resources" name="Mathjax Admin Web Resources">

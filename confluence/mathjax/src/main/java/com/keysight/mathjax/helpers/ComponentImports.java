@@ -15,14 +15,22 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 @SuppressWarnings("UnusedDeclaration")
 @Scanned
 public class ComponentImports {
-    @ComponentImport com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
-    @ComponentImport com.atlassian.confluence.setup.settings.SettingsManager        settingsManager;
-    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
-    @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
-    @ComponentImport com.atlassian.sal.api.pluginsettings.PluginSettingsFactory     pluginSettingsFactory;
-    @ComponentImport com.atlassian.sal.api.transaction.TransactionTemplate          transactionTemplate;
-    @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
-    @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
+    @ComponentImport
+    com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
+    @ComponentImport
+    com.atlassian.confluence.setup.settings.SettingsManager settingsManager;
+    @ComponentImport
+    com.atlassian.confluence.xhtml.api.XhtmlContent xhtmlUtils;
+    @ComponentImport
+    com.atlassian.sal.api.auth.LoginUriProvider loginUriProvider;
+    @ComponentImport
+    com.atlassian.sal.api.pluginsettings.PluginSettingsFactory pluginSettingsFactory;
+    @ComponentImport
+    com.atlassian.sal.api.transaction.TransactionTemplate transactionTemplate;
+    @ComponentImport
+    com.atlassian.sal.api.user.UserManager userManager;
+    @ComponentImport
+    com.atlassian.templaterenderer.TemplateRenderer templateRenderer;
 
     private ComponentImports() {
         throw new Error("This class should not be instantiated");
