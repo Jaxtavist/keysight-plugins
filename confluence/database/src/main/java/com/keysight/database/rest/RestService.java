@@ -1,12 +1,15 @@
 package com.keysight.database.rest;
 
-import java.util.Map;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
 import com.atlassian.confluence.plugin.services.VelocityHelperService;
 import com.atlassian.confluence.setup.settings.SettingsManager;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.Map;
 
 @Path("/")
 public class RestService

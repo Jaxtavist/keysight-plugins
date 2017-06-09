@@ -4,38 +4,26 @@ import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
-import java.net.URLDecoder;
-import java.io.StringReader;
-
 import org.apache.commons.lang.StringUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
-import com.keysight.database.helpers.PluginConfig;
-import com.keysight.database.helpers.DriverDetails;
-import com.keysight.database.helpers.DatabaseDriverDelegate;
-
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.StringReader;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.net.URLDecoder;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.net.URL;
-
-import java.sql.DriverManager;
 import java.sql.Driver;
-import java.net.URLClassLoader;
+import java.sql.DriverManager;
+import java.util.Enumeration;
 
 public class PluginHelper {
    private String jdbcDriverDirectory;
@@ -101,7 +89,7 @@ public class PluginHelper {
             };
          });
 
-         String pluginConfigXml = URLDecoder.decode( pluginConfig.getXml() );
+         String pluginConfigXml = URLDecoder.decode( pluginConfig.getXml(), "UTF-8" );
 
          DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
          DocumentBuilder builder = factory.newDocumentBuilder();
@@ -130,7 +118,7 @@ public class PluginHelper {
       return text;
    }
 
-   public void printLoadedDrivers()
+   private void printLoadedDrivers()
    {
       Enumeration<Driver> drivers = DriverManager.getDrivers();
       while( drivers.hasMoreElements()){
@@ -143,7 +131,7 @@ public class PluginHelper {
       }
    }
 
-   public DriverDetails getDriverDetails( String driverKey )
+   DriverDetails getDriverDetails( String driverKey )
    {
       DriverDetails driverDetails = null;
 
@@ -191,7 +179,7 @@ public class PluginHelper {
       }
    }
 
-   public DriverDetails getJdbcDriver( String url, String driverKey, String regex )
+   private DriverDetails getJdbcDriver( String url, String driverKey, String regex )
    {
       DriverDetails driverDetails = new DriverDetails();
       Path jdbcDriverDirectoryPath = null;
@@ -255,8 +243,8 @@ public class PluginHelper {
       return driverDetails;
    }
 
-   public String getJdbcDriverDirectory()                           { return this.jdbcDriverDirectory;                }
-   public void   setJdbcDriverDirectory(String jdbcDriverDirectory) { this.jdbcDriverDirectory = jdbcDriverDirectory; }
+   private String getJdbcDriverDirectory()                           { return this.jdbcDriverDirectory;                }
+   private void   setJdbcDriverDirectory(String jdbcDriverDirectory) { this.jdbcDriverDirectory = jdbcDriverDirectory; }
 }
 
 

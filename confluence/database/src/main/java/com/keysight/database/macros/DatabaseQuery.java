@@ -1,34 +1,19 @@
-package com.keysight.database.macros; 
-
-import java.util.Map;
-import java.util.ArrayList;
-import java.lang.reflect.*;
+package com.keysight.database.macros;
 
 import com.atlassian.confluence.content.render.xhtml.ConversionContext;
 import com.atlassian.confluence.macro.Macro;
 import com.atlassian.confluence.macro.MacroExecutionException;
-import com.atlassian.renderer.v2.components.HtmlEscaper;
-
-import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
-import com.atlassian.confluence.setup.settings.SettingsManager;
-import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.confluence.plugin.services.VelocityHelperService;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Driver;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
-
-import java.net.URLClassLoader;
-import java.net.URL;
-import java.io.File;
-import java.util.Enumeration;
-
-import com.keysight.database.helpers.DatabaseDriverDelegate;
+import com.atlassian.confluence.setup.settings.SettingsManager;
+import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
+import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.keysight.database.helpers.PluginHelper;
+
+import java.io.File;
+import java.net.URLClassLoader;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class DatabaseQuery implements Macro
 {
@@ -65,7 +50,6 @@ public class DatabaseQuery implements Macro
        return this.databaseType;
     }
 
-    @Override
     public String execute(Map<String, String> parameters, String body, ConversionContext context)
             throws MacroExecutionException
     {
@@ -151,13 +135,11 @@ public class DatabaseQuery implements Macro
         return;
     }
 
-    @Override
     public BodyType getBodyType()
     {
         return BodyType.PLAIN_TEXT;
     }
 
-    @Override
     public OutputType getOutputType()
     {
         return OutputType.BLOCK;

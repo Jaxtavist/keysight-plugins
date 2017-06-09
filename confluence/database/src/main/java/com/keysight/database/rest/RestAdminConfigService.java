@@ -1,27 +1,19 @@
 package com.keysight.database.rest;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
+import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
-
 import com.keysight.database.helpers.PluginConfig;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 @Path("/admin-config/")
 public class RestAdminConfigService
@@ -44,8 +36,7 @@ public class RestAdminConfigService
    @Produces(MediaType.APPLICATION_JSON)
    public Response getConfiguration(@Context HttpServletRequest request)
    {
-      String username = userManager.getRemoteUsername(request);
-      if (username == null || !userManager.isSystemAdmin(username)){
+      if (!isAuthorized(request)) {
          return Response.status(Status.UNAUTHORIZED).build();
       }
 
@@ -64,8 +55,7 @@ public class RestAdminConfigService
    @Consumes(MediaType.APPLICATION_JSON)
    public Response putConfiguration(final PluginConfig pluginConfig, @Context HttpServletRequest request)
    {
-      String username = userManager.getRemoteUsername(request);
-      if (username == null || !userManager.isSystemAdmin(username)){
+      if (!isAuthorized(request)) {
          return Response.status(Status.UNAUTHORIZED).build();
       }
    
@@ -85,8 +75,7 @@ public class RestAdminConfigService
    @Produces(MediaType.APPLICATION_JSON)
    public Response getInstalledDrivers(@Context HttpServletRequest request)
    {
-      String username = userManager.getRemoteUsername(request);
-      if (username == null || !userManager.isSystemAdmin(username)){
+      if (!isAuthorized(request)) {
          return Response.status(Status.UNAUTHORIZED).build();
       }
 
@@ -98,6 +87,21 @@ public class RestAdminConfigService
             return pluginConfig;
          }
       })).build();
+   }
+
+   private boolean isAuthorized(HttpServletRequest request) {
+      UserKey userKey = userManager.getRemoteUserKey(request);
+
+      // Check basic conditions.
+      if (userKey == null) {
+         return false;
+      } else if (userManager.isSystemAdmin(userKey)) {
+         return true;
+      }
+
+      // Check custom list
+
+      return false;
    }
 
 }
