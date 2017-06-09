@@ -14,16 +14,24 @@
         <context>editor-content</context>
     </web-resource>
 
-    <web-resource key="nh-tinymce-js-resources" name="Javascript for the Legacy Numbered Headings Macro">
-        <description>This should be disabled if the Transitional Numbered Headings macro is enabled</description>
+    <web-resource key="nh-tinymce-js-resources" name="Javascript for the Legacy Numbered Headings Macro" state="disabled">
+        <description>To enable the macros that replace the Avisi plugin macros and use the same 
+                    rendering algorithm as the Avisi macro, enable this module as well as the
+                    numberedheadings (numberheadings-legacy) and numberedheadings (numbered-headings-legacy-macro).
+                    Do not enable this module, the numberedheadings-legacy module or the numbered-headings-legacy-macro
+                    module if the Transitional Numbered Headings Macro is enabled.</description>
         <resource type="download" name="nh-tinymce-plugin.js" location="js/nh-tinymce-plugin.js"/>
         <context>editor</context>
         <dependency>confluence.web.resources:page-editor</dependency>
         <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
     </web-resource>
 
-    <web-resource key="nh-transitional-tinymce-js-resources" name="Javascript for the Transitional Numbered Headings Macro">
-        <description>This should be enabled if the Transitional Numbered Headings macro is enabled</description>
+    <web-resource key="nh-transitional-tinymce-js-resources" name="Javascript for the Transitional Numbered Headings Macro" state="disabled">
+        <description>To enable the macros that replace the Avisi plugin macros and use the new 
+                    rendering algorithm to transition to the new style, enable this module as well as the
+                    numberedheadings (numberheadings-transition).
+                    Do not enable this module or the numberedheadings-transition module
+                    if the Legacy Numbered Headings Macro is enabled.</description>
         <resource type="download" name="nh-transitional-tinymce-plugin.js" location="js/nh-transitional-tinymce-plugin.js"/>
         <context>editor</context>
         <dependency>confluence.web.resources:page-editor</dependency>
@@ -138,6 +146,8 @@
         </property-panel>
     </xhtml-macro> 
 
+    <!-- This macro should be enabled to apply the new numbered headings 
+         rendering to instances of the macro installed by the Avisi plugin. -->
     <xhtml-macro name="numberedheadings" key="numberedheadings-transition" 
                  state="disabled"
                  class="nl.avisi.numbered.headings.macro.TransitionalNumberedHeadingsMacro"
@@ -189,7 +199,10 @@
         </property-panel>
     </xhtml-macro>
 
+    <!-- This xhtml macro should be enabled to apply the legacy numbered headings 
+         rendering to instances of the macro installed by the Avisi plugin. -->
     <xhtml-macro name="numberedheadings" key="numberedheadings-legacy" 
+                 state="disabled"
                  class="nl.avisi.numbered.headings.macro.LegacyNumberedHeadingsMacro"
                  icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png">
         <device-type>mobile</device-type>
@@ -239,7 +252,10 @@
         </property-panel>
     </xhtml-macro>
 
+    <!-- This wiki markup macro should be enabled to apply the legacy numbered 
+         headings rendering to instances of the wiki style macro installed by the Avisi plugin. -->
     <macro name="numberedheadings" key="numbered-headings-legacy-macro" 
+           state="disabled"
            class="nl.avisi.numbered.headings.macro.LegacyNumberedHeadingsMacro"
            icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png" >
         <category name="formatting"/>

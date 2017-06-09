@@ -42,11 +42,11 @@
                     }
 
                     if( $(e).parents("table[data-macro-name=numbered-headings]").length > 0 ){
-                       numberedHeadings.number( $(e).parents("table[data-macro-name=numbered-headings]"), false );
+                       numberedHeadings.number( $(e).parents("table[data-macro-name=numbered-headings]"), false, false );
                     } else if( usingTransitionalNumberedHeadingMacro() && $(e).parents("table[data-macro-name=numberedheadings]").length > 0 ){
-                       numberedHeadings.number( $(e).parents("table[data-macro-name=numberedheadings]"), false );
+                       numberedHeadings.number( $(e).parents("table[data-macro-name=numberedheadings]"), false, false );
                     } else if( numberEntirePage($) ){
-                       numberedHeadings.number( $("#wysiwygTextarea_ifr").contents(), true );
+                       numberedHeadings.number( $("#wysiwygTextarea_ifr").contents(), true, false );
                     }
                 }
             });
@@ -54,16 +54,16 @@
             ed.onInit.add(function (ed) {
               $("#wysiwygTextarea_ifr").load(function() {
                   $("#wysiwygTextarea_ifr").contents().find("table[data-macro-name=numbered-headings]").each(function (index, macroTable) {
-                      numberedHeadings.number(macroTable, false);
+                      numberedHeadings.number(macroTable, false, true);
                   });
                   if( usingTransitionalNumberedHeadingMacro() ){
                      $("#wysiwygTextarea_ifr").contents().find("table[data-macro-name=numberedheadings]").each(function (index, macroTable) {
-                         numberedHeadings.number(macroTable, false);
+                         numberedHeadings.number(macroTable, false, true);
                      });
                   }
                   if( numberEntirePage($) ){
                      $("#wysiwygTextarea_ifr").load(function() {
-                         numberedHeadings.number( $("#wysiwygTextarea_ifr").contents(), true );
+                         numberedHeadings.number( $("#wysiwygTextarea_ifr").contents(), true, true );
                      });
                   }
               });
@@ -72,7 +72,7 @@
             $(window).bind("updated.macro", function (event, macroTable) {
                 numberedHeadings.number(macroTable, false);
                 if( numberEntirePage($) ){
-                    numberedHeadings.number( $("#wysiwygTextarea_ifr").contents(), true );
+                    numberedHeadings.number( $("#wysiwygTextarea_ifr").contents(), true, false );
                 }
             });
         },
@@ -318,9 +318,18 @@ var numberedHeadings = (function ($) {
         return text.split("").reverse().join("");
     }
 
-    function number(macroTable, filter) {
+    function number(macroTable, filter, initialization) {
         var parameters = parseParameters(macroTable);
         var doIt = true;
+        var moveCaret = false;
+
+        try{
+           if( !AJS.$( tinyMCE.activeEditor.selection.getNode()).children().first().hasClass("data-nh-numbering") ){
+              moveCaret = true;
+           }
+        } catch( error ){
+        }
+
 
         $(macroTable).find("h1, h2, h3, h4, h5, h6").each(function (index, element) {
             if( filter && inNumberedHeadingBody( element ) ){
@@ -337,6 +346,13 @@ var numberedHeadings = (function ($) {
                }
             }
         });
+
+        if( moveCaret && !initialization ){
+           //alert( "Should move the caret!" );
+           //tinyMce.activeEditor.selection.setCursorLocation( tinyMCE.activeEditor.selection.getNode(), 1 );
+        } else if( moveCaret ){
+           //alert( "Initialized: Should move the caret!" );
+        }
     }
     
     function inNumberedHeadingBody( element ){
@@ -375,6 +391,7 @@ var numberedHeadings = (function ($) {
 
         var currentLevel = heading.nodeName[1];
         var numbering = "";
+        var moveCaret = false;
 
         if (currentLevel >= (startAt + 1)) {
             if (lastLevel > currentLevel) {
@@ -416,8 +433,24 @@ var numberedHeadings = (function ($) {
         }
 
         removeNumbering(heading);
+
+        if( $(heading).html() === "<br>" ){
+           moveCaret = true;
+        }
+
         $(heading).prepend("<span class=\"data-nh-numbering\">"+numbering+"</span>");
-        //$(heading).attr("data-nh-numbering", numbering);
+
+        if(moveCaret && navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+           alert( "move it!" );
+           // Do Firefox-related activities
+           try{
+              var element = AJS.$( tinyMCE.activeEditor.selection.getNode() ).children("span.data-nh-numbering").first()[0];
+              tinyMCE.activeEditor.selection.select( element );
+              var elementRange = tinyMCE.activeEditor.selection.getRng();
+              elementRange.collapse(false);
+              tinyMCE.activeEditor.selection.setRng( elementRange );
+           } catch( error ){}
+        }
     }
 
     function removeNumbering(heading) {
