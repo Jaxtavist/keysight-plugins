@@ -23,228 +23,242 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 
 public class PluginHelper {
-   private String jdbcDriverDirectory;
-   private Element root;
+    // note, may need to load jdb2jcc.jar and db2jcc_license_cu.jar
+    private final String DB2_DOWNLOAD = null;
+    private final String DB2_DRIVER_KEY = "DB2";
+    private final String DB2_REGEX = ".*db2jcc.*";
+    private final String DB2_CLASS_NAME = "com.ibm.db2.jcc.DB2Driver";
 
-   // note, may need to load jdb2jcc.jar and db2jcc_license_cu.jar
-   private final String DB2_DOWNLOAD          = null;
-   private final String DB2_DRIVER_KEY        = "DB2";
-   private final String DB2_REGEX             = ".*db2jcc.*";
-   private final String DB2_CLASS_NAME        = "com.ibm.db2.jcc.DB2Driver";
+    private final String DERBY_DOWNLOAD = "http://central.maven.org/maven2/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar";
+    private final String DERBY_DRIVER_KEY = "Derby";
+    private final String DERBY_REGEX = ".*derby.*";
+    private final String DERBY_CLASS_NAME = "org.apache.derby.jdbc.EmbeddedDriver";
 
-   private final String DERBY_DOWNLOAD        = "http://central.maven.org/maven2/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar";
-   private final String DERBY_DRIVER_KEY      = "Derby";
-   private final String DERBY_REGEX           = ".*derby.*";
-   private final String DERBY_CLASS_NAME      = "org.apache.derby.jdbc.EmbeddedDriver";
+    private final String SQL_SERVER_DOWNLOAD = "http://central.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.1.0.jre8/mssql-jdbc-6.1.0.jre8.jar";
+    private final String SQL_SERVER_DRIVER_KEY = "Microsoft SQL Server";
+    private final String SQL_SERVER_REGEX = ".*sqljdbc.*";
+    private final String SQL_SERVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
-   private final String SQL_SERVER_DOWNLOAD   = "http://central.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.1.0.jre8/mssql-jdbc-6.1.0.jre8.jar";
-   private final String SQL_SERVER_DRIVER_KEY = "Microsoft SQL Server";
-   private final String SQL_SERVER_REGEX      = ".*sqljdbc.*";
-   private final String SQL_SERVER_CLASS_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private final String MONGODB_DOWNLOAD = "http://central.maven.org/maven2/org/mongodb/mongodb-driver/3.4.2/mongodb-driver-3.4.2.jar";
+    private final String MONGODB_DRIVER_KEY = "MongoDB";
+    private final String MONGODB_REGEX = ".*mongodb.*";
+    private final String MONGODB_CLASS_NAME = "mongodb.jdbc.MongoDriver";
 
-   private final String MONGODB_DOWNLOAD      = "http://central.maven.org/maven2/org/mongodb/mongodb-driver/3.4.2/mongodb-driver-3.4.2.jar";
-   private final String MONGODB_DRIVER_KEY    = "MongoDB";
-   private final String MONGODB_REGEX         = ".*mongodb.*";
-   private final String MONGODB_CLASS_NAME    = "mongodb.jdbc.MongoDriver";
+    private final String MYSQL_DOWNLOAD = "http://central.maven.org/maven2/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar";
+    private final String MYSQL_DRIVER_KEY = "MySQL";
+    private final String MYSQL_REGEX = ".*mysql.*";
+    private final String MYSQL_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-   private final String MYSQL_DOWNLOAD        = "http://central.maven.org/maven2/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar";
-   private final String MYSQL_DRIVER_KEY      = "MySQL";
-   private final String MYSQL_REGEX           = ".*mysql.*";
-   private final String MYSQL_CLASS_NAME      = "com.mysql.jdbc.Driver";
+    private final String ORACLE_DOWNLOAD = null;
+    private final String ORACLE_DRIVER_KEY = "Oracle";
+    private final String ORACLE_REGEX = ".*ojdbc.*";
+    private final String ORACLE_CLASS_NAME = "oracle.jdbc.driver.OracleDriver";
 
-   private final String ORACLE_DOWNLOAD       = null;
-   private final String ORACLE_DRIVER_KEY     = "Oracle";
-   private final String ORACLE_REGEX          = ".*ojdbc.*";
-   private final String ORACLE_CLASS_NAME     = "oracle.jdbc.driver.OracleDriver";
+    private final String POSTGRESQL_DOWNLOAD = "https://jdbc.postgresql.org/download/postgresql-42.1.1.jar";
+    private final String POSTGRESQL_DRIVER_KEY = "PostgreSQL";
+    private final String POSTGRESQL_REGEX = ".*postgre.*";
+    private final String POSTGRESQL_CLASS_NAME = "org.postgresql.Driver";
 
-   private final String POSTGRESQL_DOWNLOAD   = "https://jdbc.postgresql.org/download/postgresql-42.1.1.jar";
-   private final String POSTGRESQL_DRIVER_KEY = "PostgreSQL";
-   private final String POSTGRESQL_REGEX      = ".*postgre.*";
-   private final String POSTGRESQL_CLASS_NAME = "org.postgresql.Driver";
+    private final String SYBASE_DOWNLOAD = null;
+    private final String SYBASE_DRIVER_KEY = "Sybase";
+    private final String SYBASE_REGEX = ".*jconn.*";
+    private final String SYBASE_CLASS_NAME = "sybase.jdbc.sqlanywhere.IDriver";
 
-   private final String SYBASE_DOWNLOAD       = null;
-   private final String SYBASE_DRIVER_KEY     = "Sybase";
-   private final String SYBASE_REGEX          = ".*jconn.*";
-   private final String SYBASE_CLASS_NAME     = "sybase.jdbc.sqlanywhere.IDriver";
+    private String jdbcDriverDirectory;
+    private Element root;
 
-   private final PluginSettingsFactory pluginSettingsFactory;
-   private final TransactionTemplate transactionTemplate;
+    private String configAuthorizedUsers;
+    private String configAuthorizedGroups;
 
-   public PluginHelper( final PluginSettingsFactory pluginSettingsFactory,
-                        final TransactionTemplate transactionTemplate )
-   {
-      this.pluginSettingsFactory = pluginSettingsFactory;
-      this.transactionTemplate = transactionTemplate;
+    public PluginHelper(final PluginSettingsFactory pluginSettingsFactory,
+                        final TransactionTemplate transactionTemplate) {
+        try {
+            PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute(new TransactionCallback() {
+                public Object doInTransaction() {
+                    PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                    PluginConfig pluginConfig = new PluginConfig();
+                    pluginConfig.setXml((String) settings.get(PluginConfig.class.getName() + ".xml"));
+                    return pluginConfig;
+                }
 
-      try{
-         PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute(new TransactionCallback(){
-            public Object doInTransaction(){
-               PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-               PluginConfig pluginConfig = new PluginConfig();
-               pluginConfig.setXml( (String) settings.get(PluginConfig.class.getName() + ".xml"));
-               return pluginConfig;
-            };
-         });
+                ;
+            });
 
-         String pluginConfigXml = URLDecoder.decode( pluginConfig.getXml(), "UTF-8" );
+            String pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
 
-         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-         DocumentBuilder builder = factory.newDocumentBuilder();
-         Document document = builder.parse( new InputSource( new StringReader(pluginConfigXml) ) );
-         root = document.getDocumentElement();
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
+            root = document.getDocumentElement();
 
-         String jdbcDriverDirectory = getValueOfElement( "jdbc-driver-directory" );
+            String jdbcDriverDirectory = getValueOfElement("jdbc-driver-directory");
 
-         if( !StringUtils.isEmpty( jdbcDriverDirectory ) ){
-            this.setJdbcDriverDirectory( jdbcDriverDirectory );
-         }
+            configAuthorizedUsers = getValueOfElement("config-authorized-users");
+            configAuthorizedGroups = getValueOfElement("config-authorized-groups");
 
-      } catch( Exception e ){
-      }
-   }
+            if (!StringUtils.isEmpty(jdbcDriverDirectory)) {
+                this.setJdbcDriverDirectory(jdbcDriverDirectory);
+            }
 
-   private String getValueOfElement( String tagName ){
-      NodeList allNodes = root.getElementsByTagName( tagName );
-      String text = null;
-      for( int i = 0; i < allNodes.getLength(); i++ ){
-         if( allNodes.item(i).getNodeType() == Node.ELEMENT_NODE){ 
-            text = allNodes.item(i).getTextContent();
-            break;
-         }
-      }
-      return text;
-   }
+        } catch (Exception e) {
+        }
+    }
 
-   private void printLoadedDrivers()
-   {
-      Enumeration<Driver> drivers = DriverManager.getDrivers();
-      while( drivers.hasMoreElements()){
-         Driver jdbcDriver = drivers.nextElement();
-         if( jdbcDriver.getClass() == DatabaseDriverDelegate.class ){
-            DatabaseDriverDelegate delegateDriver = (DatabaseDriverDelegate) drivers.nextElement();
-            jdbcDriver = delegateDriver.getRealDriver();
-         }
-         System.out.println("Driver: " + jdbcDriver.getClass().getName() );
-      }
-   }
+    private String getValueOfElement(String tagName) {
+        NodeList allNodes = root.getElementsByTagName(tagName);
+        String text = null;
+        for (int i = 0; i < allNodes.getLength(); i++) {
+            if (allNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                text = allNodes.item(i).getTextContent();
+                break;
+            }
+        }
+        return text;
+    }
 
-   DriverDetails getDriverDetails( String driverKey )
-   {
-      DriverDetails driverDetails = null;
+    private void printLoadedDrivers() {
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver jdbcDriver = drivers.nextElement();
+            if (jdbcDriver.getClass() == DatabaseDriverDelegate.class) {
+                DatabaseDriverDelegate delegateDriver = (DatabaseDriverDelegate) drivers.nextElement();
+                jdbcDriver = delegateDriver.getRealDriver();
+            }
+            System.out.println("Driver: " + jdbcDriver.getClass().getName());
+        }
+    }
 
-      if( driverKey.equals( MYSQL_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( MYSQL_DOWNLOAD, MYSQL_DRIVER_KEY, MYSQL_REGEX );
-         driverDetails.className = MYSQL_CLASS_NAME;
-      } else if( driverKey.equals( SQL_SERVER_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( SQL_SERVER_DOWNLOAD, SQL_SERVER_DRIVER_KEY, SQL_SERVER_REGEX );
-         driverDetails.className = SQL_SERVER_CLASS_NAME;
-      } else if( driverKey.equals( ORACLE_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( ORACLE_DOWNLOAD, ORACLE_DRIVER_KEY, ORACLE_REGEX );
-         driverDetails.className = ORACLE_CLASS_NAME;
-      } else if( driverKey.equals( POSTGRESQL_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( POSTGRESQL_DOWNLOAD, POSTGRESQL_DRIVER_KEY, POSTGRESQL_REGEX );
-         driverDetails.className = POSTGRESQL_CLASS_NAME;
-      } else if( driverKey.equals( DB2_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( DB2_DOWNLOAD, DB2_DRIVER_KEY, DB2_REGEX );
-         driverDetails.className = DB2_CLASS_NAME;
-      } else if( driverKey.equals( DERBY_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( DERBY_DOWNLOAD, DERBY_DRIVER_KEY, DERBY_REGEX );
-         driverDetails.className = DERBY_CLASS_NAME;
-      } else if( driverKey.equals( MONGODB_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( MONGODB_DOWNLOAD, MONGODB_DRIVER_KEY, MONGODB_REGEX );
-         driverDetails.className = MONGODB_CLASS_NAME;
-      } else if( driverKey.equals( SYBASE_DRIVER_KEY ) ){
-         driverDetails = getJdbcDriver( SYBASE_DOWNLOAD, SYBASE_DRIVER_KEY, SYBASE_REGEX );
-         driverDetails.className = SYBASE_CLASS_NAME;
-      }
+    DriverDetails getDriverDetails(String driverKey) {
+        DriverDetails driverDetails = null;
 
-      return driverDetails;
-   }
+        if (driverKey.equals(MYSQL_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(MYSQL_DOWNLOAD, MYSQL_DRIVER_KEY, MYSQL_REGEX);
+            driverDetails.className = MYSQL_CLASS_NAME;
+        } else if (driverKey.equals(SQL_SERVER_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(SQL_SERVER_DOWNLOAD, SQL_SERVER_DRIVER_KEY, SQL_SERVER_REGEX);
+            driverDetails.className = SQL_SERVER_CLASS_NAME;
+        } else if (driverKey.equals(ORACLE_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(ORACLE_DOWNLOAD, ORACLE_DRIVER_KEY, ORACLE_REGEX);
+            driverDetails.className = ORACLE_CLASS_NAME;
+        } else if (driverKey.equals(POSTGRESQL_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(POSTGRESQL_DOWNLOAD, POSTGRESQL_DRIVER_KEY, POSTGRESQL_REGEX);
+            driverDetails.className = POSTGRESQL_CLASS_NAME;
+        } else if (driverKey.equals(DB2_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(DB2_DOWNLOAD, DB2_DRIVER_KEY, DB2_REGEX);
+            driverDetails.className = DB2_CLASS_NAME;
+        } else if (driverKey.equals(DERBY_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(DERBY_DOWNLOAD, DERBY_DRIVER_KEY, DERBY_REGEX);
+            driverDetails.className = DERBY_CLASS_NAME;
+        } else if (driverKey.equals(MONGODB_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(MONGODB_DOWNLOAD, MONGODB_DRIVER_KEY, MONGODB_REGEX);
+            driverDetails.className = MONGODB_CLASS_NAME;
+        } else if (driverKey.equals(SYBASE_DRIVER_KEY)) {
+            driverDetails = getJdbcDriver(SYBASE_DOWNLOAD, SYBASE_DRIVER_KEY, SYBASE_REGEX);
+            driverDetails.className = SYBASE_CLASS_NAME;
+        }
 
-   public void loadJdbcDriver( String driverKey )
-   {
-      DriverDetails driverDetails = getDriverDetails( driverKey );
+        return driverDetails;
+    }
 
-      try{
-         if( !StringUtils.isEmpty( driverDetails.className ) ){
-            URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{driverDetails.url}, System.class.getClassLoader());
-            Driver driver = (Driver)Class.forName(driverDetails.className, true, urlClassLoader).newInstance();
-            DriverManager.registerDriver(new DatabaseDriverDelegate(driver));
-         }
-         printLoadedDrivers();
-      } catch( Exception exception ){
-      }
-   }
+    public void loadJdbcDriver(String driverKey) {
+        DriverDetails driverDetails = getDriverDetails(driverKey);
 
-   private DriverDetails getJdbcDriver( String url, String driverKey, String regex )
-   {
-      DriverDetails driverDetails = new DriverDetails();
-      Path jdbcDriverDirectoryPath = null;
+        try {
+            if (!StringUtils.isEmpty(driverDetails.className)) {
+                URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{driverDetails.url}, System.class.getClassLoader());
+                Driver driver = (Driver) Class.forName(driverDetails.className, true, urlClassLoader).newInstance();
+                DriverManager.registerDriver(new DatabaseDriverDelegate(driver));
+            }
+            printLoadedDrivers();
+        } catch (Exception exception) {
+        }
+    }
 
-      driverDetails.isLocal = false;
-      if( !StringUtils.isEmpty( url ) ){
-         try{
-            driverDetails.url = new URL( url );
-            driverDetails.isOk = true;
-            System.out.println( "url did parse: " + url );
-         } catch( Exception exception ) {
+    private DriverDetails getJdbcDriver(String url, String driverKey, String regex) {
+        DriverDetails driverDetails = new DriverDetails();
+        Path jdbcDriverDirectoryPath = null;
+
+        driverDetails.isLocal = false;
+        if (!StringUtils.isEmpty(url)) {
+            try {
+                driverDetails.url = new URL(url);
+                driverDetails.isOk = true;
+                System.out.println("url did parse: " + url);
+            } catch (Exception exception) {
+                driverDetails.url = null;
+                driverDetails.isOk = false;
+                System.out.println("url did not parse: " + url + " " + exception);
+            }
+        } else {
             driverDetails.url = null;
             driverDetails.isOk = false;
-            System.out.println( "url did not parse: " + url + " " + exception );
-         }
-      } else {
-         driverDetails.url = null;
-         driverDetails.isOk = false;
-         System.out.println( "no url" );
-      }
+            System.out.println("no url");
+        }
 
-      if( !StringUtils.isEmpty( getJdbcDriverDirectory() ) ){
-         jdbcDriverDirectoryPath = Paths.get( this.getJdbcDriverDirectory() );
-         if( Files.isDirectory( jdbcDriverDirectoryPath ) ){
-            try{
-               // first look for any jar file in the child directory identifyed by the driverKey
-               jdbcDriverDirectoryPath = Paths.get( this.getJdbcDriverDirectory(), driverKey );
-               if( Files.isDirectory( jdbcDriverDirectoryPath ) ){
-                  DirectoryStream<Path> directoryStream = Files.newDirectoryStream( jdbcDriverDirectoryPath );
-                  for( Path path : directoryStream ){
-                     if( path.toString().matches(".*\\.jar") ){
-                        driverDetails.isLocal = true;
-                        driverDetails.url = path.toUri().toURL();
-                        driverDetails.isOk = true;
-                        break;
-                     }
-                  }
-               }
-            } catch( Exception exception ){
+        if (!StringUtils.isEmpty(getJdbcDriverDirectory())) {
+            jdbcDriverDirectoryPath = Paths.get(this.getJdbcDriverDirectory());
+            if (Files.isDirectory(jdbcDriverDirectoryPath)) {
+                try {
+                    // first look for any jar file in the child directory identifyed by the driverKey
+                    jdbcDriverDirectoryPath = Paths.get(this.getJdbcDriverDirectory(), driverKey);
+                    if (Files.isDirectory(jdbcDriverDirectoryPath)) {
+                        DirectoryStream<Path> directoryStream = Files.newDirectoryStream(jdbcDriverDirectoryPath);
+                        for (Path path : directoryStream) {
+                            if (path.toString().matches(".*\\.jar")) {
+                                driverDetails.isLocal = true;
+                                driverDetails.url = path.toUri().toURL();
+                                driverDetails.isOk = true;
+                                break;
+                            }
+                        }
+                    }
+                } catch (Exception exception) {
+                }
+
+                // if not found, look for any jar file in the jdbc driver directory matching the regex
+                if (!driverDetails.isLocal) {
+                    jdbcDriverDirectoryPath = Paths.get(this.getJdbcDriverDirectory());
+                    try {
+                        DirectoryStream<Path> directoryStream = Files.newDirectoryStream(jdbcDriverDirectoryPath);
+                        for (Path path : directoryStream) {
+                            if (path.toString().matches(regex)) {
+                                driverDetails.isLocal = true;
+                                driverDetails.url = path.toUri().toURL();
+                                driverDetails.isOk = true;
+                                break;
+                            }
+                        }
+                    } catch (Exception exception) {
+                    }
+                }
             }
+        }
 
-            // if not found, look for any jar file in the jdbc driver directory matching the regex
-            if( !driverDetails.isLocal ){
-               jdbcDriverDirectoryPath = Paths.get( this.getJdbcDriverDirectory() );
-               try{ 
-                  DirectoryStream<Path> directoryStream = Files.newDirectoryStream( jdbcDriverDirectoryPath );
-                  for( Path path : directoryStream ){
-                     if( path.toString().matches(regex) ){
-                        driverDetails.isLocal = true;
-                        driverDetails.url = path.toUri().toURL();
-                        driverDetails.isOk = true;
-                        break;
-                     }
-                  }
-               } catch( Exception exception ){
-               }
-            }
-         }
-      }
+        return driverDetails;
+    }
 
-      return driverDetails;
-   }
+    private String getJdbcDriverDirectory() {
+        return this.jdbcDriverDirectory;
+    }
 
-   private String getJdbcDriverDirectory()                           { return this.jdbcDriverDirectory;                }
-   private void   setJdbcDriverDirectory(String jdbcDriverDirectory) { this.jdbcDriverDirectory = jdbcDriverDirectory; }
+    private void setJdbcDriverDirectory(String jdbcDriverDirectory) {
+        this.jdbcDriverDirectory = jdbcDriverDirectory;
+    }
+
+    // Get authorized user or group by splitting the xml attribute on commas
+
+    public ArrayList<String> getAuthorizedUsers() {
+        return new ArrayList<String>(Arrays.asList(StringUtils.split(this.configAuthorizedUsers, ",")));
+    }
+
+    public ArrayList<String> getAuthorizedGroups() {
+        return new ArrayList<String>(Arrays.asList(StringUtils.split(this.configAuthorizedGroups, ",")));
+    }
 }
 
 

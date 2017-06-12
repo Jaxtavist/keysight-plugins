@@ -1,5 +1,6 @@
 package com.keysight.database.helpers;
  
+import com.atlassian.confluence.user.UserAccessor;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
  
@@ -19,6 +20,7 @@ public class ComponentImports
     @ComponentImport com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
     @ComponentImport com.atlassian.confluence.setup.settings.SettingsManager        settingsManager;
     @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
+    @ComponentImport com.atlassian.confluence.user.UserAccessor                     userAccessor;
     @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
     @ComponentImport com.atlassian.sal.api.pluginsettings.PluginSettingsFactory     pluginSettingsFactory;
     @ComponentImport com.atlassian.sal.api.transaction.TransactionTemplate          transactionTemplate;
