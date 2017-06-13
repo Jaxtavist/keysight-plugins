@@ -26,16 +26,10 @@
         <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
     </web-resource>
 
-    <web-resource key="nh-transitional-tinymce-js-resources" name="Javascript for the Transitional Numbered Headings Macro" state="disabled">
-        <description>To enable the macros that replace the Avisi plugin macros and use the new 
-                    rendering algorithm to transition to the new style, enable this module as well as the
-                    numberedheadings (numberheadings-transition).
-                    Do not enable this module or the numberedheadings-transition module
-                    if the Legacy Numbered Headings Macro is enabled.</description>
-        <resource type="download" name="nh-transitional-tinymce-plugin.js" location="js/nh-transitional-tinymce-plugin.js"/>
-        <context>editor</context>
-        <dependency>confluence.web.resources:page-editor</dependency>
-        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+    <web-resource key="numbered-headings-tinymce-css-resources" name="CSS for the Numbered Headings Macro">
+        <description>CSS for the Legacy Numbered Headings Macro</description>
+        <resource type="download" name="nh-editor.css" location="css/nh-editor.css"/>
+        <context>editor-content</context>
     </web-resource>
 
     <web-resource key="numbered-headings-tinymce-js-resources" name="Javascript for the Numbered Headings Macro">
@@ -238,17 +232,17 @@
             <parameter name="h6" type="string"/>
         </parameters>
         <property-panel>
-           <button id="nh-start-at-0" label="Start numbering at"/>
-           <button id="nh-start-at-1" label="1"/>
-           <button id="nh-start-at-2" label="2"/>
-           <button id="nh-start-at-3" label="3"/>
-           <button id="nh-start-at-4" label="4"/>
-           <button id="nh-start-at-5" label="5"/>
-           <button id="nh-start-at-6" label="6"/>
-           <button id="nh-start-at-7" label="7"/>
-           <button id="nh-start-at-8" label="8"/>
-           <button id="nh-start-at-9" label="9"/>
-           <button id="nh-start-at-10" label="10"/>
+           <button id="nhl-start-at-0" label="Start numbering at"/>
+           <button id="nhl-start-at-1" label="1"/>
+           <button id="nhl-start-at-2" label="2"/>
+           <button id="nhl-start-at-3" label="3"/>
+           <button id="nhl-start-at-4" label="4"/>
+           <button id="nhl-start-at-5" label="5"/>
+           <button id="nhl-start-at-6" label="6"/>
+           <button id="nhl-start-at-7" label="7"/>
+           <button id="nhl-start-at-8" label="8"/>
+           <button id="nhl-start-at-9" label="9"/>
+           <button id="nhl-start-at-10" label="10"/>
         </property-panel>
     </xhtml-macro>
 

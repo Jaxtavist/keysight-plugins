@@ -5,7 +5,7 @@
 
     <groupId>nl.avisi</groupId>
     <artifactId>numbered-headings</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <packaging>atlassian-plugin</packaging>
 
     <name>Numbered Headings</name>
