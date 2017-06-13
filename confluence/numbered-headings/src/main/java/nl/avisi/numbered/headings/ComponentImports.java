@@ -16,15 +16,18 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 @Scanned
 public class ComponentImports
 {
-    @ComponentImport com.atlassian.confluence.content.render.xhtml.Renderer renderer;
-    @ComponentImport com.atlassian.confluence.pages.PageManager             pageManager;
-    @ComponentImport com.atlassian.confluence.security.PermissionManager    permissionManager;
-    @ComponentImport com.atlassian.confluence.setup.settings.SettingsManager        settingsManager;
-    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent        xhtmlUtils;
-    @ComponentImport com.atlassian.plugin.PluginAccessor                    pluginAccessor;
-    @ComponentImport com.atlassian.plugin.module.ModuleFactory              moduleFactory;
-    @ComponentImport com.atlassian.sal.api.message.I18nResolver             i18nResolver;
+    @ComponentImport com.atlassian.confluence.content.render.xhtml.Renderer         renderer;
+    @ComponentImport com.atlassian.confluence.pages.PageManager                     pageManager;
     @ComponentImport com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
+    @ComponentImport com.atlassian.confluence.security.PermissionManager            permissionManager;
+    @ComponentImport com.atlassian.confluence.setup.settings.SettingsManager        settingsManager;
+    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
+    @ComponentImport com.atlassian.plugin.PluginAccessor                            pluginAccessor;
+    @ComponentImport com.atlassian.plugin.module.ModuleFactory                      moduleFactory;
+    @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
+    @ComponentImport com.atlassian.sal.api.message.I18nResolver                     i18nResolver;
+    @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
+    @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
 
     private ComponentImports()
     {

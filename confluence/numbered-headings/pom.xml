@@ -5,7 +5,7 @@
 
     <groupId>nl.avisi</groupId>
     <artifactId>numbered-headings</artifactId>
-    <version>4.0.1</version>
+    <version>4.0.2</version>
     <packaging>atlassian-plugin</packaging>
 
     <name>Numbered Headings</name>
@@ -183,10 +183,14 @@
                             com.atlassian.plugin.osgi.bridge.external,
                             com.atlassian.plugin,
                             com.atlassian.sal.api.message,
+                            com.atlassian.sal.api.auth,
+                            com.atlassian.sal.api.user,
+                            com.atlassian.templaterenderer,
                             *
                         </Import-Package>
 
                         <Atlassian-Scan-Folders>
+                            META-INF/admin,
                             META-INF/macros,
                             META-INF/rest,
                         </Atlassian-Scan-Folders>

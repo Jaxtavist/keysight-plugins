@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module-container>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="numbered-headings-admin" location="/nl/avisi/numbered-headings/i18n/numbered-headings-admin"/>
+
+    <web-resource key="numbered-headings-admin-config-resources" name="Numbered Headings Admin Config Web Resources">
+      <dependency>com.atlassian.auiplugin:ajs</dependency>
+      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
+
+      <!-- transform calls to AJS.getText() inside JS files -->
+      <transformation extension="js">
+         <transformer key="jsI18n"/>
+      </transformation>
+
+      <!-- transform Soy templates into JS -->
+      <transformation extension="soy">
+         <transformer key="soyTransformer">
+            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
+         </transformer>
+      </transformation>
+
+      <resource type="download" name="numbered-headinds-admin-config.css" location="/css/numbered-headinds-admin-config.css"/>
+      <resource type="download" name="numbered-headinds-admin-config.js" location="/js/numbered-headinds-admin-config.js"/>
+      <resource type="download" name="images/" location="/images"/>
+   </web-resource>
+
+   <servlet key="admin-servlet" class="nl.avisi.numbered.headings.AdminUI">
+           <url-pattern>/numbered-headings/admin/configuration</url-pattern>
+   </servlet>
+ 
+</module-container>
+

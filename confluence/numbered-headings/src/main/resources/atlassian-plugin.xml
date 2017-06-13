@@ -3,13 +3,15 @@
         <description>${project.description}</description>
         <version>${project.version}</version>
         <vendor name="${project.organization.name}" url="${project.organization.url}"/>
-        <param name="atlassian-data-center-compatible">true</param>
         <param name="plugin-icon">images/NH_16.png</param>
         <param name="plugin-logo">images/NH_72.png</param>
         <param name="plugin-banner">images/NH_banner.png</param>
         <param name="vendor-icon">images/NH_16.png</param>
         <param name="vendor-logo">images/NH_72.png</param>
+        <param name="atlassian-data-center-compatible">true</param>
+        <param name="configure.url">/plugins/servlet/numbered-headings/admin/configuration</param> 
         <scan-modules>
+            <folder>META-INF/admin</folder>
             <folder>META-INF/macros</folder>
             <folder>META-INF/rest</folder>
         </scan-modules>
