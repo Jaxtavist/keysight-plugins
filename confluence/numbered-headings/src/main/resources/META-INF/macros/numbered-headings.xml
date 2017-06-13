@@ -14,20 +14,22 @@
         <context>editor-content</context>
     </web-resource>
 
-    <web-resource key="nh-tinymce-js-resources" name="Javascript for the Legacy Numbered Headings Macro">
-        <description>This should be disabled if the Transitional Numbered Headings macro is enabled</description>
+    <web-resource key="nh-tinymce-js-resources" name="Javascript for the Legacy Numbered Headings Macro" state="disabled">
+        <description>To enable the macros that replace the Avisi plugin macros and use the same 
+                    rendering algorithm as the Avisi macro, enable this module as well as the
+                    numberedheadings (numberheadings-legacy) and numberedheadings (numbered-headings-legacy-macro).
+                    Do not enable this module, the numberedheadings-legacy module or the numbered-headings-legacy-macro
+                    module if the Transitional Numbered Headings Macro is enabled.</description>
         <resource type="download" name="nh-tinymce-plugin.js" location="js/nh-tinymce-plugin.js"/>
         <context>editor</context>
         <dependency>confluence.web.resources:page-editor</dependency>
         <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
     </web-resource>
 
-    <web-resource key="nh-transitional-tinymce-js-resources" name="Javascript for the Transitional Numbered Headings Macro">
-        <description>This should be enabled if the Transitional Numbered Headings macro is enabled</description>
-        <resource type="download" name="nh-transitional-tinymce-plugin.js" location="js/nh-transitional-tinymce-plugin.js"/>
-        <context>editor</context>
-        <dependency>confluence.web.resources:page-editor</dependency>
-        <dependency>com.atlassian.confluence.tinymceplugin:editor-resources</dependency>
+    <web-resource key="numbered-headings-tinymce-css-resources" name="CSS for the Numbered Headings Macro">
+        <description>CSS for the Legacy Numbered Headings Macro</description>
+        <resource type="download" name="nh-editor.css" location="css/nh-editor.css"/>
+        <context>editor-content</context>
     </web-resource>
 
     <web-resource key="numbered-headings-tinymce-js-resources" name="Javascript for the Numbered Headings Macro">
@@ -138,6 +140,8 @@
         </property-panel>
     </xhtml-macro> 
 
+    <!-- This macro should be enabled to apply the new numbered headings 
+         rendering to instances of the macro installed by the Avisi plugin. -->
     <xhtml-macro name="numberedheadings" key="numberedheadings-transition" 
                  state="disabled"
                  class="nl.avisi.numbered.headings.macro.TransitionalNumberedHeadingsMacro"
@@ -189,7 +193,10 @@
         </property-panel>
     </xhtml-macro>
 
+    <!-- This xhtml macro should be enabled to apply the legacy numbered headings 
+         rendering to instances of the macro installed by the Avisi plugin. -->
     <xhtml-macro name="numberedheadings" key="numberedheadings-legacy" 
+                 state="disabled"
                  class="nl.avisi.numbered.headings.macro.LegacyNumberedHeadingsMacro"
                  icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png">
         <device-type>mobile</device-type>
@@ -225,21 +232,24 @@
             <parameter name="h6" type="string"/>
         </parameters>
         <property-panel>
-           <button id="nh-start-at-0" label="Start numbering at"/>
-           <button id="nh-start-at-1" label="1"/>
-           <button id="nh-start-at-2" label="2"/>
-           <button id="nh-start-at-3" label="3"/>
-           <button id="nh-start-at-4" label="4"/>
-           <button id="nh-start-at-5" label="5"/>
-           <button id="nh-start-at-6" label="6"/>
-           <button id="nh-start-at-7" label="7"/>
-           <button id="nh-start-at-8" label="8"/>
-           <button id="nh-start-at-9" label="9"/>
-           <button id="nh-start-at-10" label="10"/>
+           <button id="nhl-start-at-0" label="Start numbering at"/>
+           <button id="nhl-start-at-1" label="1"/>
+           <button id="nhl-start-at-2" label="2"/>
+           <button id="nhl-start-at-3" label="3"/>
+           <button id="nhl-start-at-4" label="4"/>
+           <button id="nhl-start-at-5" label="5"/>
+           <button id="nhl-start-at-6" label="6"/>
+           <button id="nhl-start-at-7" label="7"/>
+           <button id="nhl-start-at-8" label="8"/>
+           <button id="nhl-start-at-9" label="9"/>
+           <button id="nhl-start-at-10" label="10"/>
         </property-panel>
     </xhtml-macro>
 
+    <!-- This wiki markup macro should be enabled to apply the legacy numbered 
+         headings rendering to instances of the wiki style macro installed by the Avisi plugin. -->
     <macro name="numberedheadings" key="numbered-headings-legacy-macro" 
+           state="disabled"
            class="nl.avisi.numbered.headings.macro.LegacyNumberedHeadingsMacro"
            icon="/download/resources/nl.avisi.numbered-headings:numbered-headings-resources/images/NH_80.png" >
         <category name="formatting"/>
