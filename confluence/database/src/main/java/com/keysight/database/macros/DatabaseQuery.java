@@ -23,7 +23,6 @@ public class DatabaseQuery implements Macro
     private final static String PASSWORD          = "password";
 
     private final PluginSettingsFactory pluginSettingsFactory;
-    private final SettingsManager settingsManager;
     private final TransactionTemplate transactionTemplate;
     private final VelocityHelperService velocityHelperService;
 
@@ -33,20 +32,18 @@ public class DatabaseQuery implements Macro
     private String databaseType = null;
 
     public DatabaseQuery( PluginSettingsFactory pluginSettingsFactory,
-                          SettingsManager settingsManager,
                           VelocityHelperService velocityHelperService,
                           TransactionTemplate transactionTemplate
     ){
         this.pluginSettingsFactory = pluginSettingsFactory;
-        this.settingsManager            = settingsManager;
         this.transactionTemplate = transactionTemplate;
         this.velocityHelperService      = velocityHelperService;
     }
 
-    protected void setDatabaseType( String databaseType ){
+    private void setDatabaseType( String databaseType ){
        this.databaseType = databaseType;
     }
-    protected String getDatabaseType( ){
+    private String getDatabaseType( ){
        return this.databaseType;
     }
 
@@ -60,10 +57,10 @@ public class DatabaseQuery implements Macro
 
        ArrayList<String> columnNames = new ArrayList<String>();
        ArrayList<ArrayList<String>> dataRows = new ArrayList<ArrayList<String>>();
-       File mysqlJar = new File("C:\\jdbc-drivers\\mysql-connector-java-5.1.40-bin.jar");
-       URLClassLoader urlClassLoader;
-       Driver driver;
-       String classname;
+//       File mysqlJar = new File("C:\\jdbc-drivers\\mysql-connector-java-5.1.40-bin.jar");
+//       URLClassLoader urlClassLoader;
+//       Driver driver;
+//       String classname;
 
        if( parameters.containsKey( DATABASE_TYPE ) ){
           setDatabaseType( parameters.get( DATABASE_TYPE ) );
@@ -132,7 +129,6 @@ public class DatabaseQuery implements Macro
         } catch( Exception e ){
 
         }
-        return;
     }
 
     public BodyType getBodyType()

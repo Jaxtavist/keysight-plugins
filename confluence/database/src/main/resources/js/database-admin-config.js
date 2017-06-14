@@ -92,7 +92,7 @@ databaseConfigHelper = (function($) {
             url: url,
             dataType: "json"
         }).done(function(pluginConfiguration) {
-            if (!(pluginConfiguration.xml)) {
+            if (pluginConfiguration.xml == null) {
                 return;
             }
 
@@ -112,6 +112,13 @@ databaseConfigHelper = (function($) {
             $("#jdbc-driver-directory").val(atob($xml.find("jdbc-driver-directory").html()));
             var configAuthorizedUsers = $xml.find("config-authorized-users").html();
             var configAuthorizedGroups = $xml.find("config-authorized-groups").html();
+            // If we failed to get the fields from the xml, default to empty string;
+            if (configAuthorizedUsers  == null) {
+                configAuthorizedUsers = "";
+            }
+            if (configAuthorizedGroups  == null) {
+                configAuthorizedGroups = "";
+            }
 
             // Load saved connection profiles in and connect them to templates
             $xml.find("saved-profile").each(function(index) {

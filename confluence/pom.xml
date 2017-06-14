@@ -275,5 +275,6 @@
     <module>numbered-headings</module>
     <module>test-ecosystem</module>
     <module>database</module>
+    <module>6-2-1</module>
   </modules>
 </project>

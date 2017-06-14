@@ -36,4 +36,11 @@
       </parameters>
    </xhtml-macro>
 
+    <web-resource key="database-resources" name="Database Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>confluence.editor.actions:editor-macro-browser</dependency>
+        <resource type="download" name="profiles.js" location="/js/fetch-db-profiles.js"/>
+
+        <context>macro-browser</context>
+    </web-resource>
 </module-container>

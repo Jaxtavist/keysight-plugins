@@ -101,7 +101,7 @@ public class RestAdminConfigService
    private boolean isAuthorized(HttpServletRequest request) {
       UserKey userKey = userManager.getRemoteUserKey(request);
 
-      // Check basic conditions.
+      // Check if logged in and admin
       if (userKey == null) {
          return false;
       } else if (userManager.isSystemAdmin(userKey)) {
