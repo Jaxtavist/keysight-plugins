@@ -322,6 +322,14 @@ var numberedHeadings = (function ($) {
         var parameters = parseParameters(macroTable);
         var doIt = true;
 
+        try{
+           if( !AJS.$( tinyMCE.activeEditor.selection.getNode()).children().first().hasClass("data-nh-numbering") ){
+              moveCaret = true;
+           }
+        } catch( error ){
+        }
+
+
         $(macroTable).find("h1, h2, h3, h4, h5, h6").each(function (index, element) {
             if( filter && inNumberedHeadingBody( element ) ){
                doIt = false;
@@ -418,10 +426,24 @@ var numberedHeadings = (function ($) {
         removeNumbering(heading);
         $(heading).prepend("<span class=\"data-nh-numbering\">"+numbering+"</span>");
         //$(heading).attr("data-nh-numbering", numbering);
+
+        try{
+        var element = AJS.$( tinyMCE.activeEditor.selection.getNode() )[0];
+           if( element != null && element.nodeName[0] === "H" && tinyMCE.activeEditor.selection.getRng().startOffset == 0 )
+           {
+              var textNode = AJS.$(element)[0].childNodes[1];
+              if( textNode != null ){
+                 tinyMCE.activeEditor.selection.select( textNode );
+                 var textNodeRange = tinyMCE.activeEditor.selection.getRng();
+                 textNodeRange.collapse(true);
+                 tinyMCE.activeEditor.selection.setRng( textNodeRange );
+              }
+           }
+        } catch( error ){}
     }
 
     function removeNumbering(heading) {
-        $(heading).find(".data-nh-numbering").first().remove();
+        $(heading).find("span.data-nh-numbering").remove();
         //$(heading).removeAttr("data-nh-numbering");
     }
 

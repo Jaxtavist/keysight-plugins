@@ -65,7 +65,7 @@ has the <strong>Numbered Headings For Page</strong> macro, the
 content in the body of the macro will be treated independantly of the
 content in the body of the page.</p>
 
-<h3>Numbered Headings (Legacy)</h3>
+<h3>Numbered Headings (Legacy) - <em>Disabled by default</em></h3>
 
 <p>The <strong>Numbered Headings (Legacy)</strong> macro is provided
 for backwards compatibility.  As the versions of the plugin prior to
@@ -179,7 +179,6 @@ rule elements take the format of [<heading number>.<number format>] such as [h1.
 </h3>Sub i: My father met my mother...</h3>
 </div>
 
-
 <p><strong>h1 format</strong> (optional): Text plus rule elements.</p>
 <p><strong>h2 format</strong> (optional): Text plus rule elements.</p>
 <p><strong>h3 format</strong> (optional): Text plus rule elements.</p>
@@ -192,4 +191,16 @@ rule elements take the format of [<heading number>.<number format>] such as [h1.
 <p>It is possible to write a totally custom number format.  For details
 visit <a href="https://addons.avisi.com/numbered-headings/documentation">
 https://addons.avisi.com/numbered-headings/documentation<a></p>
+
+<h2>Getting support and Accessing the Source Code</h2>
+
+<p>This plugin is released under the 2-Clause BSD License. The source for
+this fork can be found at <a
+href="https://bitbucket.org/keysight/keysight-plugins-for-atlassian-products">
+https://bitbucket.org/keysight/keysight-plugins-for-atlassian-products</a>.
+The bitbucket site can also be used to find additional documentation, submit
+issues or contact the support team.  The original Numbered Headings plugin from
+Avisi is hosted at <a href="https://bitbucket.org/avisi/numbered-headings">
+https://bitbucket.org/avisi/numbered-headings</a> and is also provided with a
+2-Clause BSD License.</p>
 

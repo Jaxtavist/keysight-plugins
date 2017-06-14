@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <title>Numbered Headings Admin</title>
+    <meta name="decorator" content="atl.admin">
+    $webResourceManager.requireResource("com.keysight.numbered-headings:numbered-headings-admin-config-resources")
+  </head>
+  <body>
+
+  <h1>A Tale of Two Choices</h1>
+
+  <h2>Style Based Implementation</h2>
+
+  <p>The original Avisi plugin used a style to place the numbering in front of
+the heading elements while editing content and rendered the numbers inline when
+viewing the content.  In many respects this is an ideal choice.  In the editor,
+the numbers are always viewable on heading elements but not editable.  Be
+rendering inline the numbering was viewable in the browser or exported formats
+such as pdf and word. But there are some downsides.  The new shared editor
+introduced in Confluence 6 only propogates content changes and the style
+changes applied by the numbered heading code do not get relayed to the other
+sim editors. So when two or more people are editing a document, they will see
+inconsistent numbering in their view.  The other difficulty is the server code
+needs to have some means of identifying and rendering the numbering into the
+html.  The most practical approach to that problem, and the one Avisi used, is
+place all of the content into the body of a macro.  This is a functional but
+less than ideal limitation of the approach.</p>
+
+  <h2>Inline Content Based Implementation</h2>
+
+   <p>The Keysight fork of the Avisi plugin took a different approach to the
+problem.  Instead of applying a style to the heading in the editor, the number
+was prepended to the heading.  Since content is being added, it is relayed to
+the other shared editors.  Since the work is all performed in the editor, the
+difficulty of having to identify and render the numbers on the server for
+viewing goes away.  This makes it easy to implement a macro to trigger the
+numbering algorithm for the body of the page rather than just inside the body
+of a macro.  The downside with this approach is the user is given the ability
+to edit the numbers.  The algorithm does a pretty good job at fixing them to
+keep everything consistent, but it does provide a less than perfect user
+experience.</p>
+
+    <p>The primary motivation for developing the second approach used in the
+Keysight fork was to reduce the long term risk to the content.  In the style
+based approach all of the content is trapped inside the body of a macro.
+Should the plugin ever become unsupported or the team desire to get rid of it,
+they first need to find every instance of the macro and pull the content out.
+In the second approach, instead of placing the content in the body of a
+Numbered Heading macro, a Numbered Heading For Page macro is placed in the body
+which activates the numbering algorithm.  Should that plugin be removed, a
+warning will be displayed letting users know the macro can no longer be
+rendered and the automatic numbering in the editor will stop - but all of the
+content and the numbering from when the plugin was active remains visible and
+editable.</p> 
+
+  <h1>Transitioning Between the Approaches</h1>
+
+  <p>The Avisi plugin provided two modules for the numbered heading macro.  An
+XHTML version used by modern versions of Confluence and a wiki markup versions
+for content writing in older versions.  The Keysight plugin provides three.
+XHTML and wiki markup macros that implement the original Avisi style-based
+approach and a third XHTML macro that implements the new inline content
+approach.  By default, all three modules are disabled.  Administrators can
+setup the plugin to work in one of three ways.  One approach is to not enable
+any of the macros that number content in their body and push end users to the
+Numbered Headings For Page macro.  This is the recommended approach for
+Confluence instances that have not been using the Avisi plugin.  For sites that
+have been using the Avisi plugin, the administrator can activate the legacy
+modules which introduces a hybrid mode were old content will continue to
+operate as is has before, but now authors can also use the <b>Numbered Headings
+for Page</b> macro.  The last approach is to enable the
+numberedheadings-transition module.  In this mode all of the content in
+pre-existing Avisi macros will render without numbering until the page is
+edited and resaved.</p>
+
+   <p>To migrate away from the style based approach to the new inline content
+approach, the recommendation is to enable the numberedheadings-transition macro
+then manually updated every page with one or more instances of the macro.  To 
+update a page, edit the page, insert a <b>Numbered Headings For Page</b> macro,
+copy the contents of the <b>Numbered Headings</b> macro into the body of the 
+page and finally delete the <b>Numbered Headings</b> macro.  Once all instances
+of the <b>Numbered Headings</b> macro have been removed, it may be useful to
+disable it.  This is not required as the macro provides the ability to 
+apply a second numbering to a portion of the page.</p>
+
+   <h2>Enabling modules to tune the mode of the plugin</h2>
+
+   <h3>No Body Based Macros (default)</h3>
+
+   <p>To block usage of the body based numbered heading macros, disable the
+following modules: Javascript for the Legacy Numbered Headings Macro
+(nh-tinymce-js-resources), numberedheadings (numberedheadings-transition),
+numberedheadings (numberedheadings-legacy), numberedheadings
+(numbered=headings-legacy-macro). This is the default configuration.</p>
+
+   <h3>Hybrid Mode - old and new approaches available</h3>
+
+   <p>To turn on the hybrid mode where existing instances of the <b>Numbered
+Headings</b> macro will continue to operate as before but users can now use the
+<b>Numbered Headings For Page</b> macro, activate the Javascript for the Legacy
+Numbered Headings Macro (nh-tinymce-js-resources), the numberedheadings
+(numberedheadings-legacy) and the numberedheadings
+(numbered-headings-legacy-macro) plugins while leaving the numberedheadings
+(numberedheadings-transition) disabled.</p>
+
+   <h3>Inline Conent Only Mode with Body Based Macros</h3>
+
+   <p>To enable the body based macros with the new inline content approach
+macro, activate the numberedheadings (numberedheadings-transition) module and
+deactive the the Javascript for the Legacy Numbered Headings Macro
+(nh-tinymce-js-resources), the numberedheadings (numberedheadings-legacy) and
+the numberedheadings (numbered=headings-legacy-macro)</p>
+
+   <h1>Getting support and Accessing the Source Code</h1>
+
+   <p>This plugin is released under the 2-Clause BSD License. The source for
+this fork can be found at <a
+href="https://bitbucket.org/keysight/keysight-plugins-for-atlassian-products">
+https://bitbucket.org/keysight/keysight-plugins-for-atlassian-products</a>.
+The bitbucket site can also be used to find additional documentation, submit
+issues or contact the support team.  The original Numbered Headings plugin from
+Avisi is hosted at <a href="https://bitbucket.org/avisi/numbered-headings">
+https://bitbucket.org/avisi/numbered-headings</a> and is also provided with a
+2-Clause BSD License.</p>
+
+  </body>
+</html>
