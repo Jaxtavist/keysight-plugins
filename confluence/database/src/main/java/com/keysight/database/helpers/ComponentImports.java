@@ -1,6 +1,5 @@
 package com.keysight.database.helpers;
- 
-import com.atlassian.confluence.user.UserAccessor;
+
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
  

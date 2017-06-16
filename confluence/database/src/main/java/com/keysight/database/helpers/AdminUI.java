@@ -43,7 +43,7 @@ public class AdminUI extends HttpServlet {
          return;
       }
 
-      DriverDetails driverDetails = null;
+      DriverDetails driverDetails;
       Map<String, Object> velocityContext = new HashMap<String, Object>();
       velocityContext.put("relativeHome", new File(".").getCanonicalPath());
       PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);

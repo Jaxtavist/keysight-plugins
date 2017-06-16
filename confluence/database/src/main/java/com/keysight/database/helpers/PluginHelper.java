@@ -78,15 +78,11 @@ public class PluginHelper {
     public PluginHelper(final PluginSettingsFactory pluginSettingsFactory,
                         final TransactionTemplate transactionTemplate) {
         try {
-            PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute(new TransactionCallback() {
-                public Object doInTransaction() {
-                    PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
-                    PluginConfig pluginConfig = new PluginConfig();
-                    pluginConfig.setXml((String) settings.get(PluginConfig.class.getName() + ".xml"));
-                    return pluginConfig;
-                }
-
-                ;
+            PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute((TransactionCallback<Object>) () -> {
+                PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                PluginConfig pluginConfig1 = new PluginConfig();
+                pluginConfig1.setXml((String) settings.get(PluginConfig.class.getName() + ".xml"));
+                return pluginConfig1;
             });
 
             String pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
@@ -181,7 +177,7 @@ public class PluginHelper {
 
     private DriverDetails getJdbcDriver(String url, String driverKey, String regex) {
         DriverDetails driverDetails = new DriverDetails();
-        Path jdbcDriverDirectoryPath = null;
+        Path jdbcDriverDirectoryPath;
 
         driverDetails.isLocal = false;
         if (!StringUtils.isEmpty(url)) {
@@ -240,6 +236,10 @@ public class PluginHelper {
         }
 
         return driverDetails;
+    }
+
+    public NodeList getProfiles() {
+        return root.getElementsByTagName("saved-profile");
     }
 
     private String getJdbcDriverDirectory() {

@@ -1,6 +1,8 @@
 #set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.database:database-resources/images" )
+#if( $showQuery )
 <h1>query results</h1>
 <pre>$bodyAsHtml</pre>
+#end
 
 <table>
 <tr>

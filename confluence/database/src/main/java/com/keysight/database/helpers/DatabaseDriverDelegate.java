@@ -18,7 +18,7 @@ public class DatabaseDriverDelegate implements Driver {
         setRealDriver( driver );
 	}
 
-	public boolean acceptsURL(String u) throws SQLException, SQLFeatureNotSupportedException {
+	public boolean acceptsURL(String u) throws SQLException {
 		return this.driver.acceptsURL(u);
 	}
 	public Connection connect(String u, Properties p) throws SQLException {
