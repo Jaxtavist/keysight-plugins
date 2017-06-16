@@ -11,7 +11,7 @@ var dbProfiles = (function($) {
 
     DBProfileConfig.prototype.fields = {
         "string": {
-            "Profile": function(param, options) {
+            "profile": function(param, options) {
 
                 var paramDiv = $(Confluence.Templates.MacroBrowser.macroParameterSelect());
                 var input = $("select", paramDiv);
@@ -55,7 +55,8 @@ var dbProfiles = (function($) {
 
                 var currentValue = dropDown.val();
 
-                dropDown.empty();
+                var infoOption = $("<option  selected=\"true\" disabled=\"disabled\"/>");
+                infoOption.text("-- Select a Profile --")
 
                 $.each(profiles, function(index, profile) {
                     var option = $("<option />");

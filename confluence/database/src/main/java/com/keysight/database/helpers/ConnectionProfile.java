@@ -30,7 +30,6 @@ public class ConnectionProfile {
     public String databasePort;
     @XmlElement
     public String databaseUsername;
-    @XmlElement
     public String databasePassword;
     @XmlElement
     public String connectionStringSuffix;

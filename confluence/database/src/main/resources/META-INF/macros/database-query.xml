@@ -9,7 +9,7 @@
                  icon="/download/resources/com.keysight.database:database-resources/images/keysight-logo-80x80.png">
         <category name="confluence-content"/>
         <parameters>
-            <parameter name="Profile" type="enum" required="true">
+            <parameter name="profile" type="string" required="true">
             </parameter>
             <parameter name="show-query" type="boolean">
             </parameter>

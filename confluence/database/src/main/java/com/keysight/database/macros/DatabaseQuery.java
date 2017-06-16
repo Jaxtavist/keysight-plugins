@@ -24,13 +24,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DatabaseQuery implements Macro {
-    private final static String PROFILE_NAME = "Profile";
+    private final static String PROFILE_NAME = "profile";
     private final static String QUERY_ISVISIBLE = "show-query";
 
     private final PluginSettingsFactory pluginSettingsFactory;
     private final TransactionTemplate transactionTemplate;
     private final VelocityHelperService velocityHelperService;
-    private final SettingsManager settingsManager;
     private final UserManager userManager;
     private final UserAccessor userAccessor;
 
@@ -43,14 +42,12 @@ public class DatabaseQuery implements Macro {
     public DatabaseQuery(PluginSettingsFactory pluginSettingsFactory,
                          VelocityHelperService velocityHelperService,
                          TransactionTemplate transactionTemplate,
-                         SettingsManager settingsManager,
                          UserManager userManger,
                          UserAccessor userAccessor
     ) {
         this.pluginSettingsFactory = pluginSettingsFactory;
         this.transactionTemplate = transactionTemplate;
         this.velocityHelperService = velocityHelperService;
-        this.settingsManager = settingsManager;
         this.userAccessor = userAccessor;
         this.userManager = userManger;
     }
@@ -79,41 +76,12 @@ public class DatabaseQuery implements Macro {
 
         // Get all stored profiles
         NodeList profileNodes = pluginHelper.getProfiles();
-        ArrayList<ConnectionProfile> unfilteredProfiles = new ArrayList<>();
+        ArrayList<ConnectionProfile> profiles = new ArrayList<>();
 
         for (int i = 0; i < profileNodes.getLength(); i++) {
             Element profileNode = (Element) profileNodes.item(i);
-            unfilteredProfiles.add(new ConnectionProfile(profileNode));
+            profiles.add(new ConnectionProfile(profileNode));
         }
-
-        // Get groups for user
-        UserKey userKey = userManager.getRemoteUserKey();
-        UserProfile currentProfile = userManager.getUserProfile(userKey);
-        assert (currentProfile != null);
-        String currentUsername = currentProfile.getUsername();
-        List<String> currentGroups = userAccessor.getGroupNamesForUserName(currentUsername);
-
-        // Return the list of authorized profiles
-        List<ConnectionProfile> profiles = unfilteredProfiles.stream().filter(profile -> {
-            // Check if logged in and admin
-            if (userKey == null) {
-                return false;
-            } else if (userManager.isSystemAdmin(userKey)) {
-                return true;
-            }
-
-            // CURRENT STATE: User is not an admin, username or group might have permissions
-            // Check username
-            if (profile.getAuthorizedUsers().contains(currentUsername)) {
-                return true;
-            }
-
-            // CURRENT STATE: Username doesn't have permission, group might
-            // Check group membership with union
-            List<String> tempList = new ArrayList<>(profile.getAuthorizedGroups());
-            tempList.retainAll(currentGroups); // Shared elements between allowed groups and groups user is in.
-            return !tempList.isEmpty(); // If none of the user's groups are allowed, reject them.
-        }).collect(Collectors.toList());
 
         ConnectionProfile profile = null;
         for (ConnectionProfile tempProfile : profiles) {
