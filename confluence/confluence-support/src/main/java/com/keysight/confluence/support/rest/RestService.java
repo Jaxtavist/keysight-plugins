@@ -70,6 +70,7 @@ public class RestService
       StringBuilder html = new StringBuilder();
       String headerTemplate = "/com/keysight/confluence-support/templates/help-header.vm";
       String footerTemplate = "/com/keysight/confluence-support/templates/help-footer.vm";
+      String fossTemplate = "/com/keysight/confluence-support/templates/foss.vm";
 
       Map<String, Object> velocityContext = velocityHelperService.createDefaultVelocityContext();
       velocityContext.put( "title", title );
@@ -77,6 +78,7 @@ public class RestService
 
       html.append( velocityHelperService.getRenderedTemplate( headerTemplate, velocityContext ) );
       html.append( velocityHelperService.getRenderedTemplate( bodyTemplate,   velocityContext ) );
+      html.append( velocityHelperService.getRenderedTemplate( fossTemplate,   velocityContext ) );
       html.append( velocityHelperService.getRenderedTemplate( footerTemplate, velocityContext ) );
 
       return Response.ok( new RestResponse( html.toString() ) ).build();

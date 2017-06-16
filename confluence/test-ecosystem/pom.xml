@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>test-ecosystem</artifactId>
-    <version>4.0.4</version>
+    <version>4.0.5</version>
     <name>Test Ecosystem</name>
     <description>Several plugins including macros, blueprints, spaceblueprints
                  and webpanels used in the various spaces that document the Test Ecosystem</description>
