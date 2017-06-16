@@ -190,17 +190,4 @@ rule elements take the format of [<heading number>.<number format>] such as [h1.
 
 <p>It is possible to write a totally custom number format.  For details
 visit <a href="https://addons.avisi.com/numbered-headings/documentation">
-https://addons.avisi.com/numbered-headings/documentation<a></p>
-
-<h2>Getting support and Accessing the Source Code</h2>
-
-<p>This plugin is released under the 2-Clause BSD License. The source for
-this fork can be found at <a
-href="https://bitbucket.org/keysight/keysight-plugins-for-atlassian-products">
-https://bitbucket.org/keysight/keysight-plugins-for-atlassian-products</a>.
-The bitbucket site can also be used to find additional documentation, submit
-issues or contact the support team.  The original Numbered Headings plugin from
-Avisi is hosted at <a href="https://bitbucket.org/avisi/numbered-headings">
-https://bitbucket.org/avisi/numbered-headings</a> and is also provided with a
-2-Clause BSD License.</p>
-
+https://addons.avisi.com/numbered-headings/documentation</a>.</p>

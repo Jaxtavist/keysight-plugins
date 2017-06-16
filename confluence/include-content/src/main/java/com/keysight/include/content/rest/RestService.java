@@ -129,7 +129,7 @@ public class RestService
    @Consumes({MediaType.APPLICATION_JSON})
    public Response includeCodeBlock( ){
       String title = "Code Include Help";
-      String bodyTemplate = "/com/keysight/include-content/templates/code-include-help.vm";
+      String bodyTemplate = "/com/keysight/include-content/templates/include-code-help.vm";
 
       return getMacroHelp( title, bodyTemplate );
    }
@@ -235,6 +235,7 @@ public class RestService
        StringBuilder html = new StringBuilder();
        String headerTemplate = "/com/keysight/include-content/templates/help-header.vm";
        String footerTemplate = "/com/keysight/include-content/templates/help-footer.vm";
+       String fossTemplate = "/com/keysight/include-content/templates/foss.vm";
 
        Map<String, Object> velocityContext = velocityHelperService.createDefaultVelocityContext();
        velocityContext.put( "title", title );
@@ -242,6 +243,7 @@ public class RestService
 
        html.append( velocityHelperService.getRenderedTemplate( headerTemplate, velocityContext ) );
        html.append( velocityHelperService.getRenderedTemplate( bodyTemplate,   velocityContext ) );
+       html.append( velocityHelperService.getRenderedTemplate( fossTemplate,   velocityContext ) );
        html.append( velocityHelperService.getRenderedTemplate( footerTemplate, velocityContext ) );
 
        return Response.ok( new RestResponse( html.toString() ) ).build();
