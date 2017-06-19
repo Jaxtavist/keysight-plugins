@@ -90,7 +90,7 @@ apply a second numbering to a portion of the page.</p>
 following modules: Javascript for the Legacy Numbered Headings Macro
 (nh-tinymce-js-resources), numberedheadings (numberedheadings-transition),
 numberedheadings (numberedheadings-legacy), numberedheadings
-(numbered=headings-legacy-macro). This is the default configuration.</p>
+(numbered-headings-legacy-macro). This is the default configuration.</p>
 
    <h3>Hybrid Mode - old and new approaches available</h3>
 

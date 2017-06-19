@@ -2,7 +2,7 @@
 
 <p>The shared block identifies a portion of the page
 contents which may be inserted into other pages using the
-Include Shared Block or Include Shared Block With Replacment
+Include Shared Block or Include Shared Block With Replacement
 macros.</p>
 
 <h3>Usage</h3>

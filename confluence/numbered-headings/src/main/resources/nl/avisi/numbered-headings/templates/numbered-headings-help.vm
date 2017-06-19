@@ -160,7 +160,7 @@ numbered. An example might be <em>h5</em>, or <em>h6</em></p>
 
 <p>Note, these are only visible if <strong>custom</strong> is selected as the <strong>Number format</strong>.</p>
 
-<p>The value for the custom parameters is some arbitray text with some rule elements for how to number that item.  The 
+<p>The value for the custom parameters is some arbitrary text with some rule elements for how to number that item.  The 
 rule elements take the format of [<heading number>.<number format>] such as [h1.decimal].  For example, the following
 
 <ul>

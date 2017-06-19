@@ -12,7 +12,7 @@
        <div id="group-list-container" class="list-container"></div>
        <br />
        <div class="config-input-container">
-          <div class="confing-input-row">
+          <div class="config-input-row">
              <div class="config-input-cell">
                 <div class="field-group">
                    <label for="new-group-name">Group Name</label>
@@ -35,7 +35,7 @@
        <h2>Email addresses which will receive new space creation notifications.</h2>
        <div id="email-list-container" class="list-container"></div>
        <br />
-       <div class="config-input-continer">
+       <div class="config-input-container">
           <div class="config-input-row">
              <div class="config-input-cell">
                 <div class="field-group">

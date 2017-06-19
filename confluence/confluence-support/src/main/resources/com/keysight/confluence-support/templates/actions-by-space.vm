@@ -18,7 +18,7 @@
             <a href="#tab2">Empty Trash</a>
         </li>
         <li class="menu-item">
-            <a href="#tab3">Fix Titleless Pages</a>
+            <a href="#tab3">Fix Title-less Pages</a>
         </li>
         <li class="menu-item">
             <a href="#tab4">Fix Anonymous Access</a>
@@ -161,11 +161,11 @@ fix the issue.</p>
 <div class="actions-by-space-intro-text-container">
 
 <p class="actions-by-space-intro-text">Confluence implements Anonymous access by
-assiging the permissions of the user &quot;Anonymous&quot; to any user not logged 
+assigning the permissions of the user &quot;Anonymous&quot; to any user not logged
 in.  When the user logs in, they get the permissions assigned to their name - which
 can be less than that of the user &quot;Anonymous&quot;.  This is not intuitive as
 most people expect the permissions granted to their authenticated credentials to be
-better or equal to anonmous access.  Normally an instance of 
+better or equal to anonymous access.  Normally an instance of
 confluence will have a group that contains all of the valid users.  So, for anonymous
 access to work as most people expect, that <strong>all users group or groups</strong>
 must have the same or better permissions than the Anonymous user's permissions.
@@ -191,13 +191,13 @@ Support plugin configuration</a></p>
     <div class="field-group">
         <label for="fix-anonymous-access-space-categories">Space Categories</label>
         <input class="text long-field" type="text"
-               id="fix-anonymous-access-space-categories" name="fix-anonymous-access-space-categories" placeholder="Comma seperated list of Space Categories.  Defaults to all.">
+               id="fix-anonymous-access-space-categories" name="fix-anonymous-access-space-categories" placeholder="Comma separated list of Space Categories.  Defaults to all.">
     </div>
     <div class="field-group">
         <label for="fix-anonymous-access-all-users-groups">All Users Group(s)</label>
         <input class="text long-field" type="text" value="$!allUsersGroups"
-               id="fix-anonymous-access-all-users-groups" name="fix-anonymous-access-all-users-groups" placeholder="Comma seperated list of groups.">
-        <div class="description" >This is a comma seperated list of groups that represent all of the active users.</div>
+               id="fix-anonymous-access-all-users-groups" name="fix-anonymous-access-all-users-groups" placeholder="Comma separated list of groups.">
+        <div class="description" >This is a comma separated list of groups that represent all of the active users.</div>
         <div id="error-for-fix-anonymous-all-users-groups" class="error" ></div>
     </div>
     <div class="buttons-container">

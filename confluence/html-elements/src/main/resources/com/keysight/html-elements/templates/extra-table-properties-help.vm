@@ -3,7 +3,7 @@
 <p>While the default table tools are very easy to use, they are 
 provide a very limited range of options compared with other
 real-time editors.  This macro tries to extend the default
-functionality to include some commonly requeted features.</p>
+functionality to include some commonly requested features.</p>
 
 <p>The Table and Column Width uses javascript to set the width
 of the table and it's columns once the page has been rendered.
@@ -14,9 +14,9 @@ of the table and it's columns once the page has been rendered.
 <h3>Parameters</h3>
 <p><strong>Table Width</strong>: Sets the width of the table.  The value will be
 inserted into the html table element's width attribute.  Example: 90% or 400px.</p>
-<p><strong>Column Widths</strong>: A comma seperated list of the desired column 
+<p><strong>Column Widths</strong>: A comma separated list of the desired column
 widths.  Example, 100px,200px or 80%,20%</p>
 <p><strong>Row</strong>: As the top row may have merged cells, this parameter determines
 which row the column width attributes will be added into.</p>
-<p><strong>Hide Borders</strong>: If checked, a stylesheet rule will be applied to supress the
-table and cell borders so that no gridlines are visibile.  <p>
+<p><strong>Hide Borders</strong>: If checked, a stylesheet rule will be applied to suppress the
+table and cell borders so that no grid lines are visible.  <p>

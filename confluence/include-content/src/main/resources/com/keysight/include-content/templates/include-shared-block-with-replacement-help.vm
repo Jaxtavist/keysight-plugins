@@ -10,7 +10,7 @@ another confluence page with simple string substitution.</p>
 <h4>Identifying the Shared Block</h4>
 
 <p>In the macro parameters, the page on which the shared
-block is defined needs to be specified.  Optinally, the
+block is defined needs to be specified.  Optionally, the
 key identifying the shared block may be provided.  The key
 is a string that needs to match in both the Shared Block
 and the Include Shared Block before the contents may be
@@ -33,8 +33,8 @@ macro definition.</p>
 
 <p>The substitution is performed on the final html and does not
 understand the difference between the page content and the html
-formatting, thus it can transform the underlying xml into unparsable
-gibberish causing the macro to be unrenderable.</p>
+formatting, thus it can transform the underlying xml into an
+invalid state causing the macro to be un-renderable.</p>
 
 <h3>Parameters</h3>
 
@@ -51,7 +51,7 @@ and end of the substitution expression.  For example, if / is the
 delimiter a valid substitution expression is <b>/this/that/</b>.  If the character
 &quot;!&quot; is the delimiter, the same expression now looks like <b>!this!that!</b>.</p>
 
-<p><strong>Supress Permission Errors</strong>:If checked and there is a
+<p><strong>Suppress Permission Errors</strong>:If checked and there is a
 permissions problem when rendering the macro, no error message will be
 displayed.  For example, if the shared block is on a page the current user does
 not have permissions to see, then they will not see an error informing them

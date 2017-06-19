@@ -68,7 +68,7 @@
        should look like <b>/JdbcDrivers</b>.  Paths may be absolute or relative.  If
        relative, they are relative to the directory <b>$relativeHome</b>.</p>
 
-       <div class="config-input-continer">
+       <div class="config-input-container">
           <div class="config-input-row">
              <div class="config-input-cell">
                 <div class="field-group">

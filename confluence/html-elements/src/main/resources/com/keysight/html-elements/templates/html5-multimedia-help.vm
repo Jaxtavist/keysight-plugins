@@ -1,4 +1,4 @@
-<h3>Introuction</h3>
+<h3>Introduction</h3>
 
 <p>The html5 multimedia macro is used to display a multimedia
 file (audio or video) via the &lt;video&gt; and &lt;audio&gt;
@@ -15,7 +15,8 @@ data going back one week and the upgrade process makes backups of the
 backups.  Therefore, a 1 GB video file will consume about 10 GB of 
 real hard drive space when attached to Confluence.  If hosted on a 
 regular share, it will only consume 2 GB - assuming backups are enabled.
-A file share has been setup for this purpose.  Contact Scott Selberg
+A file share has been setup for this purpose.  Contact <a href="mailto:pdl-atlassian-plugin-development@keysight.com">
+pdl-atlassian-plugin-development@keysight.com</a>
 to get details.</p>
 
 <p>The macro does not support the ability to expose a multimedia 

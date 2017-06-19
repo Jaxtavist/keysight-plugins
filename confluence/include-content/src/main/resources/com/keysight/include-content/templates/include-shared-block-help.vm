@@ -1,5 +1,5 @@
 <h3>Introduction</h3>
-<p>The Include Shared Block Macro is simliar to the
+<p>The Include Shared Block Macro is similar to the
 Confluence Excerpt Include - but instead of pulling in 
 the contents of the first discovered Excerpt Macro it pulls
 in the contents of either the first discovered Shared Block 
@@ -8,7 +8,7 @@ target a particular Shared Block rather than the first one
 is what gives this macro purpose.</p>
 <h3>Usage</h3>
 <p>In the macro parameters, the page on which the shared
-block is defined needs to be specified.  Optinally, the
+block is defined needs to be specified.  Optionally, the
 key identifying the shared block may be provided.  The key
 is a string that needs to match in both the Shared Block
 and the Include Shared Block before the contents may be
@@ -25,7 +25,7 @@ page has this string set in it's macro properties, that block will be
 inserted. If no key is set, the first shared block on the page will be included.
 If a key is set but no block matches, an error will be displayed.</p>
 
-<p><strong>Supress Permission Errors</strong>:If checked and there is a
+<p><strong>Suppress Permission Errors</strong>:If checked and there is a
 permissions problem when rendering the macro, no error message will be
 displayed.  For example, if the shared block is on a page the current user does
 not have permissions to see, then they will not see an error informing them

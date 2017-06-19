@@ -14,7 +14,7 @@ KEY->LABEL
 </pre>
 <p>A text field can be created by specifying a single string, such 
 as <strong>KEY</strong>.  When the submit button is pressed, <strong>KEY</strong>
-will be passed into the with whatever text is in the field as the <stong>VAlUE</strong>.
+will be passed into the with whatever text is in the field as the <strong>VAlUE</strong>.
 To provide a user friendly label on the web page, use the syntax <strong>KEY->LABEL</strong>.
 If no label is specified, none will be printed.</p>
 <p>Example: USERNAME->Username</p>
@@ -23,7 +23,7 @@ If no label is specified, none will be printed.</p>
 <pre>
 *KEY:VALUE
 </pre>
-<p>The hidden field will not be shown to the user on the webpage, but
+<p>The hidden field will not be shown to the user on the web page, but
 the <strong>KEY:VALUE</strong> pair will be passed to the form url when submitted.</p>
 <p>Example: *SECRET_VALUE->BLUE</p>
 
@@ -35,12 +35,12 @@ KEY->LABEL:SELECTION1->LABEL1,SELECTION2->LABEL2,!DEFAULT_SELECTION->LABEL3
 
 <p>The form element is named by the <strong>KEY</strong>.  As with the Text Field, a user
 friendly label can be provided with the syntax <strong>KEY->LABEL</strong>.  If the key is 
-followed by a colon, and a comma seperated list that indicates a dropdown
+followed by a colon, and a comma separated list that indicates a dropdown
 list should be created.  Each of the selections can be provided with a 
 user friendly label as shown in the syntax.  If one of the selections is preceded
-with an exclaimation point (!), it will be the default selection.  Only one
-selection should be flagged with the exclaimation point.</p>
-<p>Example: FAVORITE_COLOR->My Favorite Color:!BLUE->Awesome Blue,PINK->Georgeous Pink</p>
+with an exclamation point (!), it will be the default selection.  Only one
+selection should be flagged with the exclamation point.</p>
+<p>Example: FAVORITE_COLOR->My Favorite Color:!BLUE->Awesome Blue,PINK->Gorgeous Pink</p>
 
 <h3>Parameters</h3>
 <p><strong>Style</strong>: Sets the display style for the form.  AUI looks better and fits the general Confluence look and feel.  Plain HTML is more compact.</p>
@@ -48,10 +48,10 @@ selection should be flagged with the exclaimation point.</p>
 <p><strong>Form Target</strong>: Determines if the results from the submitted form should be opened in the same window or a new one.</p>
 <p><strong>Submit Button Text</strong>: Sets the text placed on the submit button.</p>
 <h3>Parameters Exclusive to the AUI Style</h3>
-<p><strong>Form Layout</strong>: Determines if the labels should be short on the left (default), long on the left, on the top or unsectioned (for short forms).</p>
+<p><strong>Form Layout</strong>: Determines if the labels should be short on the left (default), long on the left, on the top or un-sectioned (for short forms).</p>
 <h3>Parameters Exclusive to the Plain HTML Style</h3>
-<p><strong>Form Element Seperator</strong>: A string, such as a line break (&lt;br /&gt;) to insert between form elements.</p>
+<p><strong>Form Element Separator</strong>: A string, such as a line break (&lt;br /&gt;) to insert between form elements.</p>
 <p><strong>Form Alignment</strong>: The justification of the form elements: Left, Center or Right</p>
-<p><strong>Submit Button Element Seperator</strong>: A string, such as a line break (&lt;br /&gt;) to insert before the submit button. (Defaults to the Form Element Seperator)</p>
+<p><strong>Submit Button Element Separator</strong>: A string, such as a line break (&lt;br /&gt;) to insert before the submit button. (Defaults to the Form Element Separator)</p>
 <p><strong>Submit Button Alignment</strong>: The justification of the submit button: Left, Center or Right (Defaults to the Form Alignment)</p>
 

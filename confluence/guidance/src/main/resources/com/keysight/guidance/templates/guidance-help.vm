@@ -79,7 +79,7 @@ For the block macros, place all of the guideline text (including any images) ins
 
 <p>For LP usage, the recommendation is to use the <b>lp-guideline</b> macro.
 This is a single macro that has a parameter to select the appropriate guidance.
-Under the hood, <b>{do}</b> and <b>{lp-guildline}</b> with "Do" as the selected
+Under the hood, <b>{do}</b> and <b>{lp-guideline}</b> with "Do" as the selected
 guidance will call on the same code and produce the exact same output.  The
 reason for the <b>lp-guideline</b> macro is inform technical writers that the
 macro is compatible with the Confluence->Flare->PDF process and therefore may
@@ -88,7 +88,7 @@ use. Note, the LP variant of the macro was done as a single macro with a paramet
 to keep the list of LP-* macros short.</p> 
 
 <p>With the block macros, if the guidance term starts the body text, it will be 
-automatially removed and the formatted version put in it's place.  For example, if the 
+automatically removed and the formatted version put in it's place.  For example, if the
 end result is &quot;Do call your mother&quot;, the author should insert the <b>Do</b> macro
 and can either put &quot;call your mother&quot; into the body of the macro or
 &quot;Do call your mother&quot;.  Both will generate the same output.  The author
