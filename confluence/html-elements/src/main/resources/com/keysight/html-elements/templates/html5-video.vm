@@ -26,14 +26,16 @@ $webResourceManager.requireResource("com.keysight.html-elements:html5-multimedia
         <span title="No video playback capabilities, please download the video from the page attachments"></span>
     </object>
 </video>
-#if( $addDownloadLink || $addFullscreenButton )
+#if( $addDownloadLink || $addDownloadButton || $addFullscreenButton )
    <p class="html5-multimedia html5-video">
    #if( $addFullscreenButton )
       <button class="aui-button html5-fullscreen-button">Fullscreen</button>
    #end
+   #if( $addDownloadButton )
+      <button class="aui-button keysight-button" href="$url">Download Video</button>
+   #end
    #if( $addDownloadLink )
       <a href="$url">Download Video</a>
-      ##<button class="aui-button keysight-button" href="$url">Download Video</button>
    #end
    </p>
 #end

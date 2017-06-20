@@ -40,8 +40,9 @@
           <parameter name="autoplay"           type="boolean" />
           <parameter name="loop"               type="boolean" />
           <parameter name="is-audio"           type="boolean" />
-          <parameter name="hide-download-link" type="boolean" />
-          <parameter name="hide-fullscreen-button" type="boolean" />
+          <parameter name="add-download-link" type="boolean" />
+          <parameter name="add-download-button" type="boolean" />
+          <parameter name="add-fullscreen-button" type="boolean" />
        </parameters>
     </xhtml-macro>
 

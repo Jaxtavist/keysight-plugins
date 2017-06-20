@@ -68,10 +68,15 @@ will be used to only show the audio player.  If not checked the use of the &lt;a
 or &lt;video&gt; tags will be determined by the file type defaulting to the &lt;video&gt;
 if the answer is unclear</p>
 
-<p><strong>Hide link to download the attachment (html5-multimedia only):</strong> A direct url to the 
-video file will not be provided if this is checked.</p>
+<p><strong>Add Download Link (html5-multimedia only):</strong> Adds a link to the video.  In most browsers,
+the video will start playing in a new tab rather than downloading.  Users can right-click and select <b>save link as</b>
+to download the file.</p>
 
-<p><strong>Hide button to view video fullscreen (html5-multimedia only):</strong> If checked, the button
+<p><strong>Add Download Button (html5-multimedia only):</strong> Adds a button to the video.  In most browsers,
+the video will start playing in a new tab rather than downloading.  Unlink the download link, users can <b>not</b>
+right-click and <b>save link as</b> to download the file.</p>
+
+<p><strong>Add button to view video fullscreen (html5-multimedia only):</strong> If checked, the button
 to expand the video to be shown full screen will not be shown.</p>
 
 <h3>Supported Video Formats</h3>
