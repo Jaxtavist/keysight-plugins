@@ -41,6 +41,7 @@
           <parameter name="loop"               type="boolean" />
           <parameter name="is-audio"           type="boolean" />
           <parameter name="hide-download-link" type="boolean" />
+          <parameter name="hide-fullscreen-button" type="boolean" />
        </parameters>
     </xhtml-macro>
 
