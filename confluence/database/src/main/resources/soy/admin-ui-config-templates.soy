@@ -72,6 +72,7 @@
  * @param oracleSelected
  * @param postgresSqlSelected
  * @param sybaseSelected
+ * @param connectionString
  */
 {template .connectionProfile}
 <div class="aui-tabs horizontal-tabs" id="connection-profile-{$id}">
@@ -126,12 +127,12 @@
    </tr>
    <tr>
       <th>Connection String</th>
-      <td columnspan="3" id="view-connection-string-{$id}" ></td>
+      <td columnspan="3" id="view-connection-string-{$id}" >{$connectionString}</td>
    </tr>
-   <tr>
+/*   <tr>
       <th>Connection Status</th>
       <td columnspan="3" id="view-connection-status-{$id}" ></td>
-   </tr>
+   </tr>*/
 </table>
 
        </div>

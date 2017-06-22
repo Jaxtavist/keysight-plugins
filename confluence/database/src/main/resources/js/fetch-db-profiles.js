@@ -21,6 +21,7 @@ var dbProfiles = (function($) {
                 if (options == null) {
                     options = {};
                 }
+
                 options.setValue = function(value) {
                     var targetOption = input.find("option[value='" + value + "']");
                     if (targetOption.length == 0) {
@@ -40,7 +41,9 @@ var dbProfiles = (function($) {
     AJS.MacroBrowser.Macros["database-query"] = new DBProfileConfig();
 
     /**
-     * Populates an HTML Select element with the list of configured syntax highlighters.
+     * Populates an HTML Select element with the list of configured profiles.
+     * Important note: previous profiles are not cleared. This means that the last profile used will still be active and shown,
+     * even if the user doesn't have access to that profile in the settings.
      * @param dropDown JQuery selector for the HTML select element to be populated.
      */
     function bindAsyncDropDown(dropDown) {
@@ -51,19 +54,27 @@ var dbProfiles = (function($) {
                     return;
                 }
 
+                // List of profiles the user has access to.
                 profileList = profiles;
 
+                // Profile that was placed on the macro last time
                 var currentValue = dropDown.val();
 
+                // Placeholder in the dropdown
                 var infoOption = $("<option  selected=\"true\" disabled=\"disabled\"/>");
-                infoOption.text("-- Select a Profile --")
+                infoOption.text("-- Select a Profile --");
+                infoOption.val("");
+                dropDown.append(infoOption);
 
                 $.each(profiles, function(index, profile) {
-                    var option = $("<option />");
-                    option.val(profile.profileName);
-                    option.text(profile.profileName);
+                    // Don't append a duplicate profile
+                    if (profile.profileName != currentValue) {
+                        var option = $("<option />");
+                        option.val(profile.profileName);
+                        option.text(profile.profileName);
 
-                    dropDown.append(option);
+                        dropDown.append(option);
+                    }
                 });
 
                 // restore the currently selected value.

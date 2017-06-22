@@ -67,6 +67,9 @@ public class DatabaseQuery implements Macro {
 
         PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
 
+        // Clean up body by removing extra whitespace, newlines, etc.
+        body = body.replaceAll("\\s+", " ");
+
         ArrayList<String> columnNames = new ArrayList<String>();
         ArrayList<ArrayList<String>> dataRows = new ArrayList<ArrayList<String>>();
 //       File mysqlJar = new File("C:\\jdbc-drivers\\mysql-connector-java-5.1.40-bin.jar");
@@ -94,12 +97,21 @@ public class DatabaseQuery implements Macro {
             throw new MacroExecutionException("No profile found with that name for which you are authorized: " + parameters.get(PROFILE_NAME));
         }
 
+        String subProtocol = StringUtils.lowerCase(profile.databaseType);
+
+        if (subProtocol.equals("microsoft sql server")) {
+            subProtocol = "sqlserver";
+        } else if (subProtocol.equals("mongodb")) {
+            subProtocol = "mongo";
+        }
+
         String connectionString =
-                "jdbc:"+StringUtils.lowerCase(profile.databaseType) + "://" +
+                "jdbc:"+ subProtocol + "://" +
                 profile.databaseServer + ":" +
                 profile.databasePort + "/" +
                 profile.databaseName + "?user=" +
-                profile.databaseUsername;
+                profile.databaseUsername +
+                profile.connectionStringSuffix;
         String databaseType = profile.databaseType;
         String username = profile.databaseUsername;
         String password = profile.databasePassword;

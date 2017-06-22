@@ -71,6 +71,7 @@ public class PluginHelper {
 
     private String jdbcDriverDirectory;
     private Element root;
+    private Element profileRoot;
 
     private String configAuthorizedUsers;
     private String configAuthorizedGroups;
@@ -85,12 +86,25 @@ public class PluginHelper {
                 return pluginConfig1;
             });
 
+            PluginConfig profiles = (PluginConfig) transactionTemplate.execute((TransactionCallback<Object>) () -> {
+                PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                PluginConfig pluginConfig1 = new PluginConfig();
+                pluginConfig1.setXml((String) settings.get(PluginConfig.class.getName() + "_profiles.xml"));
+                return pluginConfig1;
+            });
+
             String pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
+            String profilesXml = URLDecoder.decode(profiles.getXml(), "UTF-8");
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
             root = document.getDocumentElement();
+
+            DocumentBuilderFactory profileFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder profileBuilder = factory.newDocumentBuilder();
+            Document profileDocument = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
+            profileRoot = document.getDocumentElement();
 
             String jdbcDriverDirectory = getValueOfElement("jdbc-driver-directory");
 
@@ -239,7 +253,7 @@ public class PluginHelper {
     }
 
     public NodeList getProfiles() {
-        return root.getElementsByTagName("saved-profile");
+        return profileRoot.getElementsByTagName("saved-profile");
     }
 
     private String getJdbcDriverDirectory() {

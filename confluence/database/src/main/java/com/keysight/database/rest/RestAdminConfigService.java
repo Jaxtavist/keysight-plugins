@@ -71,6 +71,39 @@ public class RestAdminConfigService {
     }
 
     @GET
+    @Path("profiles")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProfiles(@Context HttpServletRequest request) {
+        if (!isAuthorized(request)) {
+            return Response.status(Status.UNAUTHORIZED).build();
+        }
+
+        return Response.ok(transactionTemplate.execute((TransactionCallback<Object>) () -> {
+            PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+            PluginConfig pluginConfig = new PluginConfig();
+            pluginConfig.setXml((String) settings.get(PluginConfig.class.getName() + "_profiles.xml"));
+            return pluginConfig;
+        })).build();
+    }
+
+    @PUT
+    @Path("profiles")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response putProfiles(final PluginConfig pluginConfig, @Context HttpServletRequest request) {
+        if (!isAuthorized(request)) {
+            return Response.status(Status.UNAUTHORIZED).build();
+        }
+
+        transactionTemplate.execute(() -> {
+            PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
+            pluginSettings.put(PluginConfig.class.getName() + "_profiles.xml", pluginConfig.getXml());
+            return null;
+        });
+
+        return Response.noContent().build();
+    }
+
+    @GET
     @Path("get-installed-drivers")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getInstalledDrivers(@Context HttpServletRequest request) {

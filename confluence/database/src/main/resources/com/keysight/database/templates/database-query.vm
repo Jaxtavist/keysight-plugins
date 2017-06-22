@@ -1,20 +1,24 @@
 #set( $images = "${webResourceHelper.getStaticResourcePrefix()}/download/resources/com.keysight.database:database-resources/images" )
 #if( $showQuery )
-<h1>query results</h1>
-<pre>$bodyAsHtml</pre>
+    <h1>query results</h1>
+    <pre>$bodyAsHtml</pre>
 #end
 
-<table>
-<tr>
-#foreach( $column in $columnNames )
-<th>$column</th>
-#end
-</tr>
-#foreach( $row in $dataRows )
-<tr>
-#foreach( $item in $row )
-<td>$!item</td>
-#end
-</tr>
-#end
+<table class="aui aui">
+    <thead>
+        <tr>
+            #foreach( $column in $columnNames )
+                <th>$column</th>
+            #end
+        </tr>
+    </thead>
+    <tbody>
+        #foreach( $row in $dataRows )
+            <tr>
+                #foreach( $item in $row )
+                    <td>$!item</td>
+                #end
+            </tr>
+        #end
+    </tbody>
 </table>

@@ -1,0 +1,177 @@
+#set( $images = "$webResourceManager.getStaticResourcePrefix()/download/resources/com.keysight.database:profile-database-admin-resources/images" )
+#set( $check = "$images/check.png" )
+#set( $error = "$images/error.png" )
+#set( $warning = "$images/warning.png" )
+
+##<img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+##<img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+##<img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
+
+<html>
+<head>
+    <title>Database Profiles Admin</title>
+    <meta name="decorator" content="atl.admin"/>
+    $webResourceManager.requireResource("com.keysight.database:profile-database-admin-resources")
+</head>
+<body>
+    <p>
+        Here you can add database connection profiles that authorized user will be able to use in the database macro.
+        Profiles which connect to databases for which no jbdc driver is configured may produce errors, talk to your
+        Confluence administrators regarding configuring which jbdc drivers this plugin has access to.
+    </p>
+    <p>
+        An important note regarding the usage of this plugin: Once a plugin is placed on a page, any user who edits that
+        page can edit the sql within the macro. If you don't want a user to be able to write sql that will access your profile,
+        don't give them edit permissions for that page. We recommend making a user with read only permissions on your database
+        that you will use with this macro so as to prevent accidental damage to the connected database.
+    </p>
+    <br/>
+    <hr/>
+    <h2>Database Driver Status</h2>
+    <div id="installed-drivers-container" class="list-container">
+        <table width="100%" border="0">
+            <tr>
+                <td>
+                    <ul>
+                        #if( $db2 == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            DB2
+                        </li>
+                        #elseif( $db2 == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> DB2
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            DB2
+                        </li>
+                        #end
+
+                        #if( $derby == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            Derby
+                        </li>
+                        #elseif( $derby == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> Derby
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            Derby
+                        </li>
+                        #end
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+
+                        #if( $microsoftSqlServer == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            Microsoft SQL Server
+                        </li>
+                        #elseif( $microsoftSqlServer == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> Microsoft SQL Server
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            Microsoft SQL Server
+                        </li>
+                        #end
+
+                        #if( $mongoDb == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            MongoDB
+                        </li>
+                        #elseif( $mongoDb == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> MongoDB
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            MongoDB
+                        </li>
+                        #end
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        #if( $mySql == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            MySQL
+                        </li>
+                        #elseif( $mySql == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> MySQL
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            MySQL
+                        </li>
+                        #end
+
+                        #if( $oracle == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            Oracle
+                        </li>
+                        #elseif( $oracle == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> Oracle
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            Oracle
+                        </li>
+                        #end
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        #if( $postgreSql == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            PostgreSQL
+                        </li>
+                        #elseif( $postgreSql == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> PostgreSQL
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            PostgreSQL
+                        </li>
+                        #end
+
+                        #if( $sybase == "ok" )
+                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                            Sybase
+                        </li>
+                        #elseif( $sybase == "warning" )
+                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                 alt="(warning)"/> Sybase
+                        </li>
+                        #else
+                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                            Sybase
+                        </li>
+                        #end
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <p>The <img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/> icon indicates
+            a local driver is available.<br/>
+            The <img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
+            icon indicates a driver can be downloaded on the fly - this works but is slow.<br/>
+            The <img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/> icon
+            indicates a driver cannot be found. Connections to this type of database will not work.
+        </p>
+
+    </div>
+    <hr/>
+    <h2>Modify or View Current Profiles</h2>
+    <div id="connection-profiles">
+    </div>
+    <input id="add-connection-profile" class="aui-button aui-button-primary button submit" type="submit" value="Add Connection Profile"/>
+</body>
+</html>
