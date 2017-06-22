@@ -21,8 +21,8 @@ macro definition.</p>
 
 <p>The substitution is performed on the final html and does not
 understand the difference between the page content and the html
-formatting, thus it can transform the underlying xml into unparsable
-gibberish causing the macro to be unrenderable.</p>
+formatting, thus it can transform the underlying xml into an invalid
+state that cannot be parsed causing the macro to be un-renderable.</p>
 
 <h3>Parameters</h3>
 

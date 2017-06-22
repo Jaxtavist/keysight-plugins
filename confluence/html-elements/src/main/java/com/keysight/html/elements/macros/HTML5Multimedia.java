@@ -25,34 +25,37 @@ public class HTML5Multimedia implements Macro
     private final VelocityHelperService velocityHelperService;
     
     //Macro Browser Keys
-    public static final String MACRO_EDITOR_PAGE_KEY               = "page";  // Not used
-    public static final String MACRO_EDITOR_ATTACHMENT_KEY         = "name";
-    public static final String MACRO_EDITOR_URL_KEY                = "url";
-    public static final String MACRO_EDITOR_URL_MEDIA_TYPE_KEY     = "url-media-type";
-    public static final String MACRO_EDITOR_POSTER_KEY             = "poster";
-    public static final String MACRO_EDITOR_PRESET_KEY             = "preset";
-    public static final String MACRO_EDITOR_HEIGHT_KEY             = "height";
-    public static final String MACRO_EDITOR_WIDTH_KEY              = "width";
-    public static final String MACRO_EDITOR_LOOP_KEY               = "loop";
-    public static final String MACRO_EDITOR_AUTOSTART_KEY          = "autostart";
-    public static final String MACRO_EDITOR_AUTOPLAY_KEY           = "autoplay";
-    public static final String MACRO_EDITOR_HIDE_DOWNLOAD_LINK_KEY = "hide-download-link";
-    public static final String MACRO_EDITOR_IS_AUDIO_KEY           = "is-audio";
-    public static final String MACRO_EDITOR_ADD_CONTROLS_KEY       = "add-contols";
+    public static final String MACRO_EDITOR_PAGE_KEY                   = "page";  // Not used
+    public static final String MACRO_EDITOR_ATTACHMENT_KEY             = "name";
+    public static final String MACRO_EDITOR_URL_KEY                    = "url";
+    public static final String MACRO_EDITOR_URL_MEDIA_TYPE_KEY         = "url-media-type";
+    public static final String MACRO_EDITOR_POSTER_KEY                 = "poster";
+    public static final String MACRO_EDITOR_PRESET_KEY                 = "preset";
+    public static final String MACRO_EDITOR_HEIGHT_KEY                 = "height";
+    public static final String MACRO_EDITOR_WIDTH_KEY                  = "width";
+    public static final String MACRO_EDITOR_LOOP_KEY                   = "loop";
+    public static final String MACRO_EDITOR_AUTOSTART_KEY              = "autostart";
+    public static final String MACRO_EDITOR_AUTOPLAY_KEY               = "autoplay";
+    public static final String MACRO_EDITOR_ADD_DOWNLOAD_LINK_KEY      = "add-download-link";
+    public static final String MACRO_EDITOR_ADD_DOWNLOAD_BUTTON_KEY    = "add-download-button";
+    public static final String MACRO_EDITOR_ADD_FULLSCREEN_BUTTON_KEY  = "add-fullscreen-button";
+    public static final String MACRO_EDITOR_IS_AUDIO_KEY               = "is-audio";
+    public static final String MACRO_EDITOR_ADD_CONTROLS_KEY           = "add-contols";
     
     //Velocity Template Keys
-    public static final String INCLUDE_MEDIA_KEY      = "includeMedia";
-    public static final String ATTACHMENT_KEY         = "attachment";
-    public static final String POSTER_KEY             = MACRO_EDITOR_POSTER_KEY;
-    public static final String HEIGHT_KEY             = MACRO_EDITOR_HEIGHT_KEY;
-    public static final String WIDTH_KEY              = MACRO_EDITOR_WIDTH_KEY;
-    public static final String LOOP_KEY               = MACRO_EDITOR_LOOP_KEY;
-    public static final String AUTOPLAY_KEY           = MACRO_EDITOR_AUTOPLAY_KEY;
-    public static final String ADD_DOWNLOAD_LINK_KEY  = "addDownloadLink";
-    public static final String ADD_CONTROLS_KEY       = "addControls";
-    public static final String URL_KEY                = "url";
-    public static final String FILE_NAME_KEY          = "filename";
-    public static final String FILE_EXTENSION_KEY     = "fileextension";
+    public static final String INCLUDE_MEDIA_KEY         = "includeMedia";
+    public static final String ATTACHMENT_KEY            = "attachment";
+    public static final String POSTER_KEY                = MACRO_EDITOR_POSTER_KEY;
+    public static final String HEIGHT_KEY                = MACRO_EDITOR_HEIGHT_KEY;
+    public static final String WIDTH_KEY                 = MACRO_EDITOR_WIDTH_KEY;
+    public static final String LOOP_KEY                  = MACRO_EDITOR_LOOP_KEY;
+    public static final String AUTOPLAY_KEY              = MACRO_EDITOR_AUTOPLAY_KEY;
+    public static final String ADD_DOWNLOAD_LINK_KEY     = "addDownloadLink";
+    public static final String ADD_DOWNLOAD_BUTTON_KEY   = "addDownloadButton";
+    public static final String ADD_FULLSCREEN_BUTTON_KEY = "addFullscreenButton";
+    public static final String ADD_CONTROLS_KEY          = "addControls";
+    public static final String URL_KEY                   = "url";
+    public static final String FILE_EXTENSION_KEY        = "fileextension";
 
     // object constructor
     public HTML5Multimedia( final AttachmentManager attachmentManager,
@@ -91,13 +94,12 @@ public class HTML5Multimedia implements Macro
            }
 
            velocityContext.put(INCLUDE_MEDIA_KEY, "true" );
-	} else if( parameters.containsKey( MACRO_EDITOR_ATTACHMENT_KEY ) ){
+	    } else if( parameters.containsKey( MACRO_EDITOR_ATTACHMENT_KEY ) ){
            fileName = (String) parameters.get( MACRO_EDITOR_ATTACHMENT_KEY );
            Attachment attachment  = attachmentManager.getAttachment( context.getEntity(), fileName );
         
            url           = baseUrl + (String) attachment.getDownloadPath();
            fileExtension = (String) attachment.getFileExtension();   
-           velocityContext.put(FILE_NAME_KEY, fileName );
         }
 
         if( url != null ){
@@ -122,8 +124,16 @@ public class HTML5Multimedia implements Macro
               velocityContext.put(AUTOPLAY_KEY, "true");
            }
            
-           if( !parameters.containsKey(MACRO_EDITOR_HIDE_DOWNLOAD_LINK_KEY) ){
+           if( parameters.containsKey(MACRO_EDITOR_ADD_DOWNLOAD_LINK_KEY) ){
               velocityContext.put(ADD_DOWNLOAD_LINK_KEY, "true");
+           }
+
+           if( parameters.containsKey(MACRO_EDITOR_ADD_DOWNLOAD_BUTTON_KEY) ){
+              velocityContext.put(ADD_DOWNLOAD_BUTTON_KEY, "true");
+           }
+
+           if( parameters.containsKey(MACRO_EDITOR_ADD_FULLSCREEN_BUTTON_KEY) ){
+              velocityContext.put(ADD_FULLSCREEN_BUTTON_KEY, "true");
            }
 
            if( parameters.containsKey(MACRO_EDITOR_PRESET_KEY) ){

@@ -22,12 +22,12 @@ when in the editor.</p>
 <p><img src="$expandImage" width="500px" alt="View of FAQ macro with Render Style set to Expand" /></p>
 
 <p>One of the less frequent use cases for the macro is creating two FAQ pages
-with some overlaping content, and some exclusive content.  For example, image
+with some overlapping content, and some exclusive content.  For example, image
 you need to provide a FAQ for managers and another for employees.  There may be
 some overlapping questions, such as &quot;How do I use Confluence&quot;, but
 some questions may only be appropriate for one or the other group, such as
 &quot;How do I give an employee a bonus?&quot;.  The <strong>faq</strong> macro
-can accomodate this situation in a number of ways, one of which is by using
+can accommodate this situation in a number of ways, one of which is by using
 labels to pull in the pages.  For example, there could be one faq page which
 pulls in all pages with the labels "faq" or "faq-manager" and another that
 pulls in pages with the labels "faq" or "faq-employee".</p>
@@ -51,7 +51,7 @@ all of the labels will be selected</p>
 
 <h4>Space Keys</h4>
 
-<p>The Space Keys field accepts a comma seperated list of space keys.  If set, only content
+<p>The Space Keys field accepts a comma separated list of space keys.  If set, only content
 in the listed spaces will be selected.</p> 
 
 <p>The space keys field has an autocomplete assistant. When typing in the name
@@ -63,7 +63,7 @@ select the second and then insert a comma and the copied space key.</p>
 
 <h4>Page Title</h4>
 
-<p>If set, only content which is a decendant of the page will be found</p>
+<p>If set, only content which is a descendant of the page will be found</p>
 
 <h4>Summary of Content Selection</h4>
 
@@ -81,7 +81,7 @@ select the second and then insert a comma and the copied space key.</p>
          <td class="confluenceTd">-</td>
          <td class="confluenceTd">-</td>
          <td class="confluenceTd">-</td>
-         <td class="confluenceTd">The children of the current pages will be selected. (All decendands will be selected if <strong>Include Decendants</strong> is checked.)</td>
+         <td class="confluenceTd">The children of the current page will be selected. (All descendants will be selected if <strong>Include Descendants</strong> is checked.)</td>
       </tr>
       <tr>
          <td class="confluenceTd">$checkAsHtml</td>
@@ -93,13 +93,13 @@ select the second and then insert a comma and the copied space key.</p>
          <td class="confluenceTd">-</td>
          <td class="confluenceTd">$checkAsHtml</td>
          <td class="confluenceTd">-</td>
-         <td class="confluenceTd">The home page and every decendant page for every space will be selected. <strong>Use this with caution as it can pull in a lot of content.</strong>.</td>
+         <td class="confluenceTd">The home page and every descendant page for every space will be selected. <strong>Use this with caution as it can pull in a lot of content.</strong>.</td>
       </tr>
       <tr>
          <td class="confluenceTd">-</td>
          <td class="confluenceTd">?</td>
          <td class="confluenceTd">$checkAsHtml</td>
-         <td class="confluenceTd">Child or Decendant pages of the selected page will be included.  The Space Keys field will be ignored in this case as the page defines the bounding space.</td>
+         <td class="confluenceTd">Child or Descendant pages of the selected page will be included.  The Space Keys field will be ignored in this case as the page defines the bounding space.</td>
       </tr>
       <tr>
          <td class="confluenceTd">$checkAsHtml</td>
@@ -111,7 +111,7 @@ select the second and then insert a comma and the copied space key.</p>
          <td class="confluenceTd">$checkAsHtml</td>
          <td class="confluenceTd">?</td>
          <td class="confluenceTd">$checkAsHtml</td>
-         <td class="confluenceTd">All pages with any/all of the labels that are also a decendant of the identified page will be included.</td>
+         <td class="confluenceTd">All pages with any/all of the labels that are also a descendant of the identified page will be included.</td>
       </tr>
    </tbody>
 </table>
@@ -153,13 +153,13 @@ is shown as more columns in the initial table</p>
 <h4>Parameters</h4>
 
 <p><strong>Labels</strong>: Zero or more labels.</p>
-<p><strong>Restrict to Spaces</strong>: Zero or more comma seperated space keys.</p>
-<p><strong>Restrict to Decendants of Page</strong>: Restricts the search to content that is a decendant of the identified page.</p>
+<p><strong>Restrict to Spaces</strong>: Zero or more comma separated space keys.</p>
+<p><strong>Restrict to Descendants of Page</strong>: Restricts the search to content that is a descendant of the identified page.</p>
 <p><strong>Render Style</strong>: One of <strong>Expand</strong> (default), <strong>Popup</strong> or <strong>Link</strong>.</p>
 <p><strong>Render Content</strong>: One of <strong>Page</strong> (default), <strong>First Excerpt</strong> or <strong>First Shared Block</strong>.</p>
 <p><strong>Title on Popup Dialog</strong>: Text to display in the title section of the popup dialog.  Default to the page title.  The string $title will be replace by the page title.</p>
 <p><strong>Add Labels</strong>: If set, the list of labels will be joined with &quot;and&quot; rather than &quot;or&quot;.</p>
-<p><strong>Include Decendants</strong>: When pulling children pages, all decendants will be included.</p>
+<p><strong>Include Descendants</strong>: When pulling children pages, all descendants will be included.</p>
 <p><strong>Include Space</strong>: Show the space in the results.</p>
 <p><strong>Include Last Modified Date</strong>: Show the last modified date in the results.</p>
 <p><strong>Include Last Modification Author</strong>: Show who made the last modification in the results.</p>

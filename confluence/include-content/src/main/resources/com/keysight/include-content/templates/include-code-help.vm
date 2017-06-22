@@ -3,7 +3,7 @@
 The Confluence Code macro applies syntax highlighting to source code provided as
 plain text as the body of the macro.  The Code Include macro has no body, but rather
 expects to retrieve the source code from a url.  This is a nice way of keeping source
-code examples in the documentation synconized with the latest version of the code.</p>
+code examples in the documentation synchronized with the latest version of the code.</p>
 <h3>Authentication</h3>
 <p>When pulling in the source code from a url, there may be a need to provide a username
 and password.  This can be done for each and every macro instance or the Confluence

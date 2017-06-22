@@ -1,8 +1,11 @@
 ## Developed by: Scott Selberg
 ## Leveraging code from : David Simpson
 ## Date created: 02/02/2015
+
+$webResourceManager.requireResource("com.keysight.html-elements:html5-multimedia-fullscreen-resources")
  
 #if( $url )
+<div class="html5-multimedia-container">
 <video
     #if ($addControls) controls="controls"  #end
     #if ($autoplay)    autoplay="autoplay"  #end
@@ -23,7 +26,21 @@
         <span title="No video playback capabilities, please download the video from the page attachments"></span>
     </object>
 </video>
-#if( $addDownloadLink && $filename ) <p class="html5-multimedia html5-video"><a href="$url">Download $filename</a></p> #end
+#if( $addDownloadLink || $addDownloadButton || $addFullscreenButton )
+   <p class="html5-multimedia html5-video">
+   #if( $addFullscreenButton )
+      <button class="aui-button html5-fullscreen-button">Fullscreen</button>
+   #end
+   #if( $addDownloadButton )
+      <button class="aui-button keysight-button" href="$url">Download Video</button>
+   #end
+   #if( $addDownloadLink )
+      <a href="$url">Download Video</a>
+   #end
+   </p>
+#end
+
+</div>
 #else
 
 #if( $includeMedia )

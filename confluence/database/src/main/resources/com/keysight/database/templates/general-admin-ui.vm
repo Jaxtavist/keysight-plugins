@@ -1,250 +1,243 @@
 #set( $images = "$webResourceManager.getStaticResourcePrefix()/download/resources/com.keysight.database:general-database-admin-resources/images" )
-#set( $check = "$images/check.png" )
-#set( $error = "$images/error.png" )
-#set( $warning = "$images/warning.png" )
+        #set( $check = "$images/check.png" )
+        #set( $error = "$images/error.png" )
+        #set( $warning = "$images/warning.png" )
 
-##<img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-##<img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-##<img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
+        ##<img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+        ##<img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+        ##<img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
 
 <html>
-<head>
-    <title>Database Support Admin</title>
-    <meta name="decorator" content="atl.admin">
-    $webResourceManager.requireResource("com.keysight.database:general-database-admin-resources")
-</head>
-<body>
+    <head>
+        <title>Database Support Admin</title>
+        <meta name="decorator" content="atl.admin">
+        $webResourceManager.requireResource("com.keysight.database:database-admin-config-resources")
+    </head>
+    <body>
+        <form id="database-admin-config" class="aui">
 
-<form id="database-admin-config" class="aui">
+            <h2>Installed JDBC Drivers</h2>
 
-    <h2>Installed JDBC Drivers</h2>
+            <p>In order to communicate with an external relational database system
+                such as mysql, the jdbc drivers need to be provided. For licensing reasons,
+                these cannot be distributed with the plugin. This plugin expects the drivers
+                to be located on the local file system in a user defined folder. Inside the
+                folder there should be child folders named as below (including case and spaces).
+                Each of the child folders needs to contains the jar file from the service
+                provider that contains the jdbc driver for that database manager. For example,
+                if the driver folder is <b>\JdbcDrivers</b>, this plugin will be looking
+                for the MySQL jar file in <b>\JdbcDrivers\MySQL</b>
+                (<b>\JdbcDrivers\MySQL\mysql-connector-java-5.1.40.bin.jar</b>).</p>
 
-    <p>In order to communicate with an external relational database system
-        such as mysql, the jdbc drivers need to be provided. For licensing reasons,
-        these cannot be distributed with the plugin. This plugin expects the drivers
-        to be located on the local file system in a user defined folder. Inside the
-        folder there should be child folders named as below (including case and spaces).
-        Each of the child folders needs to contains the jar file from the service
-        provider that contains the jdbc driver for that database manager. For example,
-        if the driver folder is <b>\JdbcDrivers</b>, this plugin will be looking
-        for the MySQL jar file in <b>\JdbcDrivers\MySQL</b>
-        (<b>\JdbcDrivers\MySQL\mysql-connector-java-5.1.40.bin.jar</b>).</p>
+            <table width="100%" border="0">
+                <tr>
+                    <td>
+                        <ul>
+                            <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                     alt="(warning)"/> DB2
+                            </li>
+                            <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                     alt="(warning)"/> Derby
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Microsoft SQL Server</li>
+                            <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                     alt="(warning)"/> MongoDB
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>MySQL</li>
+                            <li>Oracle</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>PostgreSQL</li>
+                            <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                     alt="(warning)"/> Sybase
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
 
-    <table width="100%" border="0">
-        <tr>
-            <td>
-                <ul>
-                    <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                             alt="(warning)"/> DB2
-                    </li>
-                    <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                             alt="(warning)"/> Derby
-                    </li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Microsoft SQL Server</li>
-                    <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                             alt="(warning)"/> MongoDB
-                    </li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>MySQL</li>
-                    <li>Oracle</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>PostgreSQL</li>
-                    <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                             alt="(warning)"/> Sybase
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+            <p>The <img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/> icon is
+                for database connections that have not been tested with this plugin.</p>
 
-    <p>The <img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/> icon is
-        for database connections that have not been tested with this plugin.</p>
+            <hr/>
 
-    <hr/>
+            <p> Please provide the local directory where the folders containing the jdbc
+                driver .jar files will be found. Note, paths on windows should be
+                specified as <b>C:\\JdbcDrivers</b> (with double slashes) while linux paths
+                should look like <b>/JdbcDrivers</b>. Paths may be absolute or relative. If
+                relative, they are relative to the directory <b>$relativeHome</b>.</p>
 
-    <p> Please provide the local directory where the folders containing the jdbc
-        driver .jar files will be found. Note, paths on windows should be
-        specified as <b>C:\\JdbcDrivers</b> (with double slashes) while linux paths
-        should look like <b>/JdbcDrivers</b>. Paths may be absolute or relative. If
-        relative, they are relative to the directory <b>$relativeHome</b>.</p>
-
-    <div class="config-input-continer">
-        <div class="config-input-row">
-            <div class="config-input-cell">
-                <div class="field-group">
-                    <label for="jdbc-driver-directory">Driver Directory</label>
-                    <input class="text full-width-field" type="text" id="jdbc-driver-directory"
-                           name="jdbc-driver-directory" title="JDBC Driver Directory">
-                    <div class="error add-group-error"></div>
-                </div>
-            </div>
-            <div class="config-input-cell">
-                <div class="field-group right-button">
-                    <div class="buttons-container right-button">
-                        <input id="save-jdbc-driver-directory" class="button submit" type="submit" value="Save">
+            <div class="config-input-container">
+                <div class="config-input-row">
+                    <div class="config-input-cell">
+                        <div class="field-group">
+                            <label for="jdbc-driver-directory">Driver Directory</label>
+                            <input class="text full-width-field" type="text" id="jdbc-driver-directory"
+                                   name="jdbc-driver-directory" title="JDBC Driver Directory">
+                            <div class="error add-group-error"></div>
+                        </div>
+                    </div>
+                    <div class="config-input-cell">
+                        <div class="field-group right-button">
+                            <div class="buttons-container right-button">
+                                <input id="save-jdbc-driver-directory" class="button submit" type="submit" value="Save">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <h2>Database Driver Status</h2>
-    <div id="installed-drivers-container" class="list-container">
-        <table width="100%" border="0">
-            <tr>
-                <td>
-                    <ul>
-                        #if( $db2 == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            DB2
-                        </li>
-                        #elseif( $db2 == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> DB2
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            DB2
-                        </li>
-                        #end
+            <h2>Database Driver Status</h2>
+            <div id="installed-drivers-container" class="list-container">
+                <table width="100%" border="0">
+                    <tr>
+                        <td>
+                            <ul>
+                                #if( $db2 == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    DB2
+                                </li>
+                                #elseif( $db2 == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> DB2
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    DB2
+                                </li>
+                                #end
 
-                        #if( $derby == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            Derby
-                        </li>
-                        #elseif( $derby == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> Derby
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            Derby
-                        </li>
-                        #end
-                    </ul>
-                </td>
-                <td>
-                    <ul>
+                                #if( $derby == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    Derby
+                                </li>
+                                #elseif( $derby == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> Derby
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    Derby
+                                </li>
+                                #end
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
 
-                        #if( $microsoftSqlServer == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            Microsoft SQL Server
-                        </li>
-                        #elseif( $microsoftSqlServer == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> Microsoft SQL Server
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            Microsoft SQL Server
-                        </li>
-                        #end
+                                #if( $microsoftSqlServer == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    Microsoft SQL Server
+                                </li>
+                                #elseif( $microsoftSqlServer == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> Microsoft SQL Server
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    Microsoft SQL Server
+                                </li>
+                                #end
 
-                        #if( $mongoDb == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            MongoDB
-                        </li>
-                        #elseif( $mongoDb == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> MongoDB
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            MongoDB
-                        </li>
-                        #end
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        #if( $mySql == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            MySQL
-                        </li>
-                        #elseif( $mySql == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> MySQL
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            MySQL
-                        </li>
-                        #end
+                                #if( $mongoDb == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    MongoDB
+                                </li>
+                                #elseif( $mongoDb == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> MongoDB
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    MongoDB
+                                </li>
+                                #end
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                #if( $mySql == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    MySQL
+                                </li>
+                                #elseif( $mySql == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> MySQL
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    MySQL
+                                </li>
+                                #end
 
-                        #if( $oracle == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            Oracle
-                        </li>
-                        #elseif( $oracle == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> Oracle
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            Oracle
-                        </li>
-                        #end
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        #if( $postgreSql == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            PostgreSQL
-                        </li>
-                        #elseif( $postgreSql == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> PostgreSQL
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            PostgreSQL
-                        </li>
-                        #end
+                                #if( $oracle == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    Oracle
+                                </li>
+                                #elseif( $oracle == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> Oracle
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    Oracle
+                                </li>
+                                #end
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                #if( $postgreSql == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    PostgreSQL
+                                </li>
+                                #elseif( $postgreSql == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> PostgreSQL
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    PostgreSQL
+                                </li>
+                                #end
 
-                        #if( $sybase == "ok" )
-                        <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-                            Sybase
-                        </li>
-                        #elseif( $sybase == "warning" )
-                        <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
-                                 alt="(warning)"/> Sybase
-                        </li>
-                        #else
-                        <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-                            Sybase
-                        </li>
-                        #end
-                    </ul>
-                </td>
-            </tr>
-        </table>
+                                #if( $sybase == "ok" )
+                                <li><img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+                                    Sybase
+                                </li>
+                                #elseif( $sybase == "warning" )
+                                <li><img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning"
+                                         alt="(warning)"/> Sybase
+                                </li>
+                                #else
+                                <li><img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+                                    Sybase
+                                </li>
+                                #end
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
 
-        <p>The <img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/> icon indicates
-            a local driver is available.<br/>
-            The <img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
-            icon indicates a driver can be downloaded on the fly - this works but is slow.<br/>
-            The <img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/> icon
-            indicates a driver cannot be found. Connections to this type of database will not work.
-        </p>
+                <p>The <img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/> icon indicates
+                    a local driver is available.<br/>
+                    The <img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
+                    icon indicates a driver can be downloaded on the fly - this works but is slow.<br/>
+                    The <img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/> icon
+                    indicates a driver cannot be found. Connections to this type of database will not work.
+                </p>
 
-    </div>
-
-    <hr/>
-    <h2>Configuration Permissions</h2>
-    <div id="configuration-permissions">
-
-    </div>
-</form>
-</body>
+            </div>
+        </form>
+    </body>
 </html>

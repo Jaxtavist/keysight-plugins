@@ -87,10 +87,6 @@
             #end
         </div>
         <div id="splitter-content">
-
-        ## script needs to be executed here to prevent jerky content
-        <script>require('doctheme/doc-theme')()</script>
-
         #if ($!sitemeshPage.getProperty("page.theme-header"))
             $!sitemeshPage.getProperty("page.theme-header")
         #end

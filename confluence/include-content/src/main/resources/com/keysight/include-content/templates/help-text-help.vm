@@ -47,7 +47,7 @@ If no key is set, the first shared block on the page will be included.</p>
 
 <p><strong>Text</strong>:The text to display on the page.  If no
 text is supplied the help icon, <span class="aui-icon aui-icon-small aui-iconfont-help">Help</span>
-, will be displayed.  The text &quot;(?)&quot; will be substitured with the 
+, will be displayed.  The text &quot;(?)&quot; will be substituted with the
 <span class="aui-icon aui-icon-small aui-iconfont-help">Help</span>.</p>
 
 <p><strong>Title</strong>:If using the dialog box variant, the text

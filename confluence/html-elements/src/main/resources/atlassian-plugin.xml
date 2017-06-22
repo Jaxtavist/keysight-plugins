@@ -42,6 +42,10 @@
         <context>preview</context>
     </web-resource>
 
+    <web-resource key="html5-multimedia-fullscreen-resources" name="Html5 Multimedia Fullscreen Web Resources">
+        <resource type="download" name="html5-multimedia-fullscreen.js" location="/js/html5-multimedia-fullscreen.js"/>
+    </web-resource>
+
     <web-resource key="html-elements-editor-resources" name="Html Elements Editor Web Resources.">
         <resource type="download" name="html-elements-editor.js" location="js/html-elements-editor.js" />
         <dependency>confluence.editor.actions:editor-macro-browser</dependency>

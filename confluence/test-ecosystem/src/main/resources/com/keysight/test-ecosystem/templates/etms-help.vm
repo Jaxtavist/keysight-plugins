@@ -10,7 +10,7 @@
 <p>The ETMS, FSE, IGE, MMA and TCE Note macros are modeled after
 the native Confluence <strong>Note</strong> macro.  They differ
 in that they use a different color scheme and each of the variants
-has a distinct icont.  The purpose is to highlight some text that
+has a distinct icon.  The purpose is to highlight some text that
 is only applicable to some of the ETMS variations.</p>
 
 <p>The EMTS Note macro allows the user so select one or more of the
