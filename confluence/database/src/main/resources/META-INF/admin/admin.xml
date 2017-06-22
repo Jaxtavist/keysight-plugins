@@ -48,8 +48,14 @@
         <resource type="download" name="images/" location="/images"/>
     </web-resource>
 
-   <servlet key="admin-general-servlet" class="com.keysight.database.helpers.GeneralAdminConfigUI">
-           <url-pattern>/database/admin/configuration</url-pattern>
+    <web-item key="conf-menu-item" name="Database Plugin Profiles" section="system.admin/configuration" weight="90">
+        <description>Link to profile configuration.</description>
+        <label key="Database Plugin Profiles" />
+        <link linkId="database-profile-admin-link">/plugins/servlet/database/admin/profile</link>
+    </web-item>
+
+    <servlet key="admin-general-servlet" class="com.keysight.database.helpers.GeneralAdminConfigUI">
+       <url-pattern>/database/admin/configuration</url-pattern>
    </servlet>
 
     <servlet key="admin-profile-servlet" class="com.keysight.database.helpers.ProfileConfigUI">
