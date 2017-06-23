@@ -228,8 +228,12 @@ public class DatabaseQuery implements Macro {
 
                 // Did we pass the soft row limit?
                 if (rowCount > softRowLimit) {
-                    sendEmail(pluginHelper, "Soft Query Limit Warning", userManager.getRemoteUser().getUsername() + " has " +
-                            "preformed a query returned more than " + softRowLimit + " rows. Rows Returned: " + rowCount);
+                    StringBuilder message = new StringBuilder();
+                    message.append( "The user \"" + userManager.getRemoteUser().getUsername() + " executed an sql query\n "
+                                    + "using the Database Connection Macro on the page " + context.getEntity().getTitle() + "\n "
+                                    + "in the space " + context.getSpaceKey() + " which returned " + rowCount + " rows\n "
+                                    + "exceeding the soft row limit of " + softRowLimit + ".\n" );
+                    sendEmail(pluginHelper, "Soft Query Limit Warning", message.toString() );
                 }
 
                 velocityContext.put("dataRows", dataRows);
