@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>database</artifactId>
-    <version>1.1.0</version>
-    <name>Database</name>
+    <version>1.0.0</version>
+    <name>Database Connector</name>
     <description>This plugin provides various macros to pull data from various databases.</description>
 
     <properties>       
@@ -47,6 +47,7 @@
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
                             com.atlassian.confluence.plugin.services,
                             com.atlassian.confluence.setup.settings,
+                            com.atlassian.confluence.xhtml.api,
                             com.atlassian.sal.api.user,
                             com.atlassian.sal.api.auth,
                             com.atlassian.sal.api.transaction,

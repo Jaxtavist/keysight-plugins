@@ -5,6 +5,7 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -70,21 +71,32 @@ public class PluginHelper {
     private final String SYBASE_CLASS_NAME = "sybase.jdbc.sqlanywhere.IDriver";
 
     private String jdbcDriverDirectory;
-    private Element root;
-    private Element profileRoot;
-
     private String configAuthorizedUsers;
     private String configAuthorizedGroups;
+    private String rowLimitType;
+    private String rowLimitValue;
+    private String timeoutLimitType;
+    private String timeoutLimitValue;
+    private String notificationEmail;
+
+    private Element root;
+    private Element profileRoot;
 
     public PluginHelper(final PluginSettingsFactory pluginSettingsFactory,
                         final TransactionTemplate transactionTemplate) {
         try {
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
             PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute((TransactionCallback<Object>) () -> {
                 PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
                 PluginConfig pluginConfig1 = new PluginConfig();
                 pluginConfig1.setXml((String) settings.get(PluginConfig.class.getName() + ".xml"));
                 return pluginConfig1;
             });
+
+            String pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
+            Document document = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
+            root = document.getDocumentElement();
 
             PluginConfig profiles = (PluginConfig) transactionTemplate.execute((TransactionCallback<Object>) () -> {
                 PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
@@ -93,23 +105,18 @@ public class PluginHelper {
                 return pluginConfig1;
             });
 
-            String pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
             String profilesXml = URLDecoder.decode(profiles.getXml(), "UTF-8");
+            Document profileDocument = builder.parse(new InputSource(new StringReader(profilesXml)));
+            profileRoot = profileDocument.getDocumentElement();
 
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
-            root = document.getDocumentElement();
-
-            DocumentBuilderFactory profileFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder profileBuilder = factory.newDocumentBuilder();
-            Document profileDocument = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
-            profileRoot = document.getDocumentElement();
-
-            String jdbcDriverDirectory = getValueOfElement("jdbc-driver-directory");
-
-            configAuthorizedUsers = getValueOfElement("config-authorized-users");
-            configAuthorizedGroups = getValueOfElement("config-authorized-groups");
+            String jdbcDriverDirectory = new String( Base64.decodeBase64(getValueOfElement("jdbc-driver-directory")), "UTF-8" );
+            configAuthorizedUsers = new String( Base64.decodeBase64(getValueOfElement("config-authorized-users")), "UTF-8");
+            configAuthorizedGroups = new String( Base64.decodeBase64(getValueOfElement("config-authorized-groups")), "UTF-8");
+            rowLimitType = new String( Base64.decodeBase64(getValueOfElement("row-limit-type")), "UTF-8");
+            rowLimitValue = new String( Base64.decodeBase64(getValueOfElement("row-limit-value")), "UTF-8");
+            timeoutLimitType = new String( Base64.decodeBase64(getValueOfElement("timeout-limit-type")), "UTF-8");
+            timeoutLimitValue = new String( Base64.decodeBase64(getValueOfElement("timeout-limit-value")), "UTF-8");
+            notificationEmail = new String( Base64.decodeBase64(getValueOfElement("notification-email")), "UTF-8");
 
             if (!StringUtils.isEmpty(jdbcDriverDirectory)) {
                 this.setJdbcDriverDirectory(jdbcDriverDirectory);
@@ -139,7 +146,7 @@ public class PluginHelper {
                 DatabaseDriverDelegate delegateDriver = (DatabaseDriverDelegate) drivers.nextElement();
                 jdbcDriver = delegateDriver.getRealDriver();
             }
-            System.out.println("Driver: " + jdbcDriver.getClass().getName());
+            //System.out.println("Driver: " + jdbcDriver.getClass().getName());
         }
     }
 
@@ -147,7 +154,9 @@ public class PluginHelper {
         DriverDetails driverDetails = null;
 
         if (driverKey.equals(MYSQL_DRIVER_KEY)) {
-            driverDetails = getJdbcDriver(MYSQL_DOWNLOAD, MYSQL_DRIVER_KEY, MYSQL_REGEX);
+            try {
+                driverDetails = getJdbcDriver(MYSQL_DOWNLOAD, MYSQL_DRIVER_KEY, MYSQL_REGEX);
+            } catch( Exception e ){}
             driverDetails.className = MYSQL_CLASS_NAME;
         } else if (driverKey.equals(SQL_SERVER_DRIVER_KEY)) {
             driverDetails = getJdbcDriver(SQL_SERVER_DOWNLOAD, SQL_SERVER_DRIVER_KEY, SQL_SERVER_REGEX);
@@ -198,16 +207,16 @@ public class PluginHelper {
             try {
                 driverDetails.url = new URL(url);
                 driverDetails.isOk = true;
-                System.out.println("url did parse: " + url);
+                //System.out.println("url did parse: " + url);
             } catch (Exception exception) {
                 driverDetails.url = null;
                 driverDetails.isOk = false;
-                System.out.println("url did not parse: " + url + " " + exception);
+                //System.out.println("url did not parse: " + url + " " + exception);
             }
         } else {
             driverDetails.url = null;
             driverDetails.isOk = false;
-            System.out.println("no url");
+            //System.out.println("no url");
         }
 
         if (!StringUtils.isEmpty(getJdbcDriverDirectory())) {
@@ -263,6 +272,11 @@ public class PluginHelper {
     private void setJdbcDriverDirectory(String jdbcDriverDirectory) {
         this.jdbcDriverDirectory = jdbcDriverDirectory;
     }
+    public String getRowLimitType() { return rowLimitType; }
+    public String getRowLimitValue() { return rowLimitValue; }
+    public String getTimeoutLimitType() { return timeoutLimitType; }
+    public String getTimeoutLimitValue() { return timeoutLimitValue; }
+    public String getNotificationEmail() { return notificationEmail; }
 
     // Get authorized user or group by splitting the xml attribute on commas
 

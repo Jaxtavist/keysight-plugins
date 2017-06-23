@@ -70,8 +70,8 @@ public class ProfileConfigUI extends HttpServlet {
          driverDetails = pluginHelper.getDriverDetails(key);
          if (!driverDetails.isOk) {
             velocityContext.put(driverKeyMap.get(key), "error");
-            System.out.println(driverDetails.className);
-            System.out.println(driverDetails.url);
+            //System.out.println(driverDetails.className);
+            //System.out.println(driverDetails.url);
          } else if (!driverDetails.isLocal) {
             velocityContext.put(driverKeyMap.get(key), "warning");
          } else {

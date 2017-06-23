@@ -24,7 +24,8 @@ public class ComponentImports
     @ComponentImport com.atlassian.sal.api.pluginsettings.PluginSettingsFactory     pluginSettingsFactory;
     @ComponentImport com.atlassian.sal.api.transaction.TransactionTemplate          transactionTemplate;
     @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
-  
+    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
+
     private ComponentImports()
     {
         throw new Error("This class should not be instantiated");

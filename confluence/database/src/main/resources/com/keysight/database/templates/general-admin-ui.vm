@@ -1,16 +1,17 @@
-#set( $images = "$webResourceManager.getStaticResourcePrefix()/download/resources/com.keysight.database:general-database-admin-resources/images" )
-        #set( $check = "$images/check.png" )
-        #set( $error = "$images/error.png" )
-        #set( $warning = "$images/warning.png" )
+#set( $images = "$webResourceManager.getStaticResourcePrefix()/download/resources/com.keysight.database:database-admin-config-general-resources/images" )
+#set( $check = "$images/check.png" )
+#set( $error = "$images/error.png" )
+#set( $warning = "$images/warning.png" )
 
-        ##<img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
-        ##<img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
-        ##<img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
+##<img class="emoticon emoticon-tick" src="$check" data-emoticon-name="tick" alt="(tick)"/>
+##<img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/>
+##<img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
 
 <html>
     <head>
         <title>Database Support Admin</title>
         <meta name="decorator" content="atl.admin">
+        $webResourceManager.requireResource("com.keysight.database:database-admin-config-general-resources")
         $webResourceManager.requireResource("com.keysight.database:database-admin-config-resources")
     </head>
     <body>
@@ -236,8 +237,65 @@
                     The <img class="emoticon emoticon-cross" src="$error" data-emoticon-name="cross" alt="(error)"/> icon
                     indicates a driver cannot be found. Connections to this type of database will not work.
                 </p>
-
             </div>
         </form>
+
+        <h1>Database Connection Profile Management Permissions</h1>
+        <div id="configuration-permissions"></div>
+
+        <h1>Query Performance Security Control Settings</h1>
+        <div id="performance-security-controls">
+        <p>Confluence admins can set a limit on the number of rows to be recieved or the time it will take a query
+        to run.  If the admin sets a hard row limit, then the plugin will insist that every sql query have the string
+        <b>LIMIT X</b> where <b>X</b> is less than or equal to the hard limit before allowing the query to be executed
+        on the server.  If there is a soft row limit, then if the query pulls back more rows than the limit, then an
+        email will be sent to the configured address.  If the admin sets a hard timeout, the query will exit at that
+        time returning an error to the user.  If the admin sets a soft timeout, then if the query takes longer than
+        that time, an email will be sent to the configured address.</p>
+
+        <form class="aui">
+            <div class="field-group">
+                <label for="row-limit-type">Row Limit Type</label>
+                <select class="select" id="row-limit-type" name="row-limit-type">
+                   <option>Soft</option>
+                   <option>Hard</option>
+                </select>
+                <div class="description" >A <b>hard</b> limit will require the text <b>LIMIT X</b>, where X is less than
+                the <b>Row Limit Threshold</b>, to be in the SQL. The <b>soft</b> limit will cause an email to be sent to the
+                configured address if a query returns more rows than the threshold limit.</div>
+            </div>
+            <div class="field-group">
+                <label for="row-limit-value">Row Limit Threshold</label>
+                <input class="text" id="row-limit-value" type="text" name="row-limit-value" placeholder="Optional" value="">
+                <div class="description" >The number of rows that can be safely returned.  No value indicates an unlimited
+                number of rows may be returned.</div>
+            </div>
+            <div class="field-group">
+                <label for="timeout-type">Timeout Type</label>
+                <select class="select" id="timeout-limit-type" name="timeout-limit-type">
+                   <option>Soft</option>
+                   <option>Hard</option>
+                </select>
+                <div class="description" >A <b>hard</b> limit will cause the query to timeout after <b>X</b> seconds. The
+                <b>soft</b> limit will send an email to the configured address if a query takes longer than <b>X</b> seconds.</div>
+            </div>
+            <div class="field-group">
+                <label for="timeout-limit-value">Timeout Threshold</label>
+                <input class="text" id="timeout-limit-value" type="text" name="timeout-limit-value" placeholder="Optional" value="">
+                <div class="description" >The number of seconds before the timeout threshold is crossed. If no value is
+                provided, no specified timeout for the sql query will be set.</div>
+            </div>
+            <div class="field-group">
+                <label for="notification-email">Notification Email</label>
+                <input class="text" id="notification-email" type="text" name="notification-email" placeholder="Optional" value="">
+                <div class="description" >The email address that will receive the warning when the soft limits are exceeded.</div>
+            </div>
+            <div class="buttons-container">
+                <div class="buttons">
+                    <button class="aui-button" id="save-performance-security-control-settings">Save</button>
+                </div>
+            </div>
+        </form>
+        </div>
     </body>
 </html>

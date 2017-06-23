@@ -40,36 +40,61 @@ databaseConfigHelper = (function($) {
     }
 
     methods['loadConfig'] = function() {
-
         $.ajax({
             url: url,
             dataType: "json"
         }).done(function(pluginConfiguration) {
-            if (pluginConfiguration.xml == null) {
-                return;
-            }
-
             // If XML doesn't validate, just give an empty document
             try {
                 $xml = AJS.$(AJS.$.parseXML(decodeURIComponent(pluginConfiguration.xml)));
             } catch(err) {
-                console.error("Failed to parse XML: ", err);
+                if( pluginConfiguration.xml != null){
+                   console.error("Failed to parse XML: ", err);
+                }
                 $xml = AJS.$(AJS.$.parseXML(
                     "<plugin-configuration>\n"+
                     "    <jdbc-driver-directory></jdbc-driver-directory>\n"+
+                    "    <config-authorized-users></config-authorized-users>\n"+
+                    "    <config-authorized-groups></config-authorized-groups>\n"+
+                    "    <row-limit-type></row-limit-type>\n"+
+                    "    <row-limit-value></row-limit-value>\n"+
+                    "    <timeout-limit-type></timeout-limit-type>\n"+
+                    "    <timeout-limit-value></timeout-limit-value>\n"+
+                    "    <notification-email></notification-email>\n"+
                     "</plugin-configuration>"
                 ));
             }
 
             $("#jdbc-driver-directory").val(atob($xml.find("jdbc-driver-directory").html()));
-            var configAuthorizedUsers = $xml.find("config-authorized-users").html();
-            var configAuthorizedGroups = $xml.find("config-authorized-groups").html();
+            var configAuthorizedUsers = atob($xml.find("config-authorized-users").html());
+            var configAuthorizedGroups = atob($xml.find("config-authorized-groups").html());
+            var rowLimitType = atob($xml.find("row-limit-type").html());
+            var rowLimitValue = atob($xml.find("row-limit-value").html());
+            var timeoutLimitType = atob($xml.find("timeout-limit-type").html());
+            var timeoutLimitValue = atob($xml.find("timeout-limit-value").html());
+            var notificationEmail = atob($xml.find("notification-email").html());
+
             // If we failed to get the fields from the xml, default to empty string;
-            if (configAuthorizedUsers  == null) {
+            if (configAuthorizedUsers == null) {
                 configAuthorizedUsers = "";
             }
-            if (configAuthorizedGroups  == null) {
+            if (configAuthorizedGroups == null) {
                 configAuthorizedGroups = "";
+            }
+            if (rowLimitType == null) {
+                rowLimitType = "Soft";
+            }
+            if (rowLimitValue == null) {
+                rowLimitValue = "";
+            }
+            if (timeoutLimitType == null) {
+                timeoutLimitType = "Soft";
+            }
+            if (timeoutLimitValue == null) {
+                timeoutLimitValue = "";
+            }
+            if (notificationEmail == null) {
+                notificationEmail = "";
             }
 
             // Load access profiles for this page.
@@ -78,13 +103,22 @@ databaseConfigHelper = (function($) {
                 configAuthorizedGroups: configAuthorizedGroups
             }));
 
+            AJS.$("#row-limit-type").val( rowLimitType );
+            AJS.$("#row-limit-value").val( rowLimitValue );
+            AJS.$("#timeout-limit-type").val( timeoutLimitType );
+            AJS.$("#timeout-limit-value").val( timeoutLimitValue );
+            AJS.$("#notification-email").val( notificationEmail );
+
             AJS.$("#save-config-auth").click(function(e) {
                 e.preventDefault();
                 databaseConfigHelper.saveConfigAuth();
             });
 
-            AJS.tabs.setup();
-            bindButtons();
+            AJS.$("#save-performance-security-control-settings").click(function(e) {
+                e.preventDefault();
+                databaseConfigHelper.saveConfigAuth();
+            });
+
         }).fail(function(self, status, error) {
             alert(error);
         });
@@ -93,9 +127,14 @@ databaseConfigHelper = (function($) {
     function saveConfig() {
         var xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + "\n" +
             '<plugin-configuration>' + "\n" +
-            '   <config-authorized-users>' + $("#config-authorized-users").val() + "</config-authorized-users>\n" +
-            '   <config-authorized-groups>' + $("#config-authorized-groups").val() + "</config-authorized-groups>\n" +
             '   <jdbc-driver-directory>' + btoa($("#jdbc-driver-directory").val()) + "</jdbc-driver-directory>\n" +
+            '   <config-authorized-users>' + btoa($("#config-authorized-users").val()) + "</config-authorized-users>\n" +
+            '   <config-authorized-groups>' + btoa($("#config-authorized-groups").val()) + "</config-authorized-groups>\n" +
+            '   <row-limit-type>' + btoa($("#row-limit-type").val()) + "</row-limit-type>\n" +
+            '   <row-limit-value>' + btoa($("#row-limit-value").val()) + "</row-limit-value>\n" +
+            '   <timeout-limit-type>' + btoa($("#timeout-limit-type").val()) + "</timeout-limit-type>\n" +
+            '   <timeout-limit-value>' + btoa($("#timeout-limit-value").val()) + "</timeout-limit-value>\n" +
+            '   <notification-email>' + btoa($("#notification-email").val()) + "</notification-email>\n" +
             '</plugin-configuration>' + "\n";
 
         // Validate XML

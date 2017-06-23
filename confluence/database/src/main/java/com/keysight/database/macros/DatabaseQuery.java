@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class DatabaseQuery implements Macro {
     private final static String PROFILE_NAME = "profile";
     private final static String QUERY_ISVISIBLE = "show-query";
+    private final static String COLLAPSE_QUERY  = "collapse-query";
 
     private final PluginSettingsFactory pluginSettingsFactory;
     private final TransactionTemplate transactionTemplate;
@@ -97,38 +98,33 @@ public class DatabaseQuery implements Macro {
             throw new MacroExecutionException("No profile found with that name for which you are authorized: " + parameters.get(PROFILE_NAME));
         }
 
-        String subProtocol = StringUtils.lowerCase(profile.databaseType);
+        setDatabaseType(profile.databaseType);
+        String username = profile.databaseUsername;
+        String password = profile.databasePassword;
+        String subProtocol = StringUtils.lowerCase(getDatabaseType());
 
         if (subProtocol.equals("microsoft sql server")) {
             subProtocol = "sqlserver";
         } else if (subProtocol.equals("mongodb")) {
             subProtocol = "mongo";
         }
+        String connectionString = "jdbc:"+ subProtocol + "://" + profile.databaseServer;
+        if( !StringUtils.isEmpty( profile.databasePort ) ){
+            connectionString += ":" + profile.databasePort;
+        }
+        connectionString += "/" + profile.databaseName;
 
-        String connectionString =
-                "jdbc:"+ subProtocol + "://" +
-                profile.databaseServer + ":" +
-                profile.databasePort + "/" +
-                profile.databaseName + "?user=" +
-                profile.databaseUsername +
-                profile.connectionStringSuffix;
-        String databaseType = profile.databaseType;
-        String username = profile.databaseUsername;
-        String password = profile.databasePassword;
-
-        setDatabaseType(databaseType);
+        if( !StringUtils.isEmpty( profile.connectionStringSuffix ) ){
+            connectionString += "?" + profile.connectionStringSuffix;
+        }
 
         try {
-            connect = DriverManager.getConnection(connectionString,
-                    username,
-                    password);
+            connect = DriverManager.getConnection(connectionString, username, password);
         } catch (SQLException exception) {
             if (exception.getMessage().matches(".*No suitable driver found.*")) {
                 pluginHelper.loadJdbcDriver(getDatabaseType());
                 try {
-                    connect = DriverManager.getConnection(connectionString,
-                            username,
-                            password);
+                    connect = DriverManager.getConnection(connectionString, username, password);
                 } catch (Exception exception2) {
                     throw new MacroExecutionException(exception2);
                 }
@@ -169,8 +165,21 @@ public class DatabaseQuery implements Macro {
             }
         }
 
+        StringBuilder codeViewOfBody = new StringBuilder();
+
+        codeViewOfBody.append( "<ac:structured-macro ac:name=\"code\" ac:schema-version=\"1\">" );
+        codeViewOfBody.append(    "<ac:parameter ac:name=\"language\">sql</ac:parameter>" );
+        codeViewOfBody.append(    "<ac:parameter ac:name=\"title\">SQL Query</ac:parameter>" );
+        if( parameters.containsKey( COLLAPSE_QUERY )) {
+            codeViewOfBody.append("<ac:parameter ac:name=\"collapse\">true</ac:parameter>" );
+        }
+        codeViewOfBody.append( "   <ac:plain-text-body><![CDATA[" );
+        codeViewOfBody.append( body );
+        codeViewOfBody.append( "]]></ac:plain-text-body>" );
+        codeViewOfBody.append("</ac:structured-macro>" );
+
         velocityContext.put("showQuery", parameters.get(QUERY_ISVISIBLE));
-        velocityContext.put("bodyAsHtml", body);
+        velocityContext.put("code", codeViewOfBody.toString());
         return velocityHelperService.getRenderedTemplate(template, velocityContext);
     }
 

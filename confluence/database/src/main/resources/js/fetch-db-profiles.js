@@ -51,34 +51,39 @@ var dbProfiles = (function($) {
         getProfilesAsync(function(profiles) {
                 if (!profiles.length) {
                     AJS.log("Configured database profiles result was not in the expected format.");
-                    return;
+
+                    // Placeholder in the dropdown
+                    var infoOption = $("<option  selected=\"true\" disabled=\"disabled\"/>");
+                    infoOption.text("-- No Available Profiles --");
+                    infoOption.val("");
+                    dropDown.append(infoOption);
+                } else {
+                    // List of profiles the user has access to.
+                    profileList = profiles;
+
+                    // Profile that was placed on the macro last time
+                    var currentValue = dropDown.val();
+
+                    // Placeholder in the dropdown
+                    var infoOption = $("<option  selected=\"true\" disabled=\"disabled\"/>");
+                    infoOption.text("-- Select a Profile --");
+                    infoOption.val("");
+                    dropDown.append(infoOption);
+
+                    $.each(profiles, function(index, profile) {
+                        // Don't append a duplicate profile
+                        if (profile.profileName != currentValue) {
+                            var option = $("<option />");
+                            option.val(profile.profileName);
+                            option.text(profile.profileName);
+
+                            dropDown.append(option);
+                        }
+                    });
+
+                    // restore the currently selected value.
+                    dropDown.val(currentValue);
                 }
-
-                // List of profiles the user has access to.
-                profileList = profiles;
-
-                // Profile that was placed on the macro last time
-                var currentValue = dropDown.val();
-
-                // Placeholder in the dropdown
-                var infoOption = $("<option  selected=\"true\" disabled=\"disabled\"/>");
-                infoOption.text("-- Select a Profile --");
-                infoOption.val("");
-                dropDown.append(infoOption);
-
-                $.each(profiles, function(index, profile) {
-                    // Don't append a duplicate profile
-                    if (profile.profileName != currentValue) {
-                        var option = $("<option />");
-                        option.val(profile.profileName);
-                        option.text(profile.profileName);
-
-                        dropDown.append(option);
-                    }
-                });
-
-                // restore the currently selected value.
-                dropDown.val(currentValue);
             },
             function(xhr, textStatus, errorThrown) {
                 AJS.log("Failed to retrieve profiles: " + textStatus + " - " + errorThrown);

@@ -133,7 +133,8 @@ public class RestService {
 
         for (int i = 0; i < profileNodes.getLength(); i++) {
             Element profileNode = (Element) profileNodes.item(i);
-            profiles.add(new ConnectionProfile(profileNode));
+            ConnectionProfile currentProfile = new ConnectionProfile( profileNode );
+            profiles.add(currentProfile);
         }
 
         // Get groups for user

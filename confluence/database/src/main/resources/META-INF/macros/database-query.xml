@@ -13,6 +13,8 @@
             </parameter>
             <parameter name="show-query" type="boolean">
             </parameter>
+            <parameter name="collapse-query" type="boolean">
+            </parameter>
         </parameters>
     </xhtml-macro>
 </module-container>

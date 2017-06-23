@@ -131,7 +131,6 @@ public class RestAdminConfigService {
             return true;
         }
 
-
         // CURRENT STATE: User is not an admin, username or group might have permissions
         UserProfile currentProfile = userManager.getUserProfile(userKey);
         assert (currentProfile != null);

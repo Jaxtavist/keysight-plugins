@@ -4,29 +4,7 @@
     <!-- add our i18n resource -->
     <resource type="i18n" name="database-admin" location="/com/keysight/database/i18n/database-admin"/>
 
-    <web-resource key="general-database-admin-resources" name="Database Admin Config Web Resources">
-      <dependency>com.atlassian.auiplugin:ajs</dependency>
-      <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
-
-      <!-- transform calls to AJS.getText() inside JS files -->
-      <transformation extension="js">
-         <transformer key="jsI18n"/>
-      </transformation>
-
-      <!-- transform Soy templates into JS -->
-      <transformation extension="soy">
-         <transformer key="soyTransformer">
-            <functions>com.atlassian.confluence.plugins.soy:soy-core-functions</functions>
-         </transformer>
-      </transformation>
-
-      <resource type="download" name="database-admin-config.css" location="/css/database-admin-config.css"/>
-      <resource type="download" name="database-admin-config.js" location="/js/general-db-admin-config.js"/>
-      <resource type="download" name="admin-ui-config-templates.js" location="/soy/admin-ui-config-templates.soy"/>
-      <resource type="download" name="images/" location="/images"/>
-   </web-resource>
-
-    <web-resource key="profile-database-admin-resources" name="Database Admin Config Web Resources">
+    <web-resource key="database-admin-config-general-resources" name="Database Admin Config General Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
 
@@ -43,14 +21,21 @@
         </transformation>
 
         <resource type="download" name="database-admin-config.css" location="/css/database-admin-config.css"/>
-        <resource type="download" name="database-admin-config.js" location="/js/profile-admin-config.js"/>
         <resource type="download" name="admin-ui-config-templates.js" location="/soy/admin-ui-config-templates.soy"/>
         <resource type="download" name="images/" location="/images"/>
     </web-resource>
 
+    <web-resource key="database-profile-admin-resources" name="Database Profile Admin Web Resources">
+       <resource type="download" name="profile-admin-config.js" location="/js/profile-admin-config.js"/>
+    </web-resource>
+
+    <web-resource key="database-admin-config-resources" name="Database Admin Config Web Resources">
+        <resource type="download" name="general-db-admin-config.js" location="/js/general-db-admin-config.js"/>
+    </web-resource>
+
     <web-item key="conf-menu-item" name="Database Plugin Profiles" section="system.admin/configuration" weight="90">
         <description>Link to profile configuration.</description>
-        <label key="Database Plugin Profiles" />
+        <label key="Database Connector Profiles" />
         <link linkId="database-profile-admin-link">/plugins/servlet/database/admin/profile</link>
     </web-item>
 

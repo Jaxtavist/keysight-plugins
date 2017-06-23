@@ -1,4 +1,4 @@
-#set( $images = "$webResourceManager.getStaticResourcePrefix()/download/resources/com.keysight.database:profile-database-admin-resources/images" )
+#set( $images = "$webResourceManager.getStaticResourcePrefix()/download/resources/com.keysight.database:database-admin-config-general-resources/images" )
 #set( $check = "$images/check.png" )
 #set( $error = "$images/error.png" )
 #set( $warning = "$images/warning.png" )
@@ -8,11 +8,12 @@
 ##<img class="emoticon emoticon-warning" src="$warning" data-emoticon-name="warning" alt="(warning)"/>
 
 <html>
-<head>
-    <title>Database Profiles Admin</title>
-    <meta name="decorator" content="atl.admin"/>
-    $webResourceManager.requireResource("com.keysight.database:profile-database-admin-resources")
-</head>
+    <head>
+        <title>Database Profiles Admin</title>
+        <meta name="decorator" content="atl.admin"/>
+        $webResourceManager.requireResource("com.keysight.database:database-admin-config-general-resources")
+        $webResourceManager.requireResource("com.keysight.database:database-profile-admin-resources")
+    </head>
 <body>
     <p>
         Here you can add database connection profiles that authorized user will be able to use in the database macro.
@@ -173,6 +174,6 @@
     <h2>Modify or View Current Profiles</h2>
     <div id="connection-profiles">
     </div>
-    <input id="add-connection-profile" class="aui-button aui-button-primary button submit" type="submit" value="Add Connection Profile"/>
+    <input id="add-connection-profile" class="aui-button button submit" type="submit" value="Add Connection Profile"/>
 </body>
 </html>

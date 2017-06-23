@@ -3,17 +3,6 @@ profilesConfigHelper = (function($) {
     var methods = new Object();
     var url = AJS.contextPath() + "/rest/database/1.0/admin-config/profiles";
 
-    methods['addGroup'] = function() {
-        if (AJS.$("#group-list").length == 0) {
-            AJS.$("#group-list-container").html("<ul id=\"group-list\"></ul>");
-        }
-
-        appendGroup(AJS.$("#new-group-name").val());
-        AJS.$("#new-group-name").val("");
-
-        saveConfig();
-    }
-
     methods['deleteProfile'] = function(profileId) {
         $("#connection-profile-" + profileId).remove();
         saveConfig();
@@ -26,19 +15,100 @@ profilesConfigHelper = (function($) {
         $("#view-authorized-groups-" + profileId).html($("#authorized-groups-" + profileId).val());
         $("#view-database-type-" + profileId).html($("#database-type-" + profileId).val());
         $("#view-database-name-" + profileId).html($("#database-name-" + profileId).val());
+        $("#view-database-server-" + profileId).html($("#database-server-" + profileId).val());
         $("#view-database-port-" + profileId).html($("#database-port-" + profileId).val());
         $("#view-database-username-" + profileId).html($("#database-username-" + profileId).val());
         $("#view-database-password-" + profileId).html("*********");
         $("#view-connection-string-suffix-" + profileId).html($("#connection-string-suffix-" + profileId).val());
-        $("#view-connection-string-" + profileId).html("jdbc:dbtype://server:port/db");
+        $("#view-connection-string-" + profileId).html( generateConnectionString( profileId ) );
         saveConfig();
+    }
+
+    function generateConnectionString( profileId ){
+       var connectionString = "";
+
+       if(    $("#database-type-" + profileId ).val() != null
+           && $("#database-server-" + profileId ).val() != null
+           && $("#database-name-" + profileId ).val() != null )
+       {
+          connectionString = "jdbc:"
+          connectionString += getDatabaseProtocolName( $("#database-type-" + profileId ).val() ) + "://";
+          connectionString += $("#database-server-" + profileId ).val();
+
+          if( isNumber( $("#database-port-" + profileId ).val() ) ){
+             connectionString += $("#database-port-" + profileId ).val() + "://";
+          }
+
+          connectionString += "/" + $("#database-name-" + profileId ).val();
+
+          if( $("#database-connection-string-suffix" + profileId ).val() != null ) {
+             connectionString += "?" + $("#database-connection-string-suffix" + profileId ).val();
+          }
+       }
+       return connectionString;
+    }
+
+    function getDatabaseProtocolName( databaseType ) {
+       var protocolName = databaseType.toLowerCase();
+       if( databaseType === "mongodb" ){
+          protocolName = "mongo";
+       } else if( databaseType === "microsoft sql server" ){
+          protocolName = "sqlserver";
+       }
+       return protocolName;
+    }
+
+    function isNumber(n) {
+       return !isNaN(parseFloat(n)) && isFinite(n);
     }
 
     methods['addConnectionProfile'] = function(e) {
         var id = makeRandomViewId();
+        var profileName = "";
+        var profileDescription = "";
+        var authorizedUsers = "";
+        var authorizedGroups = "";
+        var databaseType =  "";
+        var databaseName =  "";
+        var databaseServer = "";
+        var databasePort = "";
+        var databaseUsername = "";
+        var databasePassword = "";
+        var connectionStringSuffix = "";
+        var db2Selected = "";
+        var derbySelected = "";
+        var microsoftSqlServerSelected = "";
+        var mongoDbSelected = "";
+        var mySqlSelected = "";
+        var oracleSelected = "";
+        var postgresSqlSelected = "";
+        var sybaseSelected = "";
+        var connectionString = "";
+
         AJS.$("#connection-profiles").append(Keysight.Database.Admin.Config.Templates.connectionProfile({
-            id: id
+           id: id,
+           profileName: profileName,
+           profileDescription: profileDescription,
+           authorizedUsers: authorizedUsers,
+           authorizedGroups: authorizedGroups,
+           databaseType: databaseType,
+           databaseName: databaseName,
+           databaseServer: databaseServer,
+           databasePort: databasePort,
+           databaseUsername: databaseUsername,
+           databasePassword: databasePassword,
+           connectionStringSuffix: connectionStringSuffix,
+           db2Selected: db2Selected,
+           derbySelected: derbySelected,
+           microsoftSqlServerSelected: microsoftSqlServerSelected,
+           mongoDbSelected: mongoDbSelected,
+           mySqlSelected: mySqlSelected,
+           oracleSelected: oracleSelected,
+           postgresSqlSelected: postgresSqlSelected,
+           sybaseSelected: sybaseSelected,
+           connectionString: connectionString,
         }));
+
         AJS.tabs.setup();
         AJS.tabs.change(jQuery('a[href="#edit-' + id + '"]'));
         bindButtons();
@@ -47,34 +117,9 @@ profilesConfigHelper = (function($) {
     methods['removeEntry'] = function(e) {
         e.preventDefault();
         $(e.currentTarget).parent().remove();
-
-        if (AJS.$(".saved-group").length == 0) {
-            AJS.$("#group-list-container").html("<div class=\"none-saved\">No saved groups</div>");
-        }
-
-        if (AJS.$(".saved-address").length == 0) {
-            AJS.$("#email-list-container").html("<div class=\"none-saved\">No saved addresses.</div>");
-        }
-
         saveConfig();
     }
 
-    function makeRandomViewId() {
-        var size = 10000000;
-        var number = Math.floor((Math.random() * size) + 1);
-        while (idExists("view-" + number)) {
-            number = Math.floor((Math.random() * size) + 1);
-        }
-        return number;
-    }
-
-    function idExists(id) {
-        var flag = false;
-        if ($("#" + id).length != 0) {
-            flag = true;
-        }
-        return flag;
-    }
 
     methods['loadConfig'] = function() {
 
@@ -99,7 +144,6 @@ profilesConfigHelper = (function($) {
                         "</plugin-configuration>"
                     ));
                 }
-
 
                 // Load saved connection profiles in and connect them to templates
                 $xml.find("saved-profile").each(function(index) {
@@ -220,11 +264,11 @@ profilesConfigHelper = (function($) {
 
 
         var xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + "\n" +
-            '<plugin-configuration>' + "\n" +
-            '   <saved-profiles>' + "\n" +
-            savedProfiles.join("\n") +
-            '   </saved-profiles>' + "\n" +
-            '</plugin-configuration>' + "\n";
+                        '<plugin-configuration>' + "\n" +
+                        '   <saved-profiles>' + "\n" +
+                        savedProfiles.join("\n") +
+                        '   </saved-profiles>' + "\n" +
+                        '</plugin-configuration>' + "\n";
 
         // Validate XML
         try {
@@ -241,6 +285,7 @@ profilesConfigHelper = (function($) {
             data: '{"xml":"' + encodeURIComponent(xmlString) + '"}',
             processData: false
         }).done(function() {
+            AJS.tabs.change(jQuery('a[viewtab="true"]'));
             alert("Config Saved");
         }).fail(function(self, status, error) {
             alert(error);
@@ -261,21 +306,27 @@ profilesConfigHelper = (function($) {
         });
     }
 
-    function appendGroup(groupName) {
-        AJS.$("#group-list").append("<li>" +
-            "<span class=\"saved-group\">" + groupName + "</span>" + "&nbsp;<a href=\"#\" onclick=\"confluenceSupportConfigHelper.removeEntry(event)\">[remove]</a>" +
-            "</li>\n");
+    function makeRandomViewId() {
+        var size = 10000000;
+        var number = Math.floor((Math.random() * size) + 1);
+        while (idExists("view-" + number)) {
+            number = Math.floor((Math.random() * size) + 1);
+        }
+        return number;
+    }
+
+    function idExists(id) {
+        var flag = false;
+        if ($("#" + id).length != 0) {
+            flag = true;
+        }
+        return flag;
     }
 
     return methods;
 })(AJS.$ || jQuery);
 
 AJS.toInit(function() {
-
-    AJS.$("#add-group").click(function(e) {
-        e.preventDefault();
-        //confluenceSupportConfigHelper.addGroup();
-    });
 
     AJS.$("#add-connection-profile").click(function(e) {
         e.preventDefault();
