@@ -3,5 +3,5 @@
 <p>Database Query Help</p>
 
 <h3>Parameters</h3>
-<p><strong>Database Type</strong>: The type of database.</p>
-<p><strong>Connection String</strong>: The connection string.</p>
+<p><strong>Profile</strong>: Which preconfigured profile do you want for the SQL connection.</p>
+<p><strong>Query Text Visibility</strong>: Whether to show the SQl query above the results.</p>

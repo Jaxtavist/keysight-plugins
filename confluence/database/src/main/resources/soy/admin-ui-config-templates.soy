@@ -21,6 +21,35 @@
    </div>
 {/template}
 
+
+/**
+ * Configuration Permissions
+ * @param configAuthorizedUsers
+ * @param configAuthorizedGroups
+*/
+{template .accessProfile}
+<form class="aui">
+    <div class="field-group">
+        <label for="config-authorized-users">Authorized Users</label>
+        <input class="text long-field" id="config-authorized-users" type="text" name="config-authorized-users" placeholder="Optional" value="{$configAuthorizedUsers}">
+        <div class="description" >A comma separated list of user names that may manage database connection profiles.</div>
+        <div class="description" >Currently Authorized Users: {$configAuthorizedUsers}</div>
+    </div>
+    <div class="field-group">
+        <label for="config-authorized-groups">Authorized Groups</label>
+        <input class="text long-field" id="config-authorized-groups" type="text" name="config-authorized-groups" placeholder="Optional" value="{$configAuthorizedGroups}">
+        <div class="description" >A comma separated list of group names that may manage database connection profiles.</div>
+        <div class="description" >Currently Authorized Groups: {$configAuthorizedGroups}</div>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button class="aui-button" id="save-config-auth">Save</button>
+        </div>
+    </div>
+</form>
+{/template}
+
+
 /**
  * Connection Profile
  * @param id
@@ -43,15 +72,16 @@
  * @param oracleSelected
  * @param postgresSqlSelected
  * @param sybaseSelected
+ * @param connectionString
  */
 {template .connectionProfile}
 <div class="aui-tabs horizontal-tabs" id="connection-profile-{$id}">
     <ul class="tabs-menu">
         <li class="menu-item active-tab">
-            <a href="#view-{$id}">View</a>
+            <a href="#view-{$id}" viewtab="true">View</a>
         </li>
         <li class="menu-item">
-            <a href="#edit-{$id}">Edit</a>
+            <a href="#edit-{$id}" edittab="true">Edit</a>
         </li>
     </ul>
 
@@ -67,7 +97,7 @@
    </tr>
    <tr>
       <th rowspan="4">Description</th>
-      <td rowspan="4" id="view-profile-description-{$id}" >{$profileDescription}</td>
+      <td rowspan="4" id="view-profile-description-{$id}" valign="top">{$profileDescription}</td>
       <th>Database Name</th>
       <td id="view-database-name-{$id}" >{$databaseName}</td>
    </tr>
@@ -97,12 +127,12 @@
    </tr>
    <tr>
       <th>Connection String</th>
-      <td columnspan="3" id="view-connection-string-{$id}" ></td>
+      <td columnspan="3" id="view-connection-string-{$id}" >{$connectionString}</td>
    </tr>
-   <tr>
+/*   <tr>
       <th>Connection Status</th>
       <td columnspan="3" id="view-connection-status-{$id}" ></td>
-   </tr>
+   </tr>*/
 </table>
 
        </div>
@@ -127,12 +157,12 @@
     <div class="field-group">
         <label for="authorized-users-{$id}">Authorized Users</label>
         <input class="text long-field" id="authorized-users-{$id}" type="text" name="authorized-users-{$id}" placeholder="Optional" value="{$authorizedUsers}">
-        <div class="description" >A comma seperated list of user names that may access this profile.</div>
+        <div class="description" >A comma separated list of user names that may access this profile.</div>
     </div>
     <div class="field-group">
         <label for="authorized-groups-{$id}">Authorized Groups</label>
         <input class="text long-field" id="authorized-groups-{$id}" type="text" name="authorized-groups-{$id}" placeholder="Optional" value="{$authorizedGroups}">
-        <div class="description" >A comma seperated list of group names that may access this profile.</div>
+        <div class="description" >A comma separated list of group names that may access this profile.</div>
     </div>
 
 </form>
