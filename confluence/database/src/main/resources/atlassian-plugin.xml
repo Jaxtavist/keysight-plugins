@@ -28,6 +28,7 @@
       <resource type="download" name="database.css" location="/css/database.css"/>
       <resource type="download" name="database.js" location="/js/database.js"/>
       <resource type="download" name="macro-help.js" location="/js/macro-help.js"/>
+       <resource type="download" name="fetch-profiles.js" location="/js/fetch-db-profiles.js"/>
       <resource type="download" name="images/" location="/images"/>
 
       <context>database</context>
@@ -36,5 +37,10 @@
       <context>macro-browser</context>
       <context>preview</context>
    </web-resource>
+
+   <velocity-context-item key="databaseVelocityHelper" name="Database Velocity Helper"
+                          class="com.keysight.database.helpers.DatabaseVelocityHelper"
+                          context-key="databaseVelocityHelper" />;
+
     
 </atlassian-plugin>
