@@ -34,6 +34,30 @@ var dbProfiles = (function($) {
 
                 bindAsyncDropDown(input);
                 return new AJS.MacroBrowser.Field(paramDiv, input, options);
+            },
+            "row-limit": function(param, options) {
+                 var paramDiv = $(Confluence.Templates.MacroBrowser.macroParameter());
+                 var input = $("input", paramDiv);
+                 input.prop('disabled', true);
+                 if (options == null) {
+                    options = {};
+                 }
+
+                 getLimitsAsync(input, "rowLimit")
+
+                 return new AJS.MacroBrowser.Field(paramDiv, input, options);
+            },
+            "time-limit": function(param, options) {
+                 var paramDiv = $(Confluence.Templates.MacroBrowser.macroParameter());
+                 var input = $("input", paramDiv);
+                 input.prop('disabled', true);
+                 if (options == null) {
+                    options = {};
+                 }
+
+                 getLimitsAsync(input, "timeLimit")
+
+                 return new AJS.MacroBrowser.Field(paramDiv, input, options);
             }
         }
     };
@@ -47,6 +71,23 @@ var dbProfiles = (function($) {
      * @param dropDown JQuery selector for the HTML select element to be populated.
      */
     function bindAsyncDropDown(dropDown) {
+        // Remove the link to the config page if the user doesn't have access.
+        AJS.$.ajax({
+            async: true,
+            url: apiUrl + "profiles/hasAccess",
+            dataType: "json",
+            timeout: 10000, // 10 seconds,
+            error: function(xhr, textStatus, errorThrown) {
+                console.error("Couldn't determine whether the current user has profile access.", errorThrown);
+            },
+            success: function(data) {
+                if (data = false) {
+                  $("#profileMod").remove()
+                }
+            }
+        });
+
+
         // Load the profiles from Confluence
         getProfilesAsync(function(profiles) {
                 if (!profiles.length) {
@@ -88,6 +129,21 @@ var dbProfiles = (function($) {
             function(xhr, textStatus, errorThrown) {
                 AJS.log("Failed to retrieve profiles: " + textStatus + " - " + errorThrown);
             });
+    }
+
+    function getLimitsAsync(element, key) {
+        AJS.$.ajax({
+             async: true,
+             url: apiUrl + "limits",
+             dataType: "json",
+             timeout: 10000, // 10 seconds,
+             error: function(xhr, textStatus, errorThrown) {
+                 console.error("Couldn't get limits", errorThrown);
+             },
+             success: function(data) {
+                 element.val(data[key]);
+             }
+         });
     }
 
     /**

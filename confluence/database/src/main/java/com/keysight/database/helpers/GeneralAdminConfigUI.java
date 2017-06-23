@@ -44,7 +44,7 @@ public class GeneralAdminConfigUI extends HttpServlet {
       }
 
       DriverDetails driverDetails;
-      Map<String, Object> velocityContext = new HashMap<String, Object>();
+      Map<String, Object> velocityContext = new HashMap<>();
       velocityContext.put("relativeHome", new File(".").getCanonicalPath());
       PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
 
