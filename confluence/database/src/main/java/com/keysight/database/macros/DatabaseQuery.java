@@ -229,9 +229,9 @@ public class DatabaseQuery implements Macro {
                 // Did we pass the soft row limit?
                 if (rowCount > softRowLimit) {
                     StringBuilder message = new StringBuilder();
-                    message.append( "The user \"" + userManager.getRemoteUser().getUsername() + " executed an sql query\n "
-                                    + "using the Database Connection Macro on the page " + context.getEntity().getTitle() + "\n "
-                                    + "in the space " + context.getSpaceKey() + " which returned " + rowCount + " rows\n "
+                    message.append( "The user \"" + userManager.getRemoteUser().getUsername() + "\" executed an sql query\n "
+                                    + "using the Database Connection Macro on the page \"" + context.getEntity().getTitle() + "\"\n "
+                                    + "in the space with the key \"" + context.getSpaceKey() + "\" which returned " + rowCount + " rows\n "
                                     + "exceeding the soft row limit of " + softRowLimit + ".\n" );
                     sendEmail(pluginHelper, "Soft Query Limit Warning", message.toString() );
                 }
