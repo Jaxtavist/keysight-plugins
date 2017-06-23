@@ -4,13 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    
     <artifactId>database</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>Database</name>
     <description>This plugin provides various macros to pull data from various databases.</description>
 
     <properties>       
         <!-- This key is used to keep the consistency between the key in atlassian-plugin.xml and the key to generate bundle. -->
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <modelVersion>4.0.0</modelVersion>
     <packaging>atlassian-plugin</packaging>

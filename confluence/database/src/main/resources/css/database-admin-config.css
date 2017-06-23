@@ -45,6 +45,10 @@ form.aui .field-group.confluence-support-remove-button-container {
    margin: 25px;
 }
 
+.current-state-table {
+    text-align: left;
+}
+
 .list-container {
    border: 1px solid #343434;
    background-color: #e8e8e8;

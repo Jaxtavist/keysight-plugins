@@ -21,6 +21,35 @@
    </div>
 {/template}
 
+
+/**
+ * Configuration Permissions
+ * @param configAuthorizedUsers
+ * @param configAuthorizedGroups
+*/
+{template .accessProfile}
+<form class="aui">
+    <div class="field-group">
+        <label for="config-authorized-users">Authorized Users</label>
+        <input class="text long-field" id="config-authorized-users" type="text" name="config-authorized-users" placeholder="Optional" value="{$configAuthorizedUsers}">
+        <div class="description" >A comma separated list of user names that may modify profiles.</div>
+        <div class="description" >Currently Authorized Users: {$configAuthorizedUsers}</div>
+    </div>
+    <div class="field-group">
+        <label for="config-authorized-groups">Authorized Groups</label>
+        <input class="text long-field" id="config-authorized-groups" type="text" name="config-authorized-groups" placeholder="Optional" value="{$configAuthorizedGroups}">
+        <div class="description" >A comma separated list of group names that may modify profiles.</div>
+        <div class="description" >Currently Authorized Groups: {$configAuthorizedGroups}</div>
+    </div>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button class="aui-button aui-button-primary" id="save-config-auth">Save</button>
+        </div>
+    </div>
+</form>
+{/template}
+
+
 /**
  * Connection Profile
  * @param id
@@ -43,6 +72,7 @@
  * @param oracleSelected
  * @param postgresSqlSelected
  * @param sybaseSelected
+ * @param connectionString
  */
 {template .connectionProfile}
 <div class="aui-tabs horizontal-tabs" id="connection-profile-{$id}">
@@ -97,12 +127,12 @@
    </tr>
    <tr>
       <th>Connection String</th>
-      <td columnspan="3" id="view-connection-string-{$id}" ></td>
+      <td columnspan="3" id="view-connection-string-{$id}" >{$connectionString}</td>
    </tr>
-   <tr>
+/*   <tr>
       <th>Connection Status</th>
       <td columnspan="3" id="view-connection-status-{$id}" ></td>
-   </tr>
+   </tr>*/
 </table>
 
        </div>
