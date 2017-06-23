@@ -15,6 +15,10 @@
             </parameter>
             <parameter name="collapse-query" type="boolean">
             </parameter>
+            <parameter name="row-limit" type="string">
+            </parameter>
+            <parameter name="time-limit" type="string">
+            </parameter>
         </parameters>
     </xhtml-macro>
 </module-container>

@@ -19,10 +19,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Path("/")
@@ -77,6 +74,19 @@ public class RestService {
     }
 
     // Configuration data routes
+    @GET
+    @Path("config/limits")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getQueryLimits(@Context HttpServletRequest request) {
+        PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
+        Map<String, String> limitsMap = new HashMap<>();
+        limitsMap.put("rowLimit", pluginHelper.getRowLimitValue());
+        limitsMap.put("timeLimit", pluginHelper.getTimeoutLimitValue());
+
+        return Response
+                .ok(transactionTemplate.execute(() -> limitsMap))
+                .build();
+    }
 
     @GET
     @Path("config/profiles")
@@ -102,6 +112,48 @@ public class RestService {
         return Response
                 .status(204)
                 .entity(transactionTemplate.execute(() -> literals.getString("com.keysight.database.api.accessError")))
+                .build();
+    }
+
+    @GET
+    @Path("config/profiles/hasAccess")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProfilePermission(@Context HttpServletRequest request) {
+        UserKey userKey = userManager.getRemoteUserKey(request);
+
+        // Check if logged in and admin
+        if (userKey == null) {
+            return Response
+                    .ok(transactionTemplate.execute(() -> false))
+                    .build();
+        } else if (userManager.isSystemAdmin(userKey)) {
+            return Response
+                    .ok(transactionTemplate.execute(() -> true))
+                    .build();
+        }
+
+        // CURRENT STATE: User is not an admin, username or group might have permissions
+        UserProfile currentProfile = userManager.getUserProfile(userKey);
+        assert (currentProfile != null);
+        String currentUsername = currentProfile.getUsername();
+
+        List<String> currentGroups = userAccessor.getGroupNamesForUserName(currentUsername);
+        PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
+
+        // Check username
+        if (pluginHelper.getAuthorizedUsers().contains(currentUsername)) {
+            return Response
+                    .ok(transactionTemplate.execute(() -> true))
+                    .build();
+        }
+
+        // CURRENT STATE: Username doesn't have permission, group might
+
+        List<String> tempList = new ArrayList<>(pluginHelper.getAuthorizedGroups());
+        tempList.retainAll(currentGroups); // Shared elements between allowed groups and groups user is in.
+
+        return Response
+                .ok(transactionTemplate.execute(() -> !tempList.isEmpty()))
                 .build();
     }
 

@@ -25,6 +25,7 @@ public class ComponentImports
     @ComponentImport com.atlassian.sal.api.transaction.TransactionTemplate          transactionTemplate;
     @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
     @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
+    @ComponentImport com.atlassian.core.task.MultiQueueTaskManager                  multiQueueTaskManager;
 
     private ComponentImports()
     {

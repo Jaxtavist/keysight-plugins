@@ -41,7 +41,7 @@
 
     <servlet key="admin-general-servlet" class="com.keysight.database.helpers.GeneralAdminConfigUI">
        <url-pattern>/database/admin/configuration</url-pattern>
-   </servlet>
+    </servlet>
 
     <servlet key="admin-profile-servlet" class="com.keysight.database.helpers.ProfileConfigUI">
         <url-pattern>/database/admin/profile</url-pattern>
