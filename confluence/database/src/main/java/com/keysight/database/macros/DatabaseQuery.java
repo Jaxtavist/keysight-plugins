@@ -112,11 +112,18 @@ public class DatabaseQuery implements Macro {
         if( !StringUtils.isEmpty( profile.databasePort ) ){
             connectionString += ":" + profile.databasePort;
         }
-        connectionString += "/" + profile.databaseName;
+
+        if( profile.databaseType.matches("Microsoft SQL Server")) {
+            connectionString += ";databaseName=" + profile.databaseName;
+        } else {
+            connectionString += "/" + profile.databaseName;
+        }
 
         if( !StringUtils.isEmpty( profile.connectionStringSuffix ) ){
             connectionString += "?" + profile.connectionStringSuffix;
         }
+
+        //System.out.println( "Connection String: " + connectionString );
 
         try {
             connect = DriverManager.getConnection(connectionString, username, password);

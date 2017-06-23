@@ -86,6 +86,8 @@ public class PluginHelper {
                         final TransactionTemplate transactionTemplate) {
         try {
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            String pluginConfigXml;
+            String profilesXml;
 
             PluginConfig pluginConfig = (PluginConfig) transactionTemplate.execute((TransactionCallback<Object>) () -> {
                 PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
@@ -94,7 +96,21 @@ public class PluginHelper {
                 return pluginConfig1;
             });
 
-            String pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
+            if (pluginConfig.getXml() != null) {
+                pluginConfigXml = URLDecoder.decode(pluginConfig.getXml(), "UTF-8");
+            } else {
+                pluginConfigXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                                + "<plugin-configuration>\n"
+                                + "<jdbc-driver-directory><jdbc-driver-directory>\n"
+                                + "<config-authorized-users><config-authorized-users>\n"
+                                + "<config-authorized-groups><config-authorized-groups>\n"
+                                + "<row-limit-type>Soft<row-limit-type>\n"
+                                + "<row-limit-value><row-limit-value>\n"
+                                + "<timeout-limit-type>Soft<timeout-limit-type>\n"
+                                + "<timeout-limit-value><timeout-limit-value>\n"
+                                + "<notification-email></notification-email>\n"
+                                + "</plugin-configuration>\n";
+            }
             Document document = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
             root = document.getDocumentElement();
 
@@ -105,7 +121,11 @@ public class PluginHelper {
                 return pluginConfig1;
             });
 
-            String profilesXml = URLDecoder.decode(profiles.getXml(), "UTF-8");
+            if (profiles.getXml() != null) {
+                profilesXml = URLDecoder.decode(profiles.getXml(), "UTF-8");
+            } else {
+                profilesXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><saved-profiles></saved-profiles>\n";
+            }
             Document profileDocument = builder.parse(new InputSource(new StringReader(profilesXml)));
             profileRoot = profileDocument.getDocumentElement();
 
@@ -221,6 +241,7 @@ public class PluginHelper {
 
         if (!StringUtils.isEmpty(getJdbcDriverDirectory())) {
             jdbcDriverDirectoryPath = Paths.get(this.getJdbcDriverDirectory());
+            //System.out.println( "Driver Directory: " + this.getJdbcDriverDirectory() );
             if (Files.isDirectory(jdbcDriverDirectoryPath)) {
                 try {
                     // first look for any jar file in the child directory identifyed by the driverKey
