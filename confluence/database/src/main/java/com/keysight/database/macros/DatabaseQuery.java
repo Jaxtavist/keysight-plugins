@@ -36,8 +36,6 @@ public class DatabaseQuery implements Macro {
     private final UserManager userManager;
     private final UserAccessor userAccessor;
     private final MultiQueueTaskManager taskManager;
-
-
     private final MailService mailService;
 
     private Connection connect = null;
@@ -81,10 +79,6 @@ public class DatabaseQuery implements Macro {
 
         ArrayList<String> columnNames = new ArrayList<String>();
         ArrayList<ArrayList<String>> dataRows = new ArrayList<ArrayList<String>>();
-//       File mysqlJar = new File("C:\\jdbc-drivers\\mysql-connector-java-5.1.40-bin.jar");
-//       URLClassLoader urlClassLoader;
-//       Driver driver;
-//       String classname;
 
         // Get all stored profiles
         NodeList profileNodes = pluginHelper.getProfiles();

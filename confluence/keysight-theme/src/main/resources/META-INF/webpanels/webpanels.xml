@@ -6,9 +6,41 @@
      
       <!-- We only want to render this web panel when our custom theme is activated. Otherwise, if a built-in theme is activated, the footer will appear twice! -->
       <!-- Set the 'value' for each condition param element to be the fully-qualified plugin module key of your theme module. For example, if your plugin key is "com.example.confluence.test-plugin" and the &lt;theme&gt; module has a key of "my-theme", then you should set the value here to be "com.example.confluence.test-plugin:my-theme".-->
-      <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
-         <param name="themes" value="com.keysight.keysight-theme:keysight-theme-full"/>
-      </condition>
+      <conditions type="or">
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-web-dark-gray-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-gray-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-dark-blue-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-purple-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-dark-red-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-red-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-orange-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-light-blue-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-green-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-yellow-theme-full"/>
+         </condition>
+      </conditions>
 
       <!-- this is the velocity template built in to Confluence that displays the standard keysight footer -->
       <resource name="view" type="confluence-velocity" location="/com/keysight/keysight-theme/templates/keysight-header.vm"></resource>
@@ -25,7 +57,67 @@
             <param name="themes" value="com.keysight.keysight-theme:keysight-theme-full"/>
          </condition>
          <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-web-dark-gray-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-gray-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-dark-blue-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-purple-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-dark-red-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-red-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-orange-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-light-blue-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-green-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-yellow-theme-full"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
             <param name="themes" value="com.keysight.keysight-theme:keysight-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-web-dark-gray-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-gray-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-dark-blue-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-purple-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-dark-red-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-red-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-orange-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-light-blue-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-green-theme-footer"/>
+         </condition>
+         <condition class="com.atlassian.confluence.plugin.descriptor.web.conditions.ActiveThemeCondition">
+            <param name="themes" value="com.keysight.keysight-theme:keysight-yellow-theme-footer"/>
          </condition>
       </conditions>
 
