@@ -18,7 +18,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Path("/admin-config/")
 public class RestAdminConfigService {
@@ -56,7 +58,7 @@ public class RestAdminConfigService {
     @PUT
     @Path("configuration")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putConfiguration(final PluginConfig pluginConfig, @Context HttpServletRequest request) {
+    public Response putConfiguration(final PluginConfig pluginConfig,  @Context HttpServletRequest request) {
         if (!isAuthorized(request)) {
             return Response.status(Status.UNAUTHORIZED).build();
         }
@@ -95,6 +97,8 @@ public class RestAdminConfigService {
         }
 
         transactionTemplate.execute(() -> {
+            storePassword(pluginConfig.getPass());
+
             PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
             pluginSettings.put(PluginConfig.class.getName() + "_profiles.xml", pluginConfig.getXml());
             return null;
@@ -117,6 +121,29 @@ public class RestAdminConfigService {
             pluginConfig.setXml((String) settings.get(PluginConfig.class.getName() + ".xml"));
             return pluginConfig;
         })).build();
+    }
+
+    private void storePassword(Map<String, String> passwords) {
+        transactionTemplate.execute((TransactionCallback<Object>)()->{
+            PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+            HashMap<String, String> tempPasswordMap = (HashMap<String, String>) settings.get(PluginConfig.class.getName() + "_passwordMap");
+            if (tempPasswordMap == null) {
+                tempPasswordMap = new HashMap<>();
+            }
+
+            final HashMap<String, String> passwordMap = tempPasswordMap;
+
+            passwords.forEach((profileName, password) -> {
+                if (passwordMap.containsKey(profileName)) {
+                    passwordMap.remove(profileName);
+                }
+
+                passwordMap.put(profileName, password);
+            });
+
+            settings.put(PluginConfig.class.getName() + "_passwordMap", passwordMap);
+            return passwords;
+        });
     }
 
     // Checks if the user has permissions for the admin page

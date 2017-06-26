@@ -102,7 +102,10 @@ public class DatabaseQuery implements Macro {
 
         setDatabaseType(profile.databaseType);
         String username = profile.databaseUsername;
-        String password = profile.databasePassword;
+
+        // Fetch the password from the authmap, where the profile name is the key.
+        String password = pluginHelper.getAuthMap().get(profile.profileName);
+
         String subProtocol = StringUtils.lowerCase(getDatabaseType());
 
         if (subProtocol.equals("microsoft sql server")) {

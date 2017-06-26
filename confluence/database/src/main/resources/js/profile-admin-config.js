@@ -157,7 +157,7 @@ profilesConfigHelper = (function($) {
                     var databaseServer = atob($(this).find("database-server").html());
                     var databasePort = atob($(this).find("database-port").html());
                     var databaseUsername = atob($(this).find("database-username").html());
-                    var databasePassword = atob($(this).find("database-password").html());
+                    var databasePassword = "*****";
                     var connectionStringSuffix = atob($(this).find("connection-string-suffix").html());
                     var db2Selected = "";
                     var derbySelected = "";
@@ -243,9 +243,16 @@ profilesConfigHelper = (function($) {
 
     function saveConfig() {
         var savedProfiles = new Array();
+        var profileAuth = {};
 
         AJS.$(".edit-connection-profile").each(function(index) {
             var profileId = $(this).attr("connection-profile-id");
+
+            var password = $("#database-password-" + profileId).val();
+
+            if (password != "*****") {
+                profileAuth[$("#profile-name-" + profileId).val()] = password;
+            }
 
             savedProfiles.push("<saved-profile>" +
                 "<profile-name>" + btoa($("#profile-name-" + profileId).val()) + "</profile-name>" +
@@ -257,7 +264,7 @@ profilesConfigHelper = (function($) {
                 "<database-server>" + btoa($("#database-server-" + profileId).val()) + "</database-server>" +
                 "<database-port>" + btoa($("#database-port-" + profileId).val()) + "</database-port>" +
                 "<database-username>" + btoa($("#database-username-" + profileId).val()) + "</database-username>" +
-                "<database-password>" + btoa($("#database-password-" + profileId).val()) + "</database-password>" +
+                "<database-password>" + "*****" + "</database-password>" +
                 "<connection-string-suffix>" + btoa($("#connection-string-suffix-" + profileId).val()) + "</connection-string-suffix>" +
                 '</saved-profile>');
         });
@@ -278,11 +285,13 @@ profilesConfigHelper = (function($) {
             return;
         }
 
+
+
         AJS.$.ajax({
             url: url,
             type: "PUT",
             contentType: "application/json",
-            data: '{"xml":"' + encodeURIComponent(xmlString) + '"}',
+            data: '{"xml":"' + encodeURIComponent(xmlString) + '", "password":'+JSON.stringify(profileAuth)+'}',
             processData: false
         }).done(function() {
             AJS.tabs.change(jQuery('a[viewtab="true"]'));
