@@ -3,7 +3,7 @@
 
    <!-- Keysight Theme color scheme -->
    <colour-scheme key="keysight-colour-scheme" name="Keysight Color Scheme" class="com.atlassian.confluence.themes.BaseColourScheme">
-       <colour key="property.style.topbarcolour" value="#555555"/>
+       <colour key="property.style.topbarcolour" value="#343434"/>
        <colour key="property.style.breadcrumbstextcolour" value="#E8E8E8"/>
        <colour key="property.style.headerbuttonbasebgcolour" value="#E90029"/>
        <colour key="property.style.headerbuttontextcolour" value="#E8E8E8"/>

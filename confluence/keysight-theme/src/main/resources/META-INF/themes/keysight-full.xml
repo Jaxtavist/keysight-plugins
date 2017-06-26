@@ -18,7 +18,7 @@
       <colour-scheme key="com.keysight.keysight-theme:keysight-colour-scheme"/>
       
       <!-- Put a screenshot example 110x73 -->
-      <resource key="icon" name="keysight-theme-gray.png" type="download" location="/images/theme-images/keysight-theme-gray.png"/>
+      <resource key="icon" name="keysight-theme-gray.png" type="download" location="/images/theme-images/keysight-theme-web-dark-gray.png"/>
 
       <!-- recommended in the example -->
       <param name="includeClassicStyles" value="false"/>

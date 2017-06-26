@@ -19,7 +19,7 @@
       <colour-scheme key="com.keysight.keysight-theme:keysight-colour-scheme"/>
       
       <!-- Put a screenshot example 110x73 -->
-      <resource key="icon" name="themeicon.gif" type="download" location="/images/theme-images/keysight-theme-footer-gray.png"/>
+      <resource key="icon" name="themeicon.gif" type="download" location="/images/theme-images/keysight-theme-footer-web-dark-gray.png"/>
 
       <!-- recommended in the example -->
       <param name="includeClassicStyles" value="false"/>
