@@ -24,9 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
 import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
+import java.util.*;
 
 public class PluginHelper {
     // note, may need to load jdb2jcc.jar and db2jcc_license_cu.jar
@@ -82,6 +80,8 @@ public class PluginHelper {
     private Element root;
     private Element profileRoot;
 
+    private Map<String, String> passwordMap;
+
     public PluginHelper(final PluginSettingsFactory pluginSettingsFactory,
                         final TransactionTemplate transactionTemplate) {
         try {
@@ -103,6 +103,16 @@ public class PluginHelper {
                 PluginConfig pluginConfig1 = new PluginConfig();
                 pluginConfig1.setXml((String) settings.get(PluginConfig.class.getName() + "_profiles.xml"));
                 return pluginConfig1;
+            });
+
+            passwordMap = transactionTemplate.execute((TransactionCallback<Map<String, String>>)()->{
+                PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
+                HashMap<String, String> localPasswordMap = (HashMap<String, String>) settings.get(PluginConfig.class.getName() + "_passwordMap");
+                if (localPasswordMap == null) {
+                    localPasswordMap = new HashMap<>();
+                }
+
+                return localPasswordMap;
             });
 
             String profilesXml = URLDecoder.decode(profiles.getXml(), "UTF-8");
@@ -286,6 +296,10 @@ public class PluginHelper {
 
     public ArrayList<String> getAuthorizedGroups() {
         return new ArrayList<String>(Arrays.asList(StringUtils.split(this.configAuthorizedGroups, ",")));
+    }
+
+    public Map<String, String> getAuthMap() {
+        return passwordMap;
     }
 }
 
