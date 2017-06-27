@@ -45,8 +45,10 @@
                         <Import-Package>
                             org.springframework.osgi.*;resolution:="optional",
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
+                            com.atlassian.confluence.pages,
                             com.atlassian.confluence.plugin.services,
                             com.atlassian.confluence.setup.settings,
+                            com.atlassian.confluence.spaces,
                             com.atlassian.confluence.xhtml.api,
                             com.atlassian.sal.api.user,
                             com.atlassian.sal.api.auth,
