@@ -1,5 +1,6 @@
 package com.keysight.database.rest;
 
+import com.atlassian.confluence.macro.MacroExecutionException;
 import com.atlassian.confluence.user.UserAccessor;
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
@@ -8,8 +9,10 @@ import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
 import com.atlassian.sal.api.user.UserProfile;
+import com.keysight.database.helpers.DatabaseQueryHelper;
 import com.keysight.database.helpers.PluginConfig;
 import com.keysight.database.helpers.PluginHelper;
+import com.keysight.database.macros.DatabaseQuery;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
@@ -17,6 +20,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -105,6 +109,21 @@ public class RestAdminConfigService {
         });
 
         return Response.noContent().build();
+    }
+
+    @GET
+    @Path("profiles/test/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response testProfile(@Context HttpServletRequest request, @PathParam("name") String name) {
+        PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
+        Connection testConnect;
+        try {
+            testConnect = DatabaseQueryHelper.createConnection(name, pluginHelper);
+        } catch (MacroExecutionException e) {
+            return Response.serverError().entity("Error creating connection: "+e.getMessage()).build();
+        }
+
+        return Response.ok(transactionTemplate.execute((TransactionCallback<Object>) () -> testConnect != null)).build();
     }
 
     @GET
