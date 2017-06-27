@@ -16,16 +16,18 @@ import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 @Scanned
 public class ComponentImports
 {
+    @ComponentImport com.atlassian.confluence.pages.PageManager                     pageManager;
     @ComponentImport com.atlassian.confluence.plugin.services.VelocityHelperService velocityHelperService;
     @ComponentImport com.atlassian.confluence.setup.settings.SettingsManager        settingsManager;
-    @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
+    @ComponentImport com.atlassian.confluence.spaces.SpaceManager                   spaceManager;
     @ComponentImport com.atlassian.confluence.user.UserAccessor                     userAccessor;
+    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
+    @ComponentImport com.atlassian.core.task.MultiQueueTaskManager                  multiQueueTaskManager;
     @ComponentImport com.atlassian.sal.api.auth.LoginUriProvider                    loginUriProvider;
     @ComponentImport com.atlassian.sal.api.pluginsettings.PluginSettingsFactory     pluginSettingsFactory;
     @ComponentImport com.atlassian.sal.api.transaction.TransactionTemplate          transactionTemplate;
+    @ComponentImport com.atlassian.sal.api.user.UserManager                         userManager;
     @ComponentImport com.atlassian.templaterenderer.TemplateRenderer                templateRenderer;
-    @ComponentImport com.atlassian.confluence.xhtml.api.XhtmlContent                xhtmlUtils;
-    @ComponentImport com.atlassian.core.task.MultiQueueTaskManager                  multiQueueTaskManager;
 
     private ComponentImports()
     {

@@ -4,7 +4,10 @@ import com.atlassian.confluence.content.render.xhtml.ConversionContext;
 import com.atlassian.confluence.macro.Macro;
 import com.atlassian.confluence.macro.MacroExecutionException;
 import com.atlassian.confluence.mail.template.ConfluenceMailQueueItem;
+import com.atlassian.confluence.pages.PageManager;
 import com.atlassian.confluence.plugin.services.VelocityHelperService;
+import com.atlassian.confluence.spaces.SpaceManager;
+import com.atlassian.confluence.setup.settings.SettingsManager;
 import com.atlassian.confluence.user.UserAccessor;
 import com.atlassian.core.task.MultiQueueTaskManager;
 import com.atlassian.mail.queue.MailQueueItem;
@@ -31,38 +34,56 @@ public class DatabaseQuery implements Macro {
     private final static String QUERY_ISVISIBLE = "show-query";
     private final static String COLLAPSE_QUERY = "collapse-query";
 
+    private final PageManager pageManager;
     private final PluginSettingsFactory pluginSettingsFactory;
-    private final TransactionTemplate transactionTemplate;
-    private final VelocityHelperService velocityHelperService;
-    private final UserManager userManager;
-    private final UserAccessor userAccessor;
+    private final SettingsManager settingsManager;
+    private final SpaceManager spaceManager;
     private final MultiQueueTaskManager taskManager;
+    private final TransactionTemplate transactionTemplate;
+    private final UserAccessor userAccessor;
+    private final UserManager userManager;
+    private final VelocityHelperService velocityHelperService;
     private final MailService mailService;
 
     private Connection connect = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
 
-    public DatabaseQuery(PluginSettingsFactory pluginSettingsFactory,
-                         VelocityHelperService velocityHelperService,
-                         TransactionTemplate transactionTemplate,
-                         UserManager userManger,
-                         UserAccessor userAccessor,
-                         MultiQueueTaskManager taskManager
+    public DatabaseQuery( PageManager pageManager,
+                          PluginSettingsFactory pluginSettingsFactory,
+                          SettingsManager settingsManager,
+                          SpaceManager spaceManager,
+                          MultiQueueTaskManager taskManager,
+                          TransactionTemplate transactionTemplate,
+                          UserAccessor userAccessor,
+                          UserManager userManger,
+                          VelocityHelperService velocityHelperService
     ) {
+        this.pageManager = pageManager;
         this.pluginSettingsFactory = pluginSettingsFactory;
+        this.settingsManager = settingsManager;
+        this.spaceManager    = spaceManager;
+        this.taskManager     = taskManager;
         this.transactionTemplate = transactionTemplate;
-        this.velocityHelperService = velocityHelperService;
         this.userAccessor = userAccessor;
         this.userManager = userManger;
-        this.taskManager     = taskManager;
+        this.velocityHelperService = velocityHelperService;
+
         mailService = new MailServiceImpl( taskManager );
     }
 
     public String execute(Map<String, String> parameters, String body, ConversionContext context)
             throws MacroExecutionException {
+        String baseUrl = settingsManager.getGlobalSettings().getBaseUrl();
         String template = "/com/keysight/database/templates/database-query.vm";
         Map<String, Object> velocityContext = velocityHelperService.createDefaultVelocityContext();
+
+        String fullName = userManager.getRemoteUser().getFullName();
+        String userName = userManager.getRemoteUsername();
+        String spaceKey = context.getSpaceKey();
+        String spaceName = spaceManager.getSpace( spaceKey ).getName();
+        String pageName = context.getEntity().getTitle();
+        String pageUrl = baseUrl + context.getEntity().getUrlPath();
 
         PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
 
@@ -131,8 +152,12 @@ public class DatabaseQuery implements Macro {
 
                 // Did more than softTimer pass?
                 if (endQuery - startQuery > softTimer) {
-                    sendEmail(pluginHelper, "Soft Query Limit Warning", userManager.getRemoteUser().getUsername() + " has " +
-                            "preformed a query which took longer than " + softTimer + " seconds. Seconds Taken: " + (endQuery - startQuery));
+                    String message = "<p>The user <b>" + fullName + " ( " + userName + " )</b> executed an sql query\n "
+                            + "using the Database Connection Macro on the page <a href=\"" + pageUrl + "\">" + pageName + "</a>\n "
+                            + "in the space <b>" + spaceName + "</b>. It took " + (endQuery - startQuery) + " seconds\n"
+                            + "exceeding the soft time limit of " + softTimer + ".</p>\n";
+
+                    sendEmail(pluginHelper, "Confluence DB Connctory Soft Timout Limit Warning", message.toString() );
                 }
 
                 // Get the Column Names
@@ -154,12 +179,13 @@ public class DatabaseQuery implements Macro {
 
                 // Did we pass the soft row limit?
                 if (rowCount > softRowLimit) {
-                    StringBuilder message = new StringBuilder();
-                    message.append( "The user \"" + userManager.getRemoteUser().getUsername() + "\" executed an sql query\n "
-                                    + "using the Database Connection Macro on the page \"" + context.getEntity().getTitle() + "\"\n "
-                                    + "in the space with the key \"" + context.getSpaceKey() + "\" which returned " + rowCount + " rows\n "
-                                    + "exceeding the soft row limit of " + softRowLimit + ".\n" );
-                    sendEmail(pluginHelper, "Soft Query Limit Warning", message.toString() );
+
+                    String message = "<p>The user <b>" + fullName + " ( " + userName + " )</b> executed an sql query\n "
+                                    + "using the Database Connection Macro on the page <a href=\"" + pageUrl + "\">" + pageName + "</a>\n "
+                                    + "in the space <b>" + spaceName + "</b>. It returned " + rowCount + " rows\n "
+                                    + "exceeding the soft row limit of " + softRowLimit + ".</p>\n";
+
+                    sendEmail(pluginHelper, "Confluence DB Connector Soft Row Limit Warning", message.toString() );
                 }
 
                 velocityContext.put("dataRows", dataRows);
