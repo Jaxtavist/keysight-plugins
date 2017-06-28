@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class DatabaseQueryHelper
 {
-    public static Connection createConnection(String profileName, PluginHelper pluginHelper) throws MacroExecutionException {
+    public static Connection createConnection(String profileId, PluginHelper pluginHelper) throws MacroExecutionException {
         // Get all stored profiles
         NodeList profileNodes = pluginHelper.getProfiles();
         ArrayList<ConnectionProfile> profiles = new ArrayList<>();
@@ -32,19 +32,19 @@ public class DatabaseQueryHelper
 
         ConnectionProfile profile = null;
         for (ConnectionProfile tempProfile : profiles) {
-            if (tempProfile.getName() != null && tempProfile.getName().equals(profileName)) {
+            if (tempProfile.getId() != null && tempProfile.getId().equals(profileId)) {
                 profile = tempProfile;
             }
         }
 
         if (profile == null) {
-            throw new MacroExecutionException("No profile found with that name for which you are authorized: " + profileName);
+            throw new MacroExecutionException("No profile found with that ID for which you are authorized: " + profileId);
         }
 
         String username = profile.databaseUsername;
 
         // Fetch the password from the authmap, where the profile name is the key.
-        String password = pluginHelper.getAuthMap().get(profile.profileName);
+        String password = pluginHelper.getAuthMap().get(profile.profileId);
         System.out.println("Pass: "+password);
 
         String subProtocol = StringUtils.lowerCase(profile.databaseType);

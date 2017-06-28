@@ -45,6 +45,7 @@ profilesConfigHelper = (function($) {
 
     methods['updateProfile'] = function(profileId) {
         $("#view-profile-name-" + profileId).html($("#profile-name-" + profileId).val());
+        $("#view-profile-id-" + profileId).html($("#profile-id-" + profileId).val());
         $("#view-profile-description-" + profileId).html($("#profile-description-" + profileId).val());
         $("#view-authorized-users-" + profileId).html($("#authorized-users-" + profileId).val());
         $("#view-authorized-groups-" + profileId).html($("#authorized-groups-" + profileId).val());
@@ -99,6 +100,7 @@ profilesConfigHelper = (function($) {
     methods['addConnectionProfile'] = function(e) {
         var id = makeRandomViewId();
         var profileName = "";
+        var profileId = id;
         var profileDescription = "";
         var authorizedUsers = "";
         var authorizedGroups = "";
@@ -121,6 +123,7 @@ profilesConfigHelper = (function($) {
 
         AJS.$("#connection-profiles").append(Keysight.Database.Admin.Config.Templates.connectionProfile({
             id: id,
+            profileId: profileId,
             profileName: profileName,
             profileDescription: profileDescription,
             authorizedUsers: authorizedUsers,
@@ -224,6 +227,13 @@ profilesConfigHelper = (function($) {
                     var postgresSqlSelected = "";
                     var sybaseSelected = "";
 
+                    var profileId;
+                    if ($(this).find("profile-id").length == 0) {
+                        profileId = id;
+                    } else {
+                        profileId = atob($(this).find("profile-id").html());
+                    }
+
                     if (databaseType == "DB2") {
                         db2Selected = "selected";
                     } else if (databaseType == "Derby") {
@@ -271,6 +281,7 @@ profilesConfigHelper = (function($) {
                     AJS.$("#connection-profiles").append(Keysight.Database.Admin.Config.Templates.connectionProfile({
                         id: id,
                         profileName: profileName,
+                        profileId: profileId,
                         profileDescription: profileDescription,
                         authorizedUsers: authorizedUsers,
                         authorizedGroups: authorizedGroups,
@@ -325,7 +336,7 @@ profilesConfigHelper = (function($) {
                 if (profileId == savedId) {
                     var password = $("#database-password-" + profileId).val();
                     if (password != "*****") {
-                        profileAuth[$("#profile-name-" + profileId).val()] = password;
+                        profileAuth[$("#view-profile-id-" + profileId).html()] = password;
                     }
                 }
 
@@ -340,17 +351,18 @@ profilesConfigHelper = (function($) {
                 // We look at the #view-... tags here because only the profile we hit save on will update the view page
                 // The others should be unchanged even if the user entered data.
                 savedProfiles.push("<saved-profile>" +
-                    "<profile-name>" + btoa($("#view-profile-name-" + profileId).html()) + "</profile-name>" +
-                    "<profile-description>" + btoa($("#view-profile-description-" + profileId).html()) + "</profile-description>" +
-                    "<authorized-users>" + btoa($("#view-authorized-users-" + profileId).html()) + "</authorized-users>" +
-                    "<authorized-groups>" + btoa($("#view-authorized-groups-" + profileId).html()) + "</authorized-groups>" +
-                    "<database-type>" + btoa($("#view-database-type-" + profileId).html()) + "</database-type>" +
-                    "<database-name>" + btoa($("#view-database-name-" + profileId).html()) + "</database-name>" +
-                    "<database-server>" + btoa($("#view-database-server-" + profileId).html()) + "</database-server>" +
-                    "<database-port>" + btoa($("#view-database-port-" + profileId).html()) + "</database-port>" +
-                    "<database-username>" + btoa($("#view-database-username-" + profileId).html()) + "</database-username>" +
-                    "<database-password>" + "*****" + "</database-password>" +
-                    "<connection-string-suffix>" + btoa($("#view-connection-string-suffix-" + profileId).html()) + "</connection-string-suffix>" +
+                        "<profile-name>" + btoa($("#view-profile-name-" + profileId).html()) + "</profile-name>" +
+                        "<profile-id>" + btoa($("#view-profile-id-" + profileId).html()) + "</profile-id>" +
+                        "<profile-description>" + btoa($("#view-profile-description-" + profileId).html()) + "</profile-description>" +
+                        "<authorized-users>" + btoa($("#view-authorized-users-" + profileId).html()) + "</authorized-users>" +
+                        "<authorized-groups>" + btoa($("#view-authorized-groups-" + profileId).html()) + "</authorized-groups>" +
+                        "<database-type>" + btoa($("#view-database-type-" + profileId).html()) + "</database-type>" +
+                        "<database-name>" + btoa($("#view-database-name-" + profileId).html()) + "</database-name>" +
+                        "<database-server>" + btoa($("#view-database-server-" + profileId).html()) + "</database-server>" +
+                        "<database-port>" + btoa($("#view-database-port-" + profileId).html()) + "</database-port>" +
+                        "<database-username>" + btoa($("#view-database-username-" + profileId).html()) + "</database-username>" +
+                        "<database-password>" + "*****" + "</database-password>" +
+                        "<connection-string-suffix>" + btoa($("#view-connection-string-suffix-" + profileId).html()) + "</connection-string-suffix>" +
                     '</saved-profile>');
             });
         } catch (err) {

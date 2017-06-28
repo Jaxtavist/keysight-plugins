@@ -14,14 +14,11 @@ import com.atlassian.mail.queue.MailQueueItem;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
-import com.keysight.database.helpers.ConnectionProfile;
 import com.keysight.database.helpers.DatabaseQueryHelper;
 import com.keysight.database.helpers.PluginHelper;
 import com.keysight.database.helpers.mail.MailService;
 import com.keysight.database.helpers.mail.MailServiceImpl;
 import org.apache.commons.lang3.StringUtils;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 import java.sql.*;
 import java.util.*;
@@ -30,7 +27,7 @@ import java.util.Date;
 import static com.atlassian.confluence.mail.template.ConfluenceMailQueueItem.MIME_TYPE_HTML;
 
 public class DatabaseQuery implements Macro {
-    private final static String PROFILE_NAME = "profile";
+    private final static String PROFILE_ID = "profile";
     private final static String QUERY_ISVISIBLE = "show-query";
     private final static String COLLAPSE_QUERY = "collapse-query";
 
@@ -93,7 +90,7 @@ public class DatabaseQuery implements Macro {
         ArrayList<String> columnNames = new ArrayList<>();
         ArrayList<ArrayList<String>> dataRows = new ArrayList<>();
 
-        String activeProfile = parameters.get(PROFILE_NAME);
+        String activeProfile = parameters.get(PROFILE_ID);
 
         connect = DatabaseQueryHelper.createConnection(activeProfile, pluginHelper);
 

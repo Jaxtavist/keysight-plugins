@@ -71,6 +71,8 @@ var dbProfiles = (function($) {
      * @param dropDown JQuery selector for the HTML select element to be populated.
      */
     function bindAsyncDropDown(dropDown) {
+
+
         // Remove the link to the config page if the user doesn't have access.
         AJS.$.ajax({
             async: true,
@@ -78,15 +80,15 @@ var dbProfiles = (function($) {
             dataType: "json",
             timeout: 10000, // 10 seconds,
             error: function(xhr, textStatus, errorThrown) {
-                console.error("Couldn't determine whether the current user has profile access.", errorThrown);
+                console.error("Couldn't determine whether the current user has profile access, assuming no. ", errorThrown);
+                $("#profileMod").hide();
             },
             success: function(data) {
                 if (data = false) {
-                  $("#profileMod").remove()
+                  $("#profileMod").hide()
                 }
             }
         });
-
 
         // Load the profiles from Confluence
         getProfilesAsync(function(profiles) {
@@ -112,10 +114,14 @@ var dbProfiles = (function($) {
                     dropDown.append(infoOption);
 
                     $.each(profiles, function(index, profile) {
+                        if (profile.profileId == currentValue) {
+                            var option = $('option[value="'+currentValue+'"]');
+                            option.text(profile.profileName);
+                        }
                         // Don't append a duplicate profile
-                        if (profile.profileName != currentValue) {
+                        if (profile.profileId != currentValue) {
                             var option = $("<option />");
-                            option.val(profile.profileName);
+                            option.val(profile.profileId);
                             option.text(profile.profileName);
 
                             dropDown.append(option);
@@ -147,7 +153,7 @@ var dbProfiles = (function($) {
     }
 
     /**
-     * Asynchronously retrieves the current set of syntax highlighters currently installed for the Code macro.
+     * Asynchronously retrieves the current set profiles that the active user has access to.
      *
      * @param successHandler Callback to invoke if the retrieval is successful
      * @param errorHandler Callback to invoke if the retrieval fails.

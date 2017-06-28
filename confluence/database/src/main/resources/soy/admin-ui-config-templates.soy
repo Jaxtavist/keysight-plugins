@@ -54,6 +54,7 @@
  * Connection Profile
  * @param id
  * @param profileName
+ * @param profileId
  * @param profileDescription
  * @param authorizedUsers
  * @param authorizedGroups
@@ -86,6 +87,7 @@
       </ul>
       <div class="tabs-pane active-pane" id="view-{$id}">
         <div class="connection-profile view-connection-profile view-connection-profile-{$id}">
+          <div id="view-profile-id-{$id}" style="display: none;">{$profileId}</div>
           <table border="0">
             <tr>
               <th>Profile Name</th>

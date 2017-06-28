@@ -15,6 +15,8 @@ public class ConnectionProfile {
     @XmlElement
     public String profileName;
     @XmlElement
+    public String profileId;
+    @XmlElement
     public String profileDescription;
     @XmlElement
     public String authorizedUsers;
@@ -37,6 +39,7 @@ public class ConnectionProfile {
     public ConnectionProfile(Element profile) {
         try {
             profileName = new String(Base64.decodeBase64(profile.getElementsByTagName("profile-name").item(0).getTextContent()), "UTF-8");
+            profileId = new String(Base64.decodeBase64(profile.getElementsByTagName("profile-id").item(0).getTextContent()), "UTF-8");
             profileDescription = new String(Base64.decodeBase64(profile.getElementsByTagName("profile-description").item(0).getTextContent()), "UTF-8");
             authorizedUsers = new String(Base64.decodeBase64(profile.getElementsByTagName("authorized-users").item(0).getTextContent()), "UTF-8");
             authorizedGroups = new String(Base64.decodeBase64(profile.getElementsByTagName("authorized-groups").item(0).getTextContent()), "UTF-8");
@@ -54,6 +57,9 @@ public class ConnectionProfile {
 
     public String getName() {
         return profileName;
+    }
+    public String getId() {
+        return profileId;
     }
 
     public ArrayList<String> getAuthorizedUsers() {
