@@ -75,6 +75,7 @@ public class PluginHelper {
     private String rowLimitValue;
     private String timeoutLimitType;
     private String timeoutLimitValue;
+    private Boolean doNotifyAll;
     private String notificationEmail;
 
     private Element root;
@@ -147,6 +148,8 @@ public class PluginHelper {
             rowLimitValue = new String( Base64.decodeBase64(getValueOfElement("row-limit-value")), "UTF-8");
             timeoutLimitType = new String( Base64.decodeBase64(getValueOfElement("timeout-limit-type")), "UTF-8");
             timeoutLimitValue = new String( Base64.decodeBase64(getValueOfElement("timeout-limit-value")), "UTF-8");
+
+            doNotifyAll = Boolean.parseBoolean(getValueOfElement("notify-all"));
             notificationEmail = new String( Base64.decodeBase64(getValueOfElement("notification-email")), "UTF-8");
 
             if (!StringUtils.isEmpty(jdbcDriverDirectory)) {
@@ -309,15 +312,16 @@ public class PluginHelper {
     public String getTimeoutLimitType() { return timeoutLimitType; }
     public String getTimeoutLimitValue() { return timeoutLimitValue; }
     public String getNotificationEmail() { return notificationEmail; }
+    public Boolean getDoNotifyAll() { return doNotifyAll; }
 
     // Get authorized user or group by splitting the xml attribute on commas
 
     public ArrayList<String> getAuthorizedUsers() {
-        return new ArrayList<String>(Arrays.asList(StringUtils.split(this.configAuthorizedUsers, ",")));
+        return new ArrayList<>(Arrays.asList(StringUtils.split(this.configAuthorizedUsers, ",")));
     }
 
     public ArrayList<String> getAuthorizedGroups() {
-        return new ArrayList<String>(Arrays.asList(StringUtils.split(this.configAuthorizedGroups, ",")));
+        return new ArrayList<>(Arrays.asList(StringUtils.split(this.configAuthorizedGroups, ",")));
     }
 
     public Map<String, String> getAuthMap() {

@@ -63,6 +63,7 @@ databaseConfigHelper = (function($) {
                     "    <row-limit-value></row-limit-value>\n"+
                     "    <timeout-limit-type></timeout-limit-type>\n"+
                     "    <timeout-limit-value></timeout-limit-value>\n"+
+                    "    <notify-all></notify-all>\n"+
                     "    <notification-email></notification-email>\n"+
                     "</plugin-configuration>"
                 ));
@@ -82,6 +83,7 @@ databaseConfigHelper = (function($) {
                         "    <row-limit-value></row-limit-value>\n"+
                         "    <timeout-limit-type></timeout-limit-type>\n"+
                         "    <timeout-limit-value></timeout-limit-value>\n"+
+                        "    <notify-all></notify-all>\n"+
                         "    <notification-email></notification-email>\n"+
                         "</plugin-configuration>"
                     ));
@@ -95,6 +97,7 @@ databaseConfigHelper = (function($) {
             var rowLimitValue = atob($xml.find("row-limit-value").html());
             var timeoutLimitType = atob($xml.find("timeout-limit-type").html());
             var timeoutLimitValue = atob($xml.find("timeout-limit-value").html());
+            var notifyAll = $xml.find("notify-all").html();
             var notificationEmail = atob($xml.find("notification-email").html());
 
             // If we failed to get the fields from the xml, default to empty string;
@@ -130,6 +133,7 @@ databaseConfigHelper = (function($) {
             AJS.$("#row-limit-value").val( rowLimitValue );
             AJS.$("#timeout-limit-type").val( timeoutLimitType );
             AJS.$("#timeout-limit-value").val( timeoutLimitValue );
+            AJS.$("#notify-all").prop('checked', notifyAll);
             AJS.$("#notification-email").val( notificationEmail );
 
             AJS.$("#save-config-auth").click(function(e) {
@@ -163,6 +167,7 @@ databaseConfigHelper = (function($) {
             '   <row-limit-value>' + btoa($("#row-limit-value").val()) + "</row-limit-value>\n" +
             '   <timeout-limit-type>' + btoa($("#timeout-limit-type").val()) + "</timeout-limit-type>\n" +
             '   <timeout-limit-value>' + btoa($("#timeout-limit-value").val()) + "</timeout-limit-value>\n" +
+            '   <notify-all>' + $("#notify-all").prop("checked") + "</notify-all>\n" +
             '   <notification-email>' + btoa($("#notification-email").val()) + "</notification-email>\n" +
             '</plugin-configuration>' + "\n";
 

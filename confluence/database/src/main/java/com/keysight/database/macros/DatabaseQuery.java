@@ -15,6 +15,7 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
 import com.keysight.database.helpers.DatabaseQueryHelper;
+import com.keysight.database.helpers.DatabaseVelocityHelper;
 import com.keysight.database.helpers.PluginHelper;
 import com.keysight.database.helpers.mail.MailService;
 import com.keysight.database.helpers.mail.MailServiceImpl;
@@ -85,6 +86,7 @@ public class DatabaseQuery implements Macro {
         PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
 
         // Clean up body by removing extra whitespace, newlines, etc.
+        String rawBody = body;
         body = body.replaceAll("\\s+", " ");
 
         ArrayList<String> columnNames = new ArrayList<>();
@@ -182,7 +184,17 @@ public class DatabaseQuery implements Macro {
                                     + "in the space <b>" + spaceName + "</b>. It returned " + rowCount + " rows\n "
                                     + "exceeding the soft row limit of " + softRowLimit + ".</p>\n";
 
-                    sendEmail(pluginHelper, "Confluence DB Connector Soft Row Limit Warning", message.toString() );
+                    sendEmail(pluginHelper, "Confluence DB Connector Soft Row Limit Warning", message);
+                }
+
+                if (pluginHelper.getDoNotifyAll()) {
+                    String message = "<p>The user <b>" + fullName + " ( " + userName + " )</b> executed an sql query\n "
+                            + "using the Database Connection Macro on the page <a href=\"" + pageUrl + "\">" + pageName + "</a>\n "
+                            + "in the space <b>" + spaceName + "</b>. It returned " + rowCount + " rows\n "
+                            + "and took " + (endQuery - startQuery) + " seconds.</p>\n";
+
+
+                    sendEmail(pluginHelper, "Confluence DB Connector Query Log", message);
                 }
 
                 velocityContext.put("dataRows", dataRows);
@@ -202,7 +214,7 @@ public class DatabaseQuery implements Macro {
             codeViewOfBody.append("<ac:parameter ac:name=\"collapse\">true</ac:parameter>");
         }
         codeViewOfBody.append("   <ac:plain-text-body><![CDATA[");
-        codeViewOfBody.append(body);
+        codeViewOfBody.append(rawBody);
         codeViewOfBody.append("]]></ac:plain-text-body>");
         codeViewOfBody.append("</ac:structured-macro>");
 
