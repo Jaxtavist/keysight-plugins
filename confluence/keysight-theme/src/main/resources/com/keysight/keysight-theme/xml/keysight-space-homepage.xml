@@ -10,6 +10,32 @@
 
 			<h1><span style="color: rgb(85,85,85);">Here are some tasks you should complete to finish setting up your space</span></h1>
 
+			<h3>Set the Space Theme</h3>
+			<ac:structured-macro ac:name="expand" ac:schema-version="1">
+				<ac:parameter ac:name="title">See the detailed instructions...</ac:parameter>
+				<ac:rich-text-body> <p>The Keysight Theme plugin, provides several variations
+					of the Keysight look.  They all include the Keysight colors and the
+					footer.  The primary variation, the <b>Keysight Theme</b> includes
+					the header required by the Keysight intranet standards.  This is the
+					appropriate theme to use when sharing information publicly such as when
+					Confluence is used to host department home page.  When the Confluence space
+					is a working area, such as a collaboration point for a project
+					team, the header just takes up valuable space in the browser.  As such
+					it is recommended to use the <b>Keysight Footer Theme</b> which provides
+					only the colors and footer.</p>
+					<p>To set the theme, the space administrator can select the <b>Look and Feel</b>
+						option in the <b>Space Tools</b>.  The <b>Themes</b> tab will provide a list
+						of themes that can be selected for the space.</p>
+				</ac:rich-text-body>
+			</ac:structured-macro>
+			<ac:task-list>
+				<ac:task>
+					<ac:task-id>1</ac:task-id>
+					<ac:task-status>incomplete</ac:task-status>
+					<ac:task-body><span>Decide on the appropriate space theme and change it if necessary.</span></ac:task-body>
+				</ac:task>
+			</ac:task-list>
+
 			<h3>Configure the Sidebar</h3>
 			<ac:structured-macro ac:name="expand" ac:schema-version="1">
 				<ac:parameter ac:name="title">See the detailed instructions...</ac:parameter>
@@ -23,17 +49,17 @@
 			</ac:structured-macro>
 			<ac:task-list>
 				<ac:task>
-					<ac:task-id>1</ac:task-id>
+					<ac:task-id>2</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body>Configure the Sidebar - Add Space Shortcuts</ac:task-body>
 				</ac:task>
 				<ac:task>
-					<ac:task-id>2</ac:task-id>
+					<ac:task-id>3</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body>Configure the Sidebar - Disable the Blog if it's not going to be used</ac:task-body>
 				</ac:task>
 				<ac:task>
-					<ac:task-id>3</ac:task-id>
+					<ac:task-id>4</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body>Configure the Sidebar - Set the space icon</ac:task-body>
 				</ac:task>
@@ -54,12 +80,12 @@
 			</ac:structured-macro>
 			<ac:task-list>
 				<ac:task>
-					<ac:task-id>4</ac:task-id>
+					<ac:task-id>5</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body>Review and update the Space Description</ac:task-body>
 				</ac:task>
 				<ac:task>
-					<ac:task-id>5</ac:task-id>
+					<ac:task-id>6</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body>Review and update the Space Categories</ac:task-body>
 				</ac:task>
@@ -68,23 +94,23 @@
 			<h3>Update the Home Page</h3>
 			<ac:task-list>
 				<ac:task>
-					<ac:task-id>6</ac:task-id>
+					<ac:task-id>7</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body><span>Edit this page and replace the content with something more interesting.</span></ac:task-body>
 				</ac:task>
 				<ac:task>
-					<ac:task-id>7</ac:task-id>
+					<ac:task-id>8</ac:task-id>
 					<ac:task-status>incomplete</ac:task-status>
 					<ac:task-body><span>Add labels. &nbsp;This helps users identify spaces and pages relevant to their interest. &nbsp;Any label added to the space home page will be automatically propagated to child pages. &nbsp;</span></ac:task-body>
 				</ac:task>
 			</ac:task-list>
 
-			<h3>For new users, be sure to visit&nbsp;</h3>
-			<p>See the <ac:link><ri:space ri:space-key="keysightWikiII" /><ac:plain-text-link-body><![CDATA[Keysight Confluence Home Space]]></ac:plain-text-link-body></ac:link> 
-				for information on using Confluence. &nbsp;In particular, the&nbsp;<ac:link><ri:page ri:space-key="keysightWikiII" ri:content-title="Confluence Style Guide" /></ac:link>
+			<h3>For new users to Confluence...</h3>
+			<p>See the <ac:link><ri:page ri:space-key="atlassianSupport" ri:content-title="Confluence Support" /><ac:plain-text-link-body><![CDATA[Keysight Confluence Support Page]]></ac:plain-text-link-body></ac:link>
+				for information on using Confluence. &nbsp;In particular, the&nbsp;<ac:link><ri:page ri:space-key="atlassianSupport" ri:content-title="Confluence Style Guide" /></ac:link>
 				&nbsp;gives some guidance on which are the best macros to use and when to use them.</p>
 			
-			<p>For any questions, feel free to contact the <a href="mailto:pdl-confluence-admin@keysight.com">Wiki2 Administrators</a>.</p>
+			<p>For any questions, feel free to contact the <a href="mailto:pdl-confluence-admin@keysight.com">Confluence Administrators</a>.</p>
 			
 		</ac:layout-cell>
 	</ac:layout-section>
