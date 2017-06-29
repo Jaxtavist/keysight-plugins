@@ -73,7 +73,7 @@ var dbProfiles = (function($) {
     function bindAsyncDropDown(dropDown) {
 
 
-        // Remove the link to the config page if the user doesn't have access.
+        // Add a link if the user has access.
         AJS.$.ajax({
             async: true,
             url: apiUrl + "profiles/hasAccess",
@@ -81,11 +81,12 @@ var dbProfiles = (function($) {
             timeout: 10000, // 10 seconds,
             error: function(xhr, textStatus, errorThrown) {
                 console.error("Couldn't determine whether the current user has profile access, assuming no. ", errorThrown);
-                $("#profileMod").hide();
             },
             success: function(data) {
-                if (data = false) {
-                  $("#profileMod").hide()
+                if (data != false) {
+                  var linkHtml = '<a id="profileMod" href="'+AJS.params.baseUrl+'/plugins/servlet/database/admin/profile">Modify Profiles</a>'
+                  $(".edit-profile-link").html(linkHtml);
+                  $(".edit-profile-link").before("<hr/>");
                 }
             }
         });

@@ -37,17 +37,15 @@ public class DatabaseQueryHelper {
         return createConnection(profile, pluginHelper);
     }
 
-    public static Connection createConnection(ConnectionProfile profile, PluginHelper pluginHelper) throws MacroExecutionException {
+    public static Connection createConnection
+            (ConnectionProfile profile, PluginHelper pluginHelper) throws MacroExecutionException {
         String username = profile.getDatabaseUsername();
         Connection connect;
         String password = profile.getDatabasePassword();
-        System.out.println("Pass: "+password);
-        if (Objects.equals(password, "*****")) {
+        if (password == null || Objects.equals(password, "*****") || Objects.equals(password, "")) {
             // Fetch the password from the authmap, where the profile name is the key.
             password = pluginHelper.getAuthMap().get(profile.getProfileId());
-            System.out.println("Pass: " + password);
         }
-        System.out.println("Pass: "+password);
 
         String subProtocol = StringUtils.lowerCase(profile.getDatabaseType());
 
