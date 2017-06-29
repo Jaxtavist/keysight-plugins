@@ -15,13 +15,13 @@ import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserManager;
 import com.keysight.database.helpers.DatabaseQueryHelper;
-import com.keysight.database.helpers.DatabaseVelocityHelper;
 import com.keysight.database.helpers.PluginHelper;
 import com.keysight.database.helpers.mail.MailService;
 import com.keysight.database.helpers.mail.MailServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.Date;
 
@@ -156,7 +156,7 @@ public class DatabaseQuery implements Macro {
                             + "in the space <b>" + spaceName + "</b>. It took " + (endQuery - startQuery) + " seconds\n"
                             + "exceeding the soft time limit of " + softTimer + ".</p>\n";
 
-                    sendEmail(pluginHelper, "Confluence DB Connctory Soft Timout Limit Warning", message.toString() );
+                    sendEmail(pluginHelper, "Confluence DB Connctory Soft Timout Limit Warning", message, null);
                 }
 
                 // Get the Column Names
@@ -184,17 +184,21 @@ public class DatabaseQuery implements Macro {
                                     + "in the space <b>" + spaceName + "</b>. It returned " + rowCount + " rows\n "
                                     + "exceeding the soft row limit of " + softRowLimit + ".</p>\n";
 
-                    sendEmail(pluginHelper, "Confluence DB Connector Soft Row Limit Warning", message);
+                    sendEmail(pluginHelper, "Confluence DB Connector Soft Row Limit Warning", message, null);
                 }
 
-                if (pluginHelper.getDoNotifyAll()) {
-                    String message = "<p>The user <b>" + fullName + " ( " + userName + " )</b> executed an sql query\n "
-                            + "using the Database Connection Macro on the page <a href=\"" + pageUrl + "\">" + pageName + "</a>\n "
-                            + "in the space <b>" + spaceName + "</b>. It returned " + rowCount + " rows\n "
-                            + "and took " + (endQuery - startQuery) + " seconds.</p>\n";
+                if (pluginHelper.getLogEmail() != null && !Objects.equals(pluginHelper.getLogEmail(), "")) {
+                    String message = "{'fullName':'"+fullName+"'," +
+                            "'userName':'"+userName+"'," +
+                            "'pageName':'"+pageName+"'," +
+                            "'pageUrl':'"+pageUrl+"'," +
+                            "'spaceName':'"+spaceName+"'," +
+                            "'rowCount':'"+rowCount+"'," +
+                            "'queryTime':'"+(endQuery - startQuery)+"'," +
+                            "'querySql':'"+body+"'," +
+                            "'date':'"+ LocalDateTime.now()+"'}";
 
-
-                    sendEmail(pluginHelper, "Confluence DB Connector Query Log", message);
+                    sendEmail(pluginHelper, "Confluence DB Connector Query Log", message, pluginHelper.getLogEmail());
                 }
 
                 velocityContext.put("dataRows", dataRows);
@@ -223,9 +227,13 @@ public class DatabaseQuery implements Macro {
         return velocityHelperService.getRenderedTemplate(template, velocityContext);
     }
 
-    private void sendEmail(PluginHelper helper, String subject, String body) {
+    private void sendEmail(PluginHelper helper, String subject, String body, String customEmail) {
+        if (customEmail == null || Objects.equals(customEmail, "")) {
+            customEmail = helper.getNotificationEmail();
+        }
+
         try{
-            MailQueueItem mailQueueItem = new ConfluenceMailQueueItem( helper.getNotificationEmail(), subject, body, MIME_TYPE_HTML);
+            MailQueueItem mailQueueItem = new ConfluenceMailQueueItem(customEmail, subject, body, MIME_TYPE_HTML);
             mailService.sendEmail( mailQueueItem );
         } catch( Exception e ){
             System.out.println( "Failed to send email." );

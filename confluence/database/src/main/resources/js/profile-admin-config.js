@@ -13,34 +13,50 @@ profilesConfigHelper = (function($) {
     }
 
     methods['testProfile'] = function(profileId) {
-        var profileName = $("#view-profile-name-" + profileId).html();
+        var profile = {
+            "profileName": ($("#profile-name-" + profileId).val()),
+            "profileId": ($("#profile-id-" + profileId).val()),
+            "profileDescription": ($("#profile-description-" + profileId).val()),
+            "authorizedUsers": ($("#authorized-users-" + profileId).val()),
+            "authorizedGroups": ($("#authorized-groups-" + profileId).val()),
+            "databaseType": ($("#database-type-" + profileId).val()),
+            "databaseName": ($("#database-name-" + profileId).val()),
+            "databaseServer": ($("#database-server-" + profileId).val()),
+            "databasePort": ($("#database-port-" + profileId).val()),
+            "databaseUsername": ($("#database-username-" + profileId).val()),
+            "databasePassword": ($("#database-password-" + profileId).val()),
+            "connectionStringSuffix": ($("#connection-string-suffix-" + profileId).val())
+        }
 
-        $.ajax({
-                url: url + "/test/" + profileName,
-                dataType: "json"
-            }).done(function(res) {
-                if (res == true) {
-                    AJS.messages.success({
-                        title: 'Connection test succeeded.',
-                        body: '<p>Connection was established with specified database.</p>',
-                        fadeout: true,
-                        delay: 3000
-                    });
-                } else {
-                    AJS.messages.error({
-                        title: 'Connection test failed.',
-                        body: '<p>Couldn\'t connect for an unknown reason.</p>',
-                        fadeout: true,
-                        delay: 4000
-                    });
-                }
-            })
-            .fail(function(self, status, error) {
-                AJS.messages.warning({
-                    title: 'Connection test failed.',
-                    body: '<p>' + self.responseText + '</p>'
-                });
-            });
+        AJS.$.ajax({
+            url: url + "/test/",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(profile),
+            processData: false
+          }).done(function(res) {
+              if (res == true) {
+                  AJS.messages.success({
+                      title: 'Connection test succeeded.',
+                      body: '<p>Connection was established with specified database.</p>',
+                      fadeout: true,
+                      delay: 3000
+                  });
+              } else {
+                  AJS.messages.error({
+                      title: 'Connection test failed.',
+                      body: '<p>Couldn\'t connect for an unknown reason.</p>',
+                      fadeout: true,
+                      delay: 4000
+                  });
+              }
+          })
+          .fail(function(self, status, error) {
+              AJS.messages.warning({
+                  title: 'Connection test failed.',
+                  body: '<p>' + self.responseText + '</p>'
+              });
+          });
     }
 
     methods['updateProfile'] = function(profileId) {

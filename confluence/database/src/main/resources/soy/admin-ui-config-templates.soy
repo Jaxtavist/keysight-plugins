@@ -129,11 +129,6 @@
               <th>Connection String</th>
               <td columnspan="3" id="view-connection-string-{$id}" >{$connectionString}</td>
             </tr>
-            <tr>
-              <td columnspan="3">
-                <button style="float:left;" class="aui-button test-profile-button" connection-profile="{$id}">Test Connection</button>
-              </td>
-            </tr>
             /*
             <tr>
               <th>Connection Status</th>
@@ -186,32 +181,33 @@
                   </div>
                   <div class="field-group">
                     <label for="database-name-{$id}">Database Name</label>
-                    <input class="text long-field" id="database-name-{$id}" type="text" name="database-name-{$id}" placeholder="Required" value={$databaseName} required="required">
+                    <input class="text long-field" id="database-name-{$id}" type="text" name="database-name-{$id}" placeholder="Required" value="{$databaseName}" required="required">
                   </div>
                   <div class="field-group">
                     <label for="database-server-{$id}">Database Server</label>
-                    <input class="text long-field" id="database-server-{$id}" type="text" name="database-server-{$id}" placeholder="Required" value={$databaseServer} required="required">
+                    <input class="text long-field" id="database-server-{$id}" type="text" name="database-server-{$id}" placeholder="Required" value="{$databaseServer}" required="required">
                   </div>
                   <div class="field-group">
                     <label for="database-port-{$id}">Database Port</label>
-                    <input class="text long-field" id="database-port-{$id}" type="text" name="database-port-{$id}" placeholder="Optional" value={$databasePort} required="required">
+                    <input class="text long-field" id="database-port-{$id}" type="text" name="database-port-{$id}" placeholder="Optional" value="{$databasePort}" required="required">
                   </div>
                   <div class="field-group">
                     <label for="database-username-{$id}">Username</label>
-                    <input class="text long-field" id="database-username-{$id}" type="text" name="database-username-{$id}" placeholder="Required" value={$databaseUsername} required="required">
+                    <input class="text long-field" id="database-username-{$id}" type="text" name="database-username-{$id}" placeholder="Required" value="{$databaseUsername}" required="required">
                   </div>
                   <div class="field-group">
                     <label for="database-password-{$id}">Password</label>
-                    <input class="text long-field" id="database-password-{$id}" type="password" name="database-password-{$id}" placeholder="Required" value={$databasePassword}>
+                    <input class="text long-field" id="database-password-{$id}" type="password" name="database-password-{$id}" placeholder="Required" value="{$databasePassword}">
                   </div>
                   <div class="field-group">
                     <label for="connection-string-suffix-{$id}">Connection String Suffix</label>
-                    <input class="text long-field" id="connection-string-suffix-{$id}" type="text" name="connection-string-suffix-{$id}" placeholder="Optional" value={$connectionStringSuffix}>
+                    <input class="text long-field" id="connection-string-suffix-{$id}" type="text" name="connection-string-suffix-{$id}" placeholder="Optional" value="{$connectionStringSuffix}">
                     <div class="description" >This text will be appended to the connection string.</div>
                   </div>
                   <div class="buttons-container">
                     <div class="buttons">
                       <button style="float:left;" class="aui-button delete-profile-button" connection-profile="{$id}">Delete</button>
+                      <button style="float:left;" class="aui-button test-profile-button" connection-profile="{$id}">Test Connection</button>
                       <button style="float:left;" class="aui-button aui-button-primary update-profile-button" connection-profile="{$id}">Save</button>
                       <div style="clear:both"></div>
                     </div>

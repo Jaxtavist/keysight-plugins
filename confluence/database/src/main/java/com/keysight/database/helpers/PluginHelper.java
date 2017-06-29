@@ -75,7 +75,7 @@ public class PluginHelper {
     private String rowLimitValue;
     private String timeoutLimitType;
     private String timeoutLimitValue;
-    private Boolean doNotifyAll;
+    private String logEmail;
     private String notificationEmail;
 
     private Element root;
@@ -109,6 +109,7 @@ public class PluginHelper {
                                 + "<timeout-limit-type>Soft<timeout-limit-type>\n"
                                 + "<timeout-limit-value><timeout-limit-value>\n"
                                 + "<notification-email></notification-email>\n"
+                                + "<log-email></log-email>\n"
                                 + "</plugin-configuration>\n";
             }
             Document document = builder.parse(new InputSource(new StringReader(pluginConfigXml)));
@@ -149,7 +150,7 @@ public class PluginHelper {
             timeoutLimitType = new String( Base64.decodeBase64(getValueOfElement("timeout-limit-type")), "UTF-8");
             timeoutLimitValue = new String( Base64.decodeBase64(getValueOfElement("timeout-limit-value")), "UTF-8");
 
-            doNotifyAll = Boolean.parseBoolean(getValueOfElement("notify-all"));
+            logEmail = getValueOfElement("log-email");
             notificationEmail = new String( Base64.decodeBase64(getValueOfElement("notification-email")), "UTF-8");
 
             if (!StringUtils.isEmpty(jdbcDriverDirectory)) {
@@ -312,7 +313,7 @@ public class PluginHelper {
     public String getTimeoutLimitType() { return timeoutLimitType; }
     public String getTimeoutLimitValue() { return timeoutLimitValue; }
     public String getNotificationEmail() { return notificationEmail; }
-    public Boolean getDoNotifyAll() { return doNotifyAll; }
+    public String getLogEmail() { return logEmail; }
 
     // Get authorized user or group by splitting the xml attribute on commas
 

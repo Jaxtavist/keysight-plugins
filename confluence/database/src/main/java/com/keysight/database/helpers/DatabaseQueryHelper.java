@@ -1,29 +1,21 @@
 package com.keysight.database.helpers;
 
 import com.atlassian.confluence.macro.MacroExecutionException;
-import com.atlassian.confluence.velocity.htmlsafe.HtmlSafe;
-import com.atlassian.confluence.content.render.xhtml.ConversionContext;
-import com.atlassian.confluence.content.render.xhtml.DefaultConversionContext;
-import com.atlassian.confluence.content.render.xhtml.XhtmlException;
-import com.atlassian.confluence.pages.Page;
-import com.atlassian.confluence.xhtml.api.XhtmlContent;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import javax.xml.stream.XMLStreamException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class DatabaseQueryHelper
-{
+public class DatabaseQueryHelper {
     public static Connection createConnection(String profileId, PluginHelper pluginHelper) throws MacroExecutionException {
         // Get all stored profiles
         NodeList profileNodes = pluginHelper.getProfiles();
         ArrayList<ConnectionProfile> profiles = new ArrayList<>();
-        Connection connect;
 
         for (int i = 0; i < profileNodes.getLength(); i++) {
             Element profileNode = (Element) profileNodes.item(i);
@@ -37,36 +29,46 @@ public class DatabaseQueryHelper
             }
         }
 
+
         if (profile == null) {
             throw new MacroExecutionException("No profile found with that ID for which you are authorized: " + profileId);
         }
 
-        String username = profile.databaseUsername;
+        return createConnection(profile, pluginHelper);
+    }
 
-        // Fetch the password from the authmap, where the profile name is the key.
-        String password = pluginHelper.getAuthMap().get(profile.profileId);
+    public static Connection createConnection(ConnectionProfile profile, PluginHelper pluginHelper) throws MacroExecutionException {
+        String username = profile.getDatabaseUsername();
+        Connection connect;
+        String password = profile.getDatabasePassword();
+        System.out.println("Pass: "+password);
+        if (Objects.equals(password, "*****")) {
+            // Fetch the password from the authmap, where the profile name is the key.
+            password = pluginHelper.getAuthMap().get(profile.getProfileId());
+            System.out.println("Pass: " + password);
+        }
         System.out.println("Pass: "+password);
 
-        String subProtocol = StringUtils.lowerCase(profile.databaseType);
+        String subProtocol = StringUtils.lowerCase(profile.getDatabaseType());
 
         if (subProtocol.equals("microsoft sql server")) {
             subProtocol = "sqlserver";
         } else if (subProtocol.equals("mongodb")) {
             subProtocol = "mongo";
         }
-        String connectionString = "jdbc:" + subProtocol + "://" + profile.databaseServer;
-        if (!StringUtils.isEmpty(profile.databasePort)) {
-            connectionString += ":" + profile.databasePort;
+        String connectionString = "jdbc:" + subProtocol + "://" + profile.getDatabaseServer();
+        if (!StringUtils.isEmpty(profile.getDatabasePort())) {
+            connectionString += ":" + profile.getDatabasePort();
         }
 
-        if( profile.databaseType.matches("Microsoft SQL Server")) {
-            connectionString += ";databaseName=" + profile.databaseName;
+        if (profile.getDatabaseType().matches("Microsoft SQL Server")) {
+            connectionString += ";databaseName=" + profile.getDatabaseName();
         } else {
-            connectionString += "/" + profile.databaseName;
+            connectionString += "/" + profile.getDatabaseName();
         }
 
-        if (!StringUtils.isEmpty(profile.connectionStringSuffix)) {
-            connectionString += "?" + profile.connectionStringSuffix;
+        if (!StringUtils.isEmpty(profile.getConnectionStringSuffix())) {
+            connectionString += "?" + profile.getConnectionStringSuffix();
         }
 
         //System.out.println( "Connection String: " + connectionString );
@@ -75,7 +77,7 @@ public class DatabaseQueryHelper
             connect = DriverManager.getConnection(connectionString, username, password);
         } catch (SQLException exception) {
             if (exception.getMessage().matches(".*No suitable driver found.*")) {
-                pluginHelper.loadJdbcDriver(profile.databaseType);
+                pluginHelper.loadJdbcDriver(profile.getDatabaseType());
                 try {
                     connect = DriverManager.getConnection(connectionString, username, password);
                 } catch (Exception exception2) {
@@ -90,4 +92,5 @@ public class DatabaseQueryHelper
 
         return connect;
     }
+
 }

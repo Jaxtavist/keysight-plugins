@@ -9,6 +9,7 @@ import com.atlassian.sal.api.transaction.TransactionTemplate;
 import com.atlassian.sal.api.user.UserKey;
 import com.atlassian.sal.api.user.UserManager;
 import com.atlassian.sal.api.user.UserProfile;
+import com.keysight.database.helpers.ConnectionProfile;
 import com.keysight.database.helpers.DatabaseQueryHelper;
 import com.keysight.database.helpers.PluginConfig;
 import com.keysight.database.helpers.PluginHelper;
@@ -111,14 +112,15 @@ public class RestAdminConfigService {
         return Response.noContent().build();
     }
 
-    @GET
-    @Path("profiles/test/{name}")
+    @POST
+    @Path("profiles/test/")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response testProfile(@Context HttpServletRequest request, @PathParam("name") String name) {
+    public Response testProfile(final ConnectionProfile profile, @Context HttpServletRequest request) {
         PluginHelper pluginHelper = new PluginHelper(pluginSettingsFactory, transactionTemplate);
         Connection testConnect;
         try {
-            testConnect = DatabaseQueryHelper.createConnection(name, pluginHelper);
+            testConnect = DatabaseQueryHelper.createConnection(profile, pluginHelper);
         } catch (MacroExecutionException e) {
             return Response.serverError().entity("Error creating connection: "+e.getMessage()).build();
         }
