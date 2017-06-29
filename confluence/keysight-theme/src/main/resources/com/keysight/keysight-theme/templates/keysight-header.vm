@@ -9,7 +9,7 @@
 <div id="keysight-search-form">
    <form name="gs" method="get" style="margin:0;" action="https://keygoogle.cos.is.keysight.com/search" onSubmit="googlePopulateParams(this);">
    <!--    **** Please customize the value of the hidden field below ('googleCurrentSite') to use the url of the site on which this form is being used -->
-   <input type="hidden" name="googleCurrentSite" value="wiki2.collaboration.is.keysight.com">
+   <input type="hidden" name="googleCurrentSite" value="confluence.it.keysight.com">
    <script language="Javascript">
 function googlePopulateParams(form){
 var selIndx = form.googleDropDown.selectedIndex;	
@@ -56,7 +56,7 @@ if(form.googleDropDown.options[selIndx].value == "[Site]")	{
       <div id="keysight-search-drop-down-1">
          <!-- The order of the dropdown options is customizable -->
          <select style="font-family: Arial; font-size: 11px; color:#555555;" name="googleDropDown" size="1" onChange="if(!googleQueryModified) { this.form.q.value='Search ' + this.options[this.selectedIndex].text; this.form.q.style.color='gray'; }">
-            <option value="[Site]">Wiki 2</option>
+            <option value="[Site]">Confluence</option>
             <option value="keysight_intranet_all">Keysight Intranet</option>
          </select>
       </div>
