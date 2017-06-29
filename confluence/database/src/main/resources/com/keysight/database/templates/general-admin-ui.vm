@@ -293,7 +293,7 @@
                 <div class="field-group">
                     <label for="notification-email">Notification Email</label>
                     <input class="text" id="notification-email" type="email" name="notification-email" placeholder="Optional" value=""/>
-                    <div class="description" >The email address that will receive notifications if above restrictions are broken.</div>
+                    <div class="description" >The email address that will receive the warning when the soft limits are exceeded.</div>
                 </div>
                 <div class="buttons-container">
                     <div class="buttons">
