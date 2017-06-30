@@ -2,6 +2,10 @@ databaseConfigHelper = (function($) {
 
     var methods = new Object();
     var url = AJS.contextPath() + "/rest/database/1.0/admin-config/configuration";
+    // This dictates whether the stored xml is still valid.
+    // Follows the Semver standard (First digit indicates breaking change).
+    var schemaVersionString = "1.1.0";
+    var schemaVersionArr = schemaVersionString.split(".");
 
     methods['saveJdbcDriverDirectory'] = function() {
         saveConfig();
@@ -10,7 +14,6 @@ databaseConfigHelper = (function($) {
 
     methods['saveConfigAuth'] = function() {
         saveConfig();
-        location.reload();
     }
 
     methods['addGroup'] = function() {
@@ -60,9 +63,31 @@ databaseConfigHelper = (function($) {
                     "    <row-limit-value></row-limit-value>\n"+
                     "    <timeout-limit-type></timeout-limit-type>\n"+
                     "    <timeout-limit-value></timeout-limit-value>\n"+
+                    "    <log-email></log-email>\n"+
                     "    <notification-email></notification-email>\n"+
                     "</plugin-configuration>"
                 ));
+            }
+
+            // Check for breaking changes in the schema
+            if ($xml.find("schema-version").length != 0) {
+                var xmlVersion = $xml.find("schema-version").html();
+                var xmlMajorVer = xmlVersion.split(".")[0];
+                if (xmlMajorVer != schemaVersionArr[0]) {
+                    $xml = AJS.$(AJS.$.parseXML(
+                        "<plugin-configuration>\n"+
+                        "    <jdbc-driver-directory></jdbc-driver-directory>\n"+
+                        "    <config-authorized-users></config-authorized-users>\n"+
+                        "    <config-authorized-groups></config-authorized-groups>\n"+
+                        "    <row-limit-type></row-limit-type>\n"+
+                        "    <row-limit-value></row-limit-value>\n"+
+                        "    <timeout-limit-type></timeout-limit-type>\n"+
+                        "    <timeout-limit-value></timeout-limit-value>\n"+
+                        "    <log-email></log-email>\n"+
+                        "    <notification-email></notification-email>\n"+
+                        "</plugin-configuration>"
+                    ));
+                }
             }
 
             $("#jdbc-driver-directory").val(atob($xml.find("jdbc-driver-directory").html()));
@@ -72,6 +97,7 @@ databaseConfigHelper = (function($) {
             var rowLimitValue = atob($xml.find("row-limit-value").html());
             var timeoutLimitType = atob($xml.find("timeout-limit-type").html());
             var timeoutLimitValue = atob($xml.find("timeout-limit-value").html());
+            var notifyAll = $xml.find("log-email").html();
             var notificationEmail = atob($xml.find("notification-email").html());
 
             // If we failed to get the fields from the xml, default to empty string;
@@ -107,6 +133,7 @@ databaseConfigHelper = (function($) {
             AJS.$("#row-limit-value").val( rowLimitValue );
             AJS.$("#timeout-limit-type").val( timeoutLimitType );
             AJS.$("#timeout-limit-value").val( timeoutLimitValue );
+            AJS.$("#log-email").val(notifyAll);
             AJS.$("#notification-email").val( notificationEmail );
 
             AJS.$("#save-config-auth").click(function(e) {
@@ -120,13 +147,19 @@ databaseConfigHelper = (function($) {
             });
 
         }).fail(function(self, status, error) {
-            alert(error);
+            var loadFlag = AJS.flag({
+                type: 'error',
+                title: 'Failed to fetch configuration.',
+                body: 'Please try again. If problems persist, contact your Confluence administrator.',
+                close: 'auto'
+            });
         });
     }
 
     function saveConfig() {
         var xmlString = '<?xml version="1.0" encoding="UTF-8"?>' + "\n" +
             '<plugin-configuration>' + "\n" +
+               '<schema-version>'+schemaVersionString+'</schema-version>' + "\n" +
             '   <jdbc-driver-directory>' + btoa($("#jdbc-driver-directory").val()) + "</jdbc-driver-directory>\n" +
             '   <config-authorized-users>' + btoa($("#config-authorized-users").val()) + "</config-authorized-users>\n" +
             '   <config-authorized-groups>' + btoa($("#config-authorized-groups").val()) + "</config-authorized-groups>\n" +
@@ -134,6 +167,7 @@ databaseConfigHelper = (function($) {
             '   <row-limit-value>' + btoa($("#row-limit-value").val()) + "</row-limit-value>\n" +
             '   <timeout-limit-type>' + btoa($("#timeout-limit-type").val()) + "</timeout-limit-type>\n" +
             '   <timeout-limit-value>' + btoa($("#timeout-limit-value").val()) + "</timeout-limit-value>\n" +
+            '   <log-email>' + $("#log-email").val() + "</log-email>\n" +
             '   <notification-email>' + btoa($("#notification-email").val()) + "</notification-email>\n" +
             '</plugin-configuration>' + "\n";
 
@@ -152,9 +186,19 @@ databaseConfigHelper = (function($) {
             data: '{"xml":"' + encodeURIComponent(xmlString) + '"}',
             processData: false
         }).done(function() {
-            alert("Config Saved");
+            var saveSuccessFlag = AJS.flag({
+                type: 'success',
+                title: 'Success!',
+                body: 'Plugin configuration was saved successfully.',
+                close: 'auto'
+            });
         }).fail(function(self, status, error) {
-            alert(error);
+            var saveFailFlag = AJS.flag({
+                type: 'error',
+                title: 'Failed to save configuration.',
+                body: 'Please try again. If problems persist, contact your Confluence administrator.',
+                close: 'auto'
+            });
         });
     }
 

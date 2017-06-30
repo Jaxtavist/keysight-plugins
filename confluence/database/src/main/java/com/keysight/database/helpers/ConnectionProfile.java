@@ -5,38 +5,49 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 import org.w3c.dom.Element;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ConnectionProfile {
     @XmlElement
-    public String profileName;
+    private String profileName;
     @XmlElement
-    public String profileDescription;
+    private String profileId;
+    @XmlElement
+    private String profileDescription;
     @XmlElement
     public String authorizedUsers;
     @XmlElement
     public String authorizedGroups;
     @XmlElement
-    public String databaseType;
+    private String databaseType;
     @XmlElement
-    public String databaseName;
+    private String databaseName;
     @XmlElement
-    public String databaseServer;
+    private String databaseServer;
     @XmlElement
-    public String databasePort;
+    private String databasePort;
     @XmlElement
-    public String databaseUsername;
-    public String databasePassword;
+    private String databaseUsername;
     @XmlElement
-    public String connectionStringSuffix;
+    private String databasePassword;
+    @XmlElement
+    private String connectionStringSuffix;
+
+    // Dummy constructor to make JAXB happy
+    public ConnectionProfile() {
+    }
 
     public ConnectionProfile(Element profile) {
         try {
             profileName = new String(Base64.decodeBase64(profile.getElementsByTagName("profile-name").item(0).getTextContent()), "UTF-8");
+            profileId = new String(Base64.decodeBase64(profile.getElementsByTagName("profile-id").item(0).getTextContent()), "UTF-8");
             profileDescription = new String(Base64.decodeBase64(profile.getElementsByTagName("profile-description").item(0).getTextContent()), "UTF-8");
             authorizedUsers = new String(Base64.decodeBase64(profile.getElementsByTagName("authorized-users").item(0).getTextContent()), "UTF-8");
             authorizedGroups = new String(Base64.decodeBase64(profile.getElementsByTagName("authorized-groups").item(0).getTextContent()), "UTF-8");
@@ -53,7 +64,43 @@ public class ConnectionProfile {
     }
 
     public String getName() {
-        return profileName;
+        return getProfileName();
+    }
+
+    public String getProfileDescription() {
+        return profileDescription;
+    }
+
+    public String getDatabaseType() {
+        return databaseType;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
+    }
+
+    public String getDatabaseServer() {
+        return databaseServer;
+    }
+
+    public String getDatabasePort() {
+        return databasePort;
+    }
+
+    public String getDatabaseUsername() {
+        return databaseUsername;
+    }
+
+    public String getDatabasePassword() {
+        return databasePassword;
+    }
+
+    public String getConnectionStringSuffix() {
+        return connectionStringSuffix;
+    }
+
+    public String getId() {
+        return getProfileId();
     }
 
     public ArrayList<String> getAuthorizedUsers() {
@@ -62,5 +109,13 @@ public class ConnectionProfile {
 
     public ArrayList<String> getAuthorizedGroups() {
         return new ArrayList<>(Arrays.asList(StringUtils.split(this.authorizedGroups, ",")));
+    }
+
+    public String getProfileName() {
+        return profileName;
+    }
+
+    public String getProfileId() {
+        return profileId;
     }
 }
