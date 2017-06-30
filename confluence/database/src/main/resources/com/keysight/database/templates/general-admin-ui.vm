@@ -286,8 +286,13 @@
                     provided, no specified timeout for the sql query will be set.</div>
                 </div>
                 <div class="field-group">
+                    <label for="log-email">Log Email</label>
+                    <input class="text" id="log-email" type="email" name="log-email" placeholder="Optional" value=""/>
+                    <div class="description" >If provided, an email will be sent here for every query the plugin executes.</div>
+                </div>
+                <div class="field-group">
                     <label for="notification-email">Notification Email</label>
-                    <input class="text" id="notification-email" type="text" name="notification-email" placeholder="Optional" value=""/>
+                    <input class="text" id="notification-email" type="email" name="notification-email" placeholder="Optional" value=""/>
                     <div class="description" >The email address that will receive the warning when the soft limits are exceeded.</div>
                 </div>
                 <div class="buttons-container">

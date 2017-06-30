@@ -172,6 +172,9 @@
     <hr/>
     <br/>
     <h2>Modify or View Current Profiles</h2>
+    <br/>
+    <div id="aui-message-bar"></div>
+    <br/>
     <div id="connection-profiles">
     </div>
     <input id="add-connection-profile" class="aui-button button submit" type="submit" value="Add Connection Profile"/>
